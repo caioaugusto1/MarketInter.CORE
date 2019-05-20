@@ -1,5 +1,6 @@
 *.log
-INTER.CORE/vs/
-MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\obj\Debug\
-MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2
-MarketInter.CORE\INTER.CORE\.vs\INTER.CORE\v15\Server\
+\INTER.CORE/vs/
+\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\obj\Debug\
+\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2
+\MarketInter.CORE\INTER.CORE\.vs\INTER.CORE\v15\Server\
+\INTER.CORE\.vs\INTER.CORE\v15
