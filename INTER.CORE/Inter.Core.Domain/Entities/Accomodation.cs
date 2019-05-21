@@ -15,6 +15,10 @@
         public int NumberOfPlaces { get; set; }
 
         public bool Available { get; set; }
+
+        public int EnviromentId { get; set; }
+
+        public virtual Environment Environment { get; set; }
         
     }
 }

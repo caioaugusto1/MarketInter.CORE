@@ -30,5 +30,10 @@ namespace Inter.Core.Domain.Entities
         
         public string PassaportNumber { get; set; }
 
+        public int EnviromentId { get; set; }
+
+        public virtual Environment Environment { get; set; }
+
+
     }
 }

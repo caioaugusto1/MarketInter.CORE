@@ -10,6 +10,11 @@
 
         public virtual CollegeTime Time { get; set; }
 
+        public int EnviromentId { get; set; }
+
+        public virtual Environment Environment { get; set; }
+
+
         public class CollegeTime
         {
             public int Id { get; set; }

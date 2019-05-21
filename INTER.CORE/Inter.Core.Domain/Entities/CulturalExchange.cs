@@ -28,5 +28,10 @@ namespace Inter.Core.Domain.Entities
         public bool CollegePayment { get; set; }
 
         public float TotalValue { get; set; }
+
+        public int EnviromentId { get; set; }
+
+        public virtual Environment Environment { get; set; }
+
     }
 }
