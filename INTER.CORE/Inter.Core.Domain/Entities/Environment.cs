@@ -14,7 +14,7 @@ namespace Inter.Core.Domain.Entities
 
         public DateTime FinishDate { get; set; }
 
-        public virtual List<IdentityUser> Users { get; set; }
+        public virtual List<ApplicationUser> Users { get; set; }
 
         public virtual List<Student> Students { get; set; }
 

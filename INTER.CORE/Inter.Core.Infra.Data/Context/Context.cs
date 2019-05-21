@@ -8,10 +8,9 @@ namespace Inter.Core.Infra.Data.Context
         public Context(DbContextOptions<Context> options)
             : base(options)
         {
-
+            Database.EnsureCreated();
         }
-
-
+        
         public DbSet<Inter.Core.Domain.Entities.Environment> Environment { get; set; }
         public DbSet<Inter.Core.Domain.Entities.College> College { get; set; }
         public DbSet<Inter.Core.Domain.Entities.CulturalExchange> CulturalExchange { get; set; }

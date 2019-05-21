@@ -40,11 +40,19 @@ namespace Inter.Core.Presentation.Data.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false), 
+                    EnvironmentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Environment_EnvironmentId", 
+                        column: x => x.EnvironmentId, 
+                        principalTable: "Environment",
+                        principalColumn: "Id", 
+                        onDelete: ReferentialAction.Cascade
+                        );
                 });
 
             migrationBuilder.CreateTable(

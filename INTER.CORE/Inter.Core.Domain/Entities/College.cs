@@ -1,4 +1,6 @@
-﻿namespace Inter.Core.Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace Inter.Core.Domain.Entities
 {
     public class College
     {
@@ -6,9 +8,13 @@
 
         public string Name { get; set; }
 
-        public int CollegeTimeId { get; set; }
+        public string Address { get; set; }
 
-        public virtual CollegeTime Time { get; set; }
+        public string City { get; set; }
+
+        public string Country { get; set; }
+        
+        public virtual List<CollegeTime> Time { get; set; }
 
         public int EnviromentId { get; set; }
 
@@ -24,7 +30,10 @@
             public int TimeForWeek { get; set; }
 
             public string Period { get; set; }
-        }
 
+            public int CollegeId { get; set; }
+
+            public virtual College College { get; set; }
+        }
     }
 }

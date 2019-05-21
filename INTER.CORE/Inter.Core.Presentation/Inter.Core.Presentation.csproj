@@ -8,8 +8,16 @@
 
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Inter.Core.Domain\Inter.Core.Domain.csproj" />
+    <ProjectReference Include="..\Inter.Core.Infra.Data\Inter.Core.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>
