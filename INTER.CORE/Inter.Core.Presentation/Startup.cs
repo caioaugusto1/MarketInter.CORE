@@ -1,5 +1,4 @@
 ﻿using Inter.Core.Domain.Entities;
-using Inter.Core.Infra.Data.Context;
 using Inter.Core.Presentation.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
