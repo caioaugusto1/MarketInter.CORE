@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Interfaces.Repositories
 {
-    public interface IStudentRepository
+    public interface IStudentRepository : IRepository<Student>
     {
         List<Student> GetAllNotEnroled();
     }

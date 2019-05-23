@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Inter.Core.Presentation.Data;
 using Inter.Core.Presentation.Models;
+using Inter.Core.Domain.ServiceInterface;
 
 namespace Inter.Core.Presentation.Controllers
 {
     public class StudentController : Controller
     {
+        private readonly IStudentService _studentService;
+
         private readonly ApplicationDbContext _context;
 
         public StudentController(ApplicationDbContext context)
@@ -22,7 +25,7 @@ namespace Inter.Core.Presentation.Controllers
         // GET: Student
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.StudentViewModel.Include(s => s.College);
+            var applicationDbContext = _context.Student.Include(s => s.College);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +37,7 @@ namespace Inter.Core.Presentation.Controllers
                 return NotFound();
             }
 
-            var studentViewModel = await _context.StudentViewModel
+            var studentViewModel = await _context.Student
                 .Include(s => s.College)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (studentViewModel == null)
@@ -77,7 +80,7 @@ namespace Inter.Core.Presentation.Controllers
                 return NotFound();
             }
 
-            var studentViewModel = await _context.StudentViewModel.FindAsync(id);
+            var studentViewModel = await _context.Student.FindAsync(id);
             if (studentViewModel == null)
             {
                 return NotFound();
@@ -130,7 +133,7 @@ namespace Inter.Core.Presentation.Controllers
                 return NotFound();
             }
 
-            var studentViewModel = await _context.StudentViewModel
+            var studentViewModel = await _context.Student
                 .Include(s => s.College)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (studentViewModel == null)
@@ -146,15 +149,15 @@ namespace Inter.Core.Presentation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var studentViewModel = await _context.StudentViewModel.FindAsync(id);
-            _context.StudentViewModel.Remove(studentViewModel);
+            var studentViewModel = await _context.Student.FindAsync(id);
+            _context.Student.Remove(studentViewModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StudentViewModelExists(int id)
         {
-            return _context.StudentViewModel.Any(e => e.Id == id);
+            return _context.Student.Any(e => e.Id == id);
         }
     }
 }

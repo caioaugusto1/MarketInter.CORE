@@ -8,7 +8,7 @@ namespace Inter.Core.Infra.Data.Context
         public Context(DbContextOptions<Context> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
         
         public DbSet<Inter.Core.Domain.Entities.Environment> Environment { get; set; }
@@ -20,8 +20,8 @@ namespace Inter.Core.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(GetStringConectionConfig());
+            //if (!optionsBuilder.IsConfigured)
+            //    optionsBuilder.UseSqlService(GetStringConectionConfig());
 
             base.OnConfiguring(optionsBuilder);
         }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Inter.Core.Domain.Interfaces.Repositories
 {
@@ -10,8 +12,9 @@ namespace Inter.Core.Domain.Interfaces.Repositories
 
         void Insert(TEntity obj);
 
-        void Update(TEntity obj);
+        TEntity Update(TEntity obj);
 
-        void Save();
+        IEnumerable<TEntity> FindByFilter(Expression<Func<TEntity, bool>> predicate);
+        
     }
 }

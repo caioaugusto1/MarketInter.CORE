@@ -3,8 +3,6 @@ using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.ServiceInterface;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Inter.Core.Domain.Service
 {
@@ -19,8 +17,7 @@ namespace Inter.Core.Domain.Service
 
         public void Add(Student student)
         {
-            // regra de negócio aqui
-            throw new NotImplementedException();
+            _studentRepository.Insert(student);
         }
     }
 }
