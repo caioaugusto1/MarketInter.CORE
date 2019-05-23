@@ -4732,6 +4732,19 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Inter.Core.App/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Inter.Core.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Inter.Core.App.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Inter.Core.App.dll": {}
+        }
+      },
       "Inter.Core.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -12984,6 +12997,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Inter.Core.App/1.0.0": {
+      "type": "project",
+      "path": "../Inter.Core.App/Inter.Core.App.csproj",
+      "msbuildProject": "../Inter.Core.App/Inter.Core.App.csproj"
+    },
     "Inter.Core.Domain/1.0.0": {
       "type": "project",
       "path": "../Inter.Core.Domain/Inter.Core.Domain.csproj",
@@ -12993,6 +13011,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "EntityFramework >= 6.2.0",
+      "Inter.Core.App >= 1.0.0",
       "Inter.Core.Domain >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
@@ -13030,6 +13049,9 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
+            "C:\\Users\\Caio's PC\\Documents\\Repositories\\MarketInter.CORE\\INTER.CORE\\Inter.Core.App\\Inter.Core.App.csproj": {
+              "projectPath": "C:\\Users\\Caio's PC\\Documents\\Repositories\\MarketInter.CORE\\INTER.CORE\\Inter.Core.App\\Inter.Core.App.csproj"
+            },
             "C:\\Users\\Caio's PC\\Documents\\Repositories\\MarketInter.CORE\\INTER.CORE\\Inter.Core.Domain\\Inter.Core.Domain.csproj": {
               "projectPath": "C:\\Users\\Caio's PC\\Documents\\Repositories\\MarketInter.CORE\\INTER.CORE\\Inter.Core.Domain\\Inter.Core.Domain.csproj"
             }

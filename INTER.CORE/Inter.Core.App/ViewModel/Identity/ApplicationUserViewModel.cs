@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Inter.Core.App.ViewModel;
+using Microsoft.AspNetCore.Identity;
 
 namespace Inter.Core.Presentation.Models.Identity
 {

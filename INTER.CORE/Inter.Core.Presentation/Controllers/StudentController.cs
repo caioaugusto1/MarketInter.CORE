@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Inter.Core.App.Intefaces;
+using Inter.Core.App.ViewModel;
+using Inter.Core.Presentation.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Inter.Core.Presentation.Data;
-using Inter.Core.Presentation.Models;
-using Inter.Core.Domain.ServiceInterface;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly IStudentService _studentService;
+        private readonly IStudentAppService _studentService;
 
         private readonly ApplicationDbContext _context;
 

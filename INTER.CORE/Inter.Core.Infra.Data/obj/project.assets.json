@@ -2167,6 +2167,19 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Inter.Core.App/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Inter.Core.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Inter.Core.App.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Inter.Core.App.dll": {}
+        }
+      },
       "Inter.Core.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -2182,6 +2195,7 @@
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
           "EntityFramework": "6.2.0",
+          "Inter.Core.App": "1.0.0",
           "Inter.Core.Domain": "1.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.0"
         },
@@ -7364,6 +7378,11 @@
         "system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "Inter.Core.App/1.0.0": {
+      "type": "project",
+      "path": "../Inter.Core.App/Inter.Core.App.csproj",
+      "msbuildProject": "../Inter.Core.App/Inter.Core.App.csproj"
     },
     "Inter.Core.Domain/1.0.0": {
       "type": "project",

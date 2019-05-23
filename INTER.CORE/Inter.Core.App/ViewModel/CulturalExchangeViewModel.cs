@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Inter.Core.Presentation.Models
+namespace Inter.Core.App.ViewModel
 {
     public class CulturalExchangeViewModel
     {

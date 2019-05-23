@@ -1,7 +1,4 @@
-﻿using Inter.Core.Presentation.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Inter.Core.App.ViewModel;
 
 namespace Inter.Core.App.Intefaces
 {

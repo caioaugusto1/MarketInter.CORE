@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Inter.Core.Presentation.Models
+namespace Inter.Core.App.ViewModel
 {
     public class CollegeViewModel
     {

@@ -1,8 +1,7 @@
 ﻿using Inter.Core.App.Intefaces;
+using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
-using Inter.Core.Domain.Service;
 using Inter.Core.Domain.ServiceInterface;
-using Inter.Core.Presentation.Models;
 
 namespace Inter.Core.App.Application
 {

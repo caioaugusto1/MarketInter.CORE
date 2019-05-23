@@ -16,3 +16,5 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.Presentation.pdb
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.xml
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\obj\Debug\netcoreapp2.2\Inter.Core.Infra.Data.csproj.CopyComplete
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.App.dll
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.App.pdb

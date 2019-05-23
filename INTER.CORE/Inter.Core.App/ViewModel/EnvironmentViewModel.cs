@@ -1,10 +1,9 @@
-﻿using Inter.Core.Domain.Entities;
-using Inter.Core.Presentation.Models.Identity;
+﻿using Inter.Core.Presentation.Models.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Inter.Core.Presentation.Models
+namespace Inter.Core.App.ViewModel
 {
     public class EnvironmentViewModel
     {

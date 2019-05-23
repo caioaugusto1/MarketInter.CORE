@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Inter.Core.Presentation.Models
+namespace Inter.Core.App.ViewModel
 {
     public class AccomodationViewModel
     {

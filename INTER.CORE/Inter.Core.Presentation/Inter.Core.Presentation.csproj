@@ -16,6 +16,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\Inter.Core.App\Inter.Core.App.csproj" />
     <ProjectReference Include="..\Inter.Core.Domain\Inter.Core.Domain.csproj" />
   </ItemGroup>
 
