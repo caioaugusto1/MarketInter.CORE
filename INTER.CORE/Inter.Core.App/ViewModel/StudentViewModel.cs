@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel
 {
@@ -9,15 +10,16 @@ namespace Inter.Core.App.ViewModel
         public string CustomerId { get; set; }
 
         public int CollegeId { get; set; }
-
-        public virtual CollegeViewModel College { get; set; }
-
+        
         public string FullName { get; set; }
 
         public string Email { get; set; }
 
         public string MobileNumber { get; set; }
-
+        
+        [Display(Name = "Date of Birthday")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         public DateTime DateOfBirthday { get; set; }
 
         public string Address { get; set; }

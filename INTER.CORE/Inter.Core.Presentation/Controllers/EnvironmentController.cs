@@ -1,34 +1,31 @@
-﻿using Inter.Core.App.Intefaces;
-using Inter.Core.App.ViewModel;
-using Inter.Core.Presentation.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading.Tasks;
+using Inter.Core.App.ViewModel;
+using Inter.Core.Presentation.Data;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    public class StudentController : Controller
+    public class EnvironmentController : Controller
     {
-        private readonly IStudentAppService _studentService;
-
         private readonly ApplicationDbContext _context;
 
-        public StudentController(ApplicationDbContext context, IStudentAppService studentAppService)
+        public EnvironmentController(ApplicationDbContext context)
         {
-            _studentService = studentAppService;
             _context = context;
         }
 
-        // GET: Student
+        // GET: Environment
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Student;
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Environment.ToListAsync());
         }
 
-        // GET: Student/Details/5
+        // GET: Environment/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,45 +33,39 @@ namespace Inter.Core.Presentation.Controllers
                 return NotFound();
             }
 
-            var studentViewModel = await _context.Student
+            var environmentViewModel = await _context.Environment
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (studentViewModel == null)
+            if (environmentViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(studentViewModel);
+            return View(environmentViewModel);
         }
 
-        // GET: Student/Create
+        // GET: Environment/Create
         public IActionResult Create()
         {
-            ViewData["CollegeId"] = new SelectList(_context.Set<CollegeViewModel>(), "Id", "Id");
             return View();
         }
 
-        // POST: Student/Create
+        // POST: Environment/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind("Id,CustomerId,CollegeId,FullName,Email,MobileNumber,DateOfBirthday,Address,City,Country,Nationality,PassaportNumber,EnviromentId")]
-        StudentViewModel studentViewModel)
+        public async Task<IActionResult> Create([Bind("Id,Company,StartDate,FinishDate")] EnvironmentViewModel environmentViewModel)
         {
             if (ModelState.IsValid)
             {
-                _studentService.Add(studentViewModel);
-
-                _context.Add(studentViewModel);
+                _context.Add(environmentViewModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CollegeId"] = new SelectList(_context.Set<CollegeViewModel>(), "Id", "Id", studentViewModel.CollegeId);
-            return View(studentViewModel);
+            return View(environmentViewModel);
         }
 
-        // GET: Student/Edit/5
+        // GET: Environment/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,23 +73,22 @@ namespace Inter.Core.Presentation.Controllers
                 return NotFound();
             }
 
-            var studentViewModel = await _context.Student.FindAsync(id);
-            if (studentViewModel == null)
+            var environmentViewModel = await _context.Environment.FindAsync(id);
+            if (environmentViewModel == null)
             {
                 return NotFound();
             }
-
-            return View(studentViewModel);
+            return View(environmentViewModel);
         }
 
-        // POST: Student/Edit/5
+        // POST: Environment/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CustomerId,CollegeId,FullName,Email,MobileNumber,DateOfBirthday,Address,City,Country,Nationality,PassaportNumber,EnviromentId")] StudentViewModel studentViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Company,StartDate,FinishDate")] EnvironmentViewModel environmentViewModel)
         {
-            if (id != studentViewModel.Id)
+            if (id != environmentViewModel.Id)
             {
                 return NotFound();
             }
@@ -107,12 +97,12 @@ namespace Inter.Core.Presentation.Controllers
             {
                 try
                 {
-                    _context.Update(studentViewModel);
+                    _context.Update(environmentViewModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentViewModelExists(studentViewModel.Id))
+                    if (!EnvironmentViewModelExists(environmentViewModel.Id))
                     {
                         return NotFound();
                     }
@@ -123,11 +113,10 @@ namespace Inter.Core.Presentation.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CollegeId"] = new SelectList(_context.Set<CollegeViewModel>(), "Id", "Id", studentViewModel.CollegeId);
-            return View(studentViewModel);
+            return View(environmentViewModel);
         }
 
-        // GET: Student/Delete/5
+        // GET: Environment/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,31 +124,30 @@ namespace Inter.Core.Presentation.Controllers
                 return NotFound();
             }
 
-            var studentViewModel = await _context.Student
+            var environmentViewModel = await _context.Environment
                 .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (studentViewModel == null)
+            if (environmentViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(studentViewModel);
+            return View(environmentViewModel);
         }
 
-        // POST: Student/Delete/5
+        // POST: Environment/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var studentViewModel = await _context.Student.FindAsync(id);
-            _context.Student.Remove(studentViewModel);
+            var environmentViewModel = await _context.Environment.FindAsync(id);
+            _context.Environment.Remove(environmentViewModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StudentViewModelExists(int id)
+        private bool EnvironmentViewModelExists(int id)
         {
-            return _context.Student.Any(e => e.Id == id);
+            return _context.Environment.Any(e => e.Id == id);
         }
     }
 }

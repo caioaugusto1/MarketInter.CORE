@@ -1,4 +1,11 @@
-﻿using Inter.Core.Domain.Entities;
+﻿using Inter.Core.App.Application;
+using Inter.Core.App.Intefaces;
+using Inter.Core.Domain.Entities;
+using Inter.Core.Domain.Interfaces.Repositories;
+using Inter.Core.Domain.Service;
+using Inter.Core.Domain.ServiceInterface;
+using Inter.Core.Infra.Data.Context;
+using Inter.Core.Infra.Data.Repositories;
 using Inter.Core.Presentation.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +47,14 @@ namespace Inter.Core.Presentation
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<ContextDB>(options =>
+                   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient(typeof(IRepository<>), typeof(RepositoryBase<>));
+            services.AddTransient<IStudentAppService, StudentAppService>();
+            services.AddTransient<IStudentService, StudentService>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

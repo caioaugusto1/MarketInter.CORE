@@ -9,4 +9,3 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.csproj.CopyComplete
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.dll
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.pdb
-C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.csprojAssemblyReference.cache

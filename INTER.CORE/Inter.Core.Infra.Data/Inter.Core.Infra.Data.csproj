@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Inter.Core.Domain\Inter.Core.Domain.csproj" />
-    <ProjectReference Include="..\Inter.Core.Presentation\Inter.Core.Presentation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,14 +7,8 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\obj\Debug\netcoreapp2.2\Inter.Core.Infra.Data.dll
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\obj\Debug\netcoreapp2.2\Inter.Core.Infra.Data.pdb
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\obj\Debug\netcoreapp2.2\Inter.Core.Infra.Data.csprojAssemblyReference.cache
-C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.Presentation.Views.dll
-C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.Presentation.Views.pdb
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.Domain.dll
-C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.Presentation.dll
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.Domain.pdb
-C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.Presentation.pdb
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.xml
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\obj\Debug\netcoreapp2.2\Inter.Core.Infra.Data.csproj.CopyComplete
-C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.App.dll
-C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Infra.Data\bin\Debug\netcoreapp2.2\Inter.Core.App.pdb

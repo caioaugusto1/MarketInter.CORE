@@ -1,5 +1,5 @@
 ﻿using Inter.Core.Domain.Interfaces.Repositories;
-using Inter.Core.Presentation.Data;
+using Inter.Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,19 +9,11 @@ namespace Inter.Core.Infra.Data.Repositories
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepository<TEntity> where TEntity : class
     {
-        protected readonly ApplicationDbContext _context;
-        protected DbSet<TEntity> DbSet;
-        private readonly DbContextOptions<Inter.Core.Infra.Data.Context.Context> _OptionsBuilder;
+        private readonly DbContextOptions<ContextDB> _OptionsBuilder;
 
-
-        //private readonly DbContextOptions<ApplicationDbContext> _OptionsBuilder;
-
-        public RepositoryBase(ApplicationDbContext context)
+        public RepositoryBase()
         {
-            _context = context;
-
-            _OptionsBuilder = new DbContextOptions<Inter.Core.Infra.Data.Context.Context>();
-            //_OptionsBuilder = new DbContextOptions<ApplicationDbContext>();
+            _OptionsBuilder = new DbContextOptions<ContextDB>();
         }
 
         public void Dispose()
@@ -46,7 +38,7 @@ namespace Inter.Core.Infra.Data.Repositories
 
         public void Insert(TEntity obj)
         {
-            using (var db = new Inter.Core.Infra.Data.Context.Context(_OptionsBuilder))
+            using (var db = new Inter.Core.Infra.Data.Context.ContextDB(_OptionsBuilder))
             {
                 db.Set<TEntity>().Add(obj);
                 db.SaveChangesAsync();

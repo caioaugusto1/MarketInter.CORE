@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Inter.Core.Presentation.Models;
+using Inter.Core.App.ViewModel;
 
 namespace Inter.Core.Presentation.Data
 {
