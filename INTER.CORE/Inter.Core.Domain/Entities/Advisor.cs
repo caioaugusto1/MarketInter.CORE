@@ -9,9 +9,7 @@ namespace Inter.Core.Domain.Entities
         public int AdvisorId { get; set; }
 
         public string Name { get; set; }
-
-        public int EnviromentId { get; set; }
-
+        
         public virtual Environment Environment { get; set; }
     }
 }

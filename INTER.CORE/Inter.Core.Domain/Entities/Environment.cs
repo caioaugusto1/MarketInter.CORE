@@ -23,9 +23,7 @@ namespace Inter.Core.Domain.Entities
         public virtual List<Advisor> Advisors { get; set; }
 
         public virtual List<College> Colleges { get; set; }
-
-        public int CulturalExchangeId { get; set; }
-
-        public virtual CulturalExchange CulturalExchange { get; set; }
+        
+        public virtual List<CulturalExchange> CulturalExchange { get; set; }
     }
 }

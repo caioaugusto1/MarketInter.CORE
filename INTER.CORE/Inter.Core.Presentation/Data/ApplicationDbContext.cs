@@ -1,6 +1,7 @@
 ﻿using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Inter.Core.Presentation.Models;
 
 namespace Inter.Core.Presentation.Data
 {
@@ -18,5 +19,7 @@ namespace Inter.Core.Presentation.Data
         public DbSet<Inter.Core.Domain.Entities.Student> Student { get; set; }
         public DbSet<Inter.Core.Domain.Entities.Advisor> Advisor { get; set; }
         public DbSet<Inter.Core.Domain.Entities.Accomodation> Accomodation { get; set; }
+        public DbSet<Inter.Core.Presentation.Models.StudentViewModel> StudentViewModel { get; set; }
+        
     }
 }

@@ -16,8 +16,6 @@ namespace Inter.Core.Domain.Entities
         
         public virtual List<CollegeTime> Time { get; set; }
 
-        public int EnviromentId { get; set; }
-
         public virtual Environment Environment { get; set; }
 
 
@@ -30,8 +28,6 @@ namespace Inter.Core.Domain.Entities
             public int TimeForWeek { get; set; }
 
             public string Period { get; set; }
-
-            public int CollegeId { get; set; }
 
             public virtual College College { get; set; }
         }
