@@ -3,7 +3,9 @@ using Inter.Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Infra.Data.Repositories
 {
@@ -18,27 +20,36 @@ namespace Inter.Core.Infra.Data.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            GC.SuppressFinalize(true);
         }
 
-        public IEnumerable<TEntity> FindByFilter(Expression<Func<TEntity, bool>> predicate)
+        public Task<List<TEntity>> FindByFilter(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            using (var db = new ContextDB(_OptionsBuilder))
+            {
+                return db.Set<TEntity>().Where(predicate).ToListAsync();
+            }
         }
 
-        public List<TEntity> GetAll()
+        public Task<List<TEntity>> GetAll()
         {
-            throw new NotImplementedException();
+            using (var db = new ContextDB(_OptionsBuilder))
+            {
+                return db.Set<TEntity>().AsNoTracking().ToListAsync();
+            }
         }
 
         public TEntity GetById(int id)
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextDB(_OptionsBuilder))
+            {
+                return banco.Set<TEntity>().Find(id);
+            }
         }
 
         public void Insert(TEntity obj)
         {
-            using (var db = new Inter.Core.Infra.Data.Context.ContextDB(_OptionsBuilder))
+            using (var db = new ContextDB(_OptionsBuilder))
             {
                 db.Set<TEntity>().Add(obj);
                 db.SaveChangesAsync();
@@ -46,9 +57,13 @@ namespace Inter.Core.Infra.Data.Repositories
         }
 
 
-        public TEntity Update(TEntity obj)
+        public void Update(TEntity obj)
         {
-            throw new NotImplementedException();
+            using (var banco = new ContextDB(_OptionsBuilder))
+            {
+                banco.Set<TEntity>().Update(obj);
+                banco.SaveChangesAsync();
+            }
         }
     }
 }

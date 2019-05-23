@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.Interfaces.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        List<TEntity> GetAll();
+        Task<List<TEntity>> GetAll();
 
         TEntity GetById(int id);
 
         void Insert(TEntity obj);
 
-        TEntity Update(TEntity obj);
+        void Update(TEntity obj);
 
-        IEnumerable<TEntity> FindByFilter(Expression<Func<TEntity, bool>> predicate);
+        Task<List<TEntity>> FindByFilter(Expression<Func<TEntity, bool>> predicate);
         
     }
 }

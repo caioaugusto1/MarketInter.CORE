@@ -1,4 +1,5 @@
-﻿using Inter.Core.App.Application;
+﻿using AutoMapper;
+using Inter.Core.App.Application;
 using Inter.Core.App.Intefaces;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
@@ -45,6 +46,8 @@ namespace Inter.Core.Presentation
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddAutoMapper();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

@@ -24,8 +24,8 @@ namespace Inter.Core.Presentation.Controllers
         // GET: Student
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Student;
-            return View(await applicationDbContext.ToListAsync());
+            var studentsVM = _studentService.GetAll();
+            return View(await studentsVM.ToListAsync());
         }
 
         // GET: Student/Details/5
