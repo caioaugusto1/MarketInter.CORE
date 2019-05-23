@@ -53,6 +53,10 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Environment")]
+            public string EnvironmentId { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -66,6 +70,9 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+
+                user.Environment = new Environment();
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

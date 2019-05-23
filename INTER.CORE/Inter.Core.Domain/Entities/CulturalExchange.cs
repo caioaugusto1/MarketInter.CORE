@@ -5,13 +5,9 @@ namespace Inter.Core.Domain.Entities
     public class CulturalExchange
     {
         public int Id { get; set; }
-
-        public int IdStudent { get; set; }
-
+        
         public virtual Student Student { get; set; }
-
-        public int CollegeId { get; set; }
-
+        
         public virtual College College { get; set; }
         
         // After sprint, put class Insurance and crud create and edit insurance

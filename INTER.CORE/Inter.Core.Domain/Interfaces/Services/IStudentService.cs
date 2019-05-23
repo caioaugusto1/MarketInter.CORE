@@ -1,8 +1,6 @@
 ﻿using Inter.Core.Domain.Entities;
-using Inter.Core.Domain.Interfaces.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.ServiceInterface
 {
@@ -10,10 +8,10 @@ namespace Inter.Core.Domain.ServiceInterface
     {
         void Add(Student student);
         
-        List<Student> GetAll();
+        Task<List<Student>> GetAll();
 
         Student GetById(int id);
 
-        Student Update(Student student);
+        void Update(Student student);
     }
 }

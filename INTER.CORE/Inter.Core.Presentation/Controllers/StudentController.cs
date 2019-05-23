@@ -12,7 +12,7 @@ namespace Inter.Core.Presentation.Controllers
     public class StudentController : Controller
     {
         private readonly IStudentAppService _studentService;
-
+        
         private readonly ApplicationDbContext _context;
 
         public StudentController(ApplicationDbContext context, IStudentAppService studentAppService)
@@ -25,23 +25,19 @@ namespace Inter.Core.Presentation.Controllers
         public async Task<IActionResult> Index()
         {
             var studentsVM = _studentService.GetAll();
-            return View(await studentsVM.ToListAsync());
+            return View(studentsVM);
         }
 
         // GET: Student/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
+            if (id == 0)
                 return NotFound();
-            }
 
-            var studentViewModel = await _context.Student
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var studentViewModel = _studentService.GetById(id);
+
             if (studentViewModel == null)
-            {
                 return NotFound();
-            }
 
             return View(studentViewModel);
         }
@@ -65,11 +61,10 @@ namespace Inter.Core.Presentation.Controllers
             if (ModelState.IsValid)
             {
                 _studentService.Add(studentViewModel);
-
-                _context.Add(studentViewModel);
-                await _context.SaveChangesAsync();
+                
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["CollegeId"] = new SelectList(_context.Set<CollegeViewModel>(), "Id", "Id", studentViewModel.CollegeId);
             return View(studentViewModel);
         }

@@ -10,6 +10,8 @@ namespace Inter.Core.Domain.Entities
 
         public string Company { get; set; }
 
+        public string CustomerCode { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime FinishDate { get; set; }

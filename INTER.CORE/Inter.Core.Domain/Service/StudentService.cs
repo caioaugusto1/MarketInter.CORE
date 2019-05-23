@@ -3,6 +3,7 @@ using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.ServiceInterface;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.Service
 {
@@ -20,7 +21,7 @@ namespace Inter.Core.Domain.Service
             _studentRepository.Insert(student);
         }
 
-        public List<Student> GetAll()
+        public Task<List<Student>> GetAll()
         {
             return _studentRepository.GetAll();
         }
@@ -30,9 +31,9 @@ namespace Inter.Core.Domain.Service
             return _studentRepository.GetById(id);
         }
 
-        public Student Update(Student student)
+        public void Update(Student student)
         {
-            return _studentRepository.Update(student);
+            _studentRepository.Update(student);
         }
     }
 }

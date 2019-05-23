@@ -9,6 +9,7 @@ namespace Inter.Core.App.AutoMapper
         public MappingsProfile()
         {
             CreateMap<Student, StudentViewModel>().ReverseMap();
+            CreateMap<EnvironmentViewModel, Inter.Core.Domain.Entities.Environment>().ReverseMap();
         }
     }
 }

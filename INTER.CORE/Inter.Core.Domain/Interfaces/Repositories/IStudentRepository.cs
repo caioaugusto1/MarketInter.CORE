@@ -1,10 +1,11 @@
 ﻿using Inter.Core.Domain.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.Interfaces.Repositories
 {
     public interface IStudentRepository : IRepository<Student>
     {
-        List<Student> GetAllNotEnroled();
+        Task<List<Student>> GetAllNotEnroled();
     }
 }
