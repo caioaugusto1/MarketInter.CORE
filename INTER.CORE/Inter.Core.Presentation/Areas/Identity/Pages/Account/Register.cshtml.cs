@@ -1,12 +1,13 @@
-﻿using Inter.Core.Domain.Entities;
+﻿using Inter.Core.App.Intefaces;
+using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
@@ -18,17 +19,20 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IEnvironmentAppService _environmentAppService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IEnvironmentAppService environmentAppService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _environmentAppService = environmentAppService;
         }
 
         [BindProperty]
@@ -70,8 +74,8 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
-
-                user.Environment = new Environment();
+                //user.Environment = new Enti Environment();
+                var env = _environmentAppService.GetById(Convert.ToInt32(Input.EnvironmentId));
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

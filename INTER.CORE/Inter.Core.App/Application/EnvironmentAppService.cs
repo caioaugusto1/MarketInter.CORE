@@ -30,12 +30,12 @@ namespace Inter.Core.App.Application
 
         public EnvironmentViewModel GetByCode(string code)
         {
-            throw new NotImplementedException();
+            return Mapper.Map<EnvironmentViewModel>(_environmentService.GetByCode(code));
         }
 
         public EnvironmentViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            return Mapper.Map<EnvironmentViewModel>(_environmentService.GetById(id));
         }
 
         public void Update(EnvironmentViewModel environment)

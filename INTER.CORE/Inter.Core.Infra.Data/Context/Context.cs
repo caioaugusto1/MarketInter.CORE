@@ -5,6 +5,11 @@ namespace Inter.Core.Infra.Data.Context
 {
     public class ContextDB : DbContext
     {
+        public ContextDB()
+        {
+
+        }
+
         public ContextDB(DbContextOptions<ContextDB> options)
             : base(options)
         {
@@ -20,8 +25,8 @@ namespace Inter.Core.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //if (!optionsBuilder.IsConfigured)
-            //    optionsBuilder.UseSqlService(GetStringConectionConfig());
+            if (!optionsBuilder.IsConfigured)
+                optionsBuilder.UseSqlServer(GetStringConectionConfig());
 
             base.OnConfiguring(optionsBuilder);
         }

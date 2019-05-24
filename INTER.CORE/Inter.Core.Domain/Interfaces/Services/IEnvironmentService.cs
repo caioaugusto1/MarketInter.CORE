@@ -11,7 +11,7 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         Inter.Core.Domain.Entities.Environment GetById(int id);
 
-        Inter.Core.Domain.Entities.Environment GetByCode(string code);
+        Task<Inter.Core.Domain.Entities.Environment> GetByCode(string code);
         
         void Update(Inter.Core.Domain.Entities.Environment environment);
     }

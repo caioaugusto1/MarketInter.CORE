@@ -41,9 +41,9 @@ namespace Inter.Core.Infra.Data.Repositories
 
         public TEntity GetById(int id)
         {
-            using (var banco = new ContextDB(_OptionsBuilder))
+            using (var db = new ContextDB(_OptionsBuilder))
             {
-                return banco.Set<TEntity>().Find(id);
+                return db.Set<TEntity>().Find(id);
             }
         }
 
@@ -59,10 +59,10 @@ namespace Inter.Core.Infra.Data.Repositories
 
         public void Update(TEntity obj)
         {
-            using (var banco = new ContextDB(_OptionsBuilder))
+            using (var db = new ContextDB(_OptionsBuilder))
             {
-                banco.Set<TEntity>().Update(obj);
-                banco.SaveChangesAsync();
+                db.Set<TEntity>().Update(obj);
+                db.SaveChangesAsync();
             }
         }
     }

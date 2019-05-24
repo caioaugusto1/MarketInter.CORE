@@ -3,6 +3,7 @@ using Inter.Core.App.Application;
 using Inter.Core.App.Intefaces;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
+using Inter.Core.Domain.Interfaces.Services;
 using Inter.Core.Domain.Service;
 using Inter.Core.Domain.ServiceInterface;
 using Inter.Core.Infra.Data.Context;
@@ -54,10 +55,12 @@ namespace Inter.Core.Presentation
             services.AddDbContext<ContextDB>(options =>
                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddTransient(typeof(IRepository<>), typeof(RepositoryBase<>));
-            services.AddTransient<IStudentAppService, StudentAppService>();
-            services.AddTransient<IStudentService, StudentService>();
-            services.AddTransient<IStudentRepository, StudentRepository>();
+            InjectorDependency(services);
+
+            //services.AddTransient(typeof(IRepository<>), typeof(RepositoryBase<>));
+            //services.AddTransient<IStudentAppService, StudentAppService>();
+            //services.AddTransient<IStudentService, StudentService>();
+            //services.AddTransient<IStudentRepository, StudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,6 +90,19 @@ namespace Inter.Core.Presentation
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private void InjectorDependency(IServiceCollection services)
+        {
+            services.AddSingleton(typeof(IRepository<>), typeof(RepositoryBase<>));
+
+            services.AddTransient<IStudentAppService, StudentAppService>();
+            services.AddTransient<IStudentService, StudentService>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
+
+            services.AddTransient<IEnvironmentAppService, EnvironmentAppService>();
+            services.AddTransient<IEnvironmentService, EnvironmentService>();
+            services.AddTransient<IEnvironmentRepository, EnvironmentRepository>();
         }
     }
 }
