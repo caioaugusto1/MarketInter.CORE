@@ -19,7 +19,7 @@ namespace Inter.Core.App.ViewModel
         public string EnviromentId { get; set; }
 
         public virtual EnvironmentViewModel EnvironmentViewModel { get; set; }
-
+        
     }
 
     public class CollegeTimeViewModel

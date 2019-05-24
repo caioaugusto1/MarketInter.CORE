@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
+using static Inter.Core.Domain.Entities.College;
 
 namespace Inter.Core.App.AutoMapper
 {
@@ -8,6 +9,8 @@ namespace Inter.Core.App.AutoMapper
     {
         public MappingsProfile()
         {
+            CreateMap<EnvironmentViewModel, Inter.Core.Domain.Entities.Environment>().ReverseMap();
+
             CreateMap<Student, StudentViewModel>()
                 .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
                 .ForMember(x => x.CustomerId, y => y.MapFrom(f => f.CustomerId))
@@ -22,8 +25,25 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.PassaportNumber, y => y.MapFrom(f => f.PassaportNumber))
                 .ReverseMap();
 
+            CreateMap<College, CollegeViewModel>()
+                .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
+                .ForMember(x => x.Name, y => y.MapFrom(f => f.Name))
+                .ForMember(x => x.Address, y => y.MapFrom(f => f.Address))
+                .ForMember(x => x.City, y => y.MapFrom(f => f.City))
+                .ForMember(x => x.Country, y => y.MapFrom(f => f.Country))
+                .ForMember(x => x.CollegeTimeViewModel, y => y.MapFrom(f => f.Time))
+                .ReverseMap();
 
-            CreateMap<EnvironmentViewModel, Inter.Core.Domain.Entities.Environment>().ReverseMap();
+            CreateMap<CollegeTime, CollegeTimeViewModel>()
+                .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
+                .ForMember(x => x.Time, y => y.MapFrom(f => f.Time))
+                .ForMember(x => x.TimeForWeek, y => y.MapFrom(f => f.TimeForWeek))
+                .ForMember(x => x.Period, y => y.MapFrom(f => f.Period))
+                .ForMember(x => x.College, y => y.MapFrom(f => f.College))
+                .ReverseMap();
+
+
+
         }
     }
 }

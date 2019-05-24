@@ -62,11 +62,7 @@ namespace Inter.Core.Presentation
                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             InjectorDependency(services);
-
-            //services.AddTransient(typeof(IRepository<>), typeof(RepositoryBase<>));
-            //services.AddTransient<IStudentAppService, StudentAppService>();
-            //services.AddTransient<IStudentService, StudentService>();
-            //services.AddTransient<IStudentRepository, StudentRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,6 +105,10 @@ namespace Inter.Core.Presentation
             services.AddTransient<IEnvironmentAppService, EnvironmentAppService>();
             services.AddTransient<IEnvironmentService, EnvironmentService>();
             services.AddTransient<IEnvironmentRepository, EnvironmentRepository>();
+
+            services.AddTransient<ICollegeAppService, CollegeAppService>();
+            services.AddTransient<ICollegeService, CollegeService>();
+            services.AddTransient<ICollegeRepository, CollegeRepository>();
         }
     }
 }
