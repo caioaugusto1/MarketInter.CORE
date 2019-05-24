@@ -31,11 +31,11 @@ namespace Inter.Core.Infra.Data.Repositories
             }
         }
 
-        public Task<List<TEntity>> GetAll()
+        public List<TEntity> GetAll()
         {
             using (var db = new ContextDB(_OptionsBuilder))
             {
-                return db.Set<TEntity>().AsNoTracking().ToListAsync();
+                return db.Set<TEntity>().AsNoTracking().ToList();
             }
         }
 
@@ -47,22 +47,26 @@ namespace Inter.Core.Infra.Data.Repositories
             }
         }
 
-        public void Insert(TEntity obj)
+        public TEntity Insert(TEntity obj)
         {
             using (var db = new ContextDB(_OptionsBuilder))
             {
-                db.Set<TEntity>().Add(obj);
+                var entity = db.Set<TEntity>().Add(obj);
                 db.SaveChangesAsync();
+
+                return entity.Entity;
             }
         }
 
 
-        public void Update(TEntity obj)
+        public TEntity Update(TEntity obj)
         {
             using (var db = new ContextDB(_OptionsBuilder))
             {
-                db.Set<TEntity>().Update(obj);
+                var entity = db.Set<TEntity>().Update(obj);
                 db.SaveChangesAsync();
+
+                return entity.Entity;
             }
         }
     }

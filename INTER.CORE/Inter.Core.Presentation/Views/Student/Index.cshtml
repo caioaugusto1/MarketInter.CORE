@@ -1,4 +1,4 @@
-﻿@model Inter.Core.App.ViewModel.StudentViewModel
+﻿@model IEnumerable<StudentViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -42,21 +42,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.PassaportNumber)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.EnviromentId)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
-    @*<tbody>
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.CustomerId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.College.Id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FullName)
@@ -95,5 +92,5 @@
                 </td>
             </tr>
         }
-    </tbody>*@
+    </tbody>
 </table>

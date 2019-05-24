@@ -74,9 +74,9 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
-                //user.Environment = new Enti Environment();
-                var env = _environmentAppService.GetById(Convert.ToInt32(Input.EnvironmentId));
 
+                var teste = _environmentAppService.GetById(3);
+                //user.Environment = new Enti Environment();
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

@@ -34,7 +34,7 @@ namespace Inter.Core.Infra.Data.Context
         private string GetStringConectionConfig()
         {
             // ambiene  de desenvolvimento
-            string strCon = "Data Source=.\\SQLEXPRESS;Initial Catalog=INTERCORE;Integrated Security=True;";
+            string strCon = "Data Source=.\\SQLEXPRESS;Initial Catalog=INTERCORE;Integrated Security=True;MultipleActiveResultSets=true;";
             
             return strCon;
         }

@@ -16,12 +16,12 @@ namespace Inter.Core.Domain.Service
             _studentRepository = studentRepository;
         }
 
-        public void Add(Student student)
+        public Student Add(Student student)
         {
-            _studentRepository.Insert(student);
+            return _studentRepository.Insert(student);
         }
 
-        public Task<List<Student>> GetAll()
+        public List<Student> GetAll()
         {
             return _studentRepository.GetAll();
         }
@@ -31,9 +31,9 @@ namespace Inter.Core.Domain.Service
             return _studentRepository.GetById(id);
         }
 
-        public void Update(Student student)
+        public Student Update(Student student)
         {
-            _studentRepository.Update(student);
+            return _studentRepository.Update(student);
         }
     }
 }

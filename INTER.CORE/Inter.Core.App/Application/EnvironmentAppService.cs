@@ -9,11 +9,13 @@ namespace Inter.Core.App.Application
 {
     public class EnvironmentAppService : IEnvironmentAppService
     {
+        private readonly IMapper _mapper;
         private readonly IEnvironmentService _environmentService;
 
-        public EnvironmentAppService(IEnvironmentService environmentService)
+        public EnvironmentAppService(IEnvironmentService environmentService, IMapper mapper)
         {
             _environmentService = environmentService;
+            _mapper = mapper;
         }
 
         public void Add(EnvironmentViewModel environmentVM)
@@ -25,17 +27,17 @@ namespace Inter.Core.App.Application
 
         public List<EnvironmentViewModel> GetAll()
         {
-            return Mapper.Map<List<EnvironmentViewModel>>(_environmentService.GetAll());
+            return _mapper.Map<List<EnvironmentViewModel>>(_environmentService.GetAll());
         }
 
         public EnvironmentViewModel GetByCode(string code)
         {
-            return Mapper.Map<EnvironmentViewModel>(_environmentService.GetByCode(code));
+            return _mapper.Map<EnvironmentViewModel>(_environmentService.GetByCode(code));
         }
 
         public EnvironmentViewModel GetById(int id)
         {
-            return Mapper.Map<EnvironmentViewModel>(_environmentService.GetById(id));
+            return _mapper.Map<EnvironmentViewModel>(_environmentService.GetById(id));
         }
 
         public void Update(EnvironmentViewModel environment)

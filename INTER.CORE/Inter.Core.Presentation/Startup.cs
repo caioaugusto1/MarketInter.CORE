@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using Inter.Core.App.Application;
+﻿using Inter.Core.App.Application;
+using Inter.Core.App.AutoMapper;
 using Inter.Core.App.Intefaces;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
@@ -43,12 +43,18 @@ namespace Inter.Core.Presentation
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            
+
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAutoMapper();
+            var mapperConfiguration = new AutoMapper.MapperConfiguration(config =>
+            {
+                config.AddProfile(new MappingsProfile());
+            });
+
+            var mapper = mapperConfiguration.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

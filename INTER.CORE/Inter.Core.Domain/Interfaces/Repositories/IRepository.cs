@@ -7,13 +7,13 @@ namespace Inter.Core.Domain.Interfaces.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        Task<List<TEntity>> GetAll();
+        List<TEntity> GetAll();
 
         TEntity GetById(int id);
 
-        void Insert(TEntity obj);
+        TEntity Insert(TEntity obj);
 
-        void Update(TEntity obj);
+        TEntity Update(TEntity obj);
 
         Task<List<TEntity>> FindByFilter(Expression<Func<TEntity, bool>> predicate);
         
