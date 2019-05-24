@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Interfaces.Repositories
 {
-    public interface IAccomodationRepository
+    public interface IAccomodationRepository : IRepository<Accomodation>
     {
         List<Accomodation> VacancyAvailability(int id);
     }

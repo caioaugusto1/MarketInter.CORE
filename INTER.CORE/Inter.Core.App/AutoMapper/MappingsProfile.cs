@@ -42,8 +42,14 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.College, y => y.MapFrom(f => f.College))
                 .ReverseMap();
 
-
-
+            CreateMap<Accomodation, AccomodationViewModel>()
+                .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
+                .ForMember(x => x.Identifier, y => y.MapFrom(f => f.Identifier))
+                .ForMember(x => x.Address, y => y.MapFrom(f => f.Address))
+                .ForMember(x => x.ContactName, y => y.MapFrom(f => f.ContactName))
+                .ForMember(x => x.ContactNumber, y => y.MapFrom(f => f.ContactNumber))
+                .ForMember(x => x.NumberOfPlaces, y => y.MapFrom(f => f.NumberOfPlaces))
+                .ReverseMap();
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Inter.Core.Presentation.Data
         public DbSet<Inter.Core.Domain.Entities.Advisor> Advisor { get; set; }
         public DbSet<Inter.Core.Domain.Entities.Accomodation> Accomodation { get; set; }
         public DbSet<Inter.Core.App.ViewModel.CollegeViewModel> CollegeViewModel { get; set; }
+        public DbSet<Inter.Core.App.ViewModel.AccomodationViewModel> AccomodationViewModel { get; set; }
         
     }
 }
