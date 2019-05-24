@@ -91,6 +91,9 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.dll
+*.pdb
+*.cache
 
 # Chutzpah Test files
 _Chutzpah*
@@ -167,6 +170,10 @@ DocProject/Help/*.hhk
 DocProject/Help/*.hhp
 DocProject/Help/Html2
 DocProject/Help/html
+MarketInter.CORE\INTER.CORE
+\INTER.CORE
+MarketInter.CORE/INTER.CORE
+/INTER.CORE
 
 # Click-Once directory
 publish/
