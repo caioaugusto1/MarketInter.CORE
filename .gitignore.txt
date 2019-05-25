@@ -175,6 +175,7 @@ MarketInter.CORE\INTER.CORE
 MarketInter.CORE/INTER.CORE
 /INTER.CORE
 
+
 # Click-Once directory
 publish/
 
