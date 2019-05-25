@@ -19,6 +19,10 @@ namespace Inter.Core.Domain.Service
 
         public void Add(Entities.Environment environment)
         {
+            Random random = new Random(4);
+
+            environment.CustomerCode = environment.CustomerCode + random;
+            
             _environmentRepository.Insert(environment);
         }
 

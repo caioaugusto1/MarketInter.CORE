@@ -13,8 +13,7 @@ namespace Inter.Core.Presentation.Controllers
         private readonly IEnvironmentAppService _environmentAppService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public StudentController(IStudentAppService studentAppService, IEnvironmentAppService environmentAppService, 
-            UserManager<ApplicationUser> userManager)
+        public StudentController(IStudentAppService studentAppService, IEnvironmentAppService environmentAppService, UserManager<ApplicationUser> userManager)
         {
             _studentAppService = studentAppService;
             _environmentAppService = environmentAppService;

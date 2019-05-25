@@ -9,7 +9,19 @@ namespace Inter.Core.App.AutoMapper
     {
         public MappingsProfile()
         {
-            CreateMap<EnvironmentViewModel, Inter.Core.Domain.Entities.Environment>().ReverseMap();
+            CreateMap<EnvironmentViewModel, Inter.Core.Domain.Entities.Environment>()
+                .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
+                .ForMember(x => x.Company, y => y.MapFrom(f => f.Company))
+                .ForMember(x => x.CustomerCode, y => y.MapFrom(f => f.CustomerCode))
+                .ForMember(x => x.StartDate, y => y.MapFrom(f => f.StartDate))
+                .ForMember(x => x.FinishDate, y => y.MapFrom(f => f.FinishDate))
+                .ForMember(x => x.Students, y => y.MapFrom(f => f.StudentViewModel))
+                .ForMember(x => x.Users, y => y.MapFrom(f => f.ApplicationUserViewModel))
+                .ForMember(x => x.Accomodations, y => y.MapFrom(f => f.AccomodationViewModel))
+                .ForMember(x => x.Colleges, y => y.MapFrom(f => f.CollegeViewModel))
+                .ForMember(x => x.CulturalExchange, y => y.MapFrom(f => f.CulturalExchangeViewModel))
+                .ForMember(x => x.Advisors, y => y.MapFrom(f => f.AdvisorViewModel))
+                .ReverseMap();
 
             CreateMap<Student, StudentViewModel>()
                 .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))

@@ -12,8 +12,15 @@ namespace Inter.Core.App.ViewModel
 
         public string Company { get; set; }
 
+        public string CustomerCode { get; set; }
+
+        [Display(Name = "Start Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         public DateTime StartDate { get; set; }
 
+        [Display(Name = "Date Finish")]
+        [DataType(DataType.Date)]
         public DateTime FinishDate { get; set; }
 
         public virtual List<ApplicationUserViewModel> ApplicationUserViewModel { get; set; }
