@@ -1,4 +1,5 @@
-﻿using Inter.Core.Domain.Interfaces.Repositories;
+﻿using Inter.Core.Domain.Entities;
+using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;

@@ -6,12 +6,12 @@ namespace Inter.Core.Domain.ServiceInterface
 {
     public interface IStudentService 
     {
-        Student Add(Student student);
+        Student Add(Environment environment, Student student);
         
-        List<Student> GetAll();
+        List<Student> GetAll(int idEnvironment);
 
-        Student GetById(int id);
+        Student GetById(int idEnvironment, int id);
 
-        Student Update(Student student);
+        Student Update(int idEnvironment, Student student);
     }
 }

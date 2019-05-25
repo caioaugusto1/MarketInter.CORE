@@ -5,12 +5,12 @@ namespace Inter.Core.App.Intefaces
 {
     public interface IStudentAppService
     {
-        StudentViewModel Add(StudentViewModel studentViewModel);
+        StudentViewModel Add(int idEnvironment, StudentViewModel studentViewModel);
 
-        List<StudentViewModel> GetAll();
+        List<StudentViewModel> GetAll(int idEnvironment);
 
-        StudentViewModel GetById(int id);
+        StudentViewModel GetById(int idEnvironment, int id);
 
-        StudentViewModel Update(StudentViewModel studentViewModel);
+        StudentViewModel Update(int idEnvironment, StudentViewModel studentViewModel);
     }
 }

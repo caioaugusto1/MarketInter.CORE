@@ -16,22 +16,24 @@ namespace Inter.Core.Domain.Service
             _studentRepository = studentRepository;
         }
 
-        public Student Add(Student student)
+        public Student Add(Environment environment, Student student)
         {
+            student.Environment = environment;
+            
             return _studentRepository.Insert(student);
         }
 
-        public List<Student> GetAll()
+        public List<Student> GetAll(int idEnvironment)
         {
             return _studentRepository.GetAll();
         }
 
-        public Student GetById(int id)
+        public Student GetById(int idEnvironment, int id)
         {
             return _studentRepository.GetById(id);
         }
 
-        public Student Update(Student student)
+        public Student Update(int idEnvironment, Student student)
         {
             return _studentRepository.Update(student);
         }

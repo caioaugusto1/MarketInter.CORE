@@ -3,30 +3,32 @@ using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    public class StudentController : Controller
+    public class StudentController : BaseController
     {
         private readonly IStudentAppService _studentService;
         private readonly IEnvironmentAppService _environmentAppService;
-
         private readonly UserManager<ApplicationUser> _userManager;
 
-        //private readonly ApplicationDbContext _context;
-
-        public StudentController(IStudentAppService studentAppService, IEnvironmentAppService environmentAppService)
+        public StudentController(IStudentAppService studentAppService, IEnvironmentAppService environmentAppService, UserManager<ApplicationUser> userManager)
         {
             _studentService = studentAppService;
             _environmentAppService = environmentAppService;
+            _userManager = userManager;
         }
 
         // GET: Student
         public async Task<IActionResult> Index()
         {
-            var studentsVM = _studentService.GetAll();
+            var user = await GetUser(_userManager);
+
+            if (user == null && user.Environment == null)
+                return NotFound();
+
+            var studentsVM = _studentService.GetAll(user.Environment.Id);
             return View(studentsVM);
         }
 
@@ -36,7 +38,12 @@ namespace Inter.Core.Presentation.Controllers
             if (id == 0)
                 return NotFound();
 
-            var studentViewModel = _studentService.GetById(id);
+            var user = await GetUser(_userManager);
+
+            if (user == null && user.Environment == null)
+                return NotFound();
+
+            var studentViewModel = _studentService.GetById(user.Environment.Id, id);
 
             if (studentViewModel == null)
                 return NotFound();
@@ -59,7 +66,10 @@ namespace Inter.Core.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                _studentService.Add(studentViewModel);
+                var user = await GetUser(_userManager);
+
+                if (user != null && user.Environment != null)
+                    _studentService.Add(user.Environment.Id, studentViewModel);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -74,7 +84,12 @@ namespace Inter.Core.Presentation.Controllers
             if (id == null || id.Value == 0)
                 return NotFound();
 
-            var studentViewModel = _studentService.GetById(id.Value);
+            var user = await GetUser(_userManager);
+
+            if (user == null && user.Environment == null)
+                return NotFound();
+
+            StudentViewModel studentViewModel = _studentService.GetById(user.Environment.Id, id.Value);
 
             if (studentViewModel == null)
                 return NotFound();
@@ -94,8 +109,13 @@ namespace Inter.Core.Presentation.Controllers
 
             if (ModelState.IsValid)
             {
-                _studentService.Update(studentViewModel);
-                
+                var user = await GetUser(_userManager);
+
+                if (user == null && user.Environment == null)
+                    return NotFound();
+
+                _studentService.Update(user.Environment.Id, studentViewModel);
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -109,7 +129,12 @@ namespace Inter.Core.Presentation.Controllers
             if (id == null)
                 return NotFound();
 
-            var studentViewModel = _studentService.GetById(id.Value);
+            var user = await GetUser(_userManager);
+
+            if (user == null && user.Environment == null)
+                return NotFound();
+
+            var studentViewModel = _studentService.GetById(user.Environment.Id, id.Value);
 
             if (studentViewModel == null)
                 return NotFound();
