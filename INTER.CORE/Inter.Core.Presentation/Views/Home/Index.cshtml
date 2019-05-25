@@ -1,8 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Microsoft.AspNetCore.Identity
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@inject UserManager<Inter.Core.Domain.Entities.ApplicationUser> User
+
+<div id="content">
+
+    @await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml", User)
+
+    @await Html.PartialAsync("~/Views/Shared/_partial/_dashboard.cshtml")
 </div>

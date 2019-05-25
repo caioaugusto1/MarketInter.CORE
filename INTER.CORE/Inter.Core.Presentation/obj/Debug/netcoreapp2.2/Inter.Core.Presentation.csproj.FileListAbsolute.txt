@@ -72,3 +72,6 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Accomodation\Edit.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Accomodation\Index.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Manage\DeletePersonalData.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_partial\_menu.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_partial\_dashboard.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_partial\_topMenu.g.cshtml.cs
