@@ -1,44 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
-using Inter.Core.Presentation.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class EnvironmentController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IEnvironmentAppService _environmentAppService;
 
-        public EnvironmentController(ApplicationDbContext context)
+        public EnvironmentController(IEnvironmentAppService environmentApp)
         {
-            _context = context;
+            _environmentAppService = environmentApp;
         }
 
         // GET: Environment
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Environment.ToListAsync());
+            return View(_environmentAppService.GetAll());
         }
 
         // GET: Environment/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
+            if (id == 0)
                 return NotFound();
-            }
 
-            var environmentViewModel = await _context.Environment
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var environmentViewModel = _environmentAppService.GetById(id);
+
             if (environmentViewModel == null)
-            {
                 return NotFound();
-            }
 
             return View(environmentViewModel);
         }
@@ -54,30 +47,28 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Company,StartDate,FinishDate")] EnvironmentViewModel environmentViewModel)
+        public async Task<IActionResult> Create(EnvironmentViewModel environmentViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(environmentViewModel);
-                await _context.SaveChangesAsync();
+                _environmentAppService.Add(environmentViewModel);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(environmentViewModel);
         }
 
         // GET: Environment/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
+            if (id == 0)
                 return NotFound();
-            }
 
-            var environmentViewModel = await _context.Environment.FindAsync(id);
+            var environmentViewModel = _environmentAppService.GetById(id);
+
             if (environmentViewModel == null)
-            {
                 return NotFound();
-            }
+
             return View(environmentViewModel);
         }
 
@@ -86,50 +77,30 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Company,StartDate,FinishDate")] EnvironmentViewModel environmentViewModel)
+        public async Task<IActionResult> Edit(int id, EnvironmentViewModel environmentViewModel)
         {
             if (id != environmentViewModel.Id)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(environmentViewModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EnvironmentViewModelExists(environmentViewModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _environmentAppService.Update(environmentViewModel);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(environmentViewModel);
         }
 
         // GET: Environment/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
+            if (id == 0)
                 return NotFound();
-            }
 
-            var environmentViewModel = await _context.Environment
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var environmentViewModel = _environmentAppService.GetById(id);
+
             if (environmentViewModel == null)
-            {
                 return NotFound();
-            }
 
             return View(environmentViewModel);
         }
@@ -139,15 +110,13 @@ namespace Inter.Core.Presentation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var environmentViewModel = await _context.Environment.FindAsync(id);
-            _context.Environment.Remove(environmentViewModel);
-            await _context.SaveChangesAsync();
+            var environmentViewModel = _environmentAppService.GetById(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EnvironmentViewModelExists(int id)
-        {
-            return _context.Environment.Any(e => e.Id == id);
-        }
+        //private bool EnvironmentViewModelExists(int id)
+        //{
+        //    return _context.Environment.Any(e => e.Id == id);
+        //}
     }
 }

@@ -9,13 +9,14 @@ namespace Inter.Core.Presentation.Controllers
 {
     public class StudentController : BaseController
     {
-        private readonly IStudentAppService _studentService;
+        private readonly IStudentAppService _studentAppService;
         private readonly IEnvironmentAppService _environmentAppService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public StudentController(IStudentAppService studentAppService, IEnvironmentAppService environmentAppService, UserManager<ApplicationUser> userManager)
+        public StudentController(IStudentAppService studentAppService, IEnvironmentAppService environmentAppService, 
+            UserManager<ApplicationUser> userManager)
         {
-            _studentService = studentAppService;
+            _studentAppService = studentAppService;
             _environmentAppService = environmentAppService;
             _userManager = userManager;
         }
@@ -28,7 +29,7 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null && user.Environment == null)
                 return NotFound();
 
-            var studentsVM = _studentService.GetAll(user.Environment.Id);
+            var studentsVM = _studentAppService.GetAll(user.Environment.Id);
             return View(studentsVM);
         }
 
@@ -43,7 +44,7 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null && user.Environment == null)
                 return NotFound();
 
-            var studentViewModel = _studentService.GetById(user.Environment.Id, id);
+            var studentViewModel = _studentAppService.GetById(user.Environment.Id, id);
 
             if (studentViewModel == null)
                 return NotFound();
@@ -69,7 +70,7 @@ namespace Inter.Core.Presentation.Controllers
                 var user = await GetUser(_userManager);
 
                 if (user != null && user.Environment != null)
-                    _studentService.Add(user.Environment.Id, studentViewModel);
+                    _studentAppService.Add(user.Environment.Id, studentViewModel);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -89,7 +90,7 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null && user.Environment == null)
                 return NotFound();
 
-            StudentViewModel studentViewModel = _studentService.GetById(user.Environment.Id, id.Value);
+            StudentViewModel studentViewModel = _studentAppService.GetById(user.Environment.Id, id.Value);
 
             if (studentViewModel == null)
                 return NotFound();
@@ -114,7 +115,7 @@ namespace Inter.Core.Presentation.Controllers
                 if (user == null && user.Environment == null)
                     return NotFound();
 
-                _studentService.Update(user.Environment.Id, studentViewModel);
+                _studentAppService.Update(user.Environment.Id, studentViewModel);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -134,7 +135,7 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null && user.Environment == null)
                 return NotFound();
 
-            var studentViewModel = _studentService.GetById(user.Environment.Id, id.Value);
+            var studentViewModel = _studentAppService.GetById(user.Environment.Id, id.Value);
 
             if (studentViewModel == null)
                 return NotFound();
