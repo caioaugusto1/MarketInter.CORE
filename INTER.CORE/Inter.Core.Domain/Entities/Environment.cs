@@ -6,6 +6,13 @@ namespace Inter.Core.Domain.Entities
 {
     public class Environment
     {
+        public Environment()
+        {
+            Users = new List<ApplicationUser>();
+            Students = new List<Student>();
+            Accomodations = new List<Accomodation>();
+        }
+
         public int Id { get; set; }
 
         public string Company { get; set; }

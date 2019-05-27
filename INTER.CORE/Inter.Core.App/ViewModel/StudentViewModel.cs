@@ -8,8 +8,6 @@ namespace Inter.Core.App.ViewModel
         public int Id { get; set; }
 
         public string CustomerId { get; set; }
-
-        public int CollegeId { get; set; }
         
         public string FullName { get; set; }
 

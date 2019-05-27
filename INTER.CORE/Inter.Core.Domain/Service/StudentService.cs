@@ -19,6 +19,7 @@ namespace Inter.Core.Domain.Service
         public Student Add(Environment environment, Student student)
         {
             student.Environment = environment;
+            environment.Students.Add(student);
             
             return _studentRepository.Insert(student);
         }

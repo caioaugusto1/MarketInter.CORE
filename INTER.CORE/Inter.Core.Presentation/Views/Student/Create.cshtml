@@ -1,78 +1,189 @@
 ﻿@model Inter.Core.App.ViewModel.StudentViewModel
 
-@{
-    ViewData["Title"] = "Create";
-}
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
 
-<h1>Create</h1>
+<div class="container">
 
-<h4>StudentViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <input asp-for="CustomerId" class="form-control" />
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
-            </div>
+    <h1 class="h3 mb-2 text-gray-800">Student - NEW</h1>
 
-            <div class="form-group">
-                <label asp-for="FullName" class="control-label"></label>
-                <input asp-for="FullName" class="form-control" />
-                <span asp-validation-for="FullName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MobileNumber" class="control-label"></label>
-                <input asp-for="MobileNumber" class="form-control" />
-                <span asp-validation-for="MobileNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfBirthday" class="control-label"></label>
-                <input asp-for="DateOfBirthday" class="form-control" />
-                <span asp-validation-for="DateOfBirthday" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nationality" class="control-label"></label>
-                <input asp-for="Nationality" class="form-control" />
-                <span asp-validation-for="Nationality" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PassaportNumber" class="control-label"></label>
-                <input asp-for="PassaportNumber" class="form-control" />
-                <span asp-validation-for="PassaportNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td colspan="1">
+                    <form class="well form-horizontal" asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Full Name*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span name="FullName" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input asp-for="FullName" id="fullName" placeholder="Full Name" class="form-control" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Customer Id*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="customerId"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="CustomerId" id="emailAddress" placeholder="Customer Id" class="form-control" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Email*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="emailAddress"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="Email" id="emailAddress" placeholder="Email Address" class="form-control" required type="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="Address"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="Address" id="sddress" placeholder="Address" class="form-control" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">City*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="City"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="City" id="city" placeholder="City" class="form-control" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Country*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="Country"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="Country" id="country" placeholder="Country" class="form-control" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Passaport Number*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="passaportNumber"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="PassaportNumber" id="passaportNumber" placeholder="Passaport Number" class="form-control" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+
+                        @*<div>
+                                <a href="#" class="btn btn-success btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <span class="text">Split Button Success</span>
+                                </a>
+                            </div>*@
+
+
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+@*@{
+        ViewData["Title"] = "Create";
+    }
+
+    <h1>Create</h1>
+
+    <h4>StudentViewModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="CustomerId" class="control-label"></label>
+                    <input asp-for="CustomerId" class="form-control" />
+                    <span asp-validation-for="CustomerId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FullName" class="control-label"></label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MobileNumber" class="control-label"></label>
+                    <input asp-for="MobileNumber" class="form-control" />
+                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DateOfBirthday" class="control-label"></label>
+                    <input asp-for="DateOfBirthday" class="form-control" />
+                    <span asp-validation-for="DateOfBirthday" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City" class="control-label"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Country" class="control-label"></label>
+                    <input asp-for="Country" class="form-control" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nationality" class="control-label"></label>
+                    <input asp-for="Nationality" class="form-control" />
+                    <span asp-validation-for="Nationality" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PassaportNumber" class="control-label"></label>
+                    <input asp-for="PassaportNumber" class="form-control" />
+                    <span asp-validation-for="PassaportNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

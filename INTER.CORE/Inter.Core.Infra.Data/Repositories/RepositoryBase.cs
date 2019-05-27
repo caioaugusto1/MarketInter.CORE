@@ -12,7 +12,7 @@ namespace Inter.Core.Infra.Data.Repositories
     public class RepositoryBase<TEntity> : IDisposable, IRepository<TEntity> where TEntity : class
     {
         private readonly DbContextOptions<ContextDB> _OptionsBuilder;
-
+        
         public RepositoryBase()
         {
             _OptionsBuilder = new DbContextOptions<ContextDB>();
@@ -51,6 +51,7 @@ namespace Inter.Core.Infra.Data.Repositories
         {
             using (var db = new ContextDB(_OptionsBuilder))
             {
+                db.Entry(obj).State = EntityState.Added;
                 var entity = db.Set<TEntity>().Add(obj);
                 db.SaveChangesAsync();
 

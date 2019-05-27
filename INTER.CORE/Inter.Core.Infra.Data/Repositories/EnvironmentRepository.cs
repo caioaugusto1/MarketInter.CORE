@@ -15,11 +15,12 @@ namespace Inter.Core.Infra.Data.Repositories
             _OptionsBuilder = new DbContextOptions<ContextDB>();
         }
 
-        public Task<Domain.Entities.Environment> GetByCode(string code)
+        public async Task<Domain.Entities.Environment> GetByCode(string code)
         {
             using (var db = new ContextDB(_OptionsBuilder))
             {
-                return db.Environment.FirstOrDefaultAsync(x => x.CustomerCode == code);
+               var ect = await db.Environment.Include(x => x.Students).FirstOrDefaultAsync(x => x.Id == 1);
+                return ect;
             }
         }
     }
