@@ -11,11 +11,11 @@ namespace Inter.Core.Infra.Data.Repositories
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepository<TEntity> where TEntity : class
     {
-        private readonly DbContextOptions<ContextDB> _OptionsBuilder;
+        private readonly DbContextOptions<MySQLContext> _OptionsBuilder;
         
         public RepositoryBase()
         {
-            _OptionsBuilder = new DbContextOptions<ContextDB>();
+            _OptionsBuilder = new DbContextOptions<MySQLContext>();
         }
 
         public void Dispose()
@@ -25,7 +25,7 @@ namespace Inter.Core.Infra.Data.Repositories
 
         public Task<List<TEntity>> FindByFilter(Expression<Func<TEntity, bool>> predicate)
         {
-            using (var db = new ContextDB(_OptionsBuilder))
+            using (var db = new MySQLContext(_OptionsBuilder))
             {
                 return db.Set<TEntity>().Where(predicate).ToListAsync();
             }
@@ -33,7 +33,7 @@ namespace Inter.Core.Infra.Data.Repositories
 
         public List<TEntity> GetAll()
         {
-            using (var db = new ContextDB(_OptionsBuilder))
+            using (var db = new MySQLContext(_OptionsBuilder))
             {
                 return db.Set<TEntity>().AsNoTracking().ToList();
             }
@@ -41,7 +41,7 @@ namespace Inter.Core.Infra.Data.Repositories
 
         public TEntity GetById(int id)
         {
-            using (var db = new ContextDB(_OptionsBuilder))
+            using (var db = new MySQLContext(_OptionsBuilder))
             {
                 return db.Set<TEntity>().Find(id);
             }
@@ -49,11 +49,11 @@ namespace Inter.Core.Infra.Data.Repositories
 
         public TEntity Insert(TEntity obj)
         {
-            using (var db = new ContextDB(_OptionsBuilder))
+            using (var db = new MySQLContext(_OptionsBuilder))
             {
                 db.Entry(obj).State = EntityState.Added;
                 var entity = db.Set<TEntity>().Add(obj);
-                db.SaveChangesAsync();
+                db.SaveChanges();
 
                 return entity.Entity;
             }
@@ -62,7 +62,7 @@ namespace Inter.Core.Infra.Data.Repositories
 
         public TEntity Update(TEntity obj)
         {
-            using (var db = new ContextDB(_OptionsBuilder))
+            using (var db = new MySQLContext(_OptionsBuilder))
             {
                 var entity = db.Set<TEntity>().Update(obj);
                 db.SaveChangesAsync();

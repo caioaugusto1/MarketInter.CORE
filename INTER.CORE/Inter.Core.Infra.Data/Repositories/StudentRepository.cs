@@ -9,7 +9,7 @@ namespace Inter.Core.Infra.Data.Repositories
 {
     public class StudentRepository : RepositoryBase<Student>, IStudentRepository
     {
-        public StudentRepository(ContextDB context)
+        public StudentRepository(MySQLContext context)
         {
         }
 

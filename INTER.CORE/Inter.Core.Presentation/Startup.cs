@@ -41,8 +41,8 @@ namespace Inter.Core.Presentation
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql(
+                    Configuration.GetConnectionString("MySqlConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
@@ -58,8 +58,11 @@ namespace Inter.Core.Presentation
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<ContextDB>(options =>
-                   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ContextDB>(options =>
+            //       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<MySQLContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));
 
             InjectorDependency(services);
 

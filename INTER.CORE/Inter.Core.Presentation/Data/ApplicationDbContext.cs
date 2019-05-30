@@ -25,9 +25,8 @@ namespace Inter.Core.Presentation.Data
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfiguration(new EnvironmentConfig());
+            //builder.ApplyConfiguration(new EnvironmentConfig());
         }
         
-        public DbSet<Inter.Core.App.ViewModel.CollegeTimeViewModel> CollegeTimeViewModel { get; set; }
     }
 }

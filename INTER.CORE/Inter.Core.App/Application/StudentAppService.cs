@@ -24,7 +24,7 @@ namespace Inter.Core.App.Application
         public StudentViewModel Add(int idEnvironment, StudentViewModel studentViewModel)
         {
             var student = _mapper.Map<Student>(studentViewModel);
-            var environment = _mapper.Map<Environment>(_environmentService.GetByCode("1"));
+            var environment = _mapper.Map<Environment>(_environmentService.GetById(idEnvironment));
             
             return _mapper.Map<StudentViewModel>(_studentService.Add(environment, student));
 
