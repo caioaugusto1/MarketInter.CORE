@@ -4,6 +4,7 @@ using Inter.Core.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static Inter.Core.Domain.Entities.College;
 
 namespace Inter.Core.Domain.Service
 {
@@ -16,7 +17,7 @@ namespace Inter.Core.Domain.Service
             _collegeRepository = collegeRepository;
         }
 
-        public College Add(College college)
+        public College Add(College college, List<CollegeTime> collegeTimes)
         {
             return _collegeRepository.Insert(college);
         }

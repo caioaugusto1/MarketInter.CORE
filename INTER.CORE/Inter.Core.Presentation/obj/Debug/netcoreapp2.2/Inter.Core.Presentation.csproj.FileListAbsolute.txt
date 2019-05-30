@@ -75,3 +75,4 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_partial\_menu.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_partial\_dashboard.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_partial\_topMenu.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\CollegeTime\_Create.g.cshtml.cs

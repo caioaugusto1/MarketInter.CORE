@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
+using System.Collections.Generic;
+using static Inter.Core.Domain.Entities.College;
 
 namespace Inter.Core.App.Application
 {
@@ -18,10 +19,12 @@ namespace Inter.Core.App.Application
             _mapper = mapper;
         }
 
-        public CollegeViewModel Add(CollegeViewModel collegeViewModel)
+        public CollegeViewModel Add(CollegeViewModel collegeViewModel, List<CollegeTimeViewModel> collegeTimeViewModel)
         {
             var college = _mapper.Map<College>(collegeViewModel);
-            return _mapper.Map<CollegeViewModel>(_collegeService.Add(college));
+            var collegeTime = _mapper.Map<List<CollegeTime>>(collegeTimeViewModel);
+
+            return _mapper.Map<CollegeViewModel>(_collegeService.Add(college, collegeTime));
         }
 
         public List<CollegeViewModel> GetAll()

@@ -21,6 +21,12 @@ namespace Inter.Core.Presentation.Controllers
         {
             return View(_collegeAppService.GetAll());
         }
+        
+        [HttpGet]
+        public IActionResult OnGetPartialCollegeTime()
+        {
+            return PartialView("~/Views/College/CollegeTime/_Create.cshtml");
+        }
 
         // GET: College/Details/5
         public async Task<IActionResult> Details(int id)
@@ -46,12 +52,12 @@ namespace Inter.Core.Presentation.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Address,City,Country,EnviromentId")] CollegeViewModel collegeViewModel)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CollegeViewModel collegeViewModel, List<CollegeTimeViewModel> collegeTimeViewModels)
         {
             if (ModelState.IsValid)
             {
-                _collegeAppService.Add(collegeViewModel);
+                _collegeAppService.Add(collegeViewModel, collegeTimeViewModels);
 
                 return RedirectToAction(nameof(Index));
             }

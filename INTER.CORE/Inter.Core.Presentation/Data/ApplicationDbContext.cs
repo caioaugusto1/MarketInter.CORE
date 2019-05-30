@@ -2,6 +2,7 @@
 using Inter.Core.Infra.Data.EntityConfig;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Inter.Core.App.ViewModel;
 
 namespace Inter.Core.Presentation.Data
 {
@@ -26,5 +27,7 @@ namespace Inter.Core.Presentation.Data
 
             builder.ApplyConfiguration(new EnvironmentConfig());
         }
+        
+        public DbSet<Inter.Core.App.ViewModel.CollegeTimeViewModel> CollegeTimeViewModel { get; set; }
     }
 }
