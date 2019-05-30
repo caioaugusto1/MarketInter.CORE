@@ -1,71 +1,69 @@
 ﻿@model IEnumerable<Inter.Core.App.ViewModel.AccomodationViewModel>
 
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1>Index</h1>
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Identifier)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContactName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContactNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfPlaces)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Available)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EnviromentId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Identifier)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfPlaces)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Available)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnviromentId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Student</h1>
+    <p class="mb-4"><a target="_blank" href="College/Create">NEW</a></p>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Identifier</th>
+                            <th>Address</th>
+                            <th>Contact Name</th>
+                            <th>Contact Number</th>
+                            <th>Number Of Places</th>
+                            <th>Available</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Identifier
+                                </td>
+                                <td>
+                                    @item.Address
+                                </td>
+                                <td>
+                                    @item.ContactName
+                                </td>
+                                <td>
+                                    @item.ContactNumber
+                                </td>
+                                <td>
+                                    @item.NumberOfPlaces
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Available)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-info"></i></a>
+
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

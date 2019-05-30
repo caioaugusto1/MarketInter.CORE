@@ -21,7 +21,8 @@ namespace Inter.Core.App.Application
         public AccomodationViewModel Add(AccomodationViewModel accomodationViewModel)
         {
             var accomodation = _mapper.Map<Accomodation>(accomodationViewModel);
-            return _mapper.Map<AccomodationViewModel>(accomodation);
+            
+            return _mapper.Map<AccomodationViewModel>(_accomodationService.Add(accomodation)); ;
         }
 
         public List<AccomodationViewModel> GetAll()

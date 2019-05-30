@@ -5,16 +5,16 @@
         if ($('#saveButton').length >= 1) {
             $('#saveButton').remove();
         }
-            
+
         Util.request('/College/OnGetPartialCollegeTime', 'GET', null, 'html', function (data) {
 
             $('#table-create-college tbody tr td').append(data);
-            
+
             $.when(saveButton).done(function (htmlButton) {
                 $('#table-create-college tr td').append(htmlButton);
             });
 
-            
+
         }, function (request, status, error) {
 
         });
@@ -22,10 +22,10 @@
 
     var create = function () {
 
-        var collegeForm = $('#table-create-college').serialize();
-        var collegeTimeForm = $('.form-create-collegeTime').serialize();
-
-        Util.request('/College/Create', 'POST', { collegeForm, collegeTimeForm }, 'JSON', function (data) {
+        var collegeViewModel = $('#table-create-college form').serialize();
+        var collegeTimeViewModels = $('.form-create-collegeTime').serialize();
+        
+        Util.request('/College/Create', 'POST', { collegeViewModel, collegeTimeViewModels }, 'JSON', function (data) {
 
         }, function (request, status, error) {
 
