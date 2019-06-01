@@ -1,0 +1,172 @@
+﻿@model Inter.Core.App.ViewModel.CulturalExchangeViewModel
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+<div class="container">
+
+    <h1 class="h3 mb-2 text-gray-800">Cultural Exchange - NEW</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td colspan="1">
+                    <form class="well form-horizontal" asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Full Name*</label>
+                                <select asp-for="IdStudent"
+                                        asp-items="@(new SelectList(ViewBag.Students,"Id","FullName"))">
+                                    <option>Please select one</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">College*</label>
+                                <select asp-for="IdStudent"
+                                        asp-items="@(new SelectList(ViewBag.Colleges,"Id","Name"))">
+                                    <option>Please select one</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">INSUR*</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="INSUR" /> @Html.DisplayNameFor(model => model.INSUR)
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Arrival Date*</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="Arrival" /> @Html.DisplayNameFor(model => model.INSUR)
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Start Date*</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="StartDate" /> @Html.DisplayNameFor(model => model.StartDate)
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Company*</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="Company" /> @Html.DisplayNameFor(model => model.Company)
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Flight Number*</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="FlightNumber" /> @Html.DisplayNameFor(model => model.FlightNumber)
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">College Payment*</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="CollegePayment" /> @Html.DisplayNameFor(model => model.CollegePayment)
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Cultural Exchange VALUE*</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="number" asp-for="TotalValue" /> @Html.DisplayNameFor(model => model.TotalValue)
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+@*@{
+        ViewData["Title"] = "Create";
+    }
+
+    <h1>Create</h1>
+
+    <h4>CulturalExchangeViewModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="IdStudent" class="control-label"></label>
+                    <input asp-for="IdStudent" class="form-control" />
+                    <span asp-validation-for="IdStudent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CollegeId" class="control-label"></label>
+                    <input asp-for="CollegeId" class="form-control" />
+                    <span asp-validation-for="CollegeId" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="INSUR" /> @Html.DisplayNameFor(model => model.INSUR)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Arrival" class="control-label"></label>
+                    <input asp-for="Arrival" class="form-control" />
+                    <span asp-validation-for="Arrival" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Company" class="control-label"></label>
+                    <input asp-for="Company" class="form-control" />
+                    <span asp-validation-for="Company" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FlightNumber" class="control-label"></label>
+                    <input asp-for="FlightNumber" class="form-control" />
+                    <span asp-validation-for="FlightNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="CollegePayment" /> @Html.DisplayNameFor(model => model.CollegePayment)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TotalValue" class="control-label"></label>
+                    <input asp-for="TotalValue" class="form-control" />
+                    <span asp-validation-for="TotalValue" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EnviromentId" class="control-label"></label>
+                    <input asp-for="EnviromentId" class="form-control" />
+                    <span asp-validation-for="EnviromentId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+

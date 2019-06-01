@@ -5,14 +5,14 @@ namespace Inter.Core.Domain.Interfaces.Services
 {
     public interface IEnvironmentService
     {
-        void Add(Inter.Core.Domain.Entities.Environment environment);
+        void Add(Inter.Core.Domain.Entities.SystemEnvironment environment);
 
-        Task<List<Inter.Core.Domain.Entities.Environment>> GetAll();
+        Task<List<Inter.Core.Domain.Entities.SystemEnvironment>> GetAll();
 
-        Inter.Core.Domain.Entities.Environment GetById(int id);
+        Inter.Core.Domain.Entities.SystemEnvironment GetById(int id);
 
-        Task<Inter.Core.Domain.Entities.Environment> GetByCode(string code);
+        Task<Inter.Core.Domain.Entities.SystemEnvironment> GetByCode(string code);
         
-        void Update(Inter.Core.Domain.Entities.Environment environment);
+        void Update(Inter.Core.Domain.Entities.SystemEnvironment environment);
     }
 }

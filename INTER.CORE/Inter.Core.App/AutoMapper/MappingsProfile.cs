@@ -9,7 +9,7 @@ namespace Inter.Core.App.AutoMapper
     {
         public MappingsProfile()
         {
-            CreateMap<EnvironmentViewModel, Inter.Core.Domain.Entities.Environment>()
+            CreateMap<EnvironmentViewModel, Inter.Core.Domain.Entities.SystemEnvironment>()
                 .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
                 .ForMember(x => x.Company, y => y.MapFrom(f => f.Company))
                 .ForMember(x => x.CustomerCode, y => y.MapFrom(f => f.CustomerCode))
@@ -62,6 +62,21 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.ContactNumber, y => y.MapFrom(f => f.ContactNumber))
                 .ForMember(x => x.NumberOfPlaces, y => y.MapFrom(f => f.NumberOfPlaces))
                 .ReverseMap();
+
+            CreateMap<CulturalExchange, CulturalExchangeViewModel>()
+               .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
+               .ForMember(x => x.IdStudent, y => y.MapFrom(f => f.Student.Id))
+               .ForMember(x => x.StudentViewModel, y => y.MapFrom(f => f.Student))
+               .ForMember(x => x.CollegeId, y => y.MapFrom(f => f.College.Id))
+               .ForMember(x => x.CollegeViewModel, y => y.MapFrom(f => f.College))
+               .ForMember(x => x.INSUR, y => y.MapFrom(f => f.INSUR))
+               .ForMember(x => x.Arrival, y => y.MapFrom(f => f.Arrival))
+               .ForMember(x => x.StartDate, y => y.MapFrom(f => f.StartDate))
+               .ForMember(x => x.Company, y => y.MapFrom(f => f.Company))
+               .ForMember(x => x.FlightNumber, y => y.MapFrom(f => f.FlightNumber))
+               .ForMember(x => x.CollegePayment, y => y.MapFrom(f => f.CollegePayment))
+               .ForMember(x => x.TotalValue, y => y.MapFrom(f => f.TotalValue))
+               .ReverseMap();
         }
     }
 }

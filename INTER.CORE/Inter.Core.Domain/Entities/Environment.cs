@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Entities
 {
-    public class Environment
+    public class SystemEnvironment
     {
-        public Environment()
+        public SystemEnvironment()
         {
             Users = new List<ApplicationUser>();
             Students = new List<Student>();

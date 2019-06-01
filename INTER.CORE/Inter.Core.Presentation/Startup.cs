@@ -117,6 +117,10 @@ namespace Inter.Core.Presentation
             services.AddTransient<IAccomodationService, AccomodationService>();
             services.AddTransient<IAccomodationRepository, AccomodationRepository>();
 
+            services.AddTransient<ICulturalExchangeAppService, CulturalExchangeAppService>();
+            services.AddTransient<ICulturalExchangeService, CulturalExchangeService>();
+            services.AddTransient<ICulturalExchangeRepository, CulturalExchangeRepository>();
+
         }
     }
 }

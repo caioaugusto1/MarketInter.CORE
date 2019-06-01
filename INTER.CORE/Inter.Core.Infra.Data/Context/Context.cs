@@ -16,7 +16,7 @@ namespace Inter.Core.Infra.Data.Context
             //Database.EnsureCreated();
         }
         
-        public DbSet<Inter.Core.Domain.Entities.Environment> Environment { get; set; }
+        public DbSet<SystemEnvironment> Environment { get; set; }
         public DbSet<College> College { get; set; }
         public DbSet<CulturalExchange> CulturalExchange { get; set; }
         public DbSet<Student> Student { get; set; }

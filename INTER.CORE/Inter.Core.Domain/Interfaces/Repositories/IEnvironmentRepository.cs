@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Inter.Core.Domain.Entities;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.Interfaces.Repositories
 {
-    public interface IEnvironmentRepository : IRepository<Inter.Core.Domain.Entities.Environment>
+    public interface IEnvironmentRepository : IRepository<Inter.Core.Domain.Entities.SystemEnvironment>
     {
-        Task<Inter.Core.Domain.Entities.Environment> GetByCode(string code);
+        Task<SystemEnvironment> GetByCode(string code);
     }
 }

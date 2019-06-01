@@ -68,6 +68,13 @@
             <span>Pages</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Cultural Exchange</h6>
+                <a class="collapse-item" href="@Url.Action("Create", "CulturalExchange", new { area = "" })">Register</a>
+                <a class="collapse-item" href="@Url.Action("Index", "CulturalExchange", new { area = "" })">List</a>
+            </div>
+
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">College</h6>
                 <a class="collapse-item" href="@Url.Action("Create", "College", new { area = "" })">Register</a>

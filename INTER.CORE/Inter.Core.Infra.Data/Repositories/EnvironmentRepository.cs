@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Infra.Data.Repositories
 {
-    public class EnvironmentRepository : RepositoryBase<Inter.Core.Domain.Entities.Environment>, IEnvironmentRepository
+    public class EnvironmentRepository : RepositoryBase<SystemEnvironment>, IEnvironmentRepository
     {
         private readonly DbContextOptions<ContextDB> _OptionsBuilder;
 
@@ -15,7 +15,7 @@ namespace Inter.Core.Infra.Data.Repositories
             _OptionsBuilder = new DbContextOptions<ContextDB>();
         }
 
-        public async Task<Domain.Entities.Environment> GetByCode(string code)
+        public async Task<Domain.Entities.SystemEnvironment> GetByCode(string code)
         {
             using (var db = new ContextDB(_OptionsBuilder))
             {

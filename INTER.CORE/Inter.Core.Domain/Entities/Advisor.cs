@@ -10,6 +10,6 @@ namespace Inter.Core.Domain.Entities
 
         public string Name { get; set; }
         
-        public virtual Environment Environment { get; set; }
+        public virtual SystemEnvironment Environment { get; set; }
     }
 }

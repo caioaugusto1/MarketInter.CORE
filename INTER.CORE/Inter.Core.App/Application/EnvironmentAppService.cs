@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
+using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Inter.Core.App.Application
 
         public void Add(EnvironmentViewModel environmentVM)
         {
-            var environment = Mapper.Map<Inter.Core.Domain.Entities.Environment>(environmentVM);
+            var environment = Mapper.Map<SystemEnvironment>(environmentVM);
 
             _environmentService.Add(environment);
         }

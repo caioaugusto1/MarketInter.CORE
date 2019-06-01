@@ -16,7 +16,7 @@
 
         public bool Available { get; set; }
         
-        public virtual Environment Environment { get; set; }
+        public virtual SystemEnvironment Environment { get; set; }
         
     }
 }

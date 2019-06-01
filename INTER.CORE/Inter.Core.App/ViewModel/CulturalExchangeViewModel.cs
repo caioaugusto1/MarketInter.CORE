@@ -16,6 +16,12 @@ namespace Inter.Core.App.ViewModel
 
         public virtual CollegeViewModel CollegeViewModel { get; set; }
 
+        public string AccomodationId { get; set; }
+
+        public virtual AccomodationViewModel AccomodationViewModel { get; set; }
+
+        public int DateOfAccomodation { get; set; }
+
         // After sprint, put class Insurance and crud create and edit insurance
         public bool INSUR { get; set; }
 

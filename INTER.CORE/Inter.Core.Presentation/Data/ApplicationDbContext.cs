@@ -1,8 +1,6 @@
 ﻿using Inter.Core.Domain.Entities;
-using Inter.Core.Infra.Data.EntityConfig;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Inter.Core.App.ViewModel;
 
 namespace Inter.Core.Presentation.Data
 {
@@ -14,7 +12,7 @@ namespace Inter.Core.Presentation.Data
             Database.EnsureCreated();
         }
 
-        public DbSet<Inter.Core.Domain.Entities.Environment> Environment { get; set; }
+        public DbSet<Inter.Core.Domain.Entities.SystemEnvironment> Environment { get; set; }
         public DbSet<Inter.Core.Domain.Entities.College> College { get; set; }
         public DbSet<Inter.Core.Domain.Entities.CulturalExchange> CulturalExchange { get; set; }
         public DbSet<Inter.Core.Domain.Entities.Student> Student { get; set; }
@@ -27,6 +25,8 @@ namespace Inter.Core.Presentation.Data
 
             //builder.ApplyConfiguration(new EnvironmentConfig());
         }
+        
+        public DbSet<Inter.Core.App.ViewModel.CulturalExchangeViewModel> CulturalExchangeViewModel { get; set; }
         
     }
 }

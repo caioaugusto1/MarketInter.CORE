@@ -22,7 +22,7 @@ namespace Inter.Core.Domain.Entities
 
         public virtual List<CollegeTime> Time { get; set; }
 
-        public virtual Environment Environment { get; set; }
+        public virtual SystemEnvironment Environment { get; set; }
 
 
         public class CollegeTime

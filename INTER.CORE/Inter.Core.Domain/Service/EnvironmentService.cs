@@ -17,7 +17,7 @@ namespace Inter.Core.Domain.Service
             _environmentRepository = environmentRepository;
         }
 
-        public void Add(Entities.Environment environment)
+        public void Add(Entities.SystemEnvironment environment)
         {
             Random random = new Random(4);
 
@@ -26,22 +26,22 @@ namespace Inter.Core.Domain.Service
             _environmentRepository.Insert(environment);
         }
 
-        public Task<List<Entities.Environment>> GetAll()
+        public Task<List<Entities.SystemEnvironment>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Entities.Environment> GetByCode(string code)
+        public Task<Entities.SystemEnvironment> GetByCode(string code)
         {
             return _environmentRepository.GetByCode(code);
         }
 
-        public Entities.Environment GetById(int id)
+        public Entities.SystemEnvironment GetById(int id)
         {
             return _environmentRepository.GetById(id);
         }
 
-        public void Update(Entities.Environment environment)
+        public void Update(Entities.SystemEnvironment environment)
         {
             throw new NotImplementedException();
         }
