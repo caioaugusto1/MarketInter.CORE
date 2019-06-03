@@ -1,0 +1,12 @@
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.AssemblyInfoInputs.cache
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.AssemblyInfo.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\bin\Debug\netcoreapp2.2\Inter.Core.Domain.deps.json
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\bin\Debug\netcoreapp2.2\Inter.Core.Domain.dll
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\bin\Debug\netcoreapp2.2\Inter.Core.Domain.pdb
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Identity.Stores.xml
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.csproj.CopyComplete
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.dll
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.pdb
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Domain\obj\Debug\netcoreapp2.2\Inter.Core.Domain.csprojAssemblyReference.cache

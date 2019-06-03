@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Inter.Core.App.ViewModel.AccomodationViewModel>
+
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Student</h1>
+    <p class="mb-4"><a target="_blank" href="College/Create">NEW</a></p>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Identifier</th>
+                            <th>Address</th>
+                            <th>Contact Name</th>
+                            <th>Contact Number</th>
+                            <th>Number Of Places</th>
+                            <th>Available</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Identifier
+                                </td>
+                                <td>
+                                    @item.Address
+                                </td>
+                                <td>
+                                    @item.ContactName
+                                </td>
+                                <td>
+                                    @item.ContactNumber
+                                </td>
+                                <td>
+                                    @item.NumberOfPlaces
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Available)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-info"></i></a>
+
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

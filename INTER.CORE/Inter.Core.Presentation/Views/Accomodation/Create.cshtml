@@ -1,0 +1,97 @@
+﻿@model Inter.Core.App.ViewModel.AccomodationViewModel
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+<div class="container">
+
+    <h1 class="h3 mb-2 text-gray-800">Accomodation - NEW</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td colspan="1">
+                    <form class="well form-horizontal" asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Identifier*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span name="Identifier" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input asp-for="Identifier" id="Identifier" placeholder="Identifier" class="form-control" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Address*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="customerId"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="Address" id="Address" placeholder="Address" class="form-control" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Contact Name*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="ContactName"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="ContactName" id="ContactName" placeholder="Contact Name" class="form-control" required type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Contact Number*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="ContactNumber"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="ContactNumber" id="ContactNumber" placeholder="Contact Number" class="form-control" required type="tel">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Number of Places*</label>
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" name="NumberOfPlaces"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input asp-for="NumberOfPlaces" id="NumberOfPlaces" placeholder="Number Of Places" class="form-control" required type="text">
+                                    </div>
+
+                                    <br />
+
+                                    <div class="custom-control custom-checkbox small">
+                                        <label asp-for="Available">
+                                            <input asp-for="Available" id="customCheck" type="checkbox" class="custom-control-input" />
+                                            <label asp-for="Available" for="customCheck" class="custom-control-label"></label>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-8 inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

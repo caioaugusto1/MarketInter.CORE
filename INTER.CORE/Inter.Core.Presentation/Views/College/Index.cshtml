@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Inter.Core.App.ViewModel.CollegeViewModel>
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Student</h1>
+    <p class="mb-4"><a target="_blank" href="College/Create">NEW</a></p>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>
+                                    @item.Address
+                                </td>
+                                <td>
+                                    @item.City
+                                </td>
+                                <td>
+                                    @item.Country
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-info"></i></a>
+
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                    <foot>
+                        <tr>
+                            <td>
+                                Name
+                            </td>
+                            <td>
+                                Address
+                            </td>
+                            <td>
+                                City
+                            </td>
+                            <td>
+                                Country
+                            </td>
+                            <td>
+                                Actions
+                            </td>
+                        </tr>
+                    </foot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
