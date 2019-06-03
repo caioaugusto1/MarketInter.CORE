@@ -22,9 +22,9 @@
 
     var create = function () {
 
-        var collegeViewModel = $('#table-create-college form').serialize();
+        var collegeViewModel = $('#form-create-college').serialize();
         var collegeTimeViewModels = $('.form-create-collegeTime').serialize();
-        
+
         Util.request('/College/Create', 'POST', { collegeViewModel, collegeTimeViewModels }, 'JSON', function (data) {
 
         }, function (request, status, error) {

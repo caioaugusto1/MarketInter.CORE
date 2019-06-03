@@ -52,9 +52,11 @@ namespace Inter.Core.Presentation.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CollegeViewModel collegeViewModel, List<CollegeTimeViewModel> collegeTimeViewModels)
         {
+            //List<CollegeTimeViewModel> collegeTimeViewModels = new List<CollegeTimeViewModel>();
+
             if (ModelState.IsValid)
             {
                 _collegeAppService.Add(collegeViewModel, collegeTimeViewModels);

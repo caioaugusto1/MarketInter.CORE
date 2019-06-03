@@ -11,7 +11,8 @@ namespace Inter.Core.Presentation.Controllers
         private readonly IStudentAppService _studentAppService;
         private readonly ICollegeAppService _collegeAppService;
 
-        public CulturalExchangeController(ICulturalExchangeAppService culturalExchangeAppService, IStudentAppService studentAppService, ICollegeAppService collegeAppService)
+        public CulturalExchangeController(ICulturalExchangeAppService culturalExchangeAppService, 
+            IStudentAppService studentAppService, ICollegeAppService collegeAppService)
         {
             _culturalExchangeAppService = culturalExchangeAppService;
             _studentAppService = studentAppService;
