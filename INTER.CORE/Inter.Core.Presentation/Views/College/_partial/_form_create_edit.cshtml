@@ -1,0 +1,39 @@
+﻿@model Inter.Core.App.ViewModel.CollegeViewModel
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Name*</label>
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <div class="glyphicon glyphicon-user"></div>
+            <span name="Name" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input asp-for="Name" id="fullName" placeholder="School Name" class="form-control" required type="text">
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-4 control-label">Address*</label>
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="Address"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="Address" id="Address" placeholder="Address Line" class="form-control" required type="text">
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-4 control-label">City*</label>
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="City"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="City" id="city" placeholder="City" class="form-control" required type="text">
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-4 control-label">Country*</label>
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="Country"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="Country" id="country" placeholder="Country" class="form-control" required type="text">
+        </div>
+    </div>
+</div>

@@ -66,7 +66,7 @@ namespace Inter.Core.App.ViewModel
         [Required(ErrorMessage = "Preencha o campo Logradouro")]
         [MaxLength(100, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Mínimo {0} caracteres")]
-        [DisplayName("PassaportNumber")]
+        [DisplayName("Passaport Number")]
         public string PassaportNumber { get; set; }
 
         public int EnviromentId { get; set; }

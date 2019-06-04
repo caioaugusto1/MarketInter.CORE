@@ -44,6 +44,7 @@ namespace Inter.Core.Presentation.Controllers
         {
             ViewBag.Students = _studentAppService.GetAll(1);
             ViewBag.Colleges = _collegeAppService.GetAll();
+            ViewBag.EnvironmentId = 1;
 
             return View();
         }
@@ -57,7 +58,7 @@ namespace Inter.Core.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                _culturalExchangeAppService.Add(1, culturalExchangeViewModel);
+                _culturalExchangeAppService.Add(culturalExchangeViewModel.EnviromentId, culturalExchangeViewModel);
 
                 return RedirectToAction(nameof(Index));
             }

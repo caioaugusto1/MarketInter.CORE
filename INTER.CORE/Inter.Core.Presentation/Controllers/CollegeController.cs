@@ -2,7 +2,6 @@
 using Inter.Core.App.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -21,12 +20,7 @@ namespace Inter.Core.Presentation.Controllers
         {
             return View(_collegeAppService.GetAll());
         }
-        
-        [HttpGet]
-        public IActionResult OnGetPartialCollegeTime()
-        {
-            return PartialView("~/Views/College/CollegeTime/_Create.cshtml");
-        }
+
 
         // GET: College/Details/5
         public async Task<IActionResult> Details(int id)
@@ -53,17 +47,46 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CollegeViewModel collegeViewModel, List<CollegeTimeViewModel> collegeTimeViewModels)
+        public async Task<IActionResult> Create(CollegeViewModel collegeViewModel)
         {
-            //List<CollegeTimeViewModel> collegeTimeViewModels = new List<CollegeTimeViewModel>();
-
             if (ModelState.IsValid)
             {
-                _collegeAppService.Add(collegeViewModel, collegeTimeViewModels);
+                _collegeAppService.Add(collegeViewModel);
 
+                return Ok();
+            }
+
+            return View(collegeViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTimeCollege(CollegeTimeViewModel collegeTime)
+        {
+            if (ModelState.IsValid)
+            {
+                _collegeAppService.AddCollegeTime(collegeTime);
+
+                return Ok();
+            }
+
+            return Conflict();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> OnCreateTime(int id)
+        {
+            return View(_collegeAppService.GetCollegeTimeByIdCollege(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> OnCreateTime(List<CollegeTimeViewModel> collegeTime)
+        {
+            if (ModelState.IsValid)
+            {
                 return RedirectToAction(nameof(Index));
             }
-            return View(collegeViewModel);
+            return View();
         }
 
         // GET: College/Edit/5
@@ -119,7 +142,7 @@ namespace Inter.Core.Presentation.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var collegeViewModel = _collegeAppService.GetById(id);
-            
+
             return RedirectToAction(nameof(Index));
         }
 

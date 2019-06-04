@@ -9,7 +9,7 @@ namespace Inter.Core.App.AutoMapper
     {
         public MappingsProfile()
         {
-            CreateMap<EnvironmentViewModel, Inter.Core.Domain.Entities.SystemEnvironment>()
+            CreateMap<EnvironmentViewModel, SystemEnvironment>()
                 .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
                 .ForMember(x => x.Company, y => y.MapFrom(f => f.Company))
                 .ForMember(x => x.CustomerCode, y => y.MapFrom(f => f.CustomerCode))
@@ -43,12 +43,12 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.Address, y => y.MapFrom(f => f.Address))
                 .ForMember(x => x.City, y => y.MapFrom(f => f.City))
                 .ForMember(x => x.Country, y => y.MapFrom(f => f.Country))
-                .ForMember(x => x.CollegeTimeViewModel, y => y.MapFrom(f => f.Time))
+                .ForMember(x => x.CollegeTimeViewModel, y => y.MapFrom(f => f.TimeCollege))
                 .ReverseMap();
 
             CreateMap<CollegeTime, CollegeTimeViewModel>()
                 .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
-                .ForMember(x => x.Time, y => y.MapFrom(f => f.Time))
+                .ForMember(x => x.StartTime, y => y.MapFrom(f => f.Time))
                 .ForMember(x => x.TimeForWeek, y => y.MapFrom(f => f.TimeForWeek))
                 .ForMember(x => x.Period, y => y.MapFrom(f => f.Period))
                 .ForMember(x => x.College, y => y.MapFrom(f => f.College))
@@ -65,16 +65,20 @@ namespace Inter.Core.App.AutoMapper
 
             CreateMap<CulturalExchange, CulturalExchangeViewModel>()
                .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
-               .ForMember(x => x.IdStudent, y => y.MapFrom(f => f.Student.Id))
+               //.ForMember(x => x.IdStudent, y => y.MapFrom(f => f.Student.Id))
                .ForMember(x => x.StudentViewModel, y => y.MapFrom(f => f.Student))
-               .ForMember(x => x.CollegeId, y => y.MapFrom(f => f.College.Id))
+               //.ForMember(x => x.CollegeId, y => y.MapFrom(f => f.College.Id))
                .ForMember(x => x.CollegeViewModel, y => y.MapFrom(f => f.College))
+               //.ForMember(x => x.AccomodationId, y => y.MapFrom(f => f.Accomodation.Id))
+               .ForMember(x => x.AccomodationViewModel, y => y.MapFrom(f => f.Accomodation))
+               .ForMember(x => x.EnvironmentViewModel, y => y.MapFrom(f => f.Environment))
                .ForMember(x => x.INSUR, y => y.MapFrom(f => f.INSUR))
-               .ForMember(x => x.Arrival, y => y.MapFrom(f => f.Arrival))
+               .ForMember(x => x.ArrivalDateTime, y => y.MapFrom(f => f.Arrival))
                .ForMember(x => x.StartDate, y => y.MapFrom(f => f.StartDate))
                .ForMember(x => x.Company, y => y.MapFrom(f => f.Company))
                .ForMember(x => x.FlightNumber, y => y.MapFrom(f => f.FlightNumber))
                .ForMember(x => x.CollegePayment, y => y.MapFrom(f => f.CollegePayment))
+               .ForMember(x => x.QuantityDaysOfAccomodation, y => y.MapFrom(f => f.DateOfAccomodation))
                .ForMember(x => x.TotalValue, y => y.MapFrom(f => f.TotalValue))
                .ReverseMap();
         }

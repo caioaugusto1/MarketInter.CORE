@@ -5,7 +5,11 @@ namespace Inter.Core.App.Intefaces
 {
     public interface ICollegeAppService
     {
-        CollegeViewModel Add(CollegeViewModel collegeViewModel, List<CollegeTimeViewModel> collegeTimeViewModel);
+        CollegeViewModel Add(CollegeViewModel collegeViewModel);
+
+        CollegeViewModel AddCollegeTime(CollegeTimeViewModel collegeTimeViewModel);
+
+        CollegeViewModel GetCollegeTimeByIdCollege(int idCollege);
 
         List<CollegeViewModel> GetAll();
 

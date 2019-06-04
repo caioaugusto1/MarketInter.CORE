@@ -1,0 +1,123 @@
+﻿@model Inter.Core.App.ViewModel.CollegeViewModel
+@using Inter.Core.App.Enumerables
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+<div class="col-lg-6">
+    <!-- Circle Buttons -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">@Model.Name</h6>
+        </div>
+        <div class="card-body">
+            <p>Use Font Awesome Icons (included with this theme package) along with the circle buttons as shown in the examples below!</p>
+            <!-- Circle Buttons (Default) -->
+
+            <dl class="row">
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Country)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Country)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.ContactName)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.ContactName)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+
+
+    @foreach (var time in Model.CollegeTimeViewModel)
+    {
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">@time.Period</h6>
+            </div>
+            <div class="card-body">
+                <p>Use Font Awesome Icons (included with this theme package) along with the circle buttons as shown in the examples below!</p>
+                <!-- Circle Buttons (Default) -->
+
+                <dl class="row">
+                    <dt class="col-sm-6">
+                        Start Time
+                    </dt>
+                    <dd class="col-sm-6">
+                        @time.StartTime
+                    </dd>
+                    <dt class="col-sm-6">
+                        Finish Time
+                    </dt>
+                    <dd class="col-sm-6">
+                        @time.FinishTime
+                    </dd>
+                    <dt class="col-sm-6">
+                        Time for Week
+                    </dt>
+                    <dd class="col-sm-6">
+                        @time.TimeForWeek
+                    </dd>
+                    <dt class="col-sm-6">
+                        Book Price
+                    </dt>
+                    <dd class="col-sm-6">
+                        @time.BookPrice
+                    </dd>
+                    <dt class="col-sm-6">
+                        Exam Price
+                    </dt>
+                    <dd class="col-sm-6">
+                        @time.ExamPrice
+                    </dd>
+                    <dt class="col-sm-6">
+                        Insurance Price
+                    </dt>
+                    <dd class="col-sm-6">
+                        @time.InsurancePrice
+                    </dd>
+                    <dt class="col-sm-6">
+                        Total Price
+                    </dt>
+                    <dd class="col-sm-6">
+                        @time.TotalPrice
+                    </dd>
+
+                </dl>
+            </div>
+        </div>
+    }
+
+
+
+
+</div>
+
+

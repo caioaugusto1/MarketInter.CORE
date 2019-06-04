@@ -7,6 +7,9 @@ namespace Inter.Core.Domain.Entities
         public CulturalExchange()
         {
             Environment = new SystemEnvironment();
+            Student = new Student();
+            College = new College();
+            Accomodation = new Accomodation();
         }
 
         public int Id { get; set; }
@@ -35,6 +38,8 @@ namespace Inter.Core.Domain.Entities
         public float TotalValue { get; set; }
 
         public virtual SystemEnvironment Environment { get; set; }
+
+        //public virtual List<CulturalExchangePayment> Payments { get; set; }
 
     }
 }

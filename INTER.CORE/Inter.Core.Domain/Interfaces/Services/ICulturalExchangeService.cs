@@ -6,7 +6,7 @@ namespace Inter.Core.Domain.Interfaces.Services
 {
     public interface ICulturalExchangeService
     {
-        CulturalExchange Add(SystemEnvironment environment, CulturalExchange student);
+        CulturalExchange Add(CulturalExchange student);
 
         List<CulturalExchange> GetAll(int idEnvironment);
 

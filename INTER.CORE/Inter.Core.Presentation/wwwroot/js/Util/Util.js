@@ -6,11 +6,10 @@ var Util = function () {
         $.ajax({
             url: endpoint,
             type: type,
+            data: param,
             dataType: dataType,
             async: async,
-            cache: false,
-            data: param,
-            contentType: 'application/json',
+            //cache: false,
             success: function (data) {
                 callbackSuccess(data);
             }, error: function (request, status, error) {

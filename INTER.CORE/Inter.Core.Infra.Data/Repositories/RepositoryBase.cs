@@ -65,7 +65,7 @@ namespace Inter.Core.Infra.Data.Repositories
             using (var db = new MySQLContext(_OptionsBuilder))
             {
                 var entity = db.Set<TEntity>().Update(obj);
-                db.SaveChangesAsync();
+                db.SaveChanges();
 
                 return entity.Entity;
             }

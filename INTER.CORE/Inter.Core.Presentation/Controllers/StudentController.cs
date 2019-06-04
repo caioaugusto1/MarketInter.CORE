@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -66,42 +64,42 @@ namespace Inter.Core.Presentation.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromBody]StudentViewModel studentViewModel/*, List<IFormFile> files*/)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(int id)
+        {
+            return Json(Conflict());
+        }
+
+        public async Task<JsonResult> OnCreate(StudentViewModel studentViewModel, List<IFormFile> files)
         {
             if (ModelState.IsValid)
             {
-                List<IFormFile> files = new List<IFormFile>();
+                //if (!files.Any())
+                //    return Json(Conflict());
 
-                if (!files.Any())
-                    return Conflict();
+                //long size = files.Sum(f => f.Length);
 
-                long size = files.Sum(f => f.Length);
+                //var filePath = Path.Combine(Directory.GetCurrentDirectory());
 
-                var filePath = Path.Combine(Directory.GetCurrentDirectory());
-
-                foreach (var formFile in files)
-                {
-                    if (formFile.Length > 0)
-                    {
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await formFile.CopyToAsync(stream);
-                        }
-                    }
-                }
+                //foreach (var formFile in files)
+                //{
+                //    using (var stream = new FileStream(filePath, FileMode.Create))
+                //    {
+                //        await formFile.CopyToAsync(stream);
+                //    }
+                //}
 
                 var user = await GetUser(_userManager);
 
                 if (user != null && user.Environment != null)
                     _studentAppService.Add(user.Environment.Id, studentViewModel);
 
-                return RedirectToAction(nameof(Index));
+                return Json(Ok());
             }
 
-            //ViewData["CollegeId"] = new SelectList(_context.Set<CollegeViewModel>(), "Id", "Id", studentViewModel.CollegeId);
-            return View(studentViewModel);
+            return Json(Ok());
         }
+
 
         // GET: Student/Edit/5
         public async Task<IActionResult> Edit(int? id)

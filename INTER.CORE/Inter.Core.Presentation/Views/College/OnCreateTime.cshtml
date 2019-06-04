@@ -1,0 +1,25 @@
+﻿@model Inter.Core.App.ViewModel.CollegeViewModel
+
+@await Html.PartialAsync("~/Views/College/_partial/_collegeDetails.cshtml", Model)
+
+
+<div class="form-group" id="saveButton">
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modalinsertTimeCollege">+ College Time</button>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Views/College/_partial/_modalPutTimeCollege.cshtml", Model)
+
+@section Scripts {
+
+    <script src="~/js/Util/Util.js"></script>
+    <script src="~/js/College/college.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

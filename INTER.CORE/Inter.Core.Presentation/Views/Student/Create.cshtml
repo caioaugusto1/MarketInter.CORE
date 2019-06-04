@@ -10,39 +10,30 @@
         <tbody>
             <tr>
                 <td colspan="1">
-                    <form method="post" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed" class="well form-horizontal" id="studentData">
+                    <form method="post" id="studentData" data-ajax="true" class="well form-horizontal">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                         @await Html.PartialAsync("~/Views/Student/_partial/_form_create_edit.cshtml")
 
-                        <div class="form-group">
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                    <input type="button" onclick="student.create()" value="Save" class="btn btn-primary" />
-                                </div>
-                            </div>
-                        </div>
-
                     </form>
 
                     @*<form method="post" enctype="multipart/form-data" id="studentImage">
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <p>Upload one or more files using this form:</p>
-                                    <input id="uploadfile" type="file" name="files" multiple>
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <p>Upload one or more files using this form:</p>
+                                <input id="uploadfile" type="file" name="files" multiple>
                             </div>
-                        </form>*@
+                        </div>
+                    </form>*@
 
-                    @*<div class="form-group">
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                    <input type="button" value="Save" onclick="student.create()" class="btn btn-primary" />
-                                </div>
+                    <div class="form-group">
+                        <div class="col-md-8 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input type="button" onclick="student.create()" value="Save" class="btn btn-primary" />
                             </div>
-                        </div>*@
+                        </div>
+                    </div>
 
                 </td>
             </tr>

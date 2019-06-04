@@ -9,14 +9,18 @@ namespace Inter.Core.Domain.Service
     public class CulturalExchangeService : ICulturalExchangeService
     {
         private readonly ICulturalExchangeRepository _culturalExchangeRepository;
+        private readonly ICollegeRepository _collegeRepository;
 
-        public CulturalExchangeService(ICulturalExchangeRepository culturalExchangeRepository)
+        public CulturalExchangeService(ICulturalExchangeRepository culturalExchangeRepository, ICollegeRepository collegeRepository)
         {
             _culturalExchangeRepository = culturalExchangeRepository;
+            _collegeRepository = collegeRepository;
         }
 
-        public CulturalExchange Add(SystemEnvironment environment, CulturalExchange culturalExchange)
+        public CulturalExchange Add(CulturalExchange culturalExchange)
         {
+            College college = _collegeRepository.GetById(culturalExchange.College.Id);
+
             return _culturalExchangeRepository.Insert(culturalExchange);
         }
 

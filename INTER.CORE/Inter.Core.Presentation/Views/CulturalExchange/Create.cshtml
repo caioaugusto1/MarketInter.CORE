@@ -13,82 +13,97 @@
                     <form class="well form-horizontal" asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Full Name*</label>
-                                <select asp-for="IdStudent"
-                                        asp-items="@(new SelectList(ViewBag.Students,"Id","FullName"))">
-                                    <option>Please select one</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Full Name*</label>
+                            <select asp-for="IdStudent" required
+                                    asp-items="@(new SelectList(ViewBag.Students,"Id","FullName"))">
+                                <option>Please select one</option>
+                            </select>
+                            <span asp-validation-for="StudentViewModel" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">College*</label>
-                                <select asp-for="IdStudent"
-                                        asp-items="@(new SelectList(ViewBag.Colleges,"Id","Name"))">
-                                    <option>Please select one</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">College*</label>
+                            <select asp-for="IdStudent" required
+                                    asp-items="@(new SelectList(ViewBag.Colleges,"Id","Name"))">
+                                <option>Please select one</option>
+                            </select>
+                            <span asp-validation-for="AccomodationViewModel" class="text-danger"></span>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">INSUR*</label>
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="INSUR" /> @Html.DisplayNameFor(model => model.INSUR)
-                                </label>
-                            </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">INSUR*</label>
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="INSUR" /> @Html.DisplayNameFor(model => model.INSUR)
+                            </label>
+                            <span asp-validation-for="INSUR" class="text-danger"></span>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Arrival Date*</label>
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="Arrival" /> @Html.DisplayNameFor(model => model.INSUR)
-                                </label>
-                            </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Start Date*</label>
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="StartDate" /> @Html.DisplayNameFor(model => model.StartDate)
-                                </label>
-                            </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Arrival Date*</label>
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="ArrivalDateTime" /> @Html.DisplayNameFor(model => model.ArrivalDateTime)
+                            </label>
+                            <span asp-validation-for="ArrivalDateTime" class="text-danger"></span>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Company*</label>
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="Company" /> @Html.DisplayNameFor(model => model.Company)
-                                </label>
-                            </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Flight Number*</label>
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="FlightNumber" /> @Html.DisplayNameFor(model => model.FlightNumber)
-                                </label>
-                            </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Start Date*</label>
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="date" asp-for="StartDate" /> @Html.DisplayNameFor(model => model.StartDate)
+                            </label>
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">College Payment*</label>
-                                <label class="form-check-label">
-                                    <input class="form-check-input" asp-for="CollegePayment" /> @Html.DisplayNameFor(model => model.CollegePayment)
-                                </label>
-                            </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Cultural Exchange VALUE*</label>
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="number" asp-for="TotalValue" /> @Html.DisplayNameFor(model => model.TotalValue)
-                                </label>
-                            </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Company*</label>
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="text" asp-for="Company" /> @Html.DisplayNameFor(model => model.Company)
+                            </label>
+                            <span asp-validation-for="Company" class="text-danger"></span>
 
-                            <div class="form-group">
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                        <input type="submit" value="Create" class="btn btn-primary" />
-                                    </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Flight Number*</label>
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="text" asp-for="FlightNumber" /> @Html.DisplayNameFor(model => model.FlightNumber)
+                            </label>
+                            <span asp-validation-for="FlightNumber" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">College Payment*</label>
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="CollegePayment" /> @Html.DisplayNameFor(model => model.CollegePayment)
+                            </label>
+                            <span asp-validation-for="CollegePayment" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Cultural Exchange VALUE*</label>
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="number" asp-for="TotalValue" /> @Html.DisplayNameFor(model => model.TotalValue)
+                            </label>
+                            <span asp-validation-for="TotalValue" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input type="submit" value="Create" class="btn btn-primary" />
                                 </div>
                             </div>
+                        </div>
 
-                        </fieldset>
+                        <input hidden asp-for="EnviromentId" value="@ViewBag.EnvironmentId"/>
+
                     </form>
                 </td>
             </tr>

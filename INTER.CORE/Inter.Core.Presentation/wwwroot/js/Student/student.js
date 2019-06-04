@@ -3,27 +3,10 @@
     var create = function () {
 
         var student = $('#studentData').serialize();
+        
+        Util.request('/Student/OnCreate/', 'POST', student, 'json', true, function (data) {
 
-        console.log(student);
-
-        //$.ajax({
-        //    url: '/Student/Create/',
-        //    type: 'POST',
-        //    dataType: 'HTML',
-        //    async: true,
-        //    //cache: false,
-        //    data: {
-        //        studentViewModel: $('#studentData').serialize()
-        //    },
-        //    contentType: 'application/json',
-        //    success: function (data) {
-       
-        //    }, error: function (request, status, error) {
-               
-        //    }
-        //});
-
-        Util.request('/Student/Create/', 'POST', { student }, 'JSON', true, function (data) {
+            alert('included');
 
         }, function (request, status, error) {
 
