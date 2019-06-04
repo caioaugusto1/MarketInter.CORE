@@ -4,6 +4,9 @@ using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -14,7 +17,8 @@ namespace Inter.Core.Presentation.Controllers
         private readonly IEnvironmentAppService _environmentAppService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public StudentController(IStudentAppService studentAppService, IEnvironmentAppService environmentAppService, UserManager<ApplicationUser> userManager)
+        public StudentController(IStudentAppService studentAppService, IEnvironmentAppService environmentAppService,
+            UserManager<ApplicationUser> userManager)
         {
             _studentAppService = studentAppService;
             _environmentAppService = environmentAppService;
@@ -62,11 +66,31 @@ namespace Inter.Core.Presentation.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(StudentViewModel studentViewModel, IFormFile file)
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([FromBody]StudentViewModel studentViewModel/*, List<IFormFile> files*/)
         {
             if (ModelState.IsValid)
             {
+                List<IFormFile> files = new List<IFormFile>();
+
+                if (!files.Any())
+                    return Conflict();
+
+                long size = files.Sum(f => f.Length);
+
+                var filePath = Path.Combine(Directory.GetCurrentDirectory());
+
+                foreach (var formFile in files)
+                {
+                    if (formFile.Length > 0)
+                    {
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await formFile.CopyToAsync(stream);
+                        }
+                    }
+                }
+
                 var user = await GetUser(_userManager);
 
                 if (user != null && user.Environment != null)

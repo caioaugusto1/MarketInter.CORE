@@ -10,102 +10,39 @@
         <tbody>
             <tr>
                 <td colspan="1">
-                    <form class="well form-horizontal" asp-action="Create">
+                    <form method="post" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed" class="well form-horizontal" id="studentData">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Full Name*</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span name="FullName" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input asp-for="FullName" id="fullName" placeholder="Full Name" class="form-control" required type="text">
-                                    </div>
-                                </div>
-                            </div>
+                        @await Html.PartialAsync("~/Views/Student/_partial/_form_create_edit.cshtml")
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Customer Id*</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" name="customerId"><i class="glyphicon glyphicon-home"></i></span>
-                                        <input asp-for="CustomerId" id="emailAddress" placeholder="Customer Id" class="form-control" required type="text">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Email*</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" name="emailAddress"><i class="glyphicon glyphicon-home"></i></span>
-                                        <input asp-for="Email" id="emailAddress" placeholder="Email Address" class="form-control" required type="email">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Address*</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" name="Address"><i class="glyphicon glyphicon-home"></i></span>
-                                        <input asp-for="Address" id="sddress" placeholder="Address" class="form-control" required type="text">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">City*</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" name="City"><i class="glyphicon glyphicon-home"></i></span>
-                                        <input asp-for="City" id="city" placeholder="City" class="form-control" required type="text">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Country*</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" name="Country"><i class="glyphicon glyphicon-home"></i></span>
-                                        <input asp-for="Country" id="country" placeholder="Country" class="form-control" required type="text">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Passaport Number*</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" name="passaportNumber"><i class="glyphicon glyphicon-home"></i></span>
-                                        <input asp-for="PassaportNumber" id="passaportNumber" placeholder="Passaport Number" class="form-control" required type="text">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                        <input type="submit" value="Create" class="btn btn-primary" />
-                                    </div>
-                                </div>
-                            </div>
-
-                        </fieldset>
-                    </form>
-
-                    <form method="post" enctype="multipart/form-data" asp-controller="Student" asp-action="Create">
                         <div class="form-group">
-                            <div class="col-md-10">
-                                <p>Upload one or more files using this form:</p>
-                                <input type="file" name="files" multiple>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input type="button" onclick="student.create()" value="Save" class="btn btn-primary" />
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                <input type="submit" value="Upload">
-                            </div>
-                        </div>
+
                     </form>
+
+                    @*<form method="post" enctype="multipart/form-data" id="studentImage">
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <p>Upload one or more files using this form:</p>
+                                    <input id="uploadfile" type="file" name="files" multiple>
+                                </div>
+                            </div>
+                        </form>*@
+
+                    @*<div class="form-group">
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input type="button" value="Save" onclick="student.create()" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>*@
 
                 </td>
             </tr>
@@ -114,5 +51,9 @@
 </div>
 
 @section Scripts {
+
+    <script src="~/js/Util/Util.js"></script>
+    <script src="~/js/Student/student.js"></script>
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

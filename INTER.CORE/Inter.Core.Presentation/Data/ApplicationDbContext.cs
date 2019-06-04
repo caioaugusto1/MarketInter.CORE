@@ -25,8 +25,5 @@ namespace Inter.Core.Presentation.Data
 
             //builder.ApplyConfiguration(new EnvironmentConfig());
         }
-        
-        public DbSet<Inter.Core.App.ViewModel.CulturalExchangeViewModel> CulturalExchangeViewModel { get; set; }
-        
-    }
+        }
 }

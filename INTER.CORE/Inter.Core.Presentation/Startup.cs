@@ -8,6 +8,7 @@ using Inter.Core.Domain.Service;
 using Inter.Core.Domain.ServiceInterface;
 using Inter.Core.Infra.Data.Context;
 using Inter.Core.Infra.Data.Repositories;
+using Inter.Core.Presentation.Configuration;
 using Inter.Core.Presentation.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +19,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Inter.Core.Presentation
 {
@@ -64,6 +67,8 @@ namespace Inter.Core.Presentation
             services.AddDbContext<MySQLContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));
 
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
             InjectorDependency(services);
 
         }
@@ -85,8 +90,9 @@ namespace Inter.Core.Presentation
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
+            app.UseCookiePolicy();
+            
             app.UseAuthentication();
 
             app.UseMvc(routes =>
