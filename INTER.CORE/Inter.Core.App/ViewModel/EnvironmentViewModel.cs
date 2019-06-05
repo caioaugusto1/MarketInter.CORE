@@ -1,6 +1,7 @@
 ﻿using Inter.Core.Presentation.Models.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel
@@ -10,8 +11,16 @@ namespace Inter.Core.App.ViewModel
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Company Name")]
+        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MinLength(2, ErrorMessage = "Min {0} caracteres")]
+        [DisplayName("Company Name")]
         public string CompanyName { get; set; }
 
+        [Required(ErrorMessage = "CustomerCode")]
+        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MinLength(2, ErrorMessage = "Min {0} caracteres")]
+        [DisplayName("Customer Code")]
         public string CustomerCode { get; set; }
 
         [Display(Name = "Start Date")]

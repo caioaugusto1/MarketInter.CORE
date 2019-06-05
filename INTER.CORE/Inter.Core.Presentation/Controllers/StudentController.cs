@@ -4,7 +4,12 @@ using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -74,21 +79,40 @@ namespace Inter.Core.Presentation.Controllers
                 if (user != null && user.Environment != null)
                     _studentAppService.Add(user.Environment.Id, studentViewModel);
 
-                return Json(Ok());
+                return Json(new { studentName = studentViewModel.FullName, HttpStatusCode.OK });
             }
 
             return Json(Conflict());
         }
 
         [HttpPost]
-        public async Task<JsonResult> ImageInclude(int studentId, List<IFormFile> files)
+        public async Task<IActionResult> ImageInclude(List<IFormFile> files)
         {
-            if (ModelState.IsValid)
+            long size = files.Sum(f => f.Length);
+
+            // full path to file in temp location
+            string filePath = @"C:\Users\Caio's PC\Documents\";
+
+            if (!Directory.Exists(filePath))
+                Directory.CreateDirectory(filePath);
+            
+            foreach (var formFile in files)
             {
-                return Json(Ok());
+                if (formFile.Length > 0)
+                {
+                    using (FileStream fs = System.IO.File.Create(filePath))
+                    {
+                        Byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
+                        // Add some information to the file.
+                        fs.Write(info, 0, info.Length);
+                    }
+                }
             }
 
-            return Json(Ok());
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+
+            return Ok(new { count = files.Count, size, filePath });
         }
 
 

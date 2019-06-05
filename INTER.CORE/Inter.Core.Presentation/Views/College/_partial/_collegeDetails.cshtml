@@ -1,8 +1,6 @@
 ﻿@model Inter.Core.App.ViewModel.CollegeViewModel
 @using Inter.Core.App.Enumerables
 
-@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
-
 <div class="col-lg-6">
     <!-- Circle Buttons -->
     <div class="card shadow mb-4">
@@ -10,8 +8,24 @@
             <h6 class="m-0 font-weight-bold text-primary">@Model.Name</h6>
         </div>
         <div class="card-body">
-            <p>Use Font Awesome Icons (included with this theme package) along with the circle buttons as shown in the examples below!</p>
-            <!-- Circle Buttons (Default) -->
+            <div class="small mb-1"></div>
+            <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
+                            <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modalinsertTimeCollege">+ Add College Time</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action("Edit", "College", new { id = Model.Id })">Edit</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="card-body">
 
             <dl class="row">
                 <dt class="col-sm-6">
@@ -62,7 +76,25 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">@time.Period</h6>
             </div>
+
             <div class="card-body">
+
+                <div class="small mb-1">@Model.Name</div>
+                <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="javascript:college.editCollegeTime(@time.Id)">Edit</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Delete</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
                 <p>Use Font Awesome Icons (included with this theme package) along with the circle buttons as shown in the examples below!</p>
                 <!-- Circle Buttons (Default) -->
 
@@ -117,4 +149,6 @@
 
 </div>
 
+<div class="modal fade" id="div-modal-edit-college-time" tabindex="-1" role="dialog" aria-hidden="true">
 
+</div>

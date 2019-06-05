@@ -12,18 +12,21 @@ namespace Inter.Core.App.Application
     {
         private readonly IMapper _mapper;
         private readonly ICollegeService _collegeService;
+        private readonly IEnvironmentService _environmentService;
 
-        public CollegeAppService(ICollegeService collegeService, IMapper mapper)
+        public CollegeAppService(IMapper mapper, ICollegeService collegeService, IEnvironmentService environmentService)
         {
             _collegeService = collegeService;
             _mapper = mapper;
+            _environmentService = environmentService;
         }
 
-        public CollegeViewModel Add(CollegeViewModel collegeViewModel)
+        public CollegeViewModel Add(int idEnvironment, CollegeViewModel collegeViewModel)
         {
             var college = _mapper.Map<College>(collegeViewModel);
+            var environment = _mapper.Map<SystemEnvironment>(_environmentService.GetById(idEnvironment));
 
-            return _mapper.Map<CollegeViewModel>(_collegeService.Add(college));
+            return _mapper.Map<CollegeViewModel>(_collegeService.Add(environment, college));
         }
 
         public CollegeViewModel AddCollegeTime(CollegeTimeViewModel collegeTimeViewModel)
@@ -44,6 +47,11 @@ namespace Inter.Core.App.Application
         public CollegeViewModel GetById(int id)
         {
             return _mapper.Map<CollegeViewModel>(_collegeService.GetById(id));
+        }
+
+        public CollegeTimeViewModel GetCollegeTimeById(int idCollegeTime)
+        {
+            return _mapper.Map<CollegeTimeViewModel>(_collegeService.GetCollegeTimeById(idCollegeTime));
         }
 
         public CollegeViewModel GetCollegeTimeByIdCollege(int idCollege)

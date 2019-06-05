@@ -48,7 +48,7 @@
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
 
-                                    @*<button onclick="student.openModalImageUpload('@item.Id')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-plus"></i></button>*@
+                                    <button onclick="student.openModalImageUpload('@item.Id')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-plus"></i></button>
 
                                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-info"></i></a>
 
@@ -64,8 +64,5 @@
     </div>
 </div>
 
-<link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-<script src="~/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/demo/datatables.min.js"></script>
 <script src="~/js/Student/student.js"></script>

@@ -1,5 +1,7 @@
 ﻿@model Inter.Core.App.ViewModel.CollegeViewModel
 
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
 <div class="container">
 
     <h1 class="h3 mb-2 text-gray-800">College - Edit</h1>
@@ -8,16 +10,16 @@
         <tbody>
             <tr>
                 <td colspan="1">
-                    <form class="well form-horizontal" asp-action="Create" id="form-create-college">
+                    <form class="well form-horizontal" asp-action="Create" id="form-edit-college">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                         @await Html.PartialAsync("~/Views/College/_partial/_form_create_edit.cshtml")
 
-                        <div class="form-group">
+                        <div class="form-group" id="saveButton">
                             <div class="col-md-8 inputGroupContainer">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                    <input onclick="college.loadingPartial();" type="button" value="+ College Time" class="btn btn-secondary btn-sm" />
+                                    <input onclick="college.edit();" type="button" value="Save" class="btn btn-primary" />
                                 </div>
                             </div>
                         </div>
@@ -35,5 +37,9 @@
 
 
 @section Scripts {
+
+    <script src="~/js/Util/Util.js"></script>
+    <script src="~/js/College/college.js"></script>
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

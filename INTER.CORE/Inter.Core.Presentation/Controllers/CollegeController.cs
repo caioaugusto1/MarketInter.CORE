@@ -19,6 +19,8 @@ namespace Inter.Core.Presentation.Controllers
             _userManager = userManager;
         }
 
+        #region College
+
         // GET: College
         public async Task<IActionResult> Index()
         {
@@ -60,42 +62,17 @@ namespace Inter.Core.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                _collegeAppService.Add(collegeViewModel);
+                var user = await GetUser(_userManager);
+
+                if (user == null)
+                    return NotFound();
+
+                _collegeAppService.Add(user.EnvironmentId, collegeViewModel);
 
                 return Ok();
             }
 
             return View(collegeViewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateTimeCollege(CollegeTimeViewModel collegeTime)
-        {
-            if (ModelState.IsValid)
-            {
-                _collegeAppService.AddCollegeTime(collegeTime);
-
-                return Ok();
-            }
-
-            return Conflict();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> OnCreateTime(int id)
-        {
-            return View(_collegeAppService.GetCollegeTimeByIdCollege(id));
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> OnCreateTime(List<CollegeTimeViewModel> collegeTime)
-        {
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            return View();
         }
 
         // GET: College/Edit/5
@@ -159,5 +136,56 @@ namespace Inter.Core.Presentation.Controllers
         //{
         //    return _context.CollegeViewModel.Any(e => e.Id == id);
         //}
+
+        #endregion
+
+        #region CollegeTime 
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTimeCollege(CollegeTimeViewModel collegeTime)
+        {
+            if (ModelState.IsValid)
+            {
+                _collegeAppService.AddCollegeTime(collegeTime);
+
+                return Ok();
+            }
+
+            return Conflict();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> OnCreateTime(int id)
+        {
+            return View(_collegeAppService.GetCollegeTimeByIdCollege(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> OnCreateTime(List<CollegeTimeViewModel> collegeTime)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+        
+        public async Task<IActionResult> EditCollegeTime(int idCollegeTime)
+        {
+            if (idCollegeTime == 0)
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                var collegeTime = _collegeAppService.GetCollegeTimeById(idCollegeTime);
+
+                return PartialView("~/Views/College/_partial/_edit_collegeTime.cshtml", collegeTime);
+            }
+
+            return Conflict();
+        }
+
+        #endregion
     }
 }

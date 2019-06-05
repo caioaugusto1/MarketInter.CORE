@@ -1,19 +1,21 @@
 ﻿var college = function () {
 
-    //var loadingModalPartialInsertTimeCollege = function () {
-
-    //    if ($('#saveButton').length >= 1) {
-    //        $('#saveButton').remove();
-    //    }
-    //};
 
     var saveCollegeTime = function () {
 
         var collegeTime = $('#form-create-collegeTime').serialize();
 
         Util.request('/College/CreateTimeCollege', 'POST', collegeTime, 'JSON', false, function (data) {
+            debugger;
+            if (data == 200) {
+                $('#description').append(`College Time included`);
+                $('#sub-information').append(`Time etc etc etc`);
+                $('#modalSuccess').modal('show');
 
-            location.reload();
+                setTimeout(function () {
+                    location.reload();
+                }, 2000);
+            }
 
         }, function (request, status, error) {
 
@@ -28,16 +30,36 @@
         Util.request('/College/Create', 'POST', college, 'JSON', false, function (data) {
 
 
-
         }, function (request, status, error) {
 
         });
     };
 
-    //var saveButton = function () {
+    var edit = function () {
 
-    //    return '<div class="form-group" id="saveButton"><div class="col-md-8 inputGroupContainer"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input onclick="college.loadingModalPartialPutTimeCollege();" type="button" value="Save" class="btn btn-primary"/></div></div></div>';
-    //};
+        var college = $('#form-edit-college').serialize();
 
-    return { create, saveCollegeTime };
+        Util.request('/College/Edit', 'POST', college, 'JSON', false, function (data) {
+
+            location.reload();
+            
+        }, function (request, status, error) {
+
+        });
+    };
+
+    var editCollegeTime = function (idCollegeTime) {
+
+        Util.request('/College/EditCollegeTime', 'POST', idCollegeTime, 'html', true, function (data) {
+
+            $('#div-modal-edit-college-time').append(data);
+            $('#div-modal-edit-college-time').modal('show');
+
+        }, function (request, status, error) {
+
+        });
+    }
+
+
+    return { create, saveCollegeTime, editCollegeTime };
 }();

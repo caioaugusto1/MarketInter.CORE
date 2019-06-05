@@ -15,8 +15,10 @@ namespace Inter.Core.Domain.Service
             _collegeRepository = collegeRepository;
         }
 
-        public College Add(College college)
+        public College Add(SystemEnvironment environment, College college)
         {
+            college.Environment = environment;
+
             return _collegeRepository.Insert(college);
         }
 
@@ -33,6 +35,11 @@ namespace Inter.Core.Domain.Service
         public College GetCollegeTimeByCollegeId(int id)
         {
             return _collegeRepository.GetCollegeTimeByCollegeId(id);
+        }
+
+        public College.CollegeTime GetCollegeTimeById(int idCollegeTime)
+        {
+            return _collegeRepository.GetCollegeTimeById(idCollegeTime);
         }
 
         public College Update(College college)
