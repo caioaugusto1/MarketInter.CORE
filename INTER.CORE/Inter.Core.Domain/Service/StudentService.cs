@@ -3,7 +3,7 @@ using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.ServiceInterface;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace Inter.Core.Domain.Service
 {
@@ -20,13 +20,13 @@ namespace Inter.Core.Domain.Service
         {
             student.Environment = environment;
             environment.Students.Add(student);
-            
+
             return _studentRepository.Insert(student);
         }
 
         public List<Student> GetAll(int idEnvironment)
         {
-            return _studentRepository.GetAll();
+            return _studentRepository.GetAll().Where(x => x.EnvironmentId == idEnvironment).ToList();
         }
 
         public Student GetById(int idEnvironment, int id)

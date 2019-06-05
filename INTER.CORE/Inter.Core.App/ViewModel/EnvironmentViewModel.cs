@@ -10,7 +10,7 @@ namespace Inter.Core.App.ViewModel
         [Key]
         public int Id { get; set; }
 
-        public string Company { get; set; }
+        public string CompanyName { get; set; }
 
         public string CustomerCode { get; set; }
 
@@ -23,6 +23,9 @@ namespace Inter.Core.App.ViewModel
         [DataType(DataType.Date)]
         public DateTime FinishDate { get; set; }
 
+        [Display(Name = "Date Finish")]
+        public bool Avaliable { get; set; }
+
         public virtual List<ApplicationUserViewModel> ApplicationUserViewModel { get; set; }
 
         public virtual List<StudentViewModel> StudentViewModel { get; set; }
@@ -32,7 +35,7 @@ namespace Inter.Core.App.ViewModel
         public virtual List<AdvisorViewModel> AdvisorViewModel { get; set; }
 
         public virtual List<CollegeViewModel> CollegeViewModel { get; set; }
-        
+
         public virtual List<CulturalExchangeViewModel> CulturalExchangeViewModel { get; set; }
     }
 }

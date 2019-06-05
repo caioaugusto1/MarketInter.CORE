@@ -1,28 +1,37 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
+using Inter.Core.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    public class CulturalExchangeController : Controller
+    public class CulturalExchangeController : BaseController
     {
         private readonly ICulturalExchangeAppService _culturalExchangeAppService;
         private readonly IStudentAppService _studentAppService;
         private readonly ICollegeAppService _collegeAppService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CulturalExchangeController(ICulturalExchangeAppService culturalExchangeAppService, 
-            IStudentAppService studentAppService, ICollegeAppService collegeAppService)
+        public CulturalExchangeController(ICulturalExchangeAppService culturalExchangeAppService,
+            IStudentAppService studentAppService, ICollegeAppService collegeAppService, UserManager<ApplicationUser> userManager)
         {
             _culturalExchangeAppService = culturalExchangeAppService;
             _studentAppService = studentAppService;
             _collegeAppService = collegeAppService;
+            _userManager = userManager;
         }
 
         // GET: CulturalExchange
         public async Task<IActionResult> Index()
         {
-            return View(_culturalExchangeAppService.GetAll(1));
+            var user = await GetUser(_userManager);
+
+            if (user == null)
+                return NotFound();
+
+            return View(_culturalExchangeAppService.GetAll(user.EnvironmentId));
         }
 
         // GET: CulturalExchange/Details/5
@@ -40,11 +49,16 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: CulturalExchange/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewBag.Students = _studentAppService.GetAll(1);
-            ViewBag.Colleges = _collegeAppService.GetAll();
-            ViewBag.EnvironmentId = 1;
+            var user = await GetUser(_userManager);
+
+            if (user == null)
+                return NotFound();
+
+            ViewBag.Students = _studentAppService.GetAll(user.EnvironmentId);
+            ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
+            ViewBag.EnvironmentId = user.EnvironmentId;
 
             return View();
         }

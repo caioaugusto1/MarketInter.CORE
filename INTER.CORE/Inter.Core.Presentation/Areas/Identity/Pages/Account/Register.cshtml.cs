@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
@@ -59,8 +58,8 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required]
-            [Display(Name = "Environment")]
-            public string EnvironmentId { get; set; }
+            [Display(Name = "Environment Code")]
+            public string EnvironmentCode { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
@@ -75,8 +74,15 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
 
-                var teste = _environmentAppService.GetById(3);
-                //user.Environment = new Enti Environment();
+                var environment = _environmentAppService.GetByCode(Input.EnvironmentCode);
+
+                if (environment == null)
+                {
+                    ModelState.AddModelError("Environment", "Environment Not found");
+                    return Page();
+                }
+
+                user.EnvironmentId = environment.Id;
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

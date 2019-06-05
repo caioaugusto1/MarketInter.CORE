@@ -10,15 +10,10 @@ namespace Inter.Core.Infra.Data.EntityConfig
         {
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Company)
+            builder.Property(x => x.CompanyName)
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(x => x.CustomerCode)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnType("varchar");
-            
             builder.ToTable("Environment");
         }
     }

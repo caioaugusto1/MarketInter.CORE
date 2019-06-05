@@ -2,6 +2,7 @@
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.Interfaces.Services;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Inter.Core.Domain.Service
 {
@@ -19,9 +20,9 @@ namespace Inter.Core.Domain.Service
             return _collegeRepository.Insert(college);
         }
 
-        public List<College> GetAll()
+        public List<College> GetAll(int idEnvironment)
         {
-            return _collegeRepository.GetAll();
+            return _collegeRepository.GetAll().Where(x => x.EnvironmentId == idEnvironment).ToList();
         }
 
         public College GetById(int id)

@@ -1,18 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using Inter.Core.Domain.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.Interfaces.Services
 {
     public interface IEnvironmentService
     {
-        void Add(Inter.Core.Domain.Entities.SystemEnvironment environment);
+        void Add(SystemEnvironment environment);
 
-        Task<List<Inter.Core.Domain.Entities.SystemEnvironment>> GetAll();
+        List<SystemEnvironment> GetAll();
 
-        Inter.Core.Domain.Entities.SystemEnvironment GetById(int id);
+        SystemEnvironment GetById(int id);
 
-        Task<Inter.Core.Domain.Entities.SystemEnvironment> GetByCode(string code);
-        
-        void Update(Inter.Core.Domain.Entities.SystemEnvironment environment);
+        SystemEnvironment GetByCode(string code);
+
+        void Update(SystemEnvironment environment);
     }
 }

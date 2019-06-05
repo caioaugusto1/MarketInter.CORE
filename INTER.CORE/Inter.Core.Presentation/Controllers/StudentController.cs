@@ -28,7 +28,7 @@ namespace Inter.Core.Presentation.Controllers
         {
             var user = await GetUser(_userManager);
 
-            if (user == null && user.Environment == null)
+            if (user == null || user.Environment == null)
                 return NotFound();
 
             var studentsVM = _studentAppService.GetAll(user.Environment.Id);
@@ -65,35 +65,26 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id)
-        {
-            return Json(Conflict());
-        }
-
-        public async Task<JsonResult> OnCreate(StudentViewModel studentViewModel, List<IFormFile> files)
+        public async Task<IActionResult> Create(StudentViewModel studentViewModel)
         {
             if (ModelState.IsValid)
             {
-                //if (!files.Any())
-                //    return Json(Conflict());
-
-                //long size = files.Sum(f => f.Length);
-
-                //var filePath = Path.Combine(Directory.GetCurrentDirectory());
-
-                //foreach (var formFile in files)
-                //{
-                //    using (var stream = new FileStream(filePath, FileMode.Create))
-                //    {
-                //        await formFile.CopyToAsync(stream);
-                //    }
-                //}
-
                 var user = await GetUser(_userManager);
 
                 if (user != null && user.Environment != null)
                     _studentAppService.Add(user.Environment.Id, studentViewModel);
 
+                return Json(Ok());
+            }
+
+            return Json(Conflict());
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ImageInclude(int studentId, List<IFormFile> files)
+        {
+            if (ModelState.IsValid)
+            {
                 return Json(Ok());
             }
 

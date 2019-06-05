@@ -1,24 +1,33 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
+using Inter.Core.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    public class CollegeController : Controller
+    public class CollegeController : BaseController
     {
         private readonly ICollegeAppService _collegeAppService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CollegeController(ICollegeAppService collegeAppService)
+        public CollegeController(ICollegeAppService collegeAppService, UserManager<ApplicationUser> userManager)
         {
             _collegeAppService = collegeAppService;
+            _userManager = userManager;
         }
 
         // GET: College
         public async Task<IActionResult> Index()
         {
-            return View(_collegeAppService.GetAll());
+            var user = await GetUser(_userManager);
+
+            if (user == null)
+                return NotFound();
+
+            return View(_collegeAppService.GetAll(user.EnvironmentId));
         }
 
 

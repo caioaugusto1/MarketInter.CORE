@@ -1,24 +1,21 @@
 ﻿var college = function () {
 
-    var loadingModalPartialInsertTimeCollege = function () {
+    //var loadingModalPartialInsertTimeCollege = function () {
 
-        if ($('#saveButton').length >= 1) {
-            $('#saveButton').remove();
-        }
-
-
-
-    };
+    //    if ($('#saveButton').length >= 1) {
+    //        $('#saveButton').remove();
+    //    }
+    //};
 
     var saveCollegeTime = function () {
 
         var collegeTime = $('#form-create-collegeTime').serialize();
 
         Util.request('/College/CreateTimeCollege', 'POST', collegeTime, 'JSON', false, function (data) {
-            debugger;
+
+            location.reload();
 
         }, function (request, status, error) {
-
 
         });
     };
@@ -30,15 +27,17 @@
 
         Util.request('/College/Create', 'POST', college, 'JSON', false, function (data) {
 
+
+
         }, function (request, status, error) {
 
         });
     };
 
-    var saveButton = function () {
+    //var saveButton = function () {
 
-        return '<div class="form-group" id="saveButton"><div class="col-md-8 inputGroupContainer"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input onclick="college.loadingModalPartialPutTimeCollege();" type="button" value="Save" class="btn btn-primary"/></div></div></div>';
-    };
+    //    return '<div class="form-group" id="saveButton"><div class="col-md-8 inputGroupContainer"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input onclick="college.loadingModalPartialPutTimeCollege();" type="button" value="Save" class="btn btn-primary"/></div></div></div>';
+    //};
 
-    return { create, saveCollegeTime, loadingModalPartialInsertTimeCollege };
+    return { create, saveCollegeTime };
 }();

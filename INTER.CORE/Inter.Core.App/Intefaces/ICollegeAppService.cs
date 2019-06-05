@@ -11,7 +11,7 @@ namespace Inter.Core.App.Intefaces
 
         CollegeViewModel GetCollegeTimeByIdCollege(int idCollege);
 
-        List<CollegeViewModel> GetAll();
+        List<CollegeViewModel> GetAll(int idEnvironment);
 
         CollegeViewModel GetById(int id);
 

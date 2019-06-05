@@ -3,15 +3,24 @@
     var create = function () {
 
         var student = $('#studentData').serialize();
-        
-        Util.request('/Student/OnCreate/', 'POST', student, 'json', true, function (data) {
 
-            alert('included');
+        Util.request('/Student/Create/', 'POST', student, 'json', true, function (data) {
+
+            if (data === 201) {
+                return;
+            }
 
         }, function (request, status, error) {
 
         });
     };
 
-    return { create };
+    var openModalImageUpload = function (studentId) {
+
+
+
+    };
+
+
+    return { create, openModalImageUpload };
 }();

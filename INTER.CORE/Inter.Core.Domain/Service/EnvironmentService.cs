@@ -3,7 +3,6 @@ using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.Service
@@ -17,33 +16,33 @@ namespace Inter.Core.Domain.Service
             _environmentRepository = environmentRepository;
         }
 
-        public void Add(Entities.SystemEnvironment environment)
+        public void Add(SystemEnvironment environment)
         {
             Random random = new Random(4);
 
-            environment.CustomerCode = environment.CustomerCode + random;
-            
+            environment.CompanyCode = environment.CompanyCode + random;
+
             _environmentRepository.Insert(environment);
         }
 
-        public Task<List<Entities.SystemEnvironment>> GetAll()
+        public List<SystemEnvironment> GetAll()
         {
-            throw new NotImplementedException();
+            return _environmentRepository.GetAll();
         }
 
-        public Task<Entities.SystemEnvironment> GetByCode(string code)
+        public SystemEnvironment GetByCode(string code)
         {
             return _environmentRepository.GetByCode(code);
         }
 
-        public Entities.SystemEnvironment GetById(int id)
+        public SystemEnvironment GetById(int id)
         {
             return _environmentRepository.GetById(id);
         }
 
-        public void Update(Entities.SystemEnvironment environment)
+        public void Update(SystemEnvironment environment)
         {
-            throw new NotImplementedException();
+            _environmentRepository.Update(environment);
         }
     }
 }

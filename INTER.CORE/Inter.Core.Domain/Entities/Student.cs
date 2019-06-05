@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inter.Core.Domain.Entities
 {
@@ -7,7 +8,7 @@ namespace Inter.Core.Domain.Entities
         public int Id { get; set; }
 
         public string CustomerId { get; set; }
-        
+
         public string FullName { get; set; }
 
         public string Email { get; set; }
@@ -23,11 +24,11 @@ namespace Inter.Core.Domain.Entities
         public string Country { get; set; }
 
         public string Nationality { get; set; }
-        
+
         public string PassaportNumber { get; set; }
         
+        public int EnvironmentId { get; set; }
+
         public virtual SystemEnvironment Environment { get; set; }
-
-
     }
 }

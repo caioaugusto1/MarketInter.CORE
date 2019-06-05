@@ -21,10 +21,10 @@ namespace Inter.Core.Infra.Data.Context
         {
             if (!optionsBuilder.IsConfigured)
                 optionsBuilder.UseMySql(GetStringConectionConfig());
-
+            
             base.OnConfiguring(optionsBuilder);
         }
-
+        
         private string GetStringConectionConfig()
         {
             return "server=localhost;database=INTERCORE;user=root;password=admin";

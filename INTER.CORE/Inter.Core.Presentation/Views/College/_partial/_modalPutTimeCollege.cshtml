@@ -63,8 +63,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Period:</label>
-
-                                @Html.DropDownList("PeriodClass", Html.GetEnumSelectList<PeriodClass>(), "Select PeriodClass", new { @class = "form-control" })
+                                <select name="Period" asp-items="Html.GetEnumSelectList<PeriodClass>()" data-val-required="The Period field is required." class="form-control">
+                                    <option value="">Selected</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">

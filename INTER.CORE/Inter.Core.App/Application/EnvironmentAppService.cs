@@ -3,7 +3,6 @@ using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
-using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Application
@@ -33,7 +32,9 @@ namespace Inter.Core.App.Application
 
         public EnvironmentViewModel GetByCode(string code)
         {
-            return _mapper.Map<EnvironmentViewModel>(_environmentService.GetByCode(code));
+            var environment = _environmentService.GetByCode(code);
+
+            return _mapper.Map<EnvironmentViewModel>(environment);
         }
 
         public EnvironmentViewModel GetById(int id)
@@ -41,9 +42,11 @@ namespace Inter.Core.App.Application
             return _mapper.Map<EnvironmentViewModel>(_environmentService.GetById(id));
         }
 
-        public void Update(EnvironmentViewModel environment)
+        public void Update(EnvironmentViewModel environmentVM)
         {
-            throw new NotImplementedException();
+            var environment = Mapper.Map<SystemEnvironment>(environmentVM);
+
+            _environmentService.Update(environment);
         }
     }
 }

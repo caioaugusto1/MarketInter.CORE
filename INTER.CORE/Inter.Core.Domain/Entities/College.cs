@@ -28,6 +28,8 @@ namespace Inter.Core.Domain.Entities
 
         public virtual List<CollegeTime> TimeCollege { get; set; }
 
+        public int EnvironmentId { get; set; }
+
         public virtual SystemEnvironment Environment { get; set; }
 
 
@@ -50,6 +52,8 @@ namespace Inter.Core.Domain.Entities
             public decimal InsurancePrice { get; set; }
 
             public decimal AccomodationPrice { get; set; }
+
+            public int CollegeId { get; set; }
 
             public virtual College College { get; set; }
         }

@@ -7,7 +7,7 @@ namespace Inter.Core.Domain.Interfaces.Services
     {
         College Add(College college);
 
-        List<College> GetAll();
+        List<College> GetAll(int idEnvironment);
 
         College GetById(int id);
 

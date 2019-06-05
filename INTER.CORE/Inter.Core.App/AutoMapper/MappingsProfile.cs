@@ -11,10 +11,11 @@ namespace Inter.Core.App.AutoMapper
         {
             CreateMap<EnvironmentViewModel, SystemEnvironment>()
                 .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
-                .ForMember(x => x.Company, y => y.MapFrom(f => f.Company))
-                .ForMember(x => x.CustomerCode, y => y.MapFrom(f => f.CustomerCode))
+                .ForMember(x => x.CompanyName, y => y.MapFrom(f => f.CompanyName))
+                .ForMember(x => x.CompanyCode, y => y.MapFrom(f => f.CustomerCode))
                 .ForMember(x => x.StartDate, y => y.MapFrom(f => f.StartDate))
                 .ForMember(x => x.FinishDate, y => y.MapFrom(f => f.FinishDate))
+                .ForMember(x => x.Available, y => y.MapFrom(f => f.Avaliable))
                 .ForMember(x => x.Students, y => y.MapFrom(f => f.StudentViewModel))
                 .ForMember(x => x.Users, y => y.MapFrom(f => f.ApplicationUserViewModel))
                 .ForMember(x => x.Accomodations, y => y.MapFrom(f => f.AccomodationViewModel))

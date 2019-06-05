@@ -2,25 +2,24 @@
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace Inter.Core.Infra.Data.Repositories
 {
     public class EnvironmentRepository : RepositoryBase<SystemEnvironment>, IEnvironmentRepository
     {
-        private readonly DbContextOptions<ContextDB> _OptionsBuilder;
+        private readonly DbContextOptions<MySQLContext> _OptionsBuilder;
 
         public EnvironmentRepository()
         {
-            _OptionsBuilder = new DbContextOptions<ContextDB>();
+            _OptionsBuilder = new DbContextOptions<MySQLContext>();
         }
 
-        public async Task<Domain.Entities.SystemEnvironment> GetByCode(string code)
+        public SystemEnvironment GetByCode(string code)
         {
-            using (var db = new ContextDB(_OptionsBuilder))
+            using (var db = new MySQLContext(_OptionsBuilder))
             {
-               var ect = await db.Environment.Include(x => x.Students).FirstOrDefaultAsync(x => x.Id == 1);
-                return ect;
+                return db.SystemEnvironment.FirstOrDefault(x => x.CompanyCode == code);
             }
         }
     }

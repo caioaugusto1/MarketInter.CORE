@@ -36,9 +36,9 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CollegeViewModel>(_collegeService.Update(college));
         }
 
-        public List<CollegeViewModel> GetAll()
+        public List<CollegeViewModel> GetAll(int idEnvironment)
         {
-            return _mapper.Map<List<CollegeViewModel>>(_collegeService.GetAll());
+            return _mapper.Map<List<CollegeViewModel>>(_collegeService.GetAll(idEnvironment));
         }
 
         public CollegeViewModel GetById(int id)

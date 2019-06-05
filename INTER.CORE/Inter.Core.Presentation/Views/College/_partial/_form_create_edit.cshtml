@@ -6,7 +6,8 @@
         <div class="input-group">
             <div class="glyphicon glyphicon-user"></div>
             <span name="Name" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input asp-for="Name" id="fullName" placeholder="School Name" class="form-control" required type="text">
+            <input asp-for="Name" id="Name" placeholder="School Name" class="form-control" required type="text">
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
     </div>
 </div>
@@ -15,7 +16,8 @@
     <div class="col-md-8 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon" name="Address"><i class="glyphicon glyphicon-home"></i></span>
-            <input asp-for="Address" id="Address" placeholder="Address Line" class="form-control" required type="text">
+            <input asp-for="Address" id="Address" placeholder="Address" class="form-control" required type="text">
+            <span asp-validation-for="Address" class="text-danger"></span>
         </div>
     </div>
 </div>
@@ -25,6 +27,7 @@
         <div class="input-group">
             <span class="input-group-addon" name="City"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="City" id="city" placeholder="City" class="form-control" required type="text">
+            <span asp-validation-for="City" class="text-danger"></span>
         </div>
     </div>
 </div>
@@ -34,6 +37,38 @@
         <div class="input-group">
             <span class="input-group-addon" name="Country"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="Country" id="country" placeholder="Country" class="form-control" required type="text">
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-4 control-label">Phone Number*</label>
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="Country"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="PhoneNumber" id="phoneNumber" placeholder="Phone Number" class="form-control" required type="number">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-4 control-label">Contact Name*</label>
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="Country"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="ContactName" id="contactName" placeholder="Contact Name" class="form-control" required type="text">
+            <span asp-validation-for="ContactName" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Contact Email*</label>
+    <div class="col-md-8 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="Country"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="Email" id="email" placeholder="Email" class="form-control" required type="email">
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>
 </div>

@@ -16,13 +16,15 @@ namespace Inter.Core.Domain.Entities
 
         public int Id { get; set; }
 
-        public string Company { get; set; }
+        public string CompanyName { get; set; }
 
-        public string CustomerCode { get; set; }
+        public string CompanyCode { get; set; }
 
         public DateTime StartDate { get; set; }
 
         public DateTime FinishDate { get; set; }
+
+        public bool Available { get; set; }
 
         public virtual List<ApplicationUser> Users { get; set; }
 
@@ -33,7 +35,7 @@ namespace Inter.Core.Domain.Entities
         public virtual List<Advisor> Advisors { get; set; }
 
         public virtual List<College> Colleges { get; set; }
-        
+
         public virtual List<CulturalExchange> CulturalExchange { get; set; }
     }
 }
