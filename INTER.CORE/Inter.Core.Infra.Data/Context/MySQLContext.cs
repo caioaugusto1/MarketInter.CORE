@@ -1,5 +1,6 @@
 ﻿using Inter.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using static Inter.Core.Domain.Entities.College;
 
 namespace Inter.Core.Infra.Data.Context
 {
@@ -12,6 +13,7 @@ namespace Inter.Core.Infra.Data.Context
 
         public DbSet<SystemEnvironment> SystemEnvironment { get; set; }
         public DbSet<College> College { get; set; }
+        public DbSet<CollegeTime> CollegeTime { get; set; }
         public DbSet<CulturalExchange> CulturalExchange { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Advisor> Advisor { get; set; }

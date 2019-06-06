@@ -36,6 +36,29 @@
 
     };
 
+    var popUpConfirmDelete = function (studentId) {
+        $('#modalDelete').modal('show');
+        $('#deleteButton').attr('onclick', `student.confirmDelete(${studentId})`);
+    };
 
-    return { create, openModalImageUpload, loadingList };
+
+    var confirmDelete = function (studentId) {
+
+        Util.request('/Student/DeleteConfirmed/', 'GET', { studentId }, 'json', true, function (data) {
+
+            if (data.statusCode === 200) {
+
+                setTimeout(function () {
+                    let url = '/Student/Index';
+                    window.location.href = url;
+                }, 2000);
+            }
+
+        }, function (request, status, error) {
+
+        });
+    }
+
+    return { create, openModalImageUpload, loadingList, popUpConfirmDelete, confirmDelete };
+
 }();

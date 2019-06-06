@@ -10,10 +10,12 @@ namespace Inter.Core.Domain.Service
     public class StudentService : IStudentService
     {
         private readonly IStudentRepository _studentRepository;
+        private readonly IEnvironmentRepository _environmentRepository;
 
-        public StudentService(IStudentRepository studentRepository)
+        public StudentService(IStudentRepository studentRepository, IEnvironmentRepository environmentRepository)
         {
             _studentRepository = studentRepository;
+            _environmentRepository = environmentRepository;
         }
 
         public Student Add(SystemEnvironment environment, Student student)
@@ -24,14 +26,37 @@ namespace Inter.Core.Domain.Service
             return _studentRepository.Insert(student);
         }
 
+        public void Delete(int id)
+        {
+            var studentEntity = _studentRepository.GetById(id);
+
+            _studentRepository.Delete(studentEntity);
+        }
+
         public List<Student> GetAll(int idEnvironment)
         {
-            return _studentRepository.GetAll().Where(x => x.EnvironmentId == idEnvironment).ToList();
+            return _studentRepository.FindByFilter(x => x.EnvironmentId == idEnvironment).ToList();
         }
 
         public Student GetById(int idEnvironment, int id)
         {
             return _studentRepository.GetById(id);
+        }
+
+        public List<Student> GetNotEnroled(int idEnvironment)
+        {
+            List<Student> students = new List<Student>();
+            var environment = _environmentRepository.GetEnvironmentByIdIncludeDependencys(idEnvironment);
+
+            environment.Students.ForEach(student =>
+            {
+                if (environment.CulturalExchange.FirstOrDefault(culturalExchange => culturalExchange.StudentId == student.Id) == null)
+                {
+                    students.Add(student);
+                }
+            });
+
+            return students;
         }
 
         public Student Update(int idEnvironment, Student student)

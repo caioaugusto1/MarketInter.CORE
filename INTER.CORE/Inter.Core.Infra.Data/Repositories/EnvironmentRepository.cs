@@ -22,5 +22,15 @@ namespace Inter.Core.Infra.Data.Repositories
                 return db.SystemEnvironment.FirstOrDefault(x => x.CompanyCode == code);
             }
         }
+
+        public SystemEnvironment GetEnvironmentByIdIncludeDependencys(int id)
+        {
+            using (var db = new MySQLContext(_OptionsBuilder))
+            {
+                return db.SystemEnvironment.Include(x => x.Students)
+                    .Include(x => x.CulturalExchange)
+                    .Include(x => x.Accomodations).FirstOrDefault(x => x.Id == id);
+            }
+        }
     }
 }

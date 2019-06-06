@@ -17,19 +17,19 @@ namespace Inter.Core.App.ViewModel
         [Key]
         public int Id { get; set; }
 
-        public string IdStudent { get; set; }
+        public int IdStudent { get; set; }
 
         [Required(ErrorMessage = "Student")]
         [DisplayName("Selected Student")]
         public virtual StudentViewModel StudentViewModel { get; set; }
 
-        public string CollegeId { get; set; }
+        public int CollegeId { get; set; }
 
         [Required(ErrorMessage = "College")]
         [DisplayName("Selected College")]
         public virtual CollegeViewModel CollegeViewModel { get; set; }
 
-        public string AccomodationId { get; set; }
+        public int AccomodationId { get; set; }
 
         [Required(ErrorMessage = "Accomodation")]
         [DisplayName("Selected Accomodation")]

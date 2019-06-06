@@ -14,9 +14,15 @@ namespace Inter.Core.Domain.Entities
 
         public int Id { get; set; }
 
+        public int StudentId { get; set; }
+
         public virtual Student Student { get; set; }
 
+        public int CollegeId { get; set; }
+
         public virtual College College { get; set; }
+
+        public int AccomodationId { get; set; }
 
         public virtual Accomodation Accomodation { get; set; }
 
@@ -36,6 +42,8 @@ namespace Inter.Core.Domain.Entities
         public bool CollegePayment { get; set; }
 
         public float TotalValue { get; set; }
+
+        public int EnvironmentId { get; set; }
 
         public virtual SystemEnvironment Environment { get; set; }
 

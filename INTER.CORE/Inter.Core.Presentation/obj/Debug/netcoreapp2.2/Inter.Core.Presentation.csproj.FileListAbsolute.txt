@@ -88,3 +88,5 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_partial\_modalSuccess.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Student\_partial\_modal_upload_file.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\_partial\_edit_collegeTime.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Student\_partial\_details_delete.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_partial\_modalDelete.g.cshtml.cs

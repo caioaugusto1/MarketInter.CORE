@@ -23,11 +23,16 @@ namespace Inter.Core.App.Application
 
         public StudentViewModel Add(int idEnvironment, StudentViewModel studentViewModel)
         {
-            var student = _mapper.Map<Student>(studentViewModel);
-            var environment = _mapper.Map<SystemEnvironment>(_environmentService.GetById(idEnvironment));
-            
+            Student student = _mapper.Map<Student>(studentViewModel);
+            SystemEnvironment environment = _mapper.Map<SystemEnvironment>(_environmentService.GetById(idEnvironment));
+
             return _mapper.Map<StudentViewModel>(_studentService.Add(environment, student));
 
+        }
+
+        public void Delete(int id)
+        {
+            _studentService.Delete(id);
         }
 
         public List<StudentViewModel> GetAll(int idEnvironment)
@@ -40,9 +45,14 @@ namespace Inter.Core.App.Application
             return _mapper.Map<StudentViewModel>(_studentService.GetById(idEnvironment, id));
         }
 
+        public List<StudentViewModel> GetStudentsNotEnroled(int idEnvironment)
+        {
+            return _mapper.Map<List<StudentViewModel>>(_studentService.GetNotEnroled(idEnvironment));
+        }
+
         public StudentViewModel Update(int idEnvironment, StudentViewModel studentViewModel)
         {
-            var student = _mapper.Map<Student>(studentViewModel);
+            Student student = _mapper.Map<Student>(studentViewModel);
             return _mapper.Map<StudentViewModel>(_studentService.Update(idEnvironment, student));
         }
     }

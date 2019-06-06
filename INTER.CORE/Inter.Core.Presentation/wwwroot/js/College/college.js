@@ -6,8 +6,8 @@
         var collegeTime = $('#form-create-collegeTime').serialize();
 
         Util.request('/College/CreateTimeCollege', 'POST', collegeTime, 'JSON', false, function (data) {
-            debugger;
-            if (data == 200) {
+            
+            if (data === 200) {
                 $('#description').append(`College Time included`);
                 $('#sub-information').append(`Time etc etc etc`);
                 $('#modalSuccess').modal('show');
@@ -50,7 +50,7 @@
 
     var editCollegeTime = function (idCollegeTime) {
 
-        Util.request('/College/EditCollegeTime', 'POST', idCollegeTime, 'html', true, function (data) {
+        Util.request('/College/GetCollegeTime', 'GET', { idCollegeTime }, 'html', true, function (data) {
 
             $('#div-modal-edit-college-time').append(data);
             $('#div-modal-edit-college-time').modal('show');
@@ -59,7 +59,7 @@
 
         });
     }
-
+    
 
     return { create, saveCollegeTime, editCollegeTime };
 }();

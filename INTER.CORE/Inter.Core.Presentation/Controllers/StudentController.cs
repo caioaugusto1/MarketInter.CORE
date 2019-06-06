@@ -95,7 +95,7 @@ namespace Inter.Core.Presentation.Controllers
 
             if (!Directory.Exists(filePath))
                 Directory.CreateDirectory(filePath);
-            
+
             foreach (var formFile in files)
             {
                 if (formFile.Length > 0)
@@ -164,7 +164,7 @@ namespace Inter.Core.Presentation.Controllers
         // GET: Student/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || id.Value == 0)
                 return NotFound();
 
             var user = await GetUser(_userManager);
@@ -180,21 +180,19 @@ namespace Inter.Core.Presentation.Controllers
             return View(studentViewModel);
         }
 
-        // POST: Student/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<JsonResult> DeleteConfirmed(int studentId)
         {
-            //var studentViewModel = await _context.Student.FindAsync(id);
-            //_context.Student.Remove(studentViewModel);
-            //await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
-            return NotFound();
-        }
+            if (studentId == 0)
+                return Json(NotFound());
 
-        //private bool StudentViewModelExists(int id)
-        //{ 
-        //    return _studentService.GetById(id);
-        //}
+            _studentAppService.Delete(studentId);
+
+            return Json(Ok());
+        }
     }
+
+    //private bool StudentViewModelExists(int id)
+    //{ 
+    //    return _studentService.GetById(id);
+    //}
 }

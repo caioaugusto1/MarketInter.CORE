@@ -64,5 +64,11 @@ namespace Inter.Core.App.Application
             var college = _mapper.Map<College>(collegeViewModel);
             return _mapper.Map<CollegeViewModel>(_collegeService.Update(college));
         }
+
+        public CollegeTimeViewModel UpdateCollegeTime(CollegeTimeViewModel collegeTimeViewModel)
+        {
+            var collegeTime = _mapper.Map<CollegeTime>(collegeTimeViewModel);
+            return _mapper.Map<CollegeTimeViewModel>(_collegeService.UpdateCollegeTime(collegeTime));
+        }
     }
 }

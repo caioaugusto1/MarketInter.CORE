@@ -3,7 +3,6 @@ using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.Service
 {
@@ -38,6 +37,15 @@ namespace Inter.Core.Domain.Service
         public SystemEnvironment GetById(int id)
         {
             return _environmentRepository.GetById(id);
+        }
+
+        public SystemEnvironment GetStudentsNotEnroled(int idEnvironment)
+        {
+            SystemEnvironment systemEnvironmentEntity = _environmentRepository.GetById(idEnvironment);
+
+            var culturalExchangeEntity = systemEnvironmentEntity.CulturalExchange;
+
+            return _environmentRepository.GetById(idEnvironment);
         }
 
         public void Update(SystemEnvironment environment)

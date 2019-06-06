@@ -24,11 +24,22 @@ namespace Inter.Core.Infra.Data.Repositories
             }
         }
 
-        public College.CollegeTime GetCollegeTimeById(int collegeTimeId)
+        public CollegeTime GetCollegeTimeById(int collegeTimeId)
         {
             using (var db = new MySQLContext(_OptionsBuilder))
             {
                 return db.Set<CollegeTime>().FirstOrDefault(x => x.Id == collegeTimeId);
+            }
+        }
+
+        public CollegeTime UpdateCollegeTime(CollegeTime collegeTime)
+        {
+            using (var db = new MySQLContext(_OptionsBuilder))
+            {
+                var entity = db.CollegeTime.Update(collegeTime);
+                db.SaveChanges();
+
+                return entity.Entity;
             }
         }
     }

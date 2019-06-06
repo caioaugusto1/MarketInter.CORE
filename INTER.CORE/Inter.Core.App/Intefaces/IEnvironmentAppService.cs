@@ -1,6 +1,5 @@
 ﻿using Inter.Core.App.ViewModel;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Inter.Core.App.Intefaces
 {

@@ -18,5 +18,7 @@ namespace Inter.Core.App.Intefaces
         CollegeViewModel GetById(int id);
 
         CollegeViewModel Update(CollegeViewModel collegeViewModel);
+
+        CollegeTimeViewModel UpdateCollegeTime(CollegeTimeViewModel collegeTimeViewModel);
     }
 }

@@ -15,7 +15,9 @@ namespace Inter.Core.Domain.Interfaces.Repositories
 
         TEntity Update(TEntity obj);
 
-        Task<List<TEntity>> FindByFilter(Expression<Func<TEntity, bool>> predicate);
+        List<TEntity> FindByFilter(Expression<Func<TEntity, bool>> predicate);
+
+        void Delete(TEntity id);
         
     }
 }

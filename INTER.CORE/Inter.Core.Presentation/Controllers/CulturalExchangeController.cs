@@ -12,15 +12,20 @@ namespace Inter.Core.Presentation.Controllers
         private readonly ICulturalExchangeAppService _culturalExchangeAppService;
         private readonly IStudentAppService _studentAppService;
         private readonly ICollegeAppService _collegeAppService;
+        private readonly IEnvironmentAppService _environmentAppService;
+
         private readonly UserManager<ApplicationUser> _userManager;
 
         public CulturalExchangeController(ICulturalExchangeAppService culturalExchangeAppService,
-            IStudentAppService studentAppService, ICollegeAppService collegeAppService, UserManager<ApplicationUser> userManager)
+            IStudentAppService studentAppService, ICollegeAppService collegeAppService,
+            IEnvironmentAppService environmentAppService,
+            UserManager<ApplicationUser> userManager)
         {
             _culturalExchangeAppService = culturalExchangeAppService;
             _studentAppService = studentAppService;
             _collegeAppService = collegeAppService;
             _userManager = userManager;
+            _environmentAppService = environmentAppService;
         }
 
         // GET: CulturalExchange
@@ -56,9 +61,9 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null)
                 return NotFound();
 
-            ViewBag.Students = _studentAppService.GetAll(user.EnvironmentId);
-            ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
             ViewBag.EnvironmentId = user.EnvironmentId;
+            ViewBag.Students = _studentAppService.GetStudentsNotEnroled(user.EnvironmentId);
+            ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
 
             return View();
         }

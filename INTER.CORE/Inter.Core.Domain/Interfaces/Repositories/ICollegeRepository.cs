@@ -8,5 +8,7 @@ namespace Inter.Core.Domain.Interfaces.Repositories
         College GetCollegeTimeByCollegeId(int id);
 
         CollegeTime GetCollegeTimeById(int collegeTimeId);
+
+        CollegeTime UpdateCollegeTime(CollegeTime collegeTime);
     }
 }

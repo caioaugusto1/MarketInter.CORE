@@ -18,16 +18,25 @@ namespace Inter.Core.Infra.Data.Repositories
             _OptionsBuilder = new DbContextOptions<MySQLContext>();
         }
 
+        public void Delete(TEntity obj)
+        {
+            using (var db = new MySQLContext(_OptionsBuilder))
+            {
+                db.Set<TEntity>().Remove(obj);
+                db.SaveChanges();
+            }
+        }
+
         public void Dispose()
         {
             GC.SuppressFinalize(true);
         }
 
-        public Task<List<TEntity>> FindByFilter(Expression<Func<TEntity, bool>> predicate)
+        public List<TEntity> FindByFilter(Expression<Func<TEntity, bool>> predicate)
         {
             using (var db = new MySQLContext(_OptionsBuilder))
             {
-                return db.Set<TEntity>().Where(predicate).ToListAsync();
+                return db.Set<TEntity>().Where(predicate).ToList();
             }
         }
 

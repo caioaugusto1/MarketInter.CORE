@@ -9,8 +9,12 @@ namespace Inter.Core.App.Intefaces
 
         List<StudentViewModel> GetAll(int idEnvironment);
 
+        List<StudentViewModel> GetStudentsNotEnroled(int idEnvironment);
+
         StudentViewModel GetById(int idEnvironment, int id);
 
         StudentViewModel Update(int idEnvironment, StudentViewModel studentViewModel);
+
+        void Delete(int id);
     }
 }

@@ -46,5 +46,10 @@ namespace Inter.Core.Domain.Service
         {
             return _collegeRepository.Update(college);
         }
+
+        public College.CollegeTime UpdateCollegeTime(College.CollegeTime collegeTime)
+        {
+            return _collegeRepository.UpdateCollegeTime(collegeTime);
+        }
     }
 }

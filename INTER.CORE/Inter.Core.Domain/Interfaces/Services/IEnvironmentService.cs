@@ -14,6 +14,8 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         SystemEnvironment GetByCode(string code);
 
+        SystemEnvironment GetStudentsNotEnroled(int idEnvironment);
+
         void Update(SystemEnvironment environment);
     }
 }

@@ -3,7 +3,6 @@ using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -160,18 +159,8 @@ namespace Inter.Core.Presentation.Controllers
             return View(_collegeAppService.GetCollegeTimeByIdCollege(id));
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> OnCreateTime(List<CollegeTimeViewModel> collegeTime)
-        {
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            return View();
-        }
-        
-        public async Task<IActionResult> EditCollegeTime(int idCollegeTime)
+
+        public async Task<IActionResult> GetCollegeTime(int idCollegeTime)
         {
             if (idCollegeTime == 0)
                 return NotFound();
@@ -184,6 +173,17 @@ namespace Inter.Core.Presentation.Controllers
             }
 
             return Conflict();
+        }
+
+        public async Task<IActionResult> EditCollegeTime(CollegeTimeViewModel collegeTime)
+        {
+            if (ModelState.IsValid)
+            {
+                _collegeAppService.UpdateCollegeTime(collegeTime);
+                return Ok();
+            }
+
+            return PartialView(ModelState);
         }
 
         #endregion
