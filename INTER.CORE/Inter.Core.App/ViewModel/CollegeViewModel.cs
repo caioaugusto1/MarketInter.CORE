@@ -74,6 +74,10 @@ namespace Inter.Core.App.ViewModel
         [Required(ErrorMessage = "Finish Time")]
         public DateTime FinishTime { get; set; }
 
+        [Display(Name = "Days of Week")]
+        [Required(ErrorMessage = "Days of Week")]
+        public int DaysOfWeek { get; set; }
+
         public string TimeForWeek { get; set; }
 
         [Display(Name = "Period Time")]
@@ -82,7 +86,7 @@ namespace Inter.Core.App.ViewModel
 
         [Display(Name = "Total Price")]
         [Required(ErrorMessage = "Total Price")]
-        public decimal TotalPrice { get; set; }
+        public decimal Price { get; set; }
 
         [Display(Name = "Book Price")]
         [Required(ErrorMessage = "Book Price")]

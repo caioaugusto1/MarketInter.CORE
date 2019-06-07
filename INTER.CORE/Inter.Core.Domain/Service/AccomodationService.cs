@@ -19,9 +19,9 @@ namespace Inter.Core.Domain.Service
             return _accomodationRepository.Insert(accomodation);
         }
 
-        public List<Accomodation> GetAll()
+        public List<Accomodation> GetAll(int idEnvironment)
         {
-            return _accomodationRepository.GetAll();
+            return _accomodationRepository.FindByFilter(x => x.EnvironmentId == idEnvironment);
         }
 
         public Accomodation GetById(int id)

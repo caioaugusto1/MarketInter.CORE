@@ -25,7 +25,7 @@
 
                             <div class="col-md-6">
                                 <label class="col-md-4 control-label">College*</label>
-                                <select asp-for="CollegeId" required class="form-control"
+                                <select asp-for="CollegeId" required id="college" class="form-control"
                                         asp-items="@(new SelectList(ViewBag.Colleges,"Id","Name"))">
                                     <option>Please select one</option>
                                 </select>
@@ -39,13 +39,26 @@
 
                             <div class="col-md-4">
                                 <label class="col-md-4 control-label">Accomodation*</label>
-                                <select asp-for="CollegeId" required class="form-control"
-                                        asp-items="@(new SelectList(ViewBag.Colleges,"Id","Name"))">
+                                <select asp-for="AccomodationId" required class="form-control"
+                                        asp-items="@(new SelectList(ViewBag.Accomodation,"Id","Name"))">
                                     <option>Please select one</option>
                                 </select>
                                 <span asp-validation-for="CollegeViewModel" class="text-danger"></span>
                             </div>
 
+                            <div class="col-md-6">
+                                <label class="col-md-4 control-label">College Time*</label>
+                                <select asp-for="CollegeTimeId" required disabled id="collegeTime" class="form-control">
+                                    <option>Please select one</option>
+                                </select>
+                                <span asp-validation-for="CollegeTimeViewModel" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+                        <br />
+
+                        <div class="row">
 
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -53,6 +66,7 @@
                                     <input asp-for="ArrivalDateTime" name="FinishTime" placeholder="Start Time" class="form-control" required type="datetime-local">
                                 </div>
                             </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Start Date*</label>
@@ -76,6 +90,16 @@
 
                             <div class="col-md-2">
                                 <div class="custom-control custom-checkbox small">
+                                    <label asp-for="CollegePayment">
+                                        <input asp-for="CollegePayment" id="collegePaymentCheck" type="checkbox" class="custom-control-input" />
+                                        <label asp-for="CollegePayment" for="collegePaymentCheck" class="custom-control-label"></label>
+                                    </label>
+                                    <span asp-validation-for="CollegePayment" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="custom-control custom-checkbox small">
                                     <label asp-for="INSUR">
                                         <input asp-for="INSUR" id="insurCheck" type="checkbox" class="custom-control-input" />
                                         <label asp-for="INSUR" for="insurCheck" class="custom-control-label"></label>
@@ -86,32 +110,45 @@
 
                             <div class="col-md-2">
                                 <div class="custom-control custom-checkbox small">
-                                    <label asp-for="CollegePayment">
-                                        <input asp-for="CollegePayment" id="collegePaymentCheck" type="checkbox" class="custom-control-input" />
-                                        <label asp-for="CollegePayment" for="collegePaymentCheck" class="custom-control-label"></label>
+                                    <label asp-for="Transfer">
+                                        <input asp-for="Transfer" id="checkTransfer" type="checkbox" class="custom-control-input" />
+                                        <label asp-for="Transfer" for="checkTransfer" class="custom-control-label"></label>
                                     </label>
-                                    <span asp-validation-for="CollegePayment" class="text-danger"></span>
+                                    <span asp-validation-for="Transfer" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="custom-control custom-checkbox small">
+                                    <label asp-for="Support">
+                                        <input asp-for="Support" id="checkSupport" type="checkbox" class="custom-control-input" />
+                                        <label asp-for="Support" for="checkSupport" class="custom-control-label"></label>
+                                    </label>
+                                    <span asp-validation-for="Support" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="custom-control custom-checkbox small">
+                                    <label asp-for="Kit">
+                                        <input asp-for="Kit" id="checkKit" type="checkbox" class="custom-control-input" />
+                                        <label asp-for="Kit" for="checkKit" class="custom-control-label"></label>
+                                    </label>
+                                    <span asp-validation-for="Kit" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="custom-control custom-checkbox small">
+                                    <label asp-for="SimCard">
+                                        <input asp-for="SimCard" id="checkSimCard" type="checkbox" class="custom-control-input" />
+                                        <label asp-for="SimCard" for="checkSimCard" class="custom-control-label"></label>
+                                    </label>
+                                    <span asp-validation-for="SimCard" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
 
 
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Company*</label>
-                                    <input type="text" asp-for="Company" class="form-control" />
-                                    <span asp-validation-for="Company" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Flight Number*</label>
-                                    <input type="text" asp-for="FlightNumber" class="form-control" />
-                                    <span asp-validation-for="FlightNumber" class="text-danger"></span>
-                                </div>
-                            </div>
 
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -128,6 +165,23 @@
                                     <span asp-validation-for="QuantityDaysOfAccomodation" class="text-danger"></span>
                                 </div>
                             </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Flight Number*</label>
+                                    <input type="text" asp-for="FlightNumber" class="form-control" />
+                                    <span asp-validation-for="FlightNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Company*</label>
+                                    <input type="text" asp-for="Company" class="form-control" />
+                                    <span asp-validation-for="Company" class="text-danger"></span>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="row">
@@ -141,14 +195,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                    <input type="submit" value="Create" class="btn btn-primary" />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
 
                         <input hidden asp-for="EnviromentId" value="@ViewBag.EnvironmentId" />
 
@@ -159,5 +217,13 @@
     </table>
 </div>
 
-<script src="~/js/Util/Util.js"></script>
-<script src="~/js/CulturalExchange/culturalExchange.js"></script>
+
+@section Scripts {
+
+    <script src="~/js/Util/Util.js"></script>
+    <script src="~/js/CulturalExchange/culturalExchange.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

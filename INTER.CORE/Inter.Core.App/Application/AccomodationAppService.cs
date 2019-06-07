@@ -25,9 +25,9 @@ namespace Inter.Core.App.Application
             return _mapper.Map<AccomodationViewModel>(_accomodationService.Add(accomodation)); ;
         }
 
-        public List<AccomodationViewModel> GetAll()
+        public List<AccomodationViewModel> GetAll(int idEnvironment)
         {
-            return _mapper.Map<List<AccomodationViewModel>>(_accomodationService.GetAll());
+            return _mapper.Map<List<AccomodationViewModel>>(_accomodationService.GetAll(idEnvironment));
         }
 
         public AccomodationViewModel GetById(int id)

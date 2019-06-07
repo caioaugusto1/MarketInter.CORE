@@ -3,7 +3,6 @@ using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using static Inter.Core.Domain.Entities.College;
 
 namespace Inter.Core.Infra.Data.Repositories
 {
@@ -16,30 +15,11 @@ namespace Inter.Core.Infra.Data.Repositories
             _OptionsBuilder = new DbContextOptions<MySQLContext>();
         }
 
-        public College GetCollegeTimeByCollegeId(int id)
+        public College GetByIdIncluedTimeCollege(int id)
         {
             using (var db = new MySQLContext(_OptionsBuilder))
             {
-                return db.Set<College>().Include(x => x.TimeCollege).FirstOrDefault();
-            }
-        }
-
-        public CollegeTime GetCollegeTimeById(int collegeTimeId)
-        {
-            using (var db = new MySQLContext(_OptionsBuilder))
-            {
-                return db.Set<CollegeTime>().FirstOrDefault(x => x.Id == collegeTimeId);
-            }
-        }
-
-        public CollegeTime UpdateCollegeTime(CollegeTime collegeTime)
-        {
-            using (var db = new MySQLContext(_OptionsBuilder))
-            {
-                var entity = db.CollegeTime.Update(collegeTime);
-                db.SaveChanges();
-
-                return entity.Entity;
+                return db.Set<College>().Include(x => x.CollegeTime).FirstOrDefault(x => x.Id == id);
             }
         }
     }

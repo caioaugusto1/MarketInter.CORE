@@ -6,7 +6,7 @@ namespace Inter.Core.Domain.Entities
     {
         public College()
         {
-            TimeCollege = new List<CollegeTime>();
+            CollegeTime = new List<CollegeTime>();
             Environment = new SystemEnvironment();
         }
 
@@ -26,36 +26,11 @@ namespace Inter.Core.Domain.Entities
 
         public string Email { get; set; }
 
-        public virtual List<CollegeTime> TimeCollege { get; set; }
+        public virtual List<CollegeTime> CollegeTime { get; set; }
 
         public int EnvironmentId { get; set; }
 
         public virtual SystemEnvironment Environment { get; set; }
 
-
-        public class CollegeTime
-        {
-            public int Id { get; set; }
-
-            public string Time { get; set; }
-
-            public int TimeForWeek { get; set; }
-
-            public string Period { get; set; }
-
-            public decimal TotalPrice { get; set; }
-
-            public decimal BookPrice { get; set; }
-
-            public decimal ExamPrice { get; set; }
-
-            public decimal InsurancePrice { get; set; }
-
-            public decimal AccomodationPrice { get; set; }
-
-            public int CollegeId { get; set; }
-
-            public virtual College College { get; set; }
-        }
     }
 }

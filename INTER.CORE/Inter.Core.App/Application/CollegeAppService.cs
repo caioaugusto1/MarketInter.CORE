@@ -4,7 +4,6 @@ using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
 using System.Collections.Generic;
-using static Inter.Core.Domain.Entities.College;
 
 namespace Inter.Core.App.Application
 {
@@ -34,7 +33,7 @@ namespace Inter.Core.App.Application
             var college = _mapper.Map<College>(_collegeService.GetById(collegeTimeViewModel.CollegeId));
             var collegeTime = _mapper.Map<CollegeTime>(collegeTimeViewModel);
 
-            college.TimeCollege.Add(collegeTime);
+            college.CollegeTime.Add(collegeTime);
 
             return _mapper.Map<CollegeViewModel>(_collegeService.Update(college));
         }
@@ -49,26 +48,10 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CollegeViewModel>(_collegeService.GetById(id));
         }
 
-        public CollegeTimeViewModel GetCollegeTimeById(int idCollegeTime)
-        {
-            return _mapper.Map<CollegeTimeViewModel>(_collegeService.GetCollegeTimeById(idCollegeTime));
-        }
-
-        public CollegeViewModel GetCollegeTimeByIdCollege(int idCollege)
-        {
-            return _mapper.Map<CollegeViewModel>(_collegeService.GetCollegeTimeByCollegeId(idCollege));
-        }
-
         public CollegeViewModel Update(CollegeViewModel collegeViewModel)
         {
             var college = _mapper.Map<College>(collegeViewModel);
             return _mapper.Map<CollegeViewModel>(_collegeService.Update(college));
-        }
-
-        public CollegeTimeViewModel UpdateCollegeTime(CollegeTimeViewModel collegeTimeViewModel)
-        {
-            var collegeTime = _mapper.Map<CollegeTime>(collegeTimeViewModel);
-            return _mapper.Map<CollegeTimeViewModel>(_collegeService.UpdateCollegeTime(collegeTime));
         }
     }
 }

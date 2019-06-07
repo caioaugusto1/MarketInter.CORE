@@ -19,8 +19,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using System.IO;
 
 namespace Inter.Core.Presentation
 {
@@ -92,7 +90,7 @@ namespace Inter.Core.Presentation
             app.UseStaticFiles();
 
             app.UseCookiePolicy();
-            
+
             app.UseAuthentication();
 
             app.UseMvc(routes =>
@@ -118,6 +116,10 @@ namespace Inter.Core.Presentation
             services.AddTransient<ICollegeAppService, CollegeAppService>();
             services.AddTransient<ICollegeService, CollegeService>();
             services.AddTransient<ICollegeRepository, CollegeRepository>();
+
+            services.AddTransient<ICollegeTimeAppService, CollegeTimeAppService>();
+            services.AddTransient<ICollegeTimeService, CollegeTimeService>();
+            services.AddTransient<ICollegeTimeRepository, CollegeTimeRepository>();
 
             services.AddTransient<IAccomodationAppService, AccomodationAppService>();
             services.AddTransient<IAccomodationService, AccomodationService>();

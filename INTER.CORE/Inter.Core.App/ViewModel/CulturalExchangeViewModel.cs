@@ -29,6 +29,12 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Selected College")]
         public virtual CollegeViewModel CollegeViewModel { get; set; }
 
+        public int CollegeTimeId { get; set; }
+
+        [Required(ErrorMessage = "College Time")]
+        [DisplayName("Selected College Time")]
+        public virtual CollegeTimeViewModel CollegeTimeViewModel { get; set; }
+
         public int AccomodationId { get; set; }
 
         [Required(ErrorMessage = "Accomodation")]
@@ -40,8 +46,20 @@ namespace Inter.Core.App.ViewModel
         public int QuantityDaysOfAccomodation { get; set; }
 
         // After sprint, put class Insurance and crud create and edit insurance
-        [DisplayName("INSUR")]
+        [DisplayName("INSUR?")]
         public bool INSUR { get; set; }
+
+        [DisplayName("Transfer?")]
+        public bool Transfer { get; set; }
+
+        [DisplayName("Support?")]
+        public bool Support { get; set; }
+
+        [DisplayName("Kit?")]
+        public bool Kit { get; set; }
+
+        [DisplayName("Sim Card?")]
+        public bool SimCard { get; set; }
 
         [Display(Name = "Date of Arrival")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]

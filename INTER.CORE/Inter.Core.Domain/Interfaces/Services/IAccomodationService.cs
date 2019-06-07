@@ -9,7 +9,7 @@ namespace Inter.Core.Domain.Interfaces.Services
     {
         Accomodation Add(Accomodation accomodation);
 
-        List<Accomodation> GetAll();
+        List<Accomodation> GetAll(int idEnvironment);
 
         Accomodation GetById(int id);
 

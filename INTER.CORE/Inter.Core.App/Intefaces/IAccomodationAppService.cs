@@ -7,7 +7,7 @@ namespace Inter.Core.App.Intefaces
     {
         AccomodationViewModel Add(AccomodationViewModel accomodationViewModel);
 
-        List<AccomodationViewModel> GetAll();
+        List<AccomodationViewModel> GetAll(int idEnvironment);
 
         AccomodationViewModel GetById(int id);
 

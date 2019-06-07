@@ -3,6 +3,7 @@ using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -12,20 +13,26 @@ namespace Inter.Core.Presentation.Controllers
         private readonly ICulturalExchangeAppService _culturalExchangeAppService;
         private readonly IStudentAppService _studentAppService;
         private readonly ICollegeAppService _collegeAppService;
+        private readonly ICollegeTimeAppService _collegeTimeAppService;
         private readonly IEnvironmentAppService _environmentAppService;
+        private readonly IAccomodationAppService _accomodationAppService;
 
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public CulturalExchangeController(ICulturalExchangeAppService culturalExchangeAppService,
+        public CulturalExchangeController(UserManager<ApplicationUser> userManager,
+            ICulturalExchangeAppService culturalExchangeAppService,
             IStudentAppService studentAppService, ICollegeAppService collegeAppService,
-            IEnvironmentAppService environmentAppService,
-            UserManager<ApplicationUser> userManager)
+            IEnvironmentAppService environmentAppService, IAccomodationAppService accomodationAppService,
+            ICollegeTimeAppService collegeTimeAppService
+            )
         {
             _culturalExchangeAppService = culturalExchangeAppService;
             _studentAppService = studentAppService;
             _collegeAppService = collegeAppService;
+            _collegeTimeAppService = collegeTimeAppService;
             _userManager = userManager;
             _environmentAppService = environmentAppService;
+            _accomodationAppService = accomodationAppService;
         }
 
         // GET: CulturalExchange
@@ -64,6 +71,7 @@ namespace Inter.Core.Presentation.Controllers
             ViewBag.EnvironmentId = user.EnvironmentId;
             ViewBag.Students = _studentAppService.GetStudentsNotEnroled(user.EnvironmentId);
             ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
+            ViewBag.Accomodation = _accomodationAppService.GetAll(user.EnvironmentId);
 
             return View();
         }

@@ -11,12 +11,14 @@
         public string ContactName { get; set; }
 
         public string ContactNumber { get; set; }
-        
+
         public int NumberOfPlaces { get; set; }
 
         public bool Available { get; set; }
-        
+
+        public int EnvironmentId { get; set; }
+
         public virtual SystemEnvironment Environment { get; set; }
-        
+
     }
 }

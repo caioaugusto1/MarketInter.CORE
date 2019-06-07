@@ -1,23 +1,33 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
+using Inter.Core.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    public class AccomodationController : Controller
+    public class AccomodationController : BaseController
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IAccomodationAppService _accomodationAppService;
 
-        public AccomodationController(IAccomodationAppService accomodationAppService)
+        public AccomodationController(UserManager<ApplicationUser> userManager,
+            IAccomodationAppService accomodationAppService)
         {
+            _userManager = userManager;
             _accomodationAppService = accomodationAppService;
         }
 
         // GET: Accomodation
         public async Task<IActionResult> Index()
         {
-            return View(_accomodationAppService.GetAll());
+            var user = await GetUser(_userManager);
+
+            if (user == null)
+                return NotFound();
+
+            return View(_accomodationAppService.GetAll(user.EnvironmentId));
         }
 
         // GET: Accomodation/Details/5
