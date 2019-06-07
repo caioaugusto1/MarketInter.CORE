@@ -1,6 +1,5 @@
 ﻿using Inter.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using static Inter.Core.Domain.Entities.College;
 
 namespace Inter.Core.Infra.Data.Context
 {
@@ -26,7 +25,7 @@ namespace Inter.Core.Infra.Data.Context
             
             base.OnConfiguring(optionsBuilder);
         }
-        
+
         private string GetStringConectionConfig()
         {
             return "server=localhost;database=INTERCORE;user=root;password=admin";

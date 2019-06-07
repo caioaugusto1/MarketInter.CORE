@@ -187,7 +187,7 @@ namespace Inter.Core.Presentation.Controllers
 
             var collegeTime = _collegeTimeAppService.GetAllByCollegeId(collegeId);
 
-            return null;
+            return Json(collegeTime);
 
         }
 

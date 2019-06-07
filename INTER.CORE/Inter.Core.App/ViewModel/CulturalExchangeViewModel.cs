@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -17,7 +18,7 @@ namespace Inter.Core.App.ViewModel
         [Key]
         public int Id { get; set; }
 
-        public int IdStudent { get; set; }
+        public int StudentId { get; set; }
 
         [Required(ErrorMessage = "Student")]
         [DisplayName("Selected Student")]
@@ -95,5 +96,8 @@ namespace Inter.Core.App.ViewModel
         public int EnviromentId { get; set; }
 
         public virtual EnvironmentViewModel EnvironmentViewModel { get; set; }
+
+        [ScaffoldColumn(false)]
+        public List<ValidationResult> ValidationResult { get; set; }
     }
 }

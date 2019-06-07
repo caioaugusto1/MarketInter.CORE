@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "af39ae5aad0e879a006a8635404a1f02dc2e0d2b"
+    "signature": "7cbde9d3ec8b41bdf5f2714439730cdaa3fad998"
   },
   "compilationOptions": {
     "defines": [
@@ -103,6 +103,17 @@
         },
         "compile": {
           "lib/netstandard2.0/Dapper.dll": {}
+        }
+      },
+      "DomainValidation/1.0.0": {
+        "runtime": {
+          "lib/net453/DomainValidation.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/net453/DomainValidation.dll": {}
         }
       },
       "EntityFramework/6.2.0": {
@@ -658,6 +669,9 @@
         }
       },
       "Inter.Core.Domain/1.0.0": {
+        "dependencies": {
+          "DomainValidation": "1.0.0"
+        },
         "runtime": {
           "Inter.Core.Domain.dll": {}
         },
@@ -3819,6 +3833,13 @@
       "sha512": "sha512-mmnJNhKMeF2KhvVXDoVQlFxre8aJAo71YBJrKqFlvuqzYC2QiXUq94/GCDBJzU7paq4GqpkV2glw3308TcGibw==",
       "path": "dapper/1.60.6",
       "hashPath": "dapper.1.60.6.nupkg.sha512"
+    },
+    "DomainValidation/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u6NxTpdHj2pCA0Kh9FfgJh9XZJA6NsEKu/kvjzRLT3Exn+ik88UOZOWNsczt8rXZFgZ50dzUZ0Vq2tHXtJR/mQ==",
+      "path": "domainvalidation/1.0.0",
+      "hashPath": "domainvalidation.1.0.0.nupkg.sha512"
     },
     "EntityFramework/6.2.0": {
       "type": "package",

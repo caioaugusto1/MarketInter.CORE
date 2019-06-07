@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "DomainValidation/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net453/DomainValidation.dll": {}
+        },
+        "runtime": {
+          "lib/net453/DomainValidation.dll": {}
+        }
+      },
       "Microsoft.NETCore.App/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -211,6 +220,22 @@
     }
   },
   "libraries": {
+    "DomainValidation/1.0.0": {
+      "sha512": "u6NxTpdHj2pCA0Kh9FfgJh9XZJA6NsEKu/kvjzRLT3Exn+ik88UOZOWNsczt8rXZFgZ50dzUZ0Vq2tHXtJR/mQ==",
+      "type": "package",
+      "path": "domainvalidation/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "domainvalidation.1.0.0.nupkg.sha512",
+        "domainvalidation.nuspec",
+        "lib/net35/DomainValidation.dll",
+        "lib/net40/DomainValidation.dll",
+        "lib/net45/DomainValidation.dll",
+        "lib/net451/DomainValidation.dll",
+        "lib/net453/DomainValidation.dll"
+      ]
+    },
     "Microsoft.NETCore.App/2.2.0": {
       "sha512": "7z5l8Jp324S8bU8+yyWeYHXUFYvKyiI5lqS1dXgTzOx1H69Qbf6df12kCKlNX45LpMfCMd4U3M6p7Rl5Zk7SLA==",
       "type": "package",
@@ -682,6 +707,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "DomainValidation >= 1.0.0",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
@@ -726,6 +752,10 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "DomainValidation": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
@@ -740,5 +770,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'DomainValidation 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
+      "libraryId": "DomainValidation",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.2"
+      ]
+    }
+  ]
 }

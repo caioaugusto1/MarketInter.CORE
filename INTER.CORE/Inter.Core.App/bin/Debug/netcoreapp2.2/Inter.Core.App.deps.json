@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "98d061cff9d7a30293f748185e6283dc0fbba416"
+    "signature": "dc39152256e30aacc9ef24db72a0754b5c1040b1"
   },
   "compilationOptions": {},
   "targets": {
@@ -38,6 +38,14 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "6.1.0.0"
+          }
+        }
+      },
+      "DomainValidation/1.0.0": {
+        "runtime": {
+          "lib/net453/DomainValidation.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -97,6 +105,9 @@
         }
       },
       "Inter.Core.Domain/1.0.0": {
+        "dependencies": {
+          "DomainValidation": "1.0.0"
+        },
         "runtime": {
           "Inter.Core.Domain.dll": {}
         }
@@ -138,6 +149,13 @@
       "sha512": "sha512-vqbyqXknln1NFn80fbyJVPqJ3LMZhhhq8wMAl4BGTIH6GmK3gtGofuvo8bnWXXuD07y1lnMEuCmiNacvdtxPkw==",
       "path": "automapper.extensions.microsoft.dependencyinjection/6.1.0",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.6.1.0.nupkg.sha512"
+    },
+    "DomainValidation/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u6NxTpdHj2pCA0Kh9FfgJh9XZJA6NsEKu/kvjzRLT3Exn+ik88UOZOWNsczt8rXZFgZ50dzUZ0Vq2tHXtJR/mQ==",
+      "path": "domainvalidation/1.0.0",
+      "hashPath": "domainvalidation.1.0.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",

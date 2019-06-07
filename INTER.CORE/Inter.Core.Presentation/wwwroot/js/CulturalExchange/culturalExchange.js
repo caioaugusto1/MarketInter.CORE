@@ -16,7 +16,19 @@
 
             let collegeId = $(this).val();
 
-            Util.request('/College/GetCollegeTimeByCollegeId', 'GET', { "collegeId": 1 }, 'json', true, function (data) {
+            if (collegeId === "notselected") {
+
+                $("#collegeTime").prop('disabled', true);
+                return;
+            }
+
+            $("#collegeTime").prop('disabled', false);
+
+            Util.request('/College/GetCollegeTimeByCollegeId', 'GET', { "collegeId": collegeId }, 'json', true, function (data) {
+
+                $(data).each(function (index, element) {
+                    $('#collegeTime').append(`<option value="${element.id}">${element.period}</option>`);
+                });
 
             }, function (request, status, error) {
 
@@ -27,5 +39,21 @@
 
     loadingPage();
 
-    return {};
+
+    var create = function () {
+
+        var culturalExchangeViewModel = $('#form-create-culturalExchange').serialize();
+
+        Util.request('/CulturalExchange/OnCreate', 'POST', culturalExchangeViewModel, 'JSON', false, function (data) {
+
+            if (data.statusCode === 409) {
+
+            }
+
+        }, function (request, status, error) {
+        });
+
+    };
+
+    return { create };
 }();

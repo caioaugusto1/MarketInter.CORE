@@ -39,8 +39,6 @@ namespace Inter.Core.App.ViewModel
         public string NumberOfPlaces { get; set; }
 
         [Required(ErrorMessage = "Available")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
-        [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Available")]
         public bool Available { get; set; }
 

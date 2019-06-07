@@ -69,6 +69,7 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.ContactName, y => y.MapFrom(f => f.ContactName))
                 .ForMember(x => x.ContactNumber, y => y.MapFrom(f => f.ContactNumber))
                 .ForMember(x => x.NumberOfPlaces, y => y.MapFrom(f => f.NumberOfPlaces))
+                .ForMember(x => x.EnviromentId, y => y.MapFrom(f => f.EnvironmentId))
                 .ReverseMap();
 
             CreateMap<CulturalExchange, CulturalExchangeViewModel>()
@@ -78,7 +79,7 @@ namespace Inter.Core.App.AutoMapper
                .ForMember(x => x.AccomodationViewModel, y => y.MapFrom(f => f.Accomodation))
                .ForMember(x => x.EnvironmentViewModel, y => y.MapFrom(f => f.Environment))
                .ForMember(x => x.INSUR, y => y.MapFrom(f => f.INSUR))
-               .ForMember(x => x.ArrivalDateTime, y => y.MapFrom(f => f.Arrival))
+               .ForMember(x => x.ArrivalDateTime, y => y.MapFrom(f => f.ArrivalDateTime))
                .ForMember(x => x.StartDate, y => y.MapFrom(f => f.StartDate))
                .ForMember(x => x.Company, y => y.MapFrom(f => f.Company))
                .ForMember(x => x.FlightNumber, y => y.MapFrom(f => f.FlightNumber))

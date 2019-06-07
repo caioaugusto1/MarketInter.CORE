@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inter.Core.Domain.Entities
 {
@@ -22,6 +25,10 @@ namespace Inter.Core.Domain.Entities
 
         public virtual College College { get; set; }
 
+        public int CollegeTimeId { get; set; }
+
+        public virtual CollegeTime CollegeTime { get; set; }
+
         public int AccomodationId { get; set; }
 
         public virtual Accomodation Accomodation { get; set; }
@@ -31,7 +38,15 @@ namespace Inter.Core.Domain.Entities
         // After sprint, put class Insurance and crud create and edit insurance
         public bool INSUR { get; set; }
 
-        public DateTime Arrival { get; set; }
+        public bool Transfer { get; set; }
+
+        public bool Support { get; set; }
+
+        public bool Kit { get; set; }
+
+        public bool SimCard { get; set; }
+
+        public DateTime ArrivalDateTime { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -46,6 +61,9 @@ namespace Inter.Core.Domain.Entities
         public int EnvironmentId { get; set; }
 
         public virtual SystemEnvironment Environment { get; set; }
+
+        [NotMapped]
+        public List<ValidationResult> ValidationResult { get; set; }
 
         //public virtual List<CulturalExchangePayment> Payments { get; set; }
 

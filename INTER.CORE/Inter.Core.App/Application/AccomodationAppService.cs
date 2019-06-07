@@ -18,10 +18,11 @@ namespace Inter.Core.App.Application
             _mapper = mapper;
         }
 
-        public AccomodationViewModel Add(AccomodationViewModel accomodationViewModel)
+        public AccomodationViewModel Add(int environmentId, AccomodationViewModel accomodationViewModel)
         {
+            accomodationViewModel.EnviromentId = environmentId;
             var accomodation = _mapper.Map<Accomodation>(accomodationViewModel);
-            
+
             return _mapper.Map<AccomodationViewModel>(_accomodationService.Add(accomodation)); ;
         }
 

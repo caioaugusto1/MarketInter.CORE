@@ -3,7 +3,7 @@ using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -71,7 +71,7 @@ namespace Inter.Core.Presentation.Controllers
             ViewBag.EnvironmentId = user.EnvironmentId;
             ViewBag.Students = _studentAppService.GetStudentsNotEnroled(user.EnvironmentId);
             ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
-            ViewBag.Accomodation = _accomodationAppService.GetAll(user.EnvironmentId);
+            ViewBag.Accomodations = _accomodationAppService.GetAll(user.EnvironmentId);
 
             return View();
         }
@@ -81,15 +81,25 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CulturalExchangeViewModel culturalExchangeViewModel)
+        public async Task<IActionResult> Create(int noHaveParam)
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> OnCreate(CulturalExchangeViewModel culturalExchangeViewModel)
         {
             if (ModelState.IsValid)
             {
-                _culturalExchangeAppService.Add(culturalExchangeViewModel.EnviromentId, culturalExchangeViewModel);
+                culturalExchangeViewModel = _culturalExchangeAppService.Add(culturalExchangeViewModel.EnviromentId, culturalExchangeViewModel);
 
-                return RedirectToAction(nameof(Index));
+                if (!culturalExchangeViewModel.ValidationResult.Any())
+                    return Json(Ok());
+
+                return Json(Conflict(culturalExchangeViewModel.ValidationResult));
             }
-            return View(culturalExchangeViewModel);
+
+            return Json(ModelState.Values.SelectMany(x => x.Errors));
         }
 
         // GET: CulturalExchange/Edit/5

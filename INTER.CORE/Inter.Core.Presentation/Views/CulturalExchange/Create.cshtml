@@ -10,13 +10,13 @@
         <tbody>
             <tr>
                 <td colspan="1">
-                    <form class="well form-horizontal" asp-action="Create">
+                    <form id="form-create-culturalExchange" asp-action="OnCreate" class="well form-horizontal">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="col-md-4 control-label">Full Name*</label>
-                                <select asp-for="IdStudent" required class="form-control"
+                                <select asp-for="StudentId" required class="form-control"
                                         asp-items="@(new SelectList(ViewBag.Students,"Id","FullName"))">
                                     <option>Please select one</option>
                                 </select>
@@ -40,16 +40,16 @@
                             <div class="col-md-4">
                                 <label class="col-md-4 control-label">Accomodation*</label>
                                 <select asp-for="AccomodationId" required class="form-control"
-                                        asp-items="@(new SelectList(ViewBag.Accomodation,"Id","Name"))">
+                                        asp-items="@(new SelectList(ViewBag.Accomodations,"Id","Identifier"))">
                                     <option>Please select one</option>
                                 </select>
-                                <span asp-validation-for="CollegeViewModel" class="text-danger"></span>
+                                <span asp-validation-for="AccomodationViewModel" class="text-danger"></span>
                             </div>
 
-                            <div class="col-md-6">
-                                <label class="col-md-4 control-label">College Time*</label>
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">Time*</label>
                                 <select asp-for="CollegeTimeId" required disabled id="collegeTime" class="form-control">
-                                    <option>Please select one</option>
+                                    <option value="notselected">Please select one</option>
                                 </select>
                                 <span asp-validation-for="CollegeTimeViewModel" class="text-danger"></span>
                             </div>
@@ -64,6 +64,7 @@
                                 <div class="form-group">
                                     <label>Arrival Date Time*</label>
                                     <input asp-for="ArrivalDateTime" name="FinishTime" placeholder="Start Time" class="form-control" required type="datetime-local">
+                                    <span asp-validation-for="ArrivalDateTime" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -71,6 +72,7 @@
                                 <div class="form-group">
                                     <label>Start Date*</label>
                                     <input asp-for="StartDate" name="StartDate" placeholder="Start Date" class="form-control" required type="date">
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +202,7 @@
                                 <div class="form-group">
                                     <div class="form-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                        <input type="button" onclick="culturalExchange.create()" value="Create" class="btn btn-primary" />
                                     </div>
                                 </div>
                             </div>

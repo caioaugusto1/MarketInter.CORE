@@ -59,9 +59,14 @@ namespace Inter.Core.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                _accomodationAppService.Add(accomodationViewModel);
-                return RedirectToAction(nameof(Index));
+                var user = await GetUser(_userManager);
+
+                if (user != null && user.Environment != null)
+                    _accomodationAppService.Add(user.EnvironmentId, accomodationViewModel);
+
+                return RedirectToAction("Index", "Accomodation");
             }
+
             return View(accomodationViewModel);
         }
 

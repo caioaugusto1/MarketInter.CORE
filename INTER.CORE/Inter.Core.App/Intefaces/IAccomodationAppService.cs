@@ -5,7 +5,7 @@ namespace Inter.Core.App.Intefaces
 {
     public interface IAccomodationAppService
     {
-        AccomodationViewModel Add(AccomodationViewModel accomodationViewModel);
+        AccomodationViewModel Add(int environmentId, AccomodationViewModel accomodationViewModel);
 
         List<AccomodationViewModel> GetAll(int idEnvironment);
 
