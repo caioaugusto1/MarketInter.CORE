@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -26,7 +25,7 @@ namespace Inter.Core.App.ViewModel
         [EmailAddress(ErrorMessage = "Min um E-mail válido")]
         [DisplayName("Email")]
         public string Email { get; set; }
-        
+
         [Required(ErrorMessage = "MobileNumber")]
         [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
@@ -73,6 +72,6 @@ namespace Inter.Core.App.ViewModel
 
         public virtual EnvironmentViewModel Environment { get; set; }
 
-        //public virtual List<IFormFile> Files { get; set; }
+        public virtual List<StudentFileUploadViewModel> Files { get; set; }
     }
 }

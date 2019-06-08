@@ -15,6 +15,7 @@ namespace Inter.Core.Infra.Data.Context
         public DbSet<CollegeTime> CollegeTime { get; set; }
         public DbSet<CulturalExchange> CulturalExchange { get; set; }
         public DbSet<Student> Student { get; set; }
+        public DbSet<StudentFileUpload> StudentFileUpload { get; set; }
         public DbSet<Advisor> Advisor { get; set; }
         public DbSet<Accomodation> Accomodation { get; set; }
 

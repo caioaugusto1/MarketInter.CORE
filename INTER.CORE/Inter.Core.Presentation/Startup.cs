@@ -129,6 +129,10 @@ namespace Inter.Core.Presentation
             services.AddTransient<ICulturalExchangeService, CulturalExchangeService>();
             services.AddTransient<ICulturalExchangeRepository, CulturalExchangeRepository>();
 
+            services.AddTransient<IStudentFileUploadAppService, StudentFileUploadAppService>();
+            services.AddTransient<IStudentFileUploadService, StudentFileUploadService>();
+            services.AddTransient<IStudentFileUploadRepository, StudentFileUploadRepository>();
+
         }
     }
 }

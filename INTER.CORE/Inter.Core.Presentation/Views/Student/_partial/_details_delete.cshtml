@@ -17,6 +17,8 @@
                         <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="@Url.Action("Edit", "Student", new { id = Model.Id })">Edit</a>
                             <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:student.popUpOpenModalFileUpload()">File Upload</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="javascript:student.popUpConfirmDelete(@Model.Id)">Delete</a>
                         </div>
                     </li>
@@ -83,7 +85,13 @@
 
 @await Html.PartialAsync("~/Views/Shared/_partial/_modalDelete.cshtml")
 
+@await Html.PartialAsync("~/Views/Student/_partial/_upload_details.cshtml", Model.Files)
+
+<div id="modalHere">
+
+</div>
+
 @*<script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="~/js/bootbox.min.js"></script>*@
+    <script src="~/js/bootbox.min.js"></script>*@
 <script src="~/js/Util/Util.js"></script>
 <script src="~/js/Student/student.js"></script>

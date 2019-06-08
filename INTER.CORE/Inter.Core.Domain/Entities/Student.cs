@@ -1,10 +1,15 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Entities
 {
     public class Student
     {
+        public Student()
+        {
+            Files = new List<StudentFileUpload>();
+        }
+
         public int Id { get; set; }
 
         public string CustomerId { get; set; }
@@ -26,9 +31,11 @@ namespace Inter.Core.Domain.Entities
         public string Nationality { get; set; }
 
         public string PassaportNumber { get; set; }
-        
+
         public int EnvironmentId { get; set; }
 
         public virtual SystemEnvironment Environment { get; set; }
+
+        public virtual List<StudentFileUpload> Files { get; set; }
     }
 }

@@ -9,13 +9,6 @@ namespace Inter.Core.Infra.Data.Repositories
 {
     public class StudentRepository : RepositoryBase<Student>, IStudentRepository
     {
-        public StudentRepository(MySQLContext context)
-        {
-        }
 
-        public Task<List<Student>> GetAllNotEnroled()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

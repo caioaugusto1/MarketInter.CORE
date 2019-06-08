@@ -57,8 +57,22 @@
         }, function (request, status, error) {
 
         });
-    }
+    };
 
-    return { create, openModalImageUpload, loadingList, popUpConfirmDelete, confirmDelete };
+    var popUpOpenModalFileUpload = function () {
+
+        Util.request('/FileUpload/GetModalStudentUploadFile/', 'GET', null, 'html', true, function (data) {
+
+            $('#modalHere').append(data);
+
+            $('#fileUploadModal').modal('show');
+
+        }, function (request, status, error) {
+
+        });
+
+    };
+
+    return { create, openModalImageUpload, loadingList, popUpConfirmDelete, confirmDelete, popUpOpenModalFileUpload };
 
 }();

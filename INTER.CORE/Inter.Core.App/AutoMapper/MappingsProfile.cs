@@ -35,6 +35,16 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.Country, y => y.MapFrom(f => f.Country))
                 .ForMember(x => x.Nationality, y => y.MapFrom(f => f.Nationality))
                 .ForMember(x => x.PassaportNumber, y => y.MapFrom(f => f.PassaportNumber))
+                .ForMember(x => x.Files, y => y.MapFrom(f => f.Files))
+                .ReverseMap();
+
+            CreateMap<StudentFileUpload, StudentFileUploadViewModel>()
+                .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
+                .ForMember(x => x.FileName, y => y.MapFrom(f => f.FileName))
+                .ForMember(x => x.Type, y => y.MapFrom(f => f.Type))
+                .ForMember(x => x.UploadDate, y => y.MapFrom(f => f.UploadDate))
+                .ForMember(x => x.StudentId, y => y.MapFrom(f => f.StudentId))
+                .ForMember(x => x.StudentViewModel, y => y.MapFrom(f => f.Student))
                 .ReverseMap();
 
             CreateMap<College, CollegeViewModel>()

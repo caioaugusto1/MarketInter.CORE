@@ -1,0 +1,44 @@
+﻿@model List<StudentFileUploadViewModel>
+
+
+<div class="col-lg-6">
+    <!-- Roitation Utilities -->
+    <div class="card">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Files</h6>
+        </div>
+        <div class="card-body text-center">
+            @foreach (var file in Model)
+            {
+                <dl class="row">
+                    <dt class="col-sm-6">
+                        FileName
+                    </dt>
+                    <dd class="col-sm-6">
+                        @file.FileName
+                    </dd>
+                    <dt class="col-sm-6">
+                        Type
+                    </dt>
+                    <dd class="col-sm-6">
+                        @file.Type
+                    </dd>
+                    <dt class="col-sm-6">
+                        Upload Date
+                    </dt>
+                    <dd class="col-sm-6">
+                        @file.UploadDate
+                    </dd>
+                    <dt class="col-sm-6">
+                        Note
+                    </dt>
+                    <dd class="col-sm-6">
+                        @file.Note
+                    </dd>
+
+                </dl>
+            }
+
+        </div>
+    </div>
+</div>

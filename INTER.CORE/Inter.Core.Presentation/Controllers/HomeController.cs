@@ -1,7 +1,12 @@
-﻿using Inter.Core.Presentation.Models;
+﻿using Inter.Core.App.ViewModel;
+using Inter.Core.Presentation.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {

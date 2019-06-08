@@ -10,12 +10,14 @@ namespace Inter.Core.Domain.Service
     public class StudentService : IStudentService
     {
         private readonly IStudentRepository _studentRepository;
+        private readonly IStudentFileUploadRepository _studentFileUploadRepository;
         private readonly IEnvironmentRepository _environmentRepository;
 
-        public StudentService(IStudentRepository studentRepository, IEnvironmentRepository environmentRepository)
+        public StudentService(IStudentRepository studentRepository, IEnvironmentRepository environmentRepository, IStudentFileUploadRepository studentFileUploadRepository)
         {
             _studentRepository = studentRepository;
             _environmentRepository = environmentRepository;
+            _studentFileUploadRepository = studentFileUploadRepository;
         }
 
         public Student Add(SystemEnvironment environment, Student student)
@@ -35,12 +37,16 @@ namespace Inter.Core.Domain.Service
 
         public List<Student> GetAll(int idEnvironment)
         {
-            return _studentRepository.FindByFilter(x => x.EnvironmentId == idEnvironment).ToList();
+            return _studentRepository.FindByFilter(x => x.EnvironmentId == idEnvironment);
         }
 
         public Student GetById(int idEnvironment, int id)
         {
-            return _studentRepository.GetById(id);
+            var studentEntity = _studentRepository.GetById(id);
+
+            studentEntity.Files = _studentFileUploadRepository.GetAllByStudentId(id);
+
+            return studentEntity;
         }
 
         public List<Student> GetNotEnroled(int idEnvironment)

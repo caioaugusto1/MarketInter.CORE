@@ -85,35 +85,35 @@ namespace Inter.Core.Presentation.Controllers
             return Json(Conflict());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ImageInclude(List<IFormFile> files)
-        {
-            long size = files.Sum(f => f.Length);
+        //[HttpPost]
+        //public async Task<IActionResult> ImageInclude(List<IFormFile> files)
+        //{
+        //    long size = files.Sum(f => f.Length);
 
-            // full path to file in temp location
-            string filePath = @"C:\Users\Caio's PC\Documents\";
+        //    // full path to file in temp location
+        //    string filePath = @"C:\Users\Caio's PC\Documents\";
 
-            if (!Directory.Exists(filePath))
-                Directory.CreateDirectory(filePath);
+        //    if (!Directory.Exists(filePath))
+        //        Directory.CreateDirectory(filePath);
 
-            foreach (var formFile in files)
-            {
-                if (formFile.Length > 0)
-                {
-                    using (FileStream fs = System.IO.File.Create(filePath))
-                    {
-                        Byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
-                        // Add some information to the file.
-                        fs.Write(info, 0, info.Length);
-                    }
-                }
-            }
+        //    foreach (var formFile in files)
+        //    {
+        //        if (formFile.Length > 0)
+        //        {
+        //            using (FileStream fs = System.IO.File.Create(filePath))
+        //            {
+        //                Byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
+        //                // Add some information to the file.
+        //                fs.Write(info, 0, info.Length);
+        //            }
+        //        }
+        //    }
 
-            // process uploaded files
-            // Don't rely on or trust the FileName property without validation.
+        //    // process uploaded files
+        //    // Don't rely on or trust the FileName property without validation.
 
-            return Ok(new { count = files.Count, size, filePath });
-        }
+        //    return Ok(new { count = files.Count, size, filePath });
+        //}
 
 
         // GET: Student/Edit/5
@@ -190,9 +190,4 @@ namespace Inter.Core.Presentation.Controllers
             return Json(Ok());
         }
     }
-
-    //private bool StudentViewModelExists(int id)
-    //{ 
-    //    return _studentService.GetById(id);
-    //}
 }
