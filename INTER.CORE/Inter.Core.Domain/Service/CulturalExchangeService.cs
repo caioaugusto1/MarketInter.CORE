@@ -13,13 +13,20 @@ namespace Inter.Core.Domain.Service
         private readonly ICulturalExchangeRepository _culturalExchangeRepository;
         private readonly ICollegeRepository _collegeRepository;
         private readonly ICollegeTimeRepository _collegeTimeRepository;
+        private readonly IAccomodationRepository _accomodationRepository;
+        private readonly IStudentRepository _studentRepository;
+        private readonly ICulturalExchangeFileUploadRepository _culturalExchangeFileUploadRepository;
 
         public CulturalExchangeService(ICulturalExchangeRepository culturalExchangeRepository, ICollegeRepository collegeRepository,
-            ICollegeTimeRepository collegeTimeRepository)
+            ICollegeTimeRepository collegeTimeRepository, IAccomodationRepository accomodationRepository, IStudentRepository studentRepository,
+            ICulturalExchangeFileUploadRepository culturalExchangeFileUploadRepository)
         {
             _culturalExchangeRepository = culturalExchangeRepository;
             _collegeRepository = collegeRepository;
             _collegeTimeRepository = collegeTimeRepository;
+            _accomodationRepository = accomodationRepository;
+            _studentRepository = studentRepository;
+            _culturalExchangeFileUploadRepository = culturalExchangeFileUploadRepository;
         }
 
         public CulturalExchange Add(CulturalExchange culturalExchange)
@@ -42,12 +49,31 @@ namespace Inter.Core.Domain.Service
 
         public List<CulturalExchange> GetAll(int idEnvironment)
         {
-            return _culturalExchangeRepository.GetAll().Where(x => x.Environment.Id == idEnvironment).ToList();
+            var culturalExchangeEntity = _culturalExchangeRepository.FindByFilter(x => x.Environment.Id == idEnvironment);
+
+            culturalExchangeEntity.ForEach(x =>
+            {
+                x.CollegeTime = _collegeTimeRepository.GetById(x.CollegeTimeId);
+                x.College = _collegeRepository.GetById(x.CollegeId);
+                x.Accomodation = _accomodationRepository.GetById(x.AccomodationId);
+                x.Student = _studentRepository.GetById(x.StudentId);
+                x.CollegeTime = _collegeTimeRepository.GetById(x.CollegeTimeId);
+            });
+
+            return culturalExchangeEntity;
         }
 
-        public CulturalExchange GetById(int idEnvironment, int id)
+        public CulturalExchange GetById(int id)
         {
-            throw new System.NotImplementedException();
+            var culturalExchangeEntity = _culturalExchangeRepository.GetById(id);
+
+            culturalExchangeEntity.CollegeTime = _collegeTimeRepository.GetById(culturalExchangeEntity.CollegeTimeId);
+            culturalExchangeEntity.College = _collegeRepository.GetById(culturalExchangeEntity.CollegeId);
+            culturalExchangeEntity.Accomodation = _accomodationRepository.GetById(culturalExchangeEntity.AccomodationId);
+            culturalExchangeEntity.Student = _studentRepository.GetById(culturalExchangeEntity.StudentId);
+            culturalExchangeEntity.CulturalExchangeFileUpload = _culturalExchangeFileUploadRepository.GetAllByCulturalExchangeId(id);
+
+            return culturalExchangeEntity;
         }
 
         public CulturalExchange Update(int idEnvironment, CulturalExchange student)

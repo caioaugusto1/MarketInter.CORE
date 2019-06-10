@@ -35,16 +35,15 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.Country, y => y.MapFrom(f => f.Country))
                 .ForMember(x => x.Nationality, y => y.MapFrom(f => f.Nationality))
                 .ForMember(x => x.PassaportNumber, y => y.MapFrom(f => f.PassaportNumber))
-                .ForMember(x => x.Files, y => y.MapFrom(f => f.Files))
                 .ReverseMap();
 
-            CreateMap<StudentFileUpload, StudentFileUploadViewModel>()
+            CreateMap<CulturalExchangeFileUpload, CulturalExchangeFileUploadViewModel>()
                 .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
                 .ForMember(x => x.FileName, y => y.MapFrom(f => f.FileName))
                 .ForMember(x => x.Type, y => y.MapFrom(f => f.Type))
                 .ForMember(x => x.UploadDate, y => y.MapFrom(f => f.UploadDate))
-                .ForMember(x => x.StudentId, y => y.MapFrom(f => f.StudentId))
-                .ForMember(x => x.StudentViewModel, y => y.MapFrom(f => f.Student))
+                .ForMember(x => x.CulturalExchangeId, y => y.MapFrom(f => f.CulturalExchangeId))
+                .ForMember(x => x.CulturalExchangeViewModel, y => y.MapFrom(f => f.CulturalExchange))
                 .ReverseMap();
 
             CreateMap<College, CollegeViewModel>()
@@ -88,6 +87,7 @@ namespace Inter.Core.App.AutoMapper
                .ForMember(x => x.CollegeViewModel, y => y.MapFrom(f => f.College))
                .ForMember(x => x.AccomodationViewModel, y => y.MapFrom(f => f.Accomodation))
                .ForMember(x => x.EnvironmentViewModel, y => y.MapFrom(f => f.Environment))
+               .ForMember(x => x.CulturalExchangeFileUploadVM, y => y.MapFrom(f => f.CulturalExchangeFileUpload))
                .ForMember(x => x.INSUR, y => y.MapFrom(f => f.INSUR))
                .ForMember(x => x.ArrivalDateTime, y => y.MapFrom(f => f.ArrivalDateTime))
                .ForMember(x => x.StartDate, y => y.MapFrom(f => f.StartDate))

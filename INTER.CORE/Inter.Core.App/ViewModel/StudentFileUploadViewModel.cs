@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel
 {
-    public class StudentFileUploadViewModel
+    public class CulturalExchangeFileUploadViewModel
     {
         public int Id { get; set; }
 
@@ -24,8 +24,8 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Note")]
         public string Note { get; set; }
 
-        public int StudentId { get; set; }
+        public int CulturalExchangeId { get; set; }
 
-        public virtual StudentViewModel StudentViewModel { get; set; }
+        public virtual CulturalExchangeViewModel CulturalExchangeViewModel { get; set; }
     }
 }

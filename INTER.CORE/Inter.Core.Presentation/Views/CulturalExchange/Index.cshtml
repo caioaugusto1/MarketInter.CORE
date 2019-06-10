@@ -1,89 +1,78 @@
-﻿@model IEnumerable<Inter.Core.App.ViewModel.CulturalExchangeViewModel>
+﻿@model IEnumerable<CulturalExchangeViewModel>
 
-@{
-    ViewData["Title"] = "Index";
-}
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
 
-<h1>Index</h1>
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Cultural Exchange</h1>
+    <p class="mb-4"><a target="_blank" href="CulturalExchange/Create">NEW</a></p>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
+        </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CollegeId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.INSUR)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArrivalDateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FlightNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CollegePayment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalValue)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EnviromentId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CollegeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.INSUR)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArrivalDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FlightNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CollegePayment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalValue)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnviromentId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Cultomer Id</th>
+                            <th>Full Name</th>
+                            <th>Date of Birth</th>
+                            <th>College</th>
+                            <th>Period</th>
+                            <th>Accomodation</th>
+                            <th>Arrival Date</th>
+                            <th>Total Value</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.StudentViewModel.CustomerId
+                                </td>
+                                <td>
+                                    @item.StudentViewModel.FullName
+                                </td>
+                                <td>
+                                    @item.StudentViewModel.DateOfBirthday
+                                </td>
+                                <td>
+                                    @item.CollegeViewModel.Name
+                                </td>
+                                <td>
+                                    @item.CollegeTimeViewModel.Period
+                                </td>
+                                <td>
+                                    @item.AccomodationViewModel.Identifier
+                                </td>
+                                <td>
+                                    @item.ArrivalDateTime
+                                </td>
+                                <td>
+                                    @item.TotalValue
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+
+                                    @*<button onclick="student.openModalImageUpload('@item.Id')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-plus"></i></button>*@
+
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-facebook btn-circle btn-sm"><i class="fas fa-info"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/demo/datatables.min.js"></script>
+<script src="~/js/Student/student.js"></script>

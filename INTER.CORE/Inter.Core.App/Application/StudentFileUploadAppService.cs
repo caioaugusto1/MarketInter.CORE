@@ -8,22 +8,22 @@ using System.Collections.Generic;
 
 namespace Inter.Core.App.Application
 {
-    public class StudentFileUploadAppService : IStudentFileUploadAppService
+    public class CulturalExchangeFileUploadAppService : ICulturalExchangeFileUploadAppService
     {
         private readonly IMapper _mapper;
-        private readonly IStudentFileUploadService _studentFileUploadService;
+        private readonly ICulturalExchangeFileUploadService _culturalExchangeFileUploadService;
 
-        public StudentFileUploadAppService(IMapper mapper, IStudentFileUploadService studentFileUploadService)
+        public CulturalExchangeFileUploadAppService(IMapper mapper, ICulturalExchangeFileUploadService studentFileUploadService)
         {
             _mapper = mapper;
-            _studentFileUploadService = studentFileUploadService;
+            _culturalExchangeFileUploadService = studentFileUploadService;
         }
 
-        public StudentFileUploadViewModel Add(StudentFileUploadViewModel file)
+        public CulturalExchangeFileUploadViewModel Add(CulturalExchangeFileUploadViewModel file)
         {
-            var studentEntity = _mapper.Map<StudentFileUpload>(file);
+            var culturalExchangeFileUploadEntity = _mapper.Map<CulturalExchangeFileUpload>(file);
 
-            return _mapper.Map<StudentFileUploadViewModel>(_studentFileUploadService.Add(studentEntity));
+            return _mapper.Map<CulturalExchangeFileUploadViewModel>(_culturalExchangeFileUploadService.Add(culturalExchangeFileUploadEntity));
         }
 
         public void Delete(int id)
@@ -31,21 +31,21 @@ namespace Inter.Core.App.Application
             throw new NotImplementedException();
         }
 
-        public List<StudentFileUploadViewModel> GetAllByStudentId(int studentId)
+        public List<CulturalExchangeFileUploadViewModel> GetAllByCulturalExchangeId(int studentId)
         {
-            return _mapper.Map<List<StudentFileUploadViewModel>>(_studentFileUploadService.GetAllByStudentId(studentId));
+            return _mapper.Map<List<CulturalExchangeFileUploadViewModel>>(_culturalExchangeFileUploadService.GetAllByCulturalExchangeId(studentId));
         }
 
-        public StudentFileUploadViewModel GetById(int id)
+        public CulturalExchangeFileUploadViewModel GetById(int id)
         {
-            return _mapper.Map<StudentFileUploadViewModel>(_studentFileUploadService.GetById(id));
+            return _mapper.Map<CulturalExchangeFileUploadViewModel>(_culturalExchangeFileUploadService.GetById(id));
         }
 
-        public StudentFileUploadViewModel Update(StudentFileUploadViewModel file)
+        public CulturalExchangeFileUploadViewModel Update(CulturalExchangeFileUploadViewModel file)
         {
-            var studentEntity = _mapper.Map<StudentFileUpload>(file);
+            var studentEntity = _mapper.Map<CulturalExchangeFileUpload>(file);
 
-            return _mapper.Map<StudentFileUploadViewModel>(_studentFileUploadService.Update(studentEntity));
+            return _mapper.Map<CulturalExchangeFileUploadViewModel>(_culturalExchangeFileUploadService.Update(studentEntity));
         }
     }
 }

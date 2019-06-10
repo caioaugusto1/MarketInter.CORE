@@ -10,7 +10,7 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         List<CulturalExchange> GetAll(int idEnvironment);
 
-        CulturalExchange GetById(int idEnvironment, int id);
+        CulturalExchange GetById(int id);
 
         CulturalExchange Update(int idEnvironment, CulturalExchange student);
     }

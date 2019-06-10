@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Interfaces.Repositories
 {
-    public interface IStudentFileUploadRepository : IRepository<StudentFileUpload>
+    public interface ICulturalExchangeFileUploadRepository : IRepository<CulturalExchangeFileUpload>
     {
-        List<StudentFileUpload> GetAllByStudentId(int studentId);
+        List<CulturalExchangeFileUpload> GetAllByCulturalExchangeId(int culturalExchangeId);
     }
 }

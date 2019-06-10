@@ -13,6 +13,8 @@ namespace Inter.Core.App.ViewModel
             CollegeViewModel = new CollegeViewModel();
             AccomodationViewModel = new AccomodationViewModel();
             EnvironmentViewModel = new EnvironmentViewModel();
+            CollegeTimeViewModel = new CollegeTimeViewModel();
+            CulturalExchangeFileUploadVM = new List<CulturalExchangeFileUploadViewModel>();
         }
 
         [Key]
@@ -96,6 +98,8 @@ namespace Inter.Core.App.ViewModel
         public int EnviromentId { get; set; }
 
         public virtual EnvironmentViewModel EnvironmentViewModel { get; set; }
+
+        public virtual List<CulturalExchangeFileUploadViewModel> CulturalExchangeFileUploadVM { get; set; }
 
         [ScaffoldColumn(false)]
         public List<ValidationResult> ValidationResult { get; set; }

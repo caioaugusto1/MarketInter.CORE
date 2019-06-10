@@ -72,6 +72,6 @@ namespace Inter.Core.App.ViewModel
 
         public virtual EnvironmentViewModel Environment { get; set; }
 
-        public virtual List<StudentFileUploadViewModel> Files { get; set; }
+        public virtual List<CulturalExchangeFileUploadViewModel> Files { get; set; }
     }
 }

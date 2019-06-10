@@ -13,6 +13,7 @@ namespace Inter.Core.Domain.Entities
             Student = new Student();
             College = new College();
             Accomodation = new Accomodation();
+            CulturalExchangeFileUpload = new List<CulturalExchangeFileUpload>();
         }
 
         public int Id { get; set; }
@@ -61,6 +62,8 @@ namespace Inter.Core.Domain.Entities
         public int EnvironmentId { get; set; }
 
         public virtual SystemEnvironment Environment { get; set; }
+        
+        public virtual List<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
 
         [NotMapped]
         public List<ValidationResult> ValidationResult { get; set; }

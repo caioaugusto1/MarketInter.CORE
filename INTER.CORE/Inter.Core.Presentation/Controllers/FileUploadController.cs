@@ -10,9 +10,9 @@ namespace Inter.Core.Presentation.Controllers
 {
     public class FileUploadController : BaseController
     {
-        private readonly IStudentFileUploadAppService _studentFileUploadAppService;
+        private readonly ICulturalExchangeFileUploadAppService _studentFileUploadAppService;
 
-        public FileUploadController(IStudentFileUploadAppService studentFileUploadAppService)
+        public FileUploadController(ICulturalExchangeFileUploadAppService studentFileUploadAppService)
         {
             _studentFileUploadAppService = studentFileUploadAppService;
         }
@@ -50,27 +50,18 @@ namespace Inter.Core.Presentation.Controllers
                            Directory.GetCurrentDirectory(),
                            "wwwroot", fileName);
 
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                await stream.CopyToAsync(memory);
-            }
-
-            memory.Position = 0;
-
-            return Json(Ok());
-
-            //return File(memory, GetContentType(path), Path.GetFileName(path));
+            var stream = new FileStream(path, FileMode.Open);
+            return File(stream, "application/pdf");
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetModalStudentUploadFile()
+        public async Task<IActionResult> GetModalCulturalExchangeUploadFile()
         {
-            return PartialView("~/Views/FileUpload/_partial/_modal_student_upload_file.cshtml");
+            return PartialView("~/Views/FileUpload/_partial/_modal_culturalExchange_upload_file.cshtml");
         }
 
         [HttpPost]
-        public async Task<JsonResult> GetModalStudentUploadFile(StudentFileUploadViewModel fileUploadViewModel)
+        public async Task<JsonResult> PostModalStudentUploadFile(CulturalExchangeFileUploadViewModel fileUploadViewModel)
         {
             var fileName = await UploadFile(fileUploadViewModel.File);
 
@@ -83,14 +74,6 @@ namespace Inter.Core.Presentation.Controllers
             }
 
             return Json(Conflict());
-        }
-
-        public async Task<IActionResult> GetStudentsFileDetails(int studentId)
-        {
-            if (studentId == 0)
-                return Json(NotFound());
-
-            return PartialView("~/Views/FileUpload/_partial/_get_students_file_details.cshtml", _studentFileUploadAppService.GetAllByStudentId(studentId));
         }
     }
 }

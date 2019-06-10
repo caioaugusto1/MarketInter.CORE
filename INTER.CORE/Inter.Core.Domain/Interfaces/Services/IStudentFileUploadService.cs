@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Interfaces.Services
 {
-    public interface IStudentFileUploadService
+    public interface ICulturalExchangeFileUploadService
     {
-        StudentFileUpload Add(StudentFileUpload file);
+        CulturalExchangeFileUpload Add(CulturalExchangeFileUpload file);
 
-        List<StudentFileUpload> GetAllByStudentId(int studentId);
+        List<CulturalExchangeFileUpload> GetAllByCulturalExchangeId(int studentId);
 
-        StudentFileUpload GetById(int id);
+        CulturalExchangeFileUpload GetById(int id);
 
-        StudentFileUpload Update(StudentFileUpload file);
+        CulturalExchangeFileUpload Update(CulturalExchangeFileUpload file);
 
         void Delete(int id);
     }

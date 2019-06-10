@@ -36,7 +36,7 @@ namespace Inter.Core.App.Application
 
         public CulturalExchangeViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.GetById(id));
         }
 
         public CulturalExchangeViewModel Update(CulturalExchangeViewModel collegeViewModel)

@@ -11,7 +11,6 @@
                 $('#description').append(`Student Included`);
                 $('#sub-information').append(`${student.studentName}`);
                 $('#modalSuccess').modal('show');
-
                 setTimeout(function () {
                     let url = '/Student/Index';
                     window.location.href = url;
@@ -59,19 +58,7 @@
         });
     };
 
-    var popUpOpenModalFileUpload = function () {
-
-        Util.request('/FileUpload/GetModalStudentUploadFile/', 'GET', null, 'html', true, function (data) {
-
-            $('#modalHere').append(data);
-
-            $('#fileUploadModal').modal('show');
-
-        }, function (request, status, error) {
-
-        });
-
-    };
+   
 
     return { create, openModalImageUpload, loadingList, popUpConfirmDelete, confirmDelete, popUpOpenModalFileUpload };
 

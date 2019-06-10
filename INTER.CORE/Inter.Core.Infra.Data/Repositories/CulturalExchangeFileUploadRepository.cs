@@ -7,20 +7,20 @@ using System.Linq;
 
 namespace Inter.Core.Infra.Data.Repositories
 {
-    public class StudentFileUploadRepository : RepositoryBase<StudentFileUpload>, IStudentFileUploadRepository
+    public class CulturalExchangeFileUploadRepository : RepositoryBase<CulturalExchangeFileUpload>, ICulturalExchangeFileUploadRepository
     {
         private readonly DbContextOptions<MySQLContext> _OptionsBuilder;
 
-        public StudentFileUploadRepository()
+        public CulturalExchangeFileUploadRepository()
         {
             _OptionsBuilder = new DbContextOptions<MySQLContext>();
         }
 
-        public List<StudentFileUpload> GetAllByStudentId(int studentId)
+        public List<CulturalExchangeFileUpload> GetAllByCulturalExchangeId(int culturalExchangeId)
         {
             using (var db = new MySQLContext(_OptionsBuilder))
             {
-                return db.StudentFileUpload.Where(x => x.StudentId == studentId).ToList();
+                return db.CulturalExchangeFileUpload.Where(x => x.CulturalExchangeId == culturalExchangeId).ToList();
             }
         }
     }

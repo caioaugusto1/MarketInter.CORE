@@ -1,78 +1,102 @@
 ﻿@model Inter.Core.App.ViewModel.CulturalExchangeViewModel
 
-@{
-    ViewData["Title"] = "Details";
-}
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
 
-<h1>Details</h1>
+<div class="col-lg-6">
+    <!-- Circle Buttons -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">@Model.StudentViewModel.FullName</h6>
+        </div>
+        <div class="card-body">
+            <div class="small mb-1"></div>
+            <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="@Url.Action("Edit", "CulturalExchange", new { id = Model.Id })">Edit</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:culturalExchange.popUpOpenModalFileUpload()">+ File Upload</a>
+                            @*<div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:student.popUpConfirmDelete(@Model.Id)">Delete</a>*@
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
-<div>
-    <h4>CulturalExchangeViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StudentId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StudentId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CollegeId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CollegeId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.INSUR)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.INSUR)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ArrivalDateTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArrivalDateTime)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Company)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Company)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FlightNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FlightNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CollegePayment)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CollegePayment)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalValue)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalValue)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EnviromentId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EnviromentId)
-        </dd>
-    </dl>
+        <div class="card-body">
+
+            <dl class="row">
+                <dt class="col-sm-6">
+                    Customer Id
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.StudentViewModel.CustomerId)
+                </dd>
+                <dt class="col-sm-6">
+                    Passaport Number
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.StudentViewModel.PassaportNumber)
+                </dd>
+                <dt class="col-sm-6">
+                    College
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.CollegeViewModel.Name)
+                </dd>
+                <dt class="col-sm-6">
+                    College Time
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.CollegeTimeViewModel.Period)
+                </dd>
+                <dt class="col-sm-6">
+                    Start Time
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.CollegeTimeViewModel.StartTime)
+                </dd>
+                <dt class="col-sm-6">
+                    Finish Time
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.CollegeTimeViewModel.FinishTime)
+                </dd>
+                <dt class="col-sm-6">
+                    Accomodation
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.AccomodationViewModel.Identifier)
+                </dd>
+                <dt class="col-sm-6">
+                    Address
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.AccomodationViewModel.Address)
+                </dd>
+                <dt class="col-sm-6">
+                    Days
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.QuantityDaysOfAccomodation)
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+@await Html.PartialAsync("~/Views/CulturalExchange/_partial/_upload_details.cshtml", Model.CulturalExchangeFileUploadVM)
+
+<div id="modalHere">
+
 </div>
+
+<script src="~/js/jquery-3.4.1.min.js"></script>
+<script src="~/js/Util/Util.js"></script>
+<script src="~/js/CulturalExchange/culturalExchange.js"></script>
+

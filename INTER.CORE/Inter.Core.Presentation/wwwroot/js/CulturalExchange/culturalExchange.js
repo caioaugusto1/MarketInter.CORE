@@ -37,9 +37,6 @@
 
     };
 
-    loadingPage();
-
-
     var create = function () {
 
         var culturalExchangeViewModel = $('#form-create-culturalExchange').serialize();
@@ -47,13 +44,30 @@
         Util.request('/CulturalExchange/OnCreate', 'POST', culturalExchangeViewModel, 'JSON', false, function (data) {
 
             if (data.statusCode === 409) {
-
+                alert('eaeea');
             }
 
         }, function (request, status, error) {
+
         });
 
     };
 
-    return { create };
+    var popUpOpenModalFileUpload = function () {
+
+        Util.request('/FileUpload/GetModalCulturalExchangeUploadFile', 'GET', null, 'html', true, function (data) {
+
+            $('#modalHere').append(data);
+
+            $('#fileUploadModal').modal('show');
+
+        }, function (request, status, error) {
+
+        });
+
+    };
+
+    loadingPage();
+
+    return { create, popUpOpenModalFileUpload };
 }();

@@ -29,9 +29,4 @@
     <ProjectReference Include="..\Inter.Core.Infra.Data\Inter.Core.Infra.Data.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Views\CulturalExchange\_partial\" />
-  </ItemGroup>
-
 </Project>
