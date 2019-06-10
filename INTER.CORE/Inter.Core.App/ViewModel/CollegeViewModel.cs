@@ -6,10 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel
 {
-    public class CollegeViewModel
+    public class CollegeViewModel : BaseViewModel
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "Name")]
         [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
@@ -53,11 +51,6 @@ namespace Inter.Core.App.ViewModel
         public string Email { get; set; }
 
         public virtual List<CollegeTimeViewModel> CollegeTimeViewModel { get; set; }
-
-        public string EnviromentId { get; set; }
-
-        public virtual EnvironmentViewModel EnvironmentViewModel { get; set; }
-
     }
 
     public class CollegeTimeViewModel

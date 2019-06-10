@@ -2,7 +2,9 @@
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.ServiceInterface;
+using Inter.Core.Domain.Specification.Student;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Inter.Core.Domain.Service
@@ -23,9 +25,22 @@ namespace Inter.Core.Domain.Service
         public Student Add(SystemEnvironment environment, Student student)
         {
             student.Environment = environment;
-            environment.Students.Add(student);
 
-            return _studentRepository.Insert(student);
+            student.ValidationResult = new List<ValidationResult>();
+
+            bool studentOver18YearsOld = new StudentOver18YearsOld()
+                .IsSatisfiedBy(student);
+
+            if (!studentOver18YearsOld)
+                student.ValidationResult.Add(new ValidationResult("Student Under 18 years old"));
+
+            if (!student.ValidationResult.Any())
+            {
+                environment.Students.Add(student);
+                _studentRepository.Insert(student);
+            }
+
+            return student;
         }
 
         public void Delete(int id)

@@ -6,9 +6,10 @@
         var collegeTime = $('#form-create-collegeTime').serialize();
 
         Util.request('/College/CreateTimeCollege', 'POST', collegeTime, 'JSON', false, function (data) {
-            
+
             if (data === 200) {
                 $('#description').append(`College Time included`);
+
                 $('#sub-information').append(`Time etc etc etc`);
                 $('#modalSuccess').modal('show');
 
@@ -29,6 +30,14 @@
 
         Util.request('/College/Create', 'POST', college, 'JSON', false, function (data) {
 
+            $('#description').append(`College Included`);
+            $('#sub-information').append(`${data.collegeName}`);
+            $('#modalSuccess').modal('show');
+
+            setTimeout(function () {
+                let url = '/College/Index';
+                window.location.href = url;
+            }, 2000);
 
         }, function (request, status, error) {
 
@@ -42,7 +51,7 @@
         Util.request('/College/Edit', 'POST', college, 'JSON', false, function (data) {
 
             location.reload();
-            
+
         }, function (request, status, error) {
 
         });
@@ -58,8 +67,19 @@
         }, function (request, status, error) {
 
         });
-    }
-    
+    };
 
-    return { create, saveCollegeTime, editCollegeTime };
+    var openModalAddCollegeTime = function () {
+
+        Util.request('/College/Edit', 'POST', college, 'JSON', false, function (data) {
+
+            location.reload();
+
+        }, function (request, status, error) {
+
+        });
+    };
+
+
+    return { create, edit, saveCollegeTime, editCollegeTime, openModalAddCollegeTime };
 }();

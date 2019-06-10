@@ -5,10 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel
 {
-    public class StudentViewModel
+    public class StudentViewModel : BaseViewModel
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "CustomerId")]
         [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
@@ -68,10 +66,15 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Passaport Number")]
         public string PassaportNumber { get; set; }
 
-        public int EnviromentId { get; set; }
+        [Display(Name = "Passaport Date Of Inssue")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        public DateTime PassaportDateOfIssue { get; set; }
 
-        public virtual EnvironmentViewModel Environment { get; set; }
+        [Display(Name = "Passaport Date Of Expiry")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        public DateTime PassaportDateOfExpiry { get; set; }
 
-        public virtual List<CulturalExchangeFileUploadViewModel> Files { get; set; }
     }
 }

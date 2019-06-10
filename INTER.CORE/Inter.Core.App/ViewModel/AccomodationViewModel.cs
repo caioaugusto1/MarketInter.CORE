@@ -9,26 +9,24 @@ namespace Inter.Core.App.ViewModel
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Identifier")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(15, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Identifier")]
         public string Identifier { get; set; }
 
         [Required(ErrorMessage = "Address")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Address")]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "ContactName")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(15, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Contact Name")]
         public string ContactName { get; set; }
 
         [Required(ErrorMessage = "ContactNumber")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
-        [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Contact Number")]
         public string ContactNumber { get; set; }
 

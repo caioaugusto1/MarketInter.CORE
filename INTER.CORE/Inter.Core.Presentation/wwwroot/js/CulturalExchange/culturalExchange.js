@@ -27,6 +27,7 @@
             Util.request('/College/GetCollegeTimeByCollegeId', 'GET', { "collegeId": collegeId }, 'json', true, function (data) {
 
                 $(data).each(function (index, element) {
+                    debugger;
                     $('#collegeTime').append(`<option value="${element.id}">${element.period}</option>`);
                 });
 

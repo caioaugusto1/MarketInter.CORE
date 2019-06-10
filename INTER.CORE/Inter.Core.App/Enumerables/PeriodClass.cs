@@ -5,10 +5,10 @@ namespace Inter.Core.App.Enumerables
     public enum PeriodClass
     {
         [Display(Name = "Morning")]
-        Morning = 'M',
+        Morning,
         [Display(Name = "Afternoon")]
-        Afternoon = 'A',
+        Afternoon,
         [Display(Name = "Night")]
-        Night = 'N'
+        Night
     }
 }

@@ -3,10 +3,13 @@ using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
+    //[Route("admin-college")]
     public class CollegeController : BaseController
     {
         private readonly ICollegeAppService _collegeAppService;
@@ -70,9 +73,12 @@ namespace Inter.Core.Presentation.Controllers
                 if (user == null)
                     return NotFound();
 
-                _collegeAppService.Add(user.EnvironmentId, collegeViewModel);
+                collegeViewModel = _collegeAppService.Add(user.EnvironmentId, collegeViewModel);
 
-                return Ok();
+                if (!collegeViewModel.ValidationResult.Any())
+                    return Json(new { collegeName = collegeViewModel.Name, statusCode = HttpStatusCode.OK });
+
+                return Json(Conflict(collegeViewModel.ValidationResult));
             }
 
             return View(collegeViewModel);

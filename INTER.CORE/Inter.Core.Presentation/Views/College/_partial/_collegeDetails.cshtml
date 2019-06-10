@@ -16,7 +16,7 @@
                             Actions
                         </a>
                         <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
-                            <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modalinsertTimeCollege">+ Add College Time</a>
+                            <a href="#" onclick="college.openModalAddCollegeTime()" class="dropdown-item" data-toggle="modal" data-target="#modalinsertTimeCollege">+ Add College Time</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="@Url.Action("Edit", "College", new { id = Model.Id })">Edit</a>
                         </div>

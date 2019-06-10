@@ -1,15 +1,10 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -77,44 +72,16 @@ namespace Inter.Core.Presentation.Controllers
                 var user = await GetUser(_userManager);
 
                 if (user != null && user.Environment != null)
-                    _studentAppService.Add(user.Environment.Id, studentViewModel);
+                    studentViewModel = _studentAppService.Add(user.Environment.Id, studentViewModel);
 
-                return Json(new { studentName = studentViewModel.FullName, HttpStatusCode.OK });
+                if (!studentViewModel.ValidationResult.Any())
+                    return Json(new { studentName = studentViewModel.FullName, statusCode = HttpStatusCode.OK });
+                
+                return Json(Conflict(studentViewModel.ValidationResult));
             }
 
             return Json(Conflict());
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> ImageInclude(List<IFormFile> files)
-        //{
-        //    long size = files.Sum(f => f.Length);
-
-        //    // full path to file in temp location
-        //    string filePath = @"C:\Users\Caio's PC\Documents\";
-
-        //    if (!Directory.Exists(filePath))
-        //        Directory.CreateDirectory(filePath);
-
-        //    foreach (var formFile in files)
-        //    {
-        //        if (formFile.Length > 0)
-        //        {
-        //            using (FileStream fs = System.IO.File.Create(filePath))
-        //            {
-        //                Byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
-        //                // Add some information to the file.
-        //                fs.Write(info, 0, info.Length);
-        //            }
-        //        }
-        //    }
-
-        //    // process uploaded files
-        //    // Don't rely on or trust the FileName property without validation.
-
-        //    return Ok(new { count = files.Count, size, filePath });
-        //}
-
 
         // GET: Student/Edit/5
         public async Task<IActionResult> Edit(int? id)

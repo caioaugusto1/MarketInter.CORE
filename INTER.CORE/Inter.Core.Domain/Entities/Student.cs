@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Inter.Core.Domain.Entities.Base;
+using System;
 
 namespace Inter.Core.Domain.Entities
 {
-    public class Student
+    public class Student : EntityBase
     {
-        public int Id { get; set; }
-
         public string CustomerId { get; set; }
 
         public string FullName { get; set; }
@@ -27,8 +25,8 @@ namespace Inter.Core.Domain.Entities
 
         public string PassaportNumber { get; set; }
 
-        public int EnvironmentId { get; set; }
+        public DateTime PassaportDateOfIssue { get; set; }
 
-        public virtual SystemEnvironment Environment { get; set; }
+        public DateTime PassaportDateOfExpiry { get; set; }
     }
 }

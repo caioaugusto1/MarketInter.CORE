@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
+using System;
+using System.Globalization;
 
 namespace Inter.Core.App.AutoMapper
 {
@@ -62,12 +64,11 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.DaysOfWeek, y => y.MapFrom(f => f.DaysOfWeek))
                 .ForMember(x => x.TimeForWeek, y => y.MapFrom(f => f.TimeForWeek))
                 .ForMember(x => x.Period, y => y.MapFrom(f => f.Period))
-                .ForMember(x => x.Price, y => y.MapFrom(f => f.Price))
-                .ForMember(x => x.BookPrice, y => y.MapFrom(f => f.BookPrice))
-                .ForMember(x => x.ExamPrice, y => y.MapFrom(f => f.ExamPrice))
-                .ForMember(x => x.InsurancePrice, y => y.MapFrom(f => f.InsurancePrice))
-                .ForMember(x => x.BookPrice, y => y.MapFrom(f => f.BookPrice))
-                .ForMember(x => x.AccomodationPrice, y => y.MapFrom(f => f.AccomodationPrice))
+                .ForMember(x => x.Price, y => y.MapFrom(f => Math.Round(f.Price, 2)))
+                .ForMember(x => x.BookPrice, y => y.MapFrom(f => Math.Round(f.BookPrice, 2)))
+                .ForMember(x => x.ExamPrice, y => y.MapFrom(f => Math.Round(f.ExamPrice, 2)))
+                .ForMember(x => x.InsurancePrice, y => y.MapFrom(f => Math.Round(f.InsurancePrice, 2)))
+                .ForMember(x => x.AccomodationPrice, y => y.MapFrom(f => Math.Round(f.AccomodationPrice, 2)))
                 .ForMember(x => x.CollegeId, y => y.MapFrom(f => f.CollegeId))
                 .ReverseMap();
 
@@ -90,7 +91,7 @@ namespace Inter.Core.App.AutoMapper
                .ForMember(x => x.CulturalExchangeFileUploadVM, y => y.MapFrom(f => f.CulturalExchangeFileUpload))
                .ForMember(x => x.INSUR, y => y.MapFrom(f => f.INSUR))
                .ForMember(x => x.ArrivalDateTime, y => y.MapFrom(f => f.ArrivalDateTime))
-               .ForMember(x => x.StartDate, y => y.MapFrom(f => f.StartDate))
+               .ForMember(x => x.StartDate, y => y.MapFrom(f => DateTime.Parse(f.StartDate.ToString(), new CultureInfo("pt-BR"))))
                .ForMember(x => x.Company, y => y.MapFrom(f => f.Company))
                .ForMember(x => x.FlightNumber, y => y.MapFrom(f => f.FlightNumber))
                .ForMember(x => x.CollegePayment, y => y.MapFrom(f => f.CollegePayment))

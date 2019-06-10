@@ -9,7 +9,7 @@
             if (data.statusCode === 200) {
 
                 $('#description').append(`Student Included`);
-                $('#sub-information').append(`${student.studentName}`);
+                $('#sub-information').append(`${data.studentName}`);
                 $('#modalSuccess').modal('show');
                 setTimeout(function () {
                     let url = '/Student/Index';
@@ -31,8 +31,17 @@
         });
     };
 
-    var openModalImageUpload = function (studentId) {
+    var edit = function () {
 
+        var student = $('#studentData').serialize();
+
+        Util.request('/Student/Edit', 'POST', { student }, true, function (data) {
+
+
+            
+        }), function (request, status, error) {
+
+        };
     };
 
     var popUpConfirmDelete = function (studentId) {
@@ -58,8 +67,8 @@
         });
     };
 
-   
 
-    return { create, openModalImageUpload, loadingList, popUpConfirmDelete, confirmDelete, popUpOpenModalFileUpload };
+
+    return { create, loadingList, popUpConfirmDelete, confirmDelete, edit };
 
 }();

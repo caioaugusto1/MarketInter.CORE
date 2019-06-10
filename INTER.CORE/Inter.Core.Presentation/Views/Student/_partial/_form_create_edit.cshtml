@@ -18,6 +18,7 @@
             <span class="input-group-addon" name="customerId"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="CustomerId" name="CustomerId" id="customerId" placeholder="Customer Id" class="form-control" required type="text">
         </div>
+        <span asp-validation-for="CustomerId" class="text-danger"></span>
     </div>
 </div>
 
@@ -28,6 +29,7 @@
             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="DateOfBirthday" name="DateOfBirthday" id="dateOfBirthday" placeholder="Date Of Birthday" class="form-control" required type="date">
         </div>
+        <span asp-validation-for="DateOfBirthday" class="text-danger"></span>
     </div>
 </div>
 
@@ -36,8 +38,9 @@
     <div class="col-md-6 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon" name="MobileNumber"><i class="glyphicon glyphicon-home"></i></span>
-            <input asp-for="MobileNumber" name="MobileNumber" id="MobileNumber" placeholder="Mobile Number" class="form-control" required type="email">
+            <input asp-for="MobileNumber" name="MobileNumber" id="MobileNumber" placeholder="Mobile Number" class="form-control" required type="tel">
         </div>
+        <span asp-validation-for="MobileNumber" class="text-danger"></span>
     </div>
 </div>
 
@@ -48,6 +51,7 @@
             <span class="input-group-addon" name="MobileNumber"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="Email" name="Email" id="Email" placeholder="Email Address" class="form-control" required type="email">
         </div>
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 </div>
 
@@ -58,6 +62,7 @@
             <span class="input-group-addon" name="Address"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="Nationality" name="Nationality" id="Nationality" placeholder="Nationality" class="form-control" required type="text">
         </div>
+        <span asp-validation-for="Nationality" class="text-danger"></span>
     </div>
 </div>
 
@@ -68,6 +73,7 @@
             <span class="input-group-addon" name="Address"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="Address" name="Address" id="address" placeholder="Address" class="form-control" required type="text">
         </div>
+        <span asp-validation-for="Address" class="text-danger"></span>
     </div>
 </div>
 
@@ -78,6 +84,7 @@
             <span class="input-group-addon" name="City"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="City" id="city" placeholder="City" class="form-control" required type="text">
         </div>
+        <span asp-validation-for="City" class="text-danger"></span>
     </div>
 </div>
 <div class="form-group">
@@ -87,6 +94,7 @@
             <span class="input-group-addon" name="Country"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="Country" id="country" placeholder="Country" class="form-control" required type="text">
         </div>
+        <span asp-validation-for="Country" class="text-danger"></span>
     </div>
 </div>
 
@@ -97,5 +105,6 @@
             <span class="input-group-addon" name="passaportNumber"><i class="glyphicon glyphicon-home"></i></span>
             <input asp-for="PassaportNumber" id="passaportNumber" placeholder="Passaport Number" class="form-control" required type="text">
         </div>
+        <span asp-validation-for="PassaportNumber" class="text-danger"></span>
     </div>
 </div>

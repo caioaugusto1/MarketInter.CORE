@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel
 {
-    public class CulturalExchangeViewModel
+    public class CulturalExchangeViewModel : BaseViewModel
     {
         public CulturalExchangeViewModel()
         {
@@ -17,8 +17,6 @@ namespace Inter.Core.App.ViewModel
             CulturalExchangeFileUploadVM = new List<CulturalExchangeFileUploadViewModel>();
         }
 
-        [Key]
-        public int Id { get; set; }
 
         public int StudentId { get; set; }
 
@@ -101,7 +99,5 @@ namespace Inter.Core.App.ViewModel
 
         public virtual List<CulturalExchangeFileUploadViewModel> CulturalExchangeFileUploadVM { get; set; }
 
-        [ScaffoldColumn(false)]
-        public List<ValidationResult> ValidationResult { get; set; }
     }
 }
