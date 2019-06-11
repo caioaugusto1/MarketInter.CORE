@@ -41,6 +41,19 @@ namespace Inter.Core.Domain.Service
             if (!ValueHigherThanCourseValue)
                 culturalExchange.ValidationResult.Add(new ValidationResult("Value incorrect"));
 
+            bool accomodationDateAvailable = new CulturalExchangeValidateAccomodationDateAvailable(_accomodationRepository)
+                .IsSatisfiedBy(culturalExchange);
+
+            if (!accomodationDateAvailable)
+                culturalExchange.ValidationResult.Add(new ValidationResult("Accomodation FULL"));
+
+            bool validateDateArriveAndStart = new CulturalExchangeValidateDateArriveAndStart().IsSatisfiedBy(culturalExchange);
+
+            if (!validateDateArriveAndStart)
+                culturalExchange.ValidationResult.Add(new ValidationResult("Dates invaliable"));
+
+            bool countDatesAccomodation = new CulturalExchangeCountDaysAccomodation().IsSatisfiedBy(culturalExchange);
+
             if (!culturalExchange.ValidationResult.Any())
                 _culturalExchangeRepository.Insert(culturalExchange);
 

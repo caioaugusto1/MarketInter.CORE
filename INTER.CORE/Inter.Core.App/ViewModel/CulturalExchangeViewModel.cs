@@ -46,6 +46,16 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Quantity Days Of Accomodation")]
         public int QuantityDaysOfAccomodation { get; set; }
 
+        [Display(Name = "Start Accomodation*")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
+        public DateTime StartAccomodation { get; set; }
+
+        [Display(Name = "Finish Accomodation")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
+        public DateTime FinishAccomodation { get; set; }
+
         // After sprint, put class Insurance and crud create and edit insurance
         [DisplayName("INSUR?")]
         public bool INSUR { get; set; }
@@ -93,9 +103,9 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Total Value")]
         public decimal TotalValue { get; set; }
 
-        public int EnviromentId { get; set; }
-
-        public virtual EnvironmentViewModel EnvironmentViewModel { get; set; }
+        [Required(ErrorMessage = "Sales Man")]
+        [DisplayName("Sales Value")]
+        public string SalesMan { get; set; }
 
         public virtual List<CulturalExchangeFileUploadViewModel> CulturalExchangeFileUploadVM { get; set; }
 

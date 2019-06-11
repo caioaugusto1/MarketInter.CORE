@@ -1,15 +1,16 @@
 ﻿@model Inter.Core.App.ViewModel.CollegeViewModel
 
-    @await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
 
-    @await Html.PartialAsync("~/Views/College/_partial/_collegeDetails.cshtml", Model)
+@await Html.PartialAsync("~/Views/College/_partial/_collegeDetails.cshtml", Model)
 
-    @section Scripts {
 
-        <script src="~/js/Util/Util.js"></script>
-        <script src="~/js/College/college.js"></script>
+@section Scripts {
 
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
+    <script src="~/js/Util/Util.js"></script>
+    <script src="~/js/College/college.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+}

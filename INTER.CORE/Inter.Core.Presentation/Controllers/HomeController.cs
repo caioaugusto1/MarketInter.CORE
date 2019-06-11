@@ -1,18 +1,23 @@
-﻿using Inter.Core.App.ViewModel;
+﻿using Inter.Core.Domain.Entities;
 using Inter.Core.Presentation.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public HomeController(UserManager<ApplicationUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         public IActionResult Index()
         {
             return View();

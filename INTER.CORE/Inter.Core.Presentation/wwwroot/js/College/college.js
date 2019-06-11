@@ -1,6 +1,5 @@
 ﻿var college = function () {
 
-
     var saveCollegeTime = function () {
 
         var collegeTime = $('#form-create-collegeTime').serialize();
@@ -71,15 +70,15 @@
 
     var openModalAddCollegeTime = function () {
 
-        Util.request('/College/Edit', 'POST', college, 'JSON', false, function (data) {
+        Util.request('/College/GetPartialCreateCollegeTime', 'GET', null, 'html', true, function (data) {
 
-            location.reload();
+            $('#div-modal-edit-college-time').append(data);
+            $('#div-modal-edit-college-time').modal('show');
 
         }, function (request, status, error) {
 
         });
     };
-
 
     return { create, edit, saveCollegeTime, editCollegeTime, openModalAddCollegeTime };
 }();

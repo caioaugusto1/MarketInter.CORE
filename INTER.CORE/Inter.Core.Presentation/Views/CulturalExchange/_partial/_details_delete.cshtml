@@ -1,1 +1,115 @@
-﻿
+﻿@model Inter.Core.App.ViewModel.CulturalExchangeViewModel
+
+<div class="card-body">
+
+    <dl class="row">
+        <dt class="col-sm-6">
+            Customer Id
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.StudentViewModel.CustomerId)
+        </dd>
+        <dt class="col-sm-6">
+            College
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CollegeViewModel.Name)
+        </dd>
+        <dt class="col-sm-6">
+            College Time
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CollegeTimeViewModel.Period)
+        </dd>
+        <dt class="col-sm-6">
+            Start Time
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CollegeTimeViewModel.StartTime)
+        </dd>
+        <dt class="col-sm-6">
+            Finish Time
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.CollegeTimeViewModel.FinishTime)
+        </dd>
+        <dt class="col-sm-6">
+            Accomodation
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.AccomodationViewModel.Identifier)
+        </dd>
+        <dt class="col-sm-6">
+            Address
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.AccomodationViewModel.Address)
+        </dd>
+        <dt class="col-sm-6">
+            Days Accomodation
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.QuantityDaysOfAccomodation)
+        </dd>
+        <dt class="col-sm-6">
+            Start Accomodation
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.StartAccomodation)
+        </dd>
+        <dt class="col-sm-6">
+            Finish Accomodation
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.FinishAccomodation)
+        </dd>
+        <dt class="col-sm-6">
+            INSUR
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.INSUR)
+        </dd>
+        <dt class="col-sm-6">
+            Transfer
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Transfer)
+        </dd>
+        <dt class="col-sm-6">
+            Support
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Support)
+        </dd>
+        <dt class="col-sm-6">
+            Kit
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Kit)
+        </dd>
+        <dt class="col-sm-6">
+            Sim Card
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.SimCard)
+        </dd>
+        <dt class="col-sm-6">
+            Arrival Date Time
+        </dt>
+        <dd class="col-sm-6">
+            @Model.ArrivalDateTime
+        </dd>
+        <dt class="col-sm-6">
+            Company
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+        <dt class="col-sm-6">
+            Flight Number
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.FlightNumber)
+        </dd>
+    </dl>
+</div>

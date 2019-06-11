@@ -19,80 +19,21 @@
                         <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="@Url.Action("Edit", "CulturalExchange", new { id = Model.Id })">Edit</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:culturalExchange.popUpOpenModalFileUpload()">+ File Upload</a>
-                            @*<div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:student.popUpConfirmDelete(@Model.Id)">Delete</a>*@
+                            <a class="dropdown-item" href="javascript:culturalExchange.popUpOpenModalFileUpload('@Model.Id')">+ File Upload</a>
                         </div>
                     </li>
                 </ul>
             </nav>
         </div>
 
-        <div class="card-body">
+        @await Html.PartialAsync("~/Views/CulturalExchange/_partial/_details_delete.cshtml", Model)
 
-            <dl class="row">
-                <dt class="col-sm-6">
-                    Customer Id
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.StudentViewModel.CustomerId)
-                </dd>
-                <dt class="col-sm-6">
-                    Passaport Number
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.StudentViewModel.PassaportNumber)
-                </dd>
-                <dt class="col-sm-6">
-                    College
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.CollegeViewModel.Name)
-                </dd>
-                <dt class="col-sm-6">
-                    College Time
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.CollegeTimeViewModel.Period)
-                </dd>
-                <dt class="col-sm-6">
-                    Start Time
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.CollegeTimeViewModel.StartTime)
-                </dd>
-                <dt class="col-sm-6">
-                    Finish Time
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.CollegeTimeViewModel.FinishTime)
-                </dd>
-                <dt class="col-sm-6">
-                    Accomodation
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.AccomodationViewModel.Identifier)
-                </dd>
-                <dt class="col-sm-6">
-                    Address
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.AccomodationViewModel.Address)
-                </dd>
-                <dt class="col-sm-6">
-                    Days
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.QuantityDaysOfAccomodation)
-                </dd>
-            </dl>
-        </div>
     </div>
 </div>
 
 @await Html.PartialAsync("~/Views/CulturalExchange/_partial/_upload_details.cshtml", Model.CulturalExchangeFileUploadVM)
 
-<div id="modalHere">
+<div id="modalCulturalExchangeFileUpload">
 
 </div>
 

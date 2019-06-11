@@ -1,6 +1,7 @@
 ﻿using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Service
@@ -16,6 +17,8 @@ namespace Inter.Core.Domain.Service
 
         public CulturalExchangeFileUpload Add(CulturalExchangeFileUpload file)
         {
+            file.UploadDate = DateTime.Now;
+
             return _culturalExchangeFileUploadRepository.Insert(file);
         }
 

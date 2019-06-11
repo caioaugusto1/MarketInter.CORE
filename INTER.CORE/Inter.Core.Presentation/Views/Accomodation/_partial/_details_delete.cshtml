@@ -1,10 +1,10 @@
-﻿@model Inter.Core.App.ViewModel.StudentViewModel
+﻿@model Inter.Core.App.ViewModel.AccomodationViewModel
 
 <div class="col-lg-6">
     <!-- Circle Buttons -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">@Model.FullName</h6>
+            <h6 class="m-0 font-weight-bold text-primary">@Model.Identifier</h6>
         </div>
         <div class="card-body">
             <div class="small mb-1"></div>
@@ -15,7 +15,7 @@
                             Actions
                         </a>
                         <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="@Url.Action("Edit", "Student", new { id = Model.Id })">Edit</a>
+                            <a class="dropdown-item" href="@Url.Action("Edit", "Accomodation", new { id = Model.Id })">Edit</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="javascript:student.popUpConfirmDelete(@Model.Id)">Delete</a>
                         </div>
@@ -28,65 +28,38 @@
 
             <dl class="row">
                 <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.DateOfBirthday)
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.DateOfBirthday)
-                </dd>
-                <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.PassaportNumber)
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.PassaportNumber)
-                </dd>
-                <dt class="col-sm-6">
                     @Html.DisplayNameFor(model => model.Address)
                 </dt>
                 <dd class="col-sm-6">
                     @Html.DisplayFor(model => model.Address)
                 </dd>
                 <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.Email)
+                    @Html.DisplayNameFor(model => model.ContactName)
                 </dt>
                 <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.Email)
+                    @Html.DisplayFor(model => model.ContactName)
                 </dd>
                 <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.MobileNumber)
+                    @Html.DisplayNameFor(model => model.ContactNumber)
                 </dt>
                 <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.MobileNumber)
+                    @Html.DisplayFor(model => model.ContactNumber)
                 </dd>
                 <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.Nationality)
+                    @Html.DisplayNameFor(model => model.NumberOfPlaces)
                 </dt>
                 <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.Nationality)
+                    @Html.DisplayFor(model => model.NumberOfPlaces)
                 </dd>
                 <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.City)
+                    @Html.DisplayNameFor(model => model.Available)
                 </dt>
                 <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.City)
+                    @Html.DisplayFor(model => model.Available)
                 </dd>
-                <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.Country)
-                </dt>
-                <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.Country)
-                </dd>
-
             </dl>
         </div>
     </div>
 </div>
 
 @await Html.PartialAsync("~/Views/Shared/_partial/_modalDelete.cshtml")
-
-
-<div id="modalCulturalExchangeFileUpload">
-
-</div>
-
-<script src="~/js/Util/Util.js"></script>
-<script src="~/js/Student/student.js"></script>

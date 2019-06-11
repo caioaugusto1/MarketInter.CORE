@@ -36,6 +36,10 @@ namespace Inter.Core.Domain.Entities
 
         public int DateOfAccomodation { get; set; }
 
+        public DateTime StartAccomodation { get; set; }
+
+        public DateTime FinishAccomodation { get; set; }
+
         // After sprint, put class Insurance and crud create and edit insurance
         public bool INSUR { get; set; }
 
@@ -46,6 +50,8 @@ namespace Inter.Core.Domain.Entities
         public bool Kit { get; set; }
 
         public bool SimCard { get; set; }
+
+        public bool IncludeAccomodation { get; set; }
 
         public DateTime ArrivalDateTime { get; set; }
 
@@ -59,10 +65,12 @@ namespace Inter.Core.Domain.Entities
 
         public float TotalValue { get; set; }
 
+        public string SalesMen { get; set; }
+
         public int EnvironmentId { get; set; }
 
         public virtual SystemEnvironment Environment { get; set; }
-        
+
         public virtual List<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
 
         [NotMapped]

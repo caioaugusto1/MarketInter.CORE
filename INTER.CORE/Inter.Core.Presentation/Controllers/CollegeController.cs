@@ -168,12 +168,9 @@ namespace Inter.Core.Presentation.Controllers
             return Conflict();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> OnCreateTime(int id)
+        public async Task<IActionResult> GetPartialCreateCollegeTime()
         {
-            var college = _collegeAppService.GetById(id);
-
-            return View(college);
+            return PartialView("~/Views/College/_partial/_modal_create_timeCollege.cshtml");
         }
 
         public async Task<IActionResult> LoadingPartialEditCollegeTime(int idCollegeTime)

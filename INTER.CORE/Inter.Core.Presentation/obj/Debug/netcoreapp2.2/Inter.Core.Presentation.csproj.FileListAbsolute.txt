@@ -82,9 +82,7 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\CulturalExchange\Index.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Student\_partial\_form_create_edit.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\_partial\_form_create_edit.g.cshtml.cs
-C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\OnCreateTime.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\_partial\_collegeDetails.g.cshtml.cs
-C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\_partial\_modalPutTimeCollege.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_partial\_modalSuccess.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\_partial\_edit_collegeTime.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Student\_partial\_details_delete.g.cshtml.cs
@@ -92,3 +90,6 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\CulturalExchange\_partial\_upload_details.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\FileUpload\_partial\_modal_culturalExchange_upload_file.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\CulturalExchange\_partial\_details_delete.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Accomodation\_partial\_details_delete.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Accomodation\_partial\_form_create_edit.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\_partial\_modal_create_timeCollege.g.cshtml.cs

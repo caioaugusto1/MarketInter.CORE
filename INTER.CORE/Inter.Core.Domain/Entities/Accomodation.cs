@@ -1,4 +1,6 @@
-﻿namespace Inter.Core.Domain.Entities
+﻿using System.Collections.Generic;
+
+namespace Inter.Core.Domain.Entities
 {
     public class Accomodation
     {
@@ -15,6 +17,8 @@
         public int NumberOfPlaces { get; set; }
 
         public bool Available { get; set; }
+
+        //public virtual List<CulturalExchange> CulturalExchanges { get; set; }
 
         public int EnvironmentId { get; set; }
 

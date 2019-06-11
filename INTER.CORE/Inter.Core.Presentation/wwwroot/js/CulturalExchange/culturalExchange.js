@@ -54,11 +54,11 @@
 
     };
 
-    var popUpOpenModalFileUpload = function () {
+    var popUpOpenModalFileUpload = function (culturalExchangeId) {
 
-        Util.request('/FileUpload/GetModalCulturalExchangeUploadFile', 'GET', null, 'html', true, function (data) {
+        Util.request('/FileUpload/GetModalCulturalExchangeUploadFile', 'GET', { culturalExchangeId }, 'html', true, function (data) {
 
-            $('#modalHere').append(data);
+            $('#modalCulturalExchangeFileUpload').append(data);
 
             $('#fileUploadModal').modal('show');
 

@@ -1,0 +1,77 @@
+﻿@model AccomodationViewModel
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Full Name*</label>
+    <div class="col-md-6 inputGroupContainer">
+        <div class="input-group">
+            <span name="Identifier" class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input asp-for="Identifier" id="identifier" name="identifier" placeholder="Identifier" class="form-control" required type="text">
+        </div>
+        <span asp-validation-for="Identifier" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Customer Id*</label>
+    <div class="col-md-3 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="customerId"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="Address" name="Address" id="address" placeholder="Address" class="form-control" required type="text">
+        </div>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Date of Birthday*</label>
+    <div class="col-md-3 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="ContactName" name="ContactName" id="contactName" placeholder="Contact Name" class="form-control" required type="text">
+        </div>
+        <span asp-validation-for="ContactName" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Mobile Number*</label>
+    <div class="col-md-6 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="ContactNumber"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="ContactNumber" name="ContactNumber" id="ContactNumber" placeholder="Contact Number" class="form-control" required type="tel">
+        </div>
+        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Email*</label>
+    <div class="col-md-6 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="ContactNumber"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="ContactNumber" name="ContactNumber" id="contactNumber" placeholder="Email Address" class="form-control" required type="number">
+        </div>
+        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Nationality*</label>
+    <div class="col-md-6 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon" name="NumberOfPlaces"><i class="glyphicon glyphicon-home"></i></span>
+            <input asp-for="NumberOfPlaces" name="NumberOfPlaces" id="numberOfPlaces" placeholder="Number Of Places" class="form-control" required type="number">
+        </div>
+        <span asp-validation-for="NumberOfPlaces" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="custom-control custom-checkbox small col-md-6 inputGroupContainer">
+        <div class="input-group">
+            <input id="avaliable" name="Avaliable" type="checkbox" class="custom-control-input" />
+            <label for="avaliable" class="custom-control-label">Available*</label>
+        </div>
+        <span asp-validation-for="Available" class="text-danger"></span>
+    </div>
+</div>

@@ -96,6 +96,7 @@ namespace Inter.Core.App.AutoMapper
                .ForMember(x => x.FlightNumber, y => y.MapFrom(f => f.FlightNumber))
                .ForMember(x => x.CollegePayment, y => y.MapFrom(f => f.CollegePayment))
                .ForMember(x => x.QuantityDaysOfAccomodation, y => y.MapFrom(f => f.DateOfAccomodation))
+               .ForMember(x => x.SalesMan, y => y.MapFrom(f => f.SalesMen))
                .ForMember(x => x.TotalValue, y => y.MapFrom(f => f.TotalValue))
                .ReverseMap();
         }

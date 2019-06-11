@@ -98,8 +98,9 @@ namespace Inter.Core.Presentation.Controllers
             {
                 _accomodationAppService.Update(accomodationViewModel);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Accomodation");
             }
+
             return View(accomodationViewModel);
         }
 

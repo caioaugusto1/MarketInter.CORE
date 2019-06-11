@@ -15,11 +15,15 @@
 
                         @await Html.PartialAsync("~/Views/College/_partial/_form_create_edit.cshtml")
 
-                        <div class="form-group" id="saveButton">
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                    <input onclick="college.create();" type="button" value="Save" class="btn btn-primary" />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group" id="saveButton">
+                                    <div class="inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                            <input onclick="college.create();" type="button" value="Save" class="btn btn-primary" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

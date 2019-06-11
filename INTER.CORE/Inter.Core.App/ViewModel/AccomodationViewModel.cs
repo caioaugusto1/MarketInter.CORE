@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel
@@ -39,6 +40,8 @@ namespace Inter.Core.App.ViewModel
         [Required(ErrorMessage = "Available")]
         [DisplayName("Available")]
         public bool Available { get; set; }
+        
+        public virtual List<CulturalExchangeViewModel> CulturalExchangeViewModel { get; set; }
 
         public int EnviromentId { get; set; }
 

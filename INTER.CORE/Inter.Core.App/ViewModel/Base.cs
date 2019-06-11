@@ -10,7 +10,7 @@ namespace Inter.Core.App.ViewModel
 
         public int EnviromentId { get; set; }
 
-        public virtual EnvironmentViewModel Environment { get; set; }
+        public virtual EnvironmentViewModel EnvironmentViewModel { get; set; }
 
         public virtual List<CulturalExchangeFileUploadViewModel> Files { get; set; }
 
