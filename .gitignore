@@ -170,7 +170,7 @@ DocProject/Help/*.hhk
 DocProject/Help/*.hhp
 DocProject/Help/Html2
 DocProject/Help/html
-/INTER.CORE
+/INTER.CORE/.vs/
 /INTER.CORE/Inter.Core.App/obj/Debug/netcoreapp2.2/Inter.Core.App.csprojAssemblyReference.cache
 /INTER.CORE/Inter.Core.Infra.Data/obj/Debug/netcoreapp2.2/Inter.Core.Infra.Data.csprojAssemblyReference.cache
 /INTER.CORE/Inter.Core.Presentation/bin/Debug/netcoreapp2.2/Inter.Core.Presentation.Views.dll
@@ -180,6 +180,7 @@ DocProject/Help/html
 /INTER.CORE/Inter.Core.Presentation/obj/Debug/netcoreapp2.2/Inter.Core.Presentation.RazorCoreGenerate.cache
 /INTER.CORE/Inter.Core.Presentation/obj/Debug/netcoreapp2.2/Inter.Core.Presentation.Views.dll
 /INTER.CORE/Inter.Core.Presentation/obj/Debug/netcoreapp2.2/Inter.Core.Presentation.Views.pdb
+/INTER.CORE/Inter.Core.Presentation/Inter.Core.Presentation.csproj
 
 
 
