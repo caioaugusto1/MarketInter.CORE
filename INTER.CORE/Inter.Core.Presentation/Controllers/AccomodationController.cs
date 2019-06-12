@@ -1,12 +1,14 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
+    //[Authorize(Roles = "Admin, Users")]
     public class AccomodationController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;

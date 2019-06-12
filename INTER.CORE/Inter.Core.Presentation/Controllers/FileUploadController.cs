@@ -1,5 +1,6 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
+    //[Authorize(Roles = "Admin, Users")]
     public class FileUploadController : BaseController
     {
         private readonly ICulturalExchangeFileUploadAppService _studentFileUploadAppService;

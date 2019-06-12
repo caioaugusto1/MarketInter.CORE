@@ -1,6 +1,7 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace Inter.Core.Presentation.Controllers
 {
     //[Route("admin-college")]
+    //[Authorize(Roles = "Admin, Users")]
     public class CollegeController : BaseController
     {
         private readonly ICollegeAppService _collegeAppService;

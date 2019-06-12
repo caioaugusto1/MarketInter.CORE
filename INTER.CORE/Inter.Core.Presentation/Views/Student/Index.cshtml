@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<StudentViewModel>
 
-@{
+@*@{
     @inject Microsoft.AspNetCore.Identity.UserManager<Inter.Core.Domain.Entities.ApplicationUser> UserManager
 
     var user = await UserManager.FindByNameAsync(User.Identity.Name);
     var claims = await UserManager.GetClaimsAsync(user);
-}
+}*@
 
 @await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
 

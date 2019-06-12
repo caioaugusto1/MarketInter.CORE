@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Inter.Core.Presentation
 {
@@ -45,7 +46,7 @@ namespace Inter.Core.Presentation
                 options.UseMySql(
                     Configuration.GetConnectionString("MySqlConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -66,6 +67,12 @@ namespace Inter.Core.Presentation
                 options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                //options.LoginPath = "/Login";
+                //options.ExpireTimeSpan = TimeSpan.FromSeconds(15);
+            });
 
             InjectorDependency(services);
 
