@@ -9,41 +9,38 @@ namespace Inter.Core.App.ViewModel
     {
         public CulturalExchangeViewModel()
         {
-            StudentViewModel = new StudentViewModel();
-            CollegeViewModel = new CollegeViewModel();
-            AccomodationViewModel = new AccomodationViewModel();
-            EnvironmentViewModel = new EnvironmentViewModel();
-            CollegeTimeViewModel = new CollegeTimeViewModel();
-            CulturalExchangeFileUploadVM = new List<CulturalExchangeFileUploadViewModel>();
+            //StudentViewModel = new StudentViewModel();
+            //CollegeViewModel = new CollegeViewModel();
+            //AccomodationViewModel = new AccomodationViewModel();
+            //EnvironmentViewModel = new EnvironmentViewModel();
+            //CollegeTimeViewModel = new CollegeTimeViewModel();
+            //CulturalExchangeFileUploadVM = new List<CulturalExchangeFileUploadViewModel>();
         }
-
-
-        public int StudentId { get; set; }
 
         [Required(ErrorMessage = "Student")]
         [DisplayName("Selected Student")]
-        public virtual StudentViewModel StudentViewModel { get; set; }
+        public int StudentId { get; set; }
 
-        public int CollegeId { get; set; }
+        public virtual StudentViewModel StudentViewModel { get; set; }
 
         [Required(ErrorMessage = "College")]
         [DisplayName("Selected College")]
-        public virtual CollegeViewModel CollegeViewModel { get; set; }
+        public int CollegeId { get; set; }
 
-        public int CollegeTimeId { get; set; }
+        public virtual CollegeViewModel CollegeViewModel { get; set; }
 
         [Required(ErrorMessage = "College Time")]
         [DisplayName("Selected College Time")]
-        public virtual CollegeTimeViewModel CollegeTimeViewModel { get; set; }
+        public int CollegeTimeId { get; set; }
 
-        public int AccomodationId { get; set; }
+        public virtual CollegeTimeViewModel CollegeTimeViewModel { get; set; }
 
         [Required(ErrorMessage = "Accomodation")]
         [DisplayName("Selected Accomodation")]
+        public int AccomodationId { get; set; }
+
         public virtual AccomodationViewModel AccomodationViewModel { get; set; }
 
-        [Required(ErrorMessage = "QuantityDaysOfAccomodation")]
-        [DisplayName("Quantity Days Of Accomodation")]
         public int QuantityDaysOfAccomodation { get; set; }
 
         [Display(Name = "Start Accomodation*")]

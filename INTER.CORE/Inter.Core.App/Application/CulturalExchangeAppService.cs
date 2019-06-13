@@ -37,8 +37,14 @@ namespace Inter.Core.App.Application
 
         public List<CulturalExchangeViewModel> GetAllByFilter(int idEnvironment, string startArrivalDate, string finishArrivalDate, int collegeId, int accomodationId)
         {
-            DateTime startDate = Convert.ToDateTime(DateTime.Parse(startArrivalDate, new CultureInfo("pt-BR")));
-            DateTime finishDate = Convert.ToDateTime(DateTime.Parse(finishArrivalDate, new CultureInfo("pt-BR")));
+            DateTime finishDate = DateTime.MinValue;
+            DateTime startDate = DateTime.MinValue;
+
+            if (!string.IsNullOrWhiteSpace(startArrivalDate))
+                startDate = Convert.ToDateTime(DateTime.Parse(startArrivalDate, new CultureInfo("pt-BR")));
+
+            if (!string.IsNullOrWhiteSpace(finishArrivalDate))
+                finishDate = Convert.ToDateTime(DateTime.Parse(finishArrivalDate, new CultureInfo("pt-BR")));
 
             return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllByFilter(idEnvironment, startDate, finishDate, collegeId, accomodationId));
         }

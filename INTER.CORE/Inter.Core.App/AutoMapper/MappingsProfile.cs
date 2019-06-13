@@ -87,6 +87,7 @@ namespace Inter.Core.App.AutoMapper
                .ForMember(x => x.StudentViewModel, y => y.MapFrom(f => f.Student))
                .ForMember(x => x.CollegeViewModel, y => y.MapFrom(f => f.College))
                .ForMember(x => x.AccomodationViewModel, y => y.MapFrom(f => f.Accomodation))
+               .ForMember(x => x.CollegeTimeViewModel, y => y.MapFrom(f => f.CollegeTime))
                .ForMember(x => x.EnvironmentViewModel, y => y.MapFrom(f => f.Environment))
                .ForMember(x => x.CulturalExchangeFileUploadVM, y => y.MapFrom(f => f.CulturalExchangeFileUpload))
                .ForMember(x => x.INSUR, y => y.MapFrom(f => f.INSUR))

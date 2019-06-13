@@ -44,9 +44,8 @@
 
         Util.request('/CulturalExchange/OnCreate', 'POST', culturalExchangeViewModel, 'JSON', false, function (data) {
 
-            if (data.statusCode === 409) {
-                alert('eaeea');
-            }
+            //if (data.statusCode === 409) {
+            //}
 
         }, function (request, status, error) {
 
@@ -76,13 +75,25 @@
         let accomodationId = $('#accomodation').val();
 
         Util.request('/CulturalExchange/FindByFilter', 'GET', { startArrivalDate, finishArrivalDate, collegeId, accomodationId }, 'html', true, function (data) {
+            $('#culturalExchangeTBody').remove();
+
+            $('#dataTable').append(data);
 
         }, function (request, status, error) {
 
         });
     };
 
+    var clearFilter = function () {
+        $('#startDateArrival').val("");
+        $('#finishDateArrival').val("");
+        $("#college").val($("#college option:first").val());
+        $("#accomodation").val($("#accomodation option:first").val());
+
+        find();
+    };
+
     loadingPage();
 
-    return { create, popUpOpenModalFileUpload, find };
+    return { create, popUpOpenModalFileUpload, find, clearFilter };
 }();

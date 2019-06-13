@@ -32,7 +32,7 @@ namespace Inter.Core.Domain.Service
 
         public CulturalExchange Add(CulturalExchange culturalExchange)
         {
-            College college = _collegeRepository.GetById(culturalExchange.College.Id);
+            College college = _collegeRepository.GetById(culturalExchange.CollegeId);
 
             culturalExchange.ValidationResult = new List<ValidationResult>();
 
@@ -67,7 +67,6 @@ namespace Inter.Core.Domain.Service
 
             culturalExchangeEntity.ForEach(x =>
             {
-                x.CollegeTime = _collegeTimeRepository.GetById(x.CollegeTimeId);
                 x.College = _collegeRepository.GetById(x.CollegeId);
                 x.Accomodation = _accomodationRepository.GetById(x.AccomodationId);
                 x.Student = _studentRepository.GetById(x.StudentId);
@@ -79,11 +78,21 @@ namespace Inter.Core.Domain.Service
 
         public List<CulturalExchange> GetAllByFilter(int idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, int collegeId, int accomodationId)
         {
-            var culturalExchangeEntity = _culturalExchangeRepository.FindByFilter(x => x.EnvironmentId == idEnvironment);
+            List<CulturalExchange> culturalExchangeEntity = new List<CulturalExchange>();
 
-            if (startArrivalDateTime <= finishArrivalDateTime)
-                culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Date >= startArrivalDateTime
-                && x.ArrivalDateTime <= finishArrivalDateTime).ToList();
+            if (startArrivalDateTime != DateTime.MinValue && finishArrivalDateTime != DateTime.MinValue)
+            {
+                if (startArrivalDateTime > finishArrivalDateTime)
+                    return null;
+            }
+
+            culturalExchangeEntity = _culturalExchangeRepository.FindByFilter(x => x.EnvironmentId == idEnvironment);
+
+            if (startArrivalDateTime != DateTime.MinValue)
+                culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Date >= startArrivalDateTime).ToList();
+
+            if (finishArrivalDateTime != DateTime.MinValue)
+                culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Date <= finishArrivalDateTime).ToList();
 
             if (collegeId != 0)
                 culturalExchangeEntity = culturalExchangeEntity.Where(x => x.CollegeId == collegeId).ToList();
@@ -93,7 +102,6 @@ namespace Inter.Core.Domain.Service
 
             culturalExchangeEntity.ForEach(x =>
             {
-                x.CollegeTime = _collegeTimeRepository.GetById(x.CollegeTimeId);
                 x.College = _collegeRepository.GetById(x.CollegeId);
                 x.Accomodation = _accomodationRepository.GetById(x.AccomodationId);
                 x.Student = _studentRepository.GetById(x.StudentId);
