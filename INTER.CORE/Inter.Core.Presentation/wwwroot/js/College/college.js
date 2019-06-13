@@ -106,5 +106,21 @@
         });
     };
 
-    return { create, edit, saveCollegeTime, editCollegeTime, openModalAddCollegeTime, createCollegeTime };
+    var popUpConfirmDeleteCollegeTime = function (id) {
+        $('#modalDelete').modal('show');
+        $('#deleteButton').attr('onclick', `college.deleteConfirmCollegeTime(${id})`);
+    };
+
+    var deleteConfirmCollegeTime = function (id) {
+        console.log(id);
+        Util.request('/College/DeleteConfirmedTimeCollege', 'GET', { id }, 'json', true, function (data) {
+
+            location.reload();
+
+        }, function (request, status, error) {
+
+        });
+    };
+
+    return { create, edit, saveCollegeTime, editCollegeTime, openModalAddCollegeTime, createCollegeTime, deleteConfirmCollegeTime, popUpConfirmDeleteCollegeTime };
 }();

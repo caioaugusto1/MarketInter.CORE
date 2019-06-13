@@ -11,6 +11,8 @@ namespace Inter.Core.App.Intefaces
         
         CollegeTimeViewModel Update(CollegeTimeViewModel collegeTimeVM);
 
+        void Delete(int id);
+
         List<CollegeTimeViewModel> GetAllByCollegeId(int collegeId);
     }
 }

@@ -19,6 +19,11 @@ namespace Inter.Core.Domain.Service
             return _collegeTimeRepository.Insert(collegeTime);
         }
 
+        public void Delete(CollegeTime collegeTime)
+        {
+            _collegeTimeRepository.Delete(collegeTime);
+        }
+
         public List<CollegeTime> GetAll(int collegeId)
         {
             return _collegeTimeRepository.FindByFilter(x => x.CollegeId == collegeId);
@@ -29,9 +34,9 @@ namespace Inter.Core.Domain.Service
             return _collegeTimeRepository.GetById(id);
         }
 
-        public CollegeTime Update(CollegeTime college)
+        public CollegeTime Update(CollegeTime collegeTime)
         {
-            throw new System.NotImplementedException();
+            return _collegeTimeRepository.Update(collegeTime);
         }
     }
 }

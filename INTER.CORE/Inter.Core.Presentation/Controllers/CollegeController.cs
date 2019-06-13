@@ -4,7 +4,6 @@ using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -209,6 +208,19 @@ namespace Inter.Core.Presentation.Controllers
 
             return PartialView(ModelState);
         }
-        #endregion
+
+        public async Task<JsonResult> DeleteConfirmedTimeCollege(int id)
+        {
+            if (id != 0)
+            {
+                _collegeTimeAppService.Delete(id);
+
+                return Json(Ok());
+            }
+
+            return Json(Conflict());
+
+            #endregion
+        }
     }
 }

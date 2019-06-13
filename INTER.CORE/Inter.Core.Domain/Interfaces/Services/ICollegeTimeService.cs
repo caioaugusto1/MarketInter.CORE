@@ -9,8 +9,10 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         CollegeTime Add(CollegeTime collegeTime);
 
+        void Delete(CollegeTime collegeTime);
+
         CollegeTime GetById(int id);
 
-        CollegeTime Update(CollegeTime college);
+        CollegeTime Update(CollegeTime collegeTime);
     }
 }

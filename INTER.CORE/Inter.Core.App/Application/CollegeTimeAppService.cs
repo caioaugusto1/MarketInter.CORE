@@ -26,6 +26,13 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CollegeTimeViewModel>(_collegeService.Add(collegeEntity));
         }
 
+        public void Delete(int id)
+        {
+            var entity = _mapper.Map<CollegeTime>(_collegeService.GetById(id));
+
+            _collegeService.Delete(entity);
+        }
+
         public List<CollegeTimeViewModel> GetAllByCollegeId(int idCollege)
         {
             return _mapper.Map<List<CollegeTimeViewModel>>(_collegeService.GetAll(idCollege));

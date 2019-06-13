@@ -91,7 +91,7 @@
                             <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="javascript:college.editCollegeTime(@time.Id)">Edit</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Delete</a>
+                                <a class="dropdown-item" href="javascript:college.popUpConfirmDeleteCollegeTime(@time.Id)">Delete</a>
                             </div>
                         </li>
                     </ul>
@@ -150,6 +150,8 @@
     }
 
 </div>
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_modalDelete.cshtml")
 
 <div id="div-modal-edit-college-time" class="modal" role="dialog">
 
