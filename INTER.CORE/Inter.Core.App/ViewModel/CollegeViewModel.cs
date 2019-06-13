@@ -1,4 +1,6 @@
 ﻿using Inter.Core.App.Enumerables;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,6 +80,7 @@ namespace Inter.Core.App.ViewModel
 
         public string TimeForWeek { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         [Display(Name = "Period Time")]
         [Required(ErrorMessage = "Period Time")]
         public PeriodClass Period { get; set; }

@@ -40,7 +40,7 @@
                 <div class="col-md-4">
                     <label class="col-md-4 control-label">Accomodation</label>
                     <select name="AccomodationId" id="accomodation" class="form-control"
-                            asp-items="@(new SelectList(ViewBag.Accomodations,"Id","Name"))">
+                            asp-items="@(new SelectList(ViewBag.Accomodations,"Id","Identifier"))">
                         <option>Please select one</option>
                     </select>
                 </div>

@@ -14,3 +14,5 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.App\obj\Debug\netcoreapp2.2\Inter.Core.App.pdb
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.App\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.App\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.App\bin\Debug\netcoreapp2.2\Newtonsoft.Json.dll
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.App\bin\Debug\netcoreapp2.2\Newtonsoft.Json.xml
