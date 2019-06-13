@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Inter.Core.Presentation.Controllers
 {
     //[Route("admin-college")]
-    //[Authorize(Roles = "Admin, Users")]
+    [Authorize(Roles = "Admin, Manager, College")]
     public class CollegeController : BaseController
     {
         private readonly ICollegeAppService _collegeAppService;

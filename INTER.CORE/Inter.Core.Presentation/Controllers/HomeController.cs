@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    //[Authorize(Roles = "Admin, Users")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

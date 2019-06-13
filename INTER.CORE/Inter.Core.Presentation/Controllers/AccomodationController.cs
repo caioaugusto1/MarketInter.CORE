@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    //[Authorize(Roles = "Admin, Users")]
+    [Authorize(Roles = "Admin, Manager, Accomodation")]
     public class AccomodationController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;

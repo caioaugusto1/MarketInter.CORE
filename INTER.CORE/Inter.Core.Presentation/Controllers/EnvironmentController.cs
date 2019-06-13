@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class EnvironmentController : Controller
     {
         private readonly IEnvironmentAppService _environmentAppService;

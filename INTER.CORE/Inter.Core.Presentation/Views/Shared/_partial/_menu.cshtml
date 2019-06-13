@@ -1,11 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
-@*@{
-    @inject UserManager<Inter.Core.Domain.Entities.ApplicationUser> UserManager
+@{
 
-//var user = await UserManager.FindByNameAsync(User.Identity.Name);
-//var claims = await UserManager.GetClaimsAsync(user);
-}*@
+}
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
@@ -80,15 +77,11 @@
                 <a class="collapse-item" href="@Url.Action("Index", "CulturalExchange", new { area = "" })">List</a>
             </div>
 
-            @*@if (claims.FirstOrDefault(x => x.Type == "CollegeAccess").Value == "true")
-            {
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">College</h6>
-                    <a class="collapse-item" href="@Url.Action("Create", "College", new { area = "" })">Register</a>
-                    <a class="collapse-item" href="@Url.Action("Index", "College", new { area = "" })">List</a>
-                </div>
-            }*@
-
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">College</h6>
+                <a class="collapse-item" href="@Url.Action("Create", "College", new { area = "" })">Register</a>
+                <a class="collapse-item" href="@Url.Action("Index", "College", new { area = "" })">List</a>
+            </div>
 
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Student</h6>

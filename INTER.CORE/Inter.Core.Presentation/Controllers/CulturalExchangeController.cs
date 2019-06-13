@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    //[Authorize(Roles = "Admin, Users")]
+    [Authorize(Roles = "Admin, Manager, CulturalExchange")]
     public class CulturalExchangeController : BaseController
     {
         private readonly ICulturalExchangeAppService _culturalExchangeAppService;

@@ -19,7 +19,7 @@
                         <tr>
                             <th>ID</th>
                             <td>Name</td>
-                            <td>Users</td>
+                          @*  <td>Users</td>*@
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -30,7 +30,7 @@
                             <tr>
                                 <td>@role.Id</td>
                                 <td>@role.Name</td>
-                                <td identity-role="@role.Id"></td>
+                                @*<td identity-role="@role.Id"></td>*@
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@role.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>

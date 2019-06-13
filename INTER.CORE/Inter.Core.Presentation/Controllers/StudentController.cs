@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    //[Authorize(Roles = "Admin, Sales")]
-    [Authorize]
+    [Authorize(Roles = "Admin, Manager, Student")]
     public class StudentController : BaseController
     {
         private readonly IStudentAppService _studentAppService;

@@ -1,5 +1,6 @@
 ﻿using Inter.Core.App.ViewModel.Identity;
 using Inter.Core.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers.Identity
 {
-    public class RoleController : Controller
+    [Authorize(Roles = "Admin, Manager")]
+    public class RoleController : BaseController
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -22,7 +24,7 @@ namespace Inter.Core.Presentation.Controllers.Identity
         public IActionResult Index()
         {
             var roles = _roleManager.Roles.Where(x => x.Name != "Admin");
-            
+
             return View(roles);
         }
 
@@ -32,7 +34,9 @@ namespace Inter.Core.Presentation.Controllers.Identity
             List<ApplicationUser> members = new List<ApplicationUser>();
             List<ApplicationUser> nonMember = new List<ApplicationUser>();
 
-            foreach (ApplicationUser user in _userManager.Users)
+            var getUser = await GetUser(_userManager);
+
+            foreach (ApplicationUser user in _userManager.Users.Where(x => x.EnvironmentId == getUser.EnvironmentId))
             {
                 var list = await _userManager.IsInRoleAsync(user, role.Name)
                     ? members
