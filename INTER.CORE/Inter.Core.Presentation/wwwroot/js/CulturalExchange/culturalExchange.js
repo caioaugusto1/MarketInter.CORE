@@ -27,7 +27,6 @@
             Util.request('/College/GetCollegeTimeByCollegeId', 'GET', { "collegeId": collegeId }, 'json', true, function (data) {
 
                 $(data).each(function (index, element) {
-                    debugger;
                     $('#collegeTime').append(`<option value="${element.id}">${element.period}</option>`);
                 });
 
@@ -68,7 +67,21 @@
 
     };
 
+    var find = function () {
+
+        let startArrivalDate = $('#startDateArrival').val();
+        let finishArrivalDate = $('#finishDateArrival').val();
+        let collegeId = $('#college').val();
+        let accomodationId = $('#accomodation').val();
+
+        Util.request('/CulturalExchange/FindByFilter', 'GET', { startArrivalDate, finishArrivalDate, collegeId, accomodationId }, 'html', true, function (data) {
+
+        }, function (request, status, error) {
+
+        });
+    };
+
     loadingPage();
 
-    return { create, popUpOpenModalFileUpload };
+    return { create, popUpOpenModalFileUpload, find };
 }();

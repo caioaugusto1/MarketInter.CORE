@@ -8,6 +8,11 @@ namespace Inter.Core.App.ViewModel
 {
     public class CollegeViewModel : BaseViewModel
     {
+        public CollegeViewModel()
+        {
+            ValidationResult = new List<ValidationResult>();
+        }
+
         [Required(ErrorMessage = "Name")]
         [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
@@ -96,6 +101,10 @@ namespace Inter.Core.App.ViewModel
         [Display(Name = "Accomodation Price")]
         [Required(ErrorMessage = "Accomodation Price")]
         public decimal AccomodationPrice { get; set; }
+
+        [Display(Name = "Percentage Price")]
+        [Required(ErrorMessage = "Percentage Price")]
+        public int PercentagePrice { get; set; }
 
         public int CollegeId { get; set; }
 

@@ -95,3 +95,6 @@ C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\_partial\_modal_create_timeCollege.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Role\Index.g.cshtml.cs
 C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Role\Edit.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\CulturalExchange\_partial\_List.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\CulturalExchange\_partial\_form_create_edit.g.cshtml.cs
+C:\Users\Caio's PC\Documents\Repositories\MarketInter.CORE\INTER.CORE\Inter.Core.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\College\_partial\_form_modal_collegeTime.g.cshtml.cs

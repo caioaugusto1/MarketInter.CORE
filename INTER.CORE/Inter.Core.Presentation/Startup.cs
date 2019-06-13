@@ -19,7 +19,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Inter.Core.Presentation
 {
@@ -106,6 +105,8 @@ namespace Inter.Core.Presentation
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //ContextSeedData.Seed(app.ApplicationServices).Wait();
         }
 
         private void InjectorDependency(IServiceCollection services)

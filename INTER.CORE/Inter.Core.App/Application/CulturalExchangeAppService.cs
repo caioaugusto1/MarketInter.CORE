@@ -5,6 +5,7 @@ using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Inter.Core.App.Application
 {
@@ -32,6 +33,14 @@ namespace Inter.Core.App.Application
         public List<CulturalExchangeViewModel> GetAll(int idEnvironment)
         {
             return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAll(idEnvironment));
+        }
+
+        public List<CulturalExchangeViewModel> GetAllByFilter(int idEnvironment, string startArrivalDate, string finishArrivalDate, int collegeId, int accomodationId)
+        {
+            DateTime startDate = Convert.ToDateTime(DateTime.Parse(startArrivalDate, new CultureInfo("pt-BR")));
+            DateTime finishDate = Convert.ToDateTime(DateTime.Parse(finishArrivalDate, new CultureInfo("pt-BR")));
+
+            return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllByFilter(idEnvironment, startDate, finishDate, collegeId, accomodationId));
         }
 
         public CulturalExchangeViewModel GetById(int id)

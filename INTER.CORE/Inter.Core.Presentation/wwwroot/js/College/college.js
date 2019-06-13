@@ -9,7 +9,7 @@
             if (data === 200) {
                 $('#description').append(`College Time included`);
 
-                $('#sub-information').append(`Time etc etc etc`);
+                $('#sub-information').append(`Time`);
                 $('#modalSuccess').modal('show');
 
                 setTimeout(function () {
@@ -22,6 +22,28 @@
         });
     };
 
+    var createCollegeTime = function () {
+
+        var collegeTime = $('#form-create-collegeTime').serialize();
+
+        Util.request('/College/CreateTimeCollege', 'POST', collegeTime, 'JSON', false, function (data) {
+
+            if (data === 200) {
+                $('#description').append(`College Edited`);
+
+                $('#sub-information').append(`Time`);
+                $('#modalSuccess').modal('show');
+
+                setTimeout(function () {
+                    location.reload();
+                }, 2000);
+            }
+
+        }, function (request, status, error) {
+
+        });
+
+    };
 
     var create = function () {
 
@@ -70,7 +92,11 @@
 
     var openModalAddCollegeTime = function () {
 
-        Util.request('/College/GetPartialCreateCollegeTime', 'GET', null, 'html', true, function (data) {
+        let collegeId = $('#collegeId');
+
+        $('#div-modal-edit-college-time #modal').remove();
+
+        Util.request('/College/GetPartialCreateCollegeTime', 'GET', collegeId, 'html', true, function (data) {
 
             $('#div-modal-edit-college-time').append(data);
             $('#div-modal-edit-college-time').modal('show');
@@ -80,5 +106,5 @@
         });
     };
 
-    return { create, edit, saveCollegeTime, editCollegeTime, openModalAddCollegeTime };
+    return { create, edit, saveCollegeTime, editCollegeTime, openModalAddCollegeTime, createCollegeTime };
 }();

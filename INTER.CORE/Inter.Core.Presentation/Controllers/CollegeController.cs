@@ -170,8 +170,10 @@ namespace Inter.Core.Presentation.Controllers
             return Conflict();
         }
 
-        public async Task<IActionResult> GetPartialCreateCollegeTime()
+        public async Task<IActionResult> GetPartialCreateCollegeTime(int collegeId)
         {
+            ViewBag.CollegeId = collegeId;
+
             return PartialView("~/Views/College/_partial/_modal_create_timeCollege.cshtml");
         }
 

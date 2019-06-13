@@ -10,6 +10,8 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         List<CulturalExchange> GetAll(int idEnvironment);
 
+        List<CulturalExchange> GetAllByFilter(int idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, int collegeId, int accomodationId);
+
         CulturalExchange GetById(int id);
 
         CulturalExchange Update(int idEnvironment, CulturalExchange student);

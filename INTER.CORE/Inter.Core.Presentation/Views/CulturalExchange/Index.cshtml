@@ -7,9 +7,59 @@
     <h1 class="h3 mb-2 text-gray-800">Cultural Exchange</h1>
     <p class="mb-4"><a target="_blank" href="CulturalExchange/Create">NEW</a></p>
     <!-- DataTales Example -->
+    <div class="card shadow mb-2">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Filter</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>(Start) - Arrival Date</label>
+                        <input id="startDateArrival" class="form-control" type="date">
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>(Finish) - Arrival Date</label>
+                        <input id="finishDateArrival" class="form-control" type="date">
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="col-md-4 control-label">College</label>
+                    <select name="CollegeId" id="college" class="form-control"
+                            asp-items="@(new SelectList(ViewBag.Colleges,"Id","Name"))">
+                        <option>Please select one</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="col-md-4 control-label">Accomodation</label>
+                    <select name="AccomodationId" id="accomodation" class="form-control"
+                            asp-items="@(new SelectList(ViewBag.Accomodations,"Id","Name"))">
+                        <option>Please select one</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input type="button" onclick="culturalExchange.find()" value="Find" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"></h6>
+            <h6 class="m-0 font-weight-bold text-primary">List</h6>
         </div>
 
         <div class="card-body">
@@ -28,44 +78,9 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
 
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @item.StudentViewModel.CustomerId
-                                </td>
-                                <td>
-                                    @item.StudentViewModel.FullName
-                                </td>
-                                <td>
-                                    @item.StudentViewModel.DateOfBirthday
-                                </td>
-                                <td>
-                                    @item.CollegeViewModel.Name
-                                </td>
-                                <td>
-                                    @item.CollegeTimeViewModel.Period
-                                </td>
-                                <td>
-                                    @item.AccomodationViewModel.Identifier
-                                </td>
-                                <td>
-                                    @item.ArrivalDateTime
-                                </td>
-                                <td>
-                                    @item.TotalValue
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+                    @await Html.PartialAsync("~/Views/CulturalExchange/_partial/_List.cshtml", Model)
 
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-facebook btn-circle btn-sm"><i class="fas fa-info"></i></a>
-                                </td>
-                            </tr>
-                        }
-
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -73,4 +88,5 @@
 </div>
 
 <script src="~/js/demo/datatables.min.js"></script>
-<script src="~/js/Student/student.js"></script>
+<script src="~/js/Util/Util.js"></script>
+<script src="~/js/CulturalExchange/culturalExchange.js"></script>

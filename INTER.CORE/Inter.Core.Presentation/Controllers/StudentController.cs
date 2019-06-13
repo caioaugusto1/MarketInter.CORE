@@ -36,7 +36,7 @@ namespace Inter.Core.Presentation.Controllers
             var studentsVM = _studentAppService.GetAll(user.Environment.Id);
             return View(studentsVM);
         }
-
+        
         // GET: Student/Details/5
         public async Task<IActionResult> Details(int id)
         {

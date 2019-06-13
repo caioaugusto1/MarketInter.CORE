@@ -1,0 +1,74 @@
+﻿@model CollegeTimeViewModel
+
+@using Inter.Core.App.Enumerables
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Start Time:</label>
+            <input asp-for="@Model.StartTime" name="FinishTime" id="finishTime" placeholder="Start Time" class="form-control" required type="time">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Finish Time:</label>
+            <input asp-for="@Model.FinishTime" name="FinishTime" id="finishTime" placeholder="Finish Time" class="form-control" required type="time">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Book Price:</label>
+            <input asp-for="@Model.BookPrice" name="BookPrice" id="bookPrice" placeholder="Book Price" class="form-control" required type="number">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Exam Price:</label>
+            <input asp-for="@Model.ExamPrice" name="ExamPrice" id="examPrice" placeholder="Exam Price" class="form-control" required type="number">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Insurance Price:</label>
+            <input asp-for="@Model.InsurancePrice" name="InsurancePrice" id="insurancePrice" placeholder="Insurance Price" class="form-control" required type="number">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Accomodation Price:</label>
+            <input type="number" asp-for="@Model.AccomodationPrice" class="form-control" placeholder="Accomodation Price">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Period:</label>
+            <select name="Period" asp-items="Html.GetEnumSelectList<PeriodClass>()" data-val-required="The Period field is required." class="form-control">
+                <option value="">Selected</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Sale Price:</label>
+            <input type="number" asp-for="@Model.Price" class="form-control"  placeholder="Price">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Percentage Price:</label>
+            <input type="number" asp-for="@Model.PercentagePrice" class="form-control" placeholder="Percentage Price">
+        </div>
+    </div>
+</div>

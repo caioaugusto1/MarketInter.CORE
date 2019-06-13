@@ -2,64 +2,26 @@
 
 @using Inter.Core.App.Enumerables
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Start Time:</label>
-            <input asp-for="@Model.StartTime" name="FinishTime" id="finishTime" placeholder="Start Time" class="form-control" required type="text">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Time College</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Finish Time:</label>
-            <input asp-for="@Model.FinishTime" name="FinishTime" id="finishTime" placeholder="Finish Time" class="form-control" required type="text">
-        </div>
-    </div>
-</div>
+        <div class="modal-body">
+            <form id="form-create-collegeTime">
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Book Price:</label>
-            <input asp-for="@Model.BookPrice" name="BookPrice" id="bookPrice" placeholder="Book Price" class="form-control" required type="text">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Exam Price:</label>
-            <input asp-for="@Model.ExamPrice" name="ExamPrice" id="examPrice" placeholder="Exam Price" class="form-control" required type="text">
-        </div>
-    </div>
-</div>
+                @await Html.PartialAsync("~/Views/College/_partial/_form_modal_collegeTime.cshtml")
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Insurance Price:</label>
-            <input asp-for="@Model.InsurancePrice" name="InsurancePrice" id="insurancePrice" placeholder="Exam Price" class="form-control" required type="text">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Accomodation Price:</label>
-            <input type="number" name="@Model.AccomodationPrice" class="form-control">
-        </div>
-    </div>
-</div>
+                <input asp-for="CollegeId" type="hidden" value="@ViewBag.CollegeId" />
 
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Period:</label>
-            <select name="Period" asp-items="Html.GetEnumSelectList<PeriodClass>()" data-val-required="The Period field is required." class="form-control">
-                <option value="">Selected</option>
-            </select>
+            </form>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Sale Price:</label>
-            <input type="number" name="@Model.Price" class="form-control">
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" onclick="college.createCollegeTime();" class="btn btn-primary">Save</button>
         </div>
     </div>
 </div>

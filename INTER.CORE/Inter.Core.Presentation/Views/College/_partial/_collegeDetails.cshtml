@@ -1,6 +1,8 @@
 ﻿@model Inter.Core.App.ViewModel.CollegeViewModel
 @using Inter.Core.App.Enumerables
 
+<input type="hidden" id="collegeId" value="@Model.Id" />
+
 <div class="col-lg-6">
     <!-- Circle Buttons -->
     <div class="card shadow mb-4">
@@ -149,6 +151,6 @@
 
 </div>
 
-<div class="modal fade" id="div-modal-edit-college-time" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="div-modal-edit-college-time" class="modal" role="dialog">
 
 </div>

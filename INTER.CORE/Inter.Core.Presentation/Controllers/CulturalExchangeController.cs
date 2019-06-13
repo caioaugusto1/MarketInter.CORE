@@ -45,7 +45,25 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null)
                 return NotFound();
 
-            return View(_culturalExchangeAppService.GetAll(user.EnvironmentId));
+            ViewBag.EnvironmentId = user.EnvironmentId;
+            ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
+            ViewBag.Accomodations = _accomodationAppService.GetAll(user.EnvironmentId);
+
+            var culturalExchangeList = _culturalExchangeAppService.GetAll(user.EnvironmentId);
+
+            return View(culturalExchangeList);
+        }
+
+        public async Task<IActionResult> FindByFilter(string startArrivalDate, string finishArrivalDate, int collegeId, int accomodationId)
+        {
+            var user = await GetUser(_userManager);
+
+            if (user == null)
+                return NotFound();
+
+            var culturalExchangeList = _culturalExchangeAppService.GetAllByFilter(user.EnvironmentId, startArrivalDate, finishArrivalDate, collegeId, accomodationId);
+
+            return PartialView("~/Views/CulturalExchange/_partial/_List.cshtml", culturalExchangeList);
         }
 
         // GET: CulturalExchange/Details/5
