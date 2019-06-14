@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="col-md-8 control-label">Customer Id*</label>
-                                <input name="customerId" id="customerId" class="form-control" type="text" value="Teste">
+                                <input name="customerId" id="customerId" class="form-control" type="text" value="" disabled>
                             </div>
 
                             <div class="col-md-4">
@@ -32,6 +32,15 @@
                         <br />
 
                         @await Html.PartialAsync("~/Views/ReceivePaymentCulturalExchange/_partial/_form_create_edit.cshtml", Model)
+
+                        <div class="row"> 
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-md-8 control-label">Value Payment:</label>
+                                    <input asp-for="Value" name="Value" id="value" placeholder="Value Payment" class="form-control" required type="number">
+                                </div>
+                            </div>
+                        </div>
 
                         <input hidden asp-for="EnviromentId" value="@ViewBag.EnvironmentId" />
 

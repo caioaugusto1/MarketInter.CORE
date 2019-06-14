@@ -1,6 +1,7 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    //[Authorize(Roles = "Admin, Manager, ReceivePaymentCulturalExchange")]
+    [Authorize(Roles = "Admin, Manager, ReceivePaymentCulturalExchange")]
     public class ReceivePaymentCulturalExchangeController : BaseController
     {
-        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IReceivePaymentCulturalExchangeAppService _receivePaymentCulturalExchangeAppService;
         private readonly ICulturalExchangeAppService _culturalExchangeAppService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public ReceivePaymentCulturalExchangeController(
             UserManager<ApplicationUser> userManager,
@@ -40,9 +41,17 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: ReceivePaymentCulturalExchange/Details/5
-        public IActionResult Details(int id)
+        public IActionResult Details(string id)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(id) || id.ToString() == "0")
+                return NotFound();
+
+            var receivePayments = _receivePaymentCulturalExchangeAppService.GetById(id);
+
+            if (receivePayments == null)
+                return NotFound();
+
+            return View(receivePayments);
         }
 
         // GET: ReceivePaymentCulturalExchange/Create

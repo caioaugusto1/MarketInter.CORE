@@ -1,6 +1,5 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

@@ -102,7 +102,7 @@ namespace Inter.Core.App.AutoMapper
                .ReverseMap();
 
             CreateMap<ReceivePaymentCulturalExchange, ReceivePaymentCulturalExchangeViewModel>()
-               .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
+               .ForMember(x => x.Id, y => y.MapFrom(f => Convert.ToString(f.Id)))
                .ForMember(x => x.DateOfPayment, y => y.MapFrom(f => f.DateOfPayment))
                .ForMember(x => x.From, y => y.MapFrom(f => f.From))
                .ForMember(x => x.To, y => y.MapFrom(f => f.To))

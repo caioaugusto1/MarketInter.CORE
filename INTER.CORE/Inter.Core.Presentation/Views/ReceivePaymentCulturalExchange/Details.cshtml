@@ -1,0 +1,32 @@
+﻿@model ReceivePaymentCulturalExchangeViewModel
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+<div class="col-lg-6">
+    <!-- Circle Buttons -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">@Model.CulturalExchange.StudentViewModel.FullName</h6>
+        </div>
+        <div class="card-body">
+            <div class="small mb-1"></div>
+            <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Actions
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="@Url.Action("Edit", "ReceivePaymentCulturalExchange", new { id = Model.Id })">Edit</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:culturalExchange.popUpOpenModalFileUpload('@Model.Id')">+ File Upload</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        @await Html.PartialAsync("~/Views/ReceivePaymentCulturalExchange/_partial/_details_delete.cshtml", Model)
+
+    </div>
+</div>

@@ -1,6 +1,7 @@
 ﻿using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Service
@@ -16,6 +17,8 @@ namespace Inter.Core.Domain.Service
 
         public ReceivePaymentCulturalExchange Add(ReceivePaymentCulturalExchange payment)
         {
+            payment.Id = Guid.NewGuid();
+
             return _receivePaymentCulturalExchangeRepository.Insert(payment);
         }
 
@@ -29,9 +32,10 @@ namespace Inter.Core.Domain.Service
             return _receivePaymentCulturalExchangeRepository.GetAllIncludedDependencys(idEnviroment);
         }
 
-        public ReceivePaymentCulturalExchange GetById(int id)
+        public ReceivePaymentCulturalExchange GetById(Guid id)
         {
-            return _receivePaymentCulturalExchangeRepository.GetById(id);
+            return _receivePaymentCulturalExchangeRepository.GetByIdIncludedDependency(id);
+            //return _receivePaymentCulturalExchangeRepository.GetById(id);
         }
 
         public ReceivePaymentCulturalExchange Update(int idEnvironment, ReceivePaymentCulturalExchange payment)

@@ -1,11 +1,22 @@
-﻿using Inter.Core.App.ViewModel.Base;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel
 {
-    public class ReceivePaymentCulturalExchangeViewModel : BaseViewModel
+    public class ReceivePaymentCulturalExchangeViewModel/* : BaseViewModel*/
     {
+        public string Id { get; set; }
+
+        public int EnviromentId { get; set; }
+
+        public virtual EnvironmentViewModel EnvironmentViewModel { get; set; }
+
+        //public virtual List<CulturalExchangeFileUploadViewModel> Files { get; set; }
+
+        [ScaffoldColumn(false)]
+        public List<ValidationResult> ValidationResult { get; set; }
+
         public float Value { get; set; }
 
         [Display(Name = "Finish Accomodation")]

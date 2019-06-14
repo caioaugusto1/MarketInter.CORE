@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ReceivePaymentCulturalExchangeFileUploadViewModel>
+
+<div class="col-lg-10">
+    <!-- Roitation Utilities -->
+    <div class="card">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Files</h6>
+        </div>
+        <div class="card-body text-center">
+            @foreach (var file in Model)
+            {
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Type</th>
+                                    <th>Upload Date</th>
+                                    <th>Note</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.FileName
+                                        </td>
+                                        <td>
+                                            @item.Type
+                                        </td>
+                                        <td>
+                                            @item.UploadDate
+                                        </td>
+                                        <td>
+                                            @item.Note
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info btn-circle btn-sm" href="@Url.Action("Download", "FileUpload", new { filename = item.FileName })"><i class="fas fa-download"></i></a>
+
+                                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

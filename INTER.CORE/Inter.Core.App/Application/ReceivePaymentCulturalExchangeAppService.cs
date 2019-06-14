@@ -3,6 +3,7 @@ using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Application
@@ -42,9 +43,11 @@ namespace Inter.Core.App.Application
             return _mapper.Map<List<ReceivePaymentCulturalExchangeViewModel>>(_receivePaymentCulturalExchangeService.GetAllIncludedDependency(environmentId));
         }
 
-        public ReceivePaymentCulturalExchangeViewModel GetById(int id)
+        public ReceivePaymentCulturalExchangeViewModel GetById(string id)
         {
-            return _mapper.Map<ReceivePaymentCulturalExchangeViewModel>(_receivePaymentCulturalExchangeService.GetById(id));
+            Guid idGuid = Guid.Parse(id);
+
+            return _mapper.Map<ReceivePaymentCulturalExchangeViewModel>(_receivePaymentCulturalExchangeService.GetById(idGuid));
         }
 
         public ReceivePaymentCulturalExchangeViewModel Update(int environmentId, ReceivePaymentCulturalExchangeViewModel paymentVM)

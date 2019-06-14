@@ -13,7 +13,7 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         List<ReceivePaymentCulturalExchange> GetAllIncludedDependency(int idEnviroment);
 
-        ReceivePaymentCulturalExchange GetById(int id);
+        ReceivePaymentCulturalExchange GetById(Guid id);
 
         ReceivePaymentCulturalExchange Update(int idEnvironment, ReceivePaymentCulturalExchange payment);
     }

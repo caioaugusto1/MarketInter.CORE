@@ -25,46 +25,46 @@
                             <th>Date of Payment</th>
                             <th>Arrival Date</th>
                             <th>Start Date</th>
-                            <th>Total Need</th>
-                            <th>Total Payment</th>
-                            <th>Total Value</th>
+                            <th>Payment</th>
+                            <th>C.E Value</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="culturalExchangeTBody">
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @item.Id
-                                </td>
-                                <td>
-                                    @item.Id
-                                </td>
-                                <td>
-                                    @item.Id
-                                </td>
-                                <td>
-                                    @item.DateOfPayment
-                                </td>
-                                <td>
-                                    @item.Id
-                                </td>
-                                <td>
-                                    @item.Id
-                                </td>
-                                <td>
-                                    @item.Id
-                                </td>
-                                <td>
-                                    @item.Id
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+                        <tr>
+                            <td>
+                                @item.CulturalExchange.StudentViewModel.CustomerId
+                            </td>
+                            <td>
+                                @item.CulturalExchange.StudentViewModel.FullName
+                            </td>
+                            <td>
+                                @item.CulturalExchange.StudentViewModel.DateOfBirthday
+                            </td>
+                            <td>
+                                @item.DateOfPayment
+                            </td>
+                            <td>
+                                @item.CulturalExchange.ArrivalDateTime
+                            </td>
+                            <td>
+                                @item.CulturalExchange.StartDate
+                            </td>
+                            <td>
+                                @item.Value
+                            </td>
+                            <td>
+                                @item.CulturalExchange.TotalValue
+                            </td>
 
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-facebook btn-circle btn-sm"><i class="fas fa-info"></i></a>
-                                </td>
-                            </tr>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-facebook btn-circle btn-sm"><i class="fas fa-info"></i></a>
+                            </td>
+                        </tr>
                         }
 
                     </tbody>
