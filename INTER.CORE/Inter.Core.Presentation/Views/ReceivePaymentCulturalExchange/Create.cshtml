@@ -1,0 +1,65 @@
+﻿@model ReceivePaymentCulturalExchangeViewModel
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+<div class="container">
+
+    <h1 class="h3 mb-2 text-gray-800">Receive Payment - NEW</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td colspan="1">
+                    <form id="form-create-culturalExchange" asp-action="OnCreate" class="well form-horizontal">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="col-md-8 control-label">Customer Id*</label>
+                                <input name="customerId" id="customerId" class="form-control" type="text" value="Teste">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="col-md-4 control-label">Full Name*</label>
+                                <select asp-for="CulturalExchange" required class="form-control"
+                                        asp-items="@(new SelectList(ViewBag.CulturalExchange,"Id","StudentViewModel.FullName"))">
+                                    <option>Please select one</option>
+                                </select>
+                                <span asp-validation-for="CulturalExchange" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        @await Html.PartialAsync("~/Views/ReceivePaymentCulturalExchange/_partial/_form_create_edit.cshtml", Model)
+
+                        <input hidden asp-for="EnviromentId" value="@ViewBag.EnvironmentId" />
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+
+    <script src="~/js/Util/Util.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

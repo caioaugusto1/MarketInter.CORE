@@ -1,5 +1,4 @@
 ﻿using Inter.Core.App.ViewModel;
-using Inter.Core.Domain.Entities;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Intefaces

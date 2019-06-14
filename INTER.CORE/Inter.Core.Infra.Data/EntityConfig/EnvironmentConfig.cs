@@ -14,6 +14,10 @@ namespace Inter.Core.Infra.Data.EntityConfig
                 .IsRequired()
                 .HasMaxLength(100);
 
+            builder.Property(x => x.CompanyCode)
+                .IsRequired()
+                .HasMaxLength(10);
+
             builder.ToTable("Environment");
         }
     }

@@ -73,6 +73,8 @@ namespace Inter.Core.Domain.Entities
 
         public virtual List<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
 
+        public virtual List<ReceivePaymentCulturalExchange> ReceivePaymentCulturalExchanges { get; set; }
+
         [NotMapped]
         public List<ValidationResult> ValidationResult { get; set; }
 

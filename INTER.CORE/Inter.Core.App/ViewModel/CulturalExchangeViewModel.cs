@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inter.Core.App.ViewModel.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;

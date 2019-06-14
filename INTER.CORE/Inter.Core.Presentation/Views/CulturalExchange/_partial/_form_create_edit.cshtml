@@ -49,7 +49,7 @@
 
     <div class="col-md-4">
         <div class="form-group">
-            <label>Arrival Date Time*</label>
+            <label class="col-md-4 control-label">Arrival*</label>
             <input asp-for="ArrivalDateTime" name="ArrivalDateTime" placeholder="Start Time" class="form-control" required type="datetime-local">
             <span asp-validation-for="ArrivalDateTime" class="text-danger"></span>
         </div>
@@ -57,7 +57,7 @@
 
     <div class="col-md-4">
         <div class="form-group">
-            <label>Start Date*</label>
+            <label class="col-md-6 control-label">Start Date*</label>
             <input asp-for="StartDate" name="StartDate" placeholder="Start Date" class="form-control" required type="date">
             <span asp-validation-for="StartDate" class="text-danger"></span>
         </div>
@@ -141,7 +141,7 @@
 
     <div class="col-md-3">
         <div class="form-group">
-            <label>Start Accomodation*</label>
+            <label class="col-md-4 control-label">Start Accomodation*</label>
             <input type="date" class="form-control date-accomodation" disabled />
             <span asp-validation-for="QuantityDaysOfAccomodation" class="text-danger"></span>
         </div>
@@ -149,23 +149,23 @@
 
     <div class="col-md-3">
         <div class="form-group">
-            <label>Finish Accomodation*</label>
+            <label class="col-md-4 control-label">Finish Accomodation*</label>
             <input type="date" class="form-control date-accomodation" disabled />
             <span asp-validation-for="QuantityDaysOfAccomodation" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group">
-            <label>Flight Number*</label>
+            <label class="col-md-2 control-label">Flight Number*</label>
             <input type="text" asp-for="FlightNumber" class="form-control" />
             <span asp-validation-for="FlightNumber" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="form-group">
-            <label>Company*</label>
+            <label class="col-md-4 control-label">Company*</label>
             <input type="text" asp-for="Company" class="form-control" />
             <span asp-validation-for="Company" class="text-danger"></span>
         </div>
@@ -174,32 +174,21 @@
 </div>
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="form-group">
-            <label>Sales man*</label>
+            <label class="col-md-4 control-label">Sales man*</label>
             <input class="form-control" type="text" asp-for="SalesMan" />
             <span asp-validation-for="SalesMan" class="text-danger"></span>
 
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group">
-            <label>Total Value*</label>
+            <label class="col-md-42control-label">Total Value*</label>
             <input class="form-control" type="number" asp-for="TotalValue" />
             <span asp-validation-for="TotalValue" class="text-danger"></span>
 
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-3">
-        <div class="form-group">
-            <div class="form-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                <input type="button" onclick="culturalExchange.create()" value="Create" class="btn btn-primary" />
-            </div>
         </div>
     </div>
 </div>

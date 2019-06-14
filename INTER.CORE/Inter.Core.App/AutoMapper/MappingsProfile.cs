@@ -100,6 +100,19 @@ namespace Inter.Core.App.AutoMapper
                .ForMember(x => x.SalesMan, y => y.MapFrom(f => f.SalesMen))
                .ForMember(x => x.TotalValue, y => y.MapFrom(f => f.TotalValue))
                .ReverseMap();
+
+            CreateMap<ReceivePaymentCulturalExchange, ReceivePaymentCulturalExchangeViewModel>()
+               .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
+               .ForMember(x => x.DateOfPayment, y => y.MapFrom(f => f.DateOfPayment))
+               .ForMember(x => x.From, y => y.MapFrom(f => f.From))
+               .ForMember(x => x.To, y => y.MapFrom(f => f.To))
+               .ForMember(x => x.ReceivePaymentCulturalExchangeFileUploadViewModel, y => y.MapFrom(f => f.ReceivePaymentCulturalExchangeFileUpload))
+               .ForMember(x => x.EnvironmentViewModel, y => y.MapFrom(f => f.Environment))
+               .ForMember(x => x.CulturalExchangeId, y => y.MapFrom(f => f.CulturalExchangeId))
+               .ForMember(x => x.EnviromentId, y => y.MapFrom(f => f.EnvironmentId))
+               .ForMember(x => x.EnvironmentViewModel, y => y.MapFrom(f => f.Environment))
+               .ReverseMap();
+
         }
     }
 }

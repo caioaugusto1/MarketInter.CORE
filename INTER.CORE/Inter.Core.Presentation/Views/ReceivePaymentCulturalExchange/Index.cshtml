@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ReceivePaymentCulturalExchangeViewModel>
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Cultural Exchange</h1>
+    <p class="mb-4"><a target="_blank" href="ReceivePaymentCulturalExchange/Create">NEW</a></p>
+    <!-- DataTales Example -->
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">List</h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Cultomer Id</th>
+                            <th>Full Name</th>
+                            <th>Date of Birth</th>
+                            <th>Date of Payment</th>
+                            <th>Arrival Date</th>
+                            <th>Start Date</th>
+                            <th>Total Need</th>
+                            <th>Total Payment</th>
+                            <th>Total Value</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="culturalExchangeTBody">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.DateOfPayment
+                                </td>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    @item.Id
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-facebook btn-circle btn-sm"><i class="fas fa-info"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/demo/datatables.min.js"></script>
+<script src="~/js/Util/Util.js"></script>

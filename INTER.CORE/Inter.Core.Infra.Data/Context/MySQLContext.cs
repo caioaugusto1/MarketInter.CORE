@@ -1,4 +1,5 @@
 ﻿using Inter.Core.Domain.Entities;
+using Inter.Core.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inter.Core.Infra.Data.Context
@@ -16,6 +17,8 @@ namespace Inter.Core.Infra.Data.Context
         public DbSet<CulturalExchange> CulturalExchange { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
+        public DbSet<ReceivePaymentCulturalExchange> ReceivePaymentCulturalExchange { get; set; }
+        public DbSet<ReceivePaymentCulturalExchangeFileUpload> ReceivePaymentCulturalExchangeFileUpload { get; set; }
         public DbSet<Advisor> Advisor { get; set; }
         public DbSet<Accomodation> Accomodation { get; set; }
 
@@ -23,7 +26,7 @@ namespace Inter.Core.Infra.Data.Context
         {
             if (!optionsBuilder.IsConfigured)
                 optionsBuilder.UseMySql(GetStringConectionConfig());
-            
+
             base.OnConfiguring(optionsBuilder);
         }
 

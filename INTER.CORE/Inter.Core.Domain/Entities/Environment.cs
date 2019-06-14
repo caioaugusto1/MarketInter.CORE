@@ -37,5 +37,7 @@ namespace Inter.Core.Domain.Entities
         public virtual List<College> Colleges { get; set; }
 
         public virtual List<CulturalExchange> CulturalExchange { get; set; }
+
+        public virtual List<ReceivePaymentCulturalExchange> ReceivePaymentsCulturalExchanges { get; set; }
     }
 }

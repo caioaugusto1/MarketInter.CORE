@@ -1,4 +1,5 @@
 ﻿using Inter.Core.App.Enumerables;
+using Inter.Core.App.ViewModel.Base;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
