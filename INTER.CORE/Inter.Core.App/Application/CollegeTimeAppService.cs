@@ -3,6 +3,7 @@ using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Application
@@ -26,19 +27,19 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CollegeTimeViewModel>(_collegeService.Add(collegeEntity));
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             var entity = _mapper.Map<CollegeTime>(_collegeService.GetById(id));
 
             _collegeService.Delete(entity);
         }
 
-        public List<CollegeTimeViewModel> GetAllByCollegeId(int idCollege)
+        public List<CollegeTimeViewModel> GetAllByCollegeId(Guid idCollege)
         {
             return _mapper.Map<List<CollegeTimeViewModel>>(_collegeService.GetAll(idCollege));
         }
 
-        public CollegeTimeViewModel GetById(int id)
+        public CollegeTimeViewModel GetById(Guid id)
         {
             return _mapper.Map<CollegeTimeViewModel>(_collegeService.GetById(id));
         }

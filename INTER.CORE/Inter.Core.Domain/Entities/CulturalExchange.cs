@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Inter.Core.Domain.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inter.Core.Domain.Entities
 {
-    public class CulturalExchange
+    public class CulturalExchange : EntityBase
     {
         public CulturalExchange()
         {
@@ -16,25 +17,23 @@ namespace Inter.Core.Domain.Entities
             CulturalExchangeFileUpload = new List<CulturalExchangeFileUpload>();
         }
 
-        public int Id { get; set; }
-
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
 
         public virtual Student Student { get; set; }
 
-        public int CollegeId { get; set; }
+        public Guid CollegeId { get; set; }
 
         public virtual College College { get; set; }
 
-        public int CollegeTimeId { get; set; }
+        public Guid CollegeTimeId { get; set; }
 
         public virtual CollegeTime CollegeTime { get; set; }
 
-        public int AccomodationId { get; set; }
+        public Guid AccomodationId { get; set; }
 
         public virtual Accomodation Accomodation { get; set; }
 
-        public int DateOfAccomodation { get; set; }
+        public int DaysOfAccomodation { get; set; }
 
         public DateTime StartAccomodation { get; set; }
 
@@ -67,16 +66,9 @@ namespace Inter.Core.Domain.Entities
 
         public string SalesMen { get; set; }
 
-        public int EnvironmentId { get; set; }
-
-        public virtual SystemEnvironment Environment { get; set; }
-
         public virtual List<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
 
         public virtual List<ReceivePaymentCulturalExchange> ReceivePaymentCulturalExchanges { get; set; }
-
-        [NotMapped]
-        public List<ValidationResult> ValidationResult { get; set; }
 
         //public virtual List<CulturalExchangePayment> Payments { get; set; }
 

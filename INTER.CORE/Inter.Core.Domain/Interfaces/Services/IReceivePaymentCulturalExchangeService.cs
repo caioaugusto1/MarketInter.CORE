@@ -9,12 +9,12 @@ namespace Inter.Core.Domain.Interfaces.Services
     {
         ReceivePaymentCulturalExchange Add(ReceivePaymentCulturalExchange payment);
 
-        List<ReceivePaymentCulturalExchange> GetAll(int idEnvironment);
+        List<ReceivePaymentCulturalExchange> GetAll(Guid idEnvironment);
 
-        List<ReceivePaymentCulturalExchange> GetAllIncludedDependency(int idEnviroment);
+        List<ReceivePaymentCulturalExchange> GetAllIncludedDependency(Guid idEnviroment);
 
         ReceivePaymentCulturalExchange GetById(Guid id);
 
-        ReceivePaymentCulturalExchange Update(int idEnvironment, ReceivePaymentCulturalExchange payment);
+        ReceivePaymentCulturalExchange Update(Guid idEnvironment, ReceivePaymentCulturalExchange payment);
     }
 }

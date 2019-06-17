@@ -1,15 +1,16 @@
 ﻿using Inter.Core.App.ViewModel;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Intefaces
 {
     public interface IAccomodationAppService
     {
-        AccomodationViewModel Add(int environmentId, AccomodationViewModel accomodationViewModel);
+        AccomodationViewModel Add(Guid environmentId, AccomodationViewModel accomodationViewModel);
 
-        List<AccomodationViewModel> GetAll(int idEnvironment);
+        List<AccomodationViewModel> GetAll(Guid idEnvironment);
 
-        AccomodationViewModel GetById(int id);
+        AccomodationViewModel GetById(Guid id);
 
         AccomodationViewModel Update(AccomodationViewModel accomodationViewModel);
     }

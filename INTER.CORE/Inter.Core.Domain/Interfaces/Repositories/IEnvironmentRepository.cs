@@ -1,4 +1,5 @@
 ﻿using Inter.Core.Domain.Entities;
+using System;
 
 namespace Inter.Core.Domain.Interfaces.Repositories
 {
@@ -6,6 +7,6 @@ namespace Inter.Core.Domain.Interfaces.Repositories
     {
         SystemEnvironment GetByCode(string code);
 
-        SystemEnvironment GetEnvironmentByIdIncludeDependencys(int id);
+        SystemEnvironment GetEnvironmentByIdIncludeDependencys(Guid id);
     }
 }

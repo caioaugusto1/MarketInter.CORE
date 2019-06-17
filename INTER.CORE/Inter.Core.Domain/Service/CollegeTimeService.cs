@@ -1,6 +1,7 @@
 ﻿using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Service
@@ -18,6 +19,7 @@ namespace Inter.Core.Domain.Service
 
         public CollegeTime Add(CollegeTime collegeTime)
         {
+            collegeTime.Id = Guid.NewGuid();
             return _collegeTimeRepository.Insert(collegeTime);
         }
 
@@ -26,12 +28,12 @@ namespace Inter.Core.Domain.Service
             _collegeTimeRepository.Delete(collegeTime);
         }
 
-        public List<CollegeTime> GetAll(int collegeId)
+        public List<CollegeTime> GetAll(Guid collegeId)
         {
             return _collegeTimeRepository.FindByFilter(x => x.CollegeId == collegeId);
         }
 
-        public CollegeTime GetById(int id)
+        public CollegeTime GetById(Guid id)
         {
             return _collegeTimeRepository.GetById(id);
         }

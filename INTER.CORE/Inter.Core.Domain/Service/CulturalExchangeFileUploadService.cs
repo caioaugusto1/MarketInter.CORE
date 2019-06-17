@@ -17,22 +17,23 @@ namespace Inter.Core.Domain.Service
 
         public CulturalExchangeFileUpload Add(CulturalExchangeFileUpload file)
         {
+            file.Id = Guid.NewGuid();
             file.UploadDate = DateTime.Now;
 
             return _culturalExchangeFileUploadRepository.Insert(file);
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             throw new System.NotImplementedException();
         }
 
-        public List<CulturalExchangeFileUpload> GetAllByCulturalExchangeId(int culturalExchangeId)
+        public List<CulturalExchangeFileUpload> GetAllByCulturalExchangeId(Guid culturalExchangeId)
         {
             return _culturalExchangeFileUploadRepository.FindByFilter(x => x.CulturalExchangeId == culturalExchangeId);
         }
 
-        public CulturalExchangeFileUpload GetById(int id)
+        public CulturalExchangeFileUpload GetById(Guid id)
         {
             return _culturalExchangeFileUploadRepository.GetById(id);
         }

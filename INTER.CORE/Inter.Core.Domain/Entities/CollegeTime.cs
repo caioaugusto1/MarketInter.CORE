@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Inter.Core.Domain.Entities
 {
     public class CollegeTime
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string StartTime { get; set; }
 
@@ -28,7 +26,9 @@ namespace Inter.Core.Domain.Entities
 
         public decimal AccomodationPrice { get; set; }
 
-        public int CollegeId { get; set; }
+        public int PercentagePrice { get; set; }
+
+        public Guid CollegeId { get; set; }
 
         public virtual College College { get; set; }
 

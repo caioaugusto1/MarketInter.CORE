@@ -17,7 +17,7 @@ namespace Inter.Core.Infra.Data.Repositories
             _OptionsBuilder = new DbContextOptions<MySQLContext>();
         }
 
-        public List<ReceivePaymentCulturalExchange> GetAllIncludedDependencys(int environmentId)
+        public List<ReceivePaymentCulturalExchange> GetAllIncludedDependencys(Guid environmentId)
         {
             using (var db = new MySQLContext(_OptionsBuilder))
             {

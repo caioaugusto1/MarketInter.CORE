@@ -4,6 +4,7 @@ using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -54,7 +55,7 @@ namespace Inter.Core.Presentation.Controllers
             return View(culturalExchangeList);
         }
 
-        public async Task<IActionResult> FindByFilter(string startArrivalDate, string finishArrivalDate, int collegeId, int accomodationId)
+        public async Task<IActionResult> FindByFilter(string startArrivalDate, string finishArrivalDate, Guid collegeId, Guid accomodationId)
         {
             var user = await GetUser(_userManager);
 
@@ -67,9 +68,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: CulturalExchange/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var culturalExchangeViewModel = _culturalExchangeAppService.GetById(id);
@@ -123,9 +124,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: CulturalExchange/Edit/5
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var culturalExchangeViewModel = _culturalExchangeAppService.GetById(id);
@@ -150,9 +151,9 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CulturalExchangeViewModel culturalExchangeViewModel)
+        public async Task<IActionResult> Edit(Guid id, CulturalExchangeViewModel culturalExchangeViewModel)
         {
-            if (id != culturalExchangeViewModel.Id)
+            if (id == Guid.Empty)
                 return NotFound();
 
             if (ModelState.IsValid)
@@ -165,9 +166,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: CulturalExchange/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var culturalExchangeViewModel = _culturalExchangeAppService.GetById(id);

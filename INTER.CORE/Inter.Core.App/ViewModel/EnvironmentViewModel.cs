@@ -9,7 +9,7 @@ namespace Inter.Core.App.ViewModel
     public class EnvironmentViewModel
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Company Name")]
         [MaxLength(100, ErrorMessage = "Max {0} caracteres")]

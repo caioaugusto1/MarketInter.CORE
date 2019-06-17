@@ -22,7 +22,7 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.Accomodations, y => y.MapFrom(f => f.AccomodationViewModel))
                 .ForMember(x => x.Colleges, y => y.MapFrom(f => f.CollegeViewModel))
                 .ForMember(x => x.CulturalExchange, y => y.MapFrom(f => f.CulturalExchangeViewModel))
-                .ForMember(x => x.Advisors, y => y.MapFrom(f => f.AdvisorViewModel))
+                //.ForMember(x => x.Advisors, y => y.MapFrom(f => f.AdvisorViewModel))
                 .ReverseMap();
 
             CreateMap<Student, StudentViewModel>()
@@ -96,7 +96,7 @@ namespace Inter.Core.App.AutoMapper
                .ForMember(x => x.Company, y => y.MapFrom(f => f.Company))
                .ForMember(x => x.FlightNumber, y => y.MapFrom(f => f.FlightNumber))
                .ForMember(x => x.CollegePayment, y => y.MapFrom(f => f.CollegePayment))
-               .ForMember(x => x.QuantityDaysOfAccomodation, y => y.MapFrom(f => f.DateOfAccomodation))
+               .ForMember(x => x.QuantityDaysOfAccomodation, y => y.MapFrom(f => f.DaysOfAccomodation))
                .ForMember(x => x.SalesMan, y => y.MapFrom(f => f.SalesMen))
                .ForMember(x => x.TotalValue, y => y.MapFrom(f => f.TotalValue))
                .ReverseMap();

@@ -26,17 +26,17 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CulturalExchangeFileUploadViewModel>(_culturalExchangeFileUploadService.Add(culturalExchangeFileUploadEntity));
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public List<CulturalExchangeFileUploadViewModel> GetAllByCulturalExchangeId(int studentId)
+        public List<CulturalExchangeFileUploadViewModel> GetAllByCulturalExchangeId(Guid studentId)
         {
             return _mapper.Map<List<CulturalExchangeFileUploadViewModel>>(_culturalExchangeFileUploadService.GetAllByCulturalExchangeId(studentId));
         }
 
-        public CulturalExchangeFileUploadViewModel GetById(int id)
+        public CulturalExchangeFileUploadViewModel GetById(Guid id)
         {
             return _mapper.Map<CulturalExchangeFileUploadViewModel>(_culturalExchangeFileUploadService.GetById(id));
         }

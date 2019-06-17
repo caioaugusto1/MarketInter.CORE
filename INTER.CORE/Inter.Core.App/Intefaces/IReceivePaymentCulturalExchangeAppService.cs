@@ -8,13 +8,13 @@ namespace Inter.Core.App.Intefaces
     {
         ReceivePaymentCulturalExchangeViewModel Add(ReceivePaymentCulturalExchangeViewModel paymentVM);
 
-        List<ReceivePaymentCulturalExchangeViewModel> GetAll(int environmentId);
+        List<ReceivePaymentCulturalExchangeViewModel> GetAll(Guid environmentId);
 
-        List<ReceivePaymentCulturalExchangeViewModel> GetAllIncludedDependency(int environmentId);
+        List<ReceivePaymentCulturalExchangeViewModel> GetAllIncludedDependency(Guid environmentId);
 
         ReceivePaymentCulturalExchangeViewModel GetById(Guid id);
 
-        ReceivePaymentCulturalExchangeViewModel Update(int environmentId, ReceivePaymentCulturalExchangeViewModel paymentVM);
+        ReceivePaymentCulturalExchangeViewModel Update(Guid environmentId, ReceivePaymentCulturalExchangeViewModel paymentVM);
 
         void Delete(Guid id);
     }

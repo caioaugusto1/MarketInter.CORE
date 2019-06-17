@@ -34,12 +34,12 @@ namespace Inter.Core.Domain.Service
             return _environmentRepository.GetByCode(code);
         }
 
-        public SystemEnvironment GetById(int id)
+        public SystemEnvironment GetById(Guid id)
         {
             return _environmentRepository.GetById(id);
         }
 
-        public SystemEnvironment GetStudentsNotEnroled(int idEnvironment)
+        public SystemEnvironment GetStudentsNotEnroled(Guid idEnvironment)
         {
             SystemEnvironment systemEnvironmentEntity = _environmentRepository.GetById(idEnvironment);
 

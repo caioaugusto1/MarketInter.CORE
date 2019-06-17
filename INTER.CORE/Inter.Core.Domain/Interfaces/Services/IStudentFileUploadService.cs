@@ -1,4 +1,5 @@
 ﻿using Inter.Core.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Interfaces.Services
@@ -7,12 +8,12 @@ namespace Inter.Core.Domain.Interfaces.Services
     {
         CulturalExchangeFileUpload Add(CulturalExchangeFileUpload file);
 
-        List<CulturalExchangeFileUpload> GetAllByCulturalExchangeId(int studentId);
+        List<CulturalExchangeFileUpload> GetAllByCulturalExchangeId(Guid studentId);
 
-        CulturalExchangeFileUpload GetById(int id);
+        CulturalExchangeFileUpload GetById(Guid id);
 
         CulturalExchangeFileUpload Update(CulturalExchangeFileUpload file);
 
-        void Delete(int id);
+        void Delete(Guid id);
     }
 }

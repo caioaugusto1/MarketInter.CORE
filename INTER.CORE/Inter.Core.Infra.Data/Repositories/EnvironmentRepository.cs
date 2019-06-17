@@ -2,6 +2,7 @@
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 namespace Inter.Core.Infra.Data.Repositories
@@ -23,7 +24,7 @@ namespace Inter.Core.Infra.Data.Repositories
             }
         }
 
-        public SystemEnvironment GetEnvironmentByIdIncludeDependencys(int id)
+        public SystemEnvironment GetEnvironmentByIdIncludeDependencys(Guid id)
         {
             using (var db = new MySQLContext(_OptionsBuilder))
             {

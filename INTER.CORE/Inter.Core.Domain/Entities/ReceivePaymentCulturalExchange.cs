@@ -3,10 +3,8 @@ using System;
 
 namespace Inter.Core.Domain.Entities
 {
-    public class ReceivePaymentCulturalExchange
+    public class ReceivePaymentCulturalExchange : EntityBase
     {
-        public Guid Id { get; set; }
-
         public float Value { get; set; }
 
         public DateTime DateOfPayment { get; set; }
@@ -17,12 +15,8 @@ namespace Inter.Core.Domain.Entities
 
         public virtual ReceivePaymentCulturalExchangeFileUpload ReceivePaymentCulturalExchangeFileUpload { get; set; }
 
-        public int CulturalExchangeId { get; set; }
+        public Guid CulturalExchangeId { get; set; }
 
         public virtual CulturalExchange CulturalExchange { get; set; }
-
-        public int EnvironmentId { get; set; }
-
-        public virtual SystemEnvironment Environment { get; set; }
     }
 }

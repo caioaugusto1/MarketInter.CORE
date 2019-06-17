@@ -1,4 +1,5 @@
 ﻿using Inter.Core.App.ViewModel;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Intefaces
@@ -7,12 +8,12 @@ namespace Inter.Core.App.Intefaces
     {
         CollegeTimeViewModel Add(CollegeTimeViewModel collegeTimeVM);
 
-        CollegeTimeViewModel GetById(int id);
+        CollegeTimeViewModel GetById(Guid id);
         
         CollegeTimeViewModel Update(CollegeTimeViewModel collegeTimeVM);
 
-        void Delete(int id);
+        void Delete(Guid id);
 
-        List<CollegeTimeViewModel> GetAllByCollegeId(int collegeId);
+        List<CollegeTimeViewModel> GetAllByCollegeId(Guid collegeId);
     }
 }

@@ -1,15 +1,18 @@
-﻿using Inter.Core.Domain.Entities;
+﻿using Inter.Core.App.Enumerables;
+using Inter.Core.Domain.Entities;
 using Inter.Core.Presentation.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private RoleManager<IdentityRole> _roleManager;
@@ -18,11 +21,14 @@ namespace Inter.Core.Presentation.Controllers
         {
             _userManager = userManager;
             _roleManager = roleManager;
+
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.RolesList = _roleManager.Roles;
+            var user = await GetUser(_userManager);
+
+            ViewBag.RolesList = await _userManager.GetRolesAsync(user);
 
             return View();
         }

@@ -3,6 +3,7 @@ using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Application
@@ -37,7 +38,7 @@ namespace Inter.Core.App.Application
             return _mapper.Map<EnvironmentViewModel>(environment);
         }
 
-        public EnvironmentViewModel GetById(int id)
+        public EnvironmentViewModel GetById(Guid id)
         {
             return _mapper.Map<EnvironmentViewModel>(_environmentService.GetById(id));
         }

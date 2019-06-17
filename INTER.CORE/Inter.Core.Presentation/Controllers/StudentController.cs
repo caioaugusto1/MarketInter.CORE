@@ -4,6 +4,7 @@ using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -33,14 +34,14 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null || user.Environment == null)
                 return NotFound();
 
-            var studentsVM = _studentAppService.GetAll(user.Environment.Id);
+            var studentsVM = _studentAppService.GetAll(user.EnvironmentId);
             return View(studentsVM);
         }
-        
+
         // GET: Student/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var user = await GetUser(_userManager);
@@ -48,7 +49,7 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null && user.Environment == null)
                 return NotFound();
 
-            var studentViewModel = _studentAppService.GetById(user.Environment.Id, id);
+            var studentViewModel = _studentAppService.GetById(user.EnvironmentId, id);
 
             if (studentViewModel == null)
                 return NotFound();
@@ -78,7 +79,7 @@ namespace Inter.Core.Presentation.Controllers
 
                 if (!studentViewModel.ValidationResult.Any())
                     return Json(new { studentName = studentViewModel.FullName, statusCode = HttpStatusCode.OK });
-                
+
                 return Json(Conflict(studentViewModel.ValidationResult));
             }
 
@@ -86,9 +87,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: Student/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            if (id == null || id.Value == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var user = await GetUser(_userManager);
@@ -96,7 +97,7 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null && user.Environment == null)
                 return NotFound();
 
-            StudentViewModel studentViewModel = _studentAppService.GetById(user.Environment.Id, id.Value);
+            StudentViewModel studentViewModel = _studentAppService.GetById(user.EnvironmentId, id);
 
             if (studentViewModel == null)
                 return NotFound();
@@ -109,9 +110,9 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, StudentViewModel studentViewModel)
+        public async Task<IActionResult> Edit(Guid id, StudentViewModel studentViewModel)
         {
-            if (id != studentViewModel.Id || id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             if (ModelState.IsValid)
@@ -131,9 +132,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: Student/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            if (id == null || id.Value == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var user = await GetUser(_userManager);
@@ -141,7 +142,7 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null && user.Environment == null)
                 return NotFound();
 
-            var studentViewModel = _studentAppService.GetById(user.Environment.Id, id.Value);
+            var studentViewModel = _studentAppService.GetById(user.EnvironmentId, id);
 
             if (studentViewModel == null)
                 return NotFound();
@@ -149,9 +150,9 @@ namespace Inter.Core.Presentation.Controllers
             return View(studentViewModel);
         }
 
-        public async Task<JsonResult> DeleteConfirmed(int studentId)
+        public async Task<JsonResult> DeleteConfirmed(Guid studentId)
         {
-            if (studentId == 0)
+            if (studentId == Guid.Empty)
                 return Json(NotFound());
 
             _studentAppService.Delete(studentId);

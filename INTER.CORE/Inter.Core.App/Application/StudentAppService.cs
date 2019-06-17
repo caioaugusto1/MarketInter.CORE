@@ -4,6 +4,7 @@ using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
 using Inter.Core.Domain.ServiceInterface;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Application
@@ -21,7 +22,7 @@ namespace Inter.Core.App.Application
             _environmentService = environmentService;
         }
 
-        public StudentViewModel Add(int idEnvironment, StudentViewModel studentViewModel)
+        public StudentViewModel Add(Guid idEnvironment, StudentViewModel studentViewModel)
         {
             Student student = _mapper.Map<Student>(studentViewModel);
             SystemEnvironment environment = _mapper.Map<SystemEnvironment>(_environmentService.GetById(idEnvironment));
@@ -30,27 +31,27 @@ namespace Inter.Core.App.Application
 
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             _studentService.Delete(id);
         }
 
-        public List<StudentViewModel> GetAll(int idEnvironment)
+        public List<StudentViewModel> GetAll(Guid idEnvironment)
         {
             return _mapper.Map<List<StudentViewModel>>(_studentService.GetAll(idEnvironment));
         }
 
-        public StudentViewModel GetById(int idEnvironment, int id)
+        public StudentViewModel GetById(Guid idEnvironment, Guid id)
         {
             return _mapper.Map<StudentViewModel>(_studentService.GetById(idEnvironment, id));
         }
 
-        public List<StudentViewModel> GetStudentsNotEnroled(int idEnvironment)
+        public List<StudentViewModel> GetStudentsNotEnroled(Guid idEnvironment)
         {
             return _mapper.Map<List<StudentViewModel>>(_studentService.GetNotEnroled(idEnvironment));
         }
 
-        public StudentViewModel Update(int idEnvironment, StudentViewModel studentViewModel)
+        public StudentViewModel Update(Guid idEnvironment, StudentViewModel studentViewModel)
         {
             Student student = _mapper.Map<Student>(studentViewModel);
             return _mapper.Map<StudentViewModel>(_studentService.Update(idEnvironment, student));

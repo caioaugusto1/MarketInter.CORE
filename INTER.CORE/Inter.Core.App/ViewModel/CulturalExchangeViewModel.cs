@@ -20,25 +20,25 @@ namespace Inter.Core.App.ViewModel
 
         [Required(ErrorMessage = "Student")]
         [DisplayName("Selected Student")]
-        public int StudentId { get; set; }
+        public Guid StudentId { get; set; }
 
         public virtual StudentViewModel StudentViewModel { get; set; }
 
         [Required(ErrorMessage = "College")]
         [DisplayName("Selected College")]
-        public int CollegeId { get; set; }
+        public Guid CollegeId { get; set; }
 
         public virtual CollegeViewModel CollegeViewModel { get; set; }
 
         [Required(ErrorMessage = "College Time")]
         [DisplayName("Selected College Time")]
-        public int CollegeTimeId { get; set; }
+        public Guid CollegeTimeId { get; set; }
 
         public virtual CollegeTimeViewModel CollegeTimeViewModel { get; set; }
 
         [Required(ErrorMessage = "Accomodation")]
         [DisplayName("Selected Accomodation")]
-        public int AccomodationId { get; set; }
+        public Guid AccomodationId { get; set; }
 
         public virtual AccomodationViewModel AccomodationViewModel { get; set; }
 

@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Inter.Core.App.ViewModel.Base;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel
 {
-    public class AccomodationViewModel
+    public class AccomodationViewModel : BaseViewModel
     {
-        [Key]
-        public int Id { get; set; }
 
         [Required(ErrorMessage = "Identifier")]
         [MaxLength(15, ErrorMessage = "Max {0} caracteres")]
@@ -43,8 +43,5 @@ namespace Inter.Core.App.ViewModel
         
         public virtual List<CulturalExchangeViewModel> CulturalExchangeViewModel { get; set; }
 
-        public int EnviromentId { get; set; }
-
-        public virtual EnvironmentViewModel EnvironmentViewModel { get; set; }
     }
 }

@@ -1,15 +1,16 @@
 ﻿using Inter.Core.App.ViewModel;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Intefaces
 {
     public interface ICollegeAppService
     {
-        CollegeViewModel Add(int idEnvironment, CollegeViewModel collegeViewModel);
+        CollegeViewModel Add(Guid idEnvironment, CollegeViewModel collegeViewModel);
 
-        List<CollegeViewModel> GetAll(int idEnvironment);
+        List<CollegeViewModel> GetAll(Guid idEnvironment);
 
-        CollegeViewModel GetById(int id);
+        CollegeViewModel GetById(Guid id);
 
         CollegeViewModel Update(CollegeViewModel collegeViewModel);
 

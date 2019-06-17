@@ -1,4 +1,5 @@
 ﻿using Inter.Core.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.Domain.ServiceInterface
@@ -7,14 +8,14 @@ namespace Inter.Core.Domain.ServiceInterface
     {
         Student Add(SystemEnvironment environment, Student student);
 
-        List<Student> GetAll(int idEnvironment);
+        List<Student> GetAll(Guid idEnvironment);
 
-        List<Student> GetNotEnroled(int idEnvironment);
+        List<Student> GetNotEnroled(Guid idEnvironment);
         
-        Student GetById(int idEnvironment, int id);
+        Student GetById(Guid idEnvironment, Guid id);
 
-        Student Update(int idEnvironment, Student student);
+        Student Update(Guid idEnvironment, Student student);
 
-        void Delete(int id);
+        void Delete(Guid id);
     }
 }

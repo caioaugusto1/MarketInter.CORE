@@ -1,4 +1,5 @@
 ﻿using Inter.Core.App.ViewModel;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Intefaces
@@ -9,7 +10,7 @@ namespace Inter.Core.App.Intefaces
 
         List<EnvironmentViewModel> GetAll();
 
-        EnvironmentViewModel GetById(int id);
+        EnvironmentViewModel GetById(Guid id);
 
         EnvironmentViewModel GetByCode(string code);
 

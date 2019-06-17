@@ -2,6 +2,7 @@
 using Inter.Core.App.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -23,9 +24,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: Environment/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var environmentViewModel = _environmentAppService.GetById(id);
@@ -59,9 +60,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: Environment/Edit/5
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var environmentViewModel = _environmentAppService.GetById(id);
@@ -77,7 +78,7 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, EnvironmentViewModel environmentViewModel)
+        public async Task<IActionResult> Edit(Guid id, EnvironmentViewModel environmentViewModel)
         {
             if (id != environmentViewModel.Id)
                 return NotFound();
@@ -92,9 +93,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: Environment/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var environmentViewModel = _environmentAppService.GetById(id);
@@ -108,7 +109,7 @@ namespace Inter.Core.Presentation.Controllers
         // POST: Environment/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var environmentViewModel = _environmentAppService.GetById(id);
             return RedirectToAction(nameof(Index));

@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Inter.Core.Domain.Entities.Base;
+using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Entities
 {
-    public class College
+    public class College : EntityBase
     {
         public College()
         {
             CollegeTime = new List<CollegeTime>();
             Environment = new SystemEnvironment();
         }
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -27,10 +26,6 @@ namespace Inter.Core.Domain.Entities
         public string Email { get; set; }
 
         public virtual List<CollegeTime> CollegeTime { get; set; }
-
-        public int EnvironmentId { get; set; }
-
-        public virtual SystemEnvironment Environment { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Inter.Core.App.ViewModel;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Intefaces
@@ -7,12 +8,12 @@ namespace Inter.Core.App.Intefaces
     {
         CulturalExchangeFileUploadViewModel Add(CulturalExchangeFileUploadViewModel file);
 
-        List<CulturalExchangeFileUploadViewModel> GetAllByCulturalExchangeId(int culturalExchangeId);
+        List<CulturalExchangeFileUploadViewModel> GetAllByCulturalExchangeId(Guid culturalExchangeId);
 
-        CulturalExchangeFileUploadViewModel GetById(int id);
+        CulturalExchangeFileUploadViewModel GetById(Guid id);
 
         CulturalExchangeFileUploadViewModel Update(CulturalExchangeFileUploadViewModel file);
 
-        void Delete(int id);
+        void Delete(Guid id);
     }
 }

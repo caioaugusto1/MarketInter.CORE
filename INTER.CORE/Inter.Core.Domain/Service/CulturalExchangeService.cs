@@ -32,6 +32,8 @@ namespace Inter.Core.Domain.Service
 
         public CulturalExchange Add(CulturalExchange culturalExchange)
         {
+            culturalExchange.Id = Guid.NewGuid();
+
             College college = _collegeRepository.GetById(culturalExchange.CollegeId);
 
             culturalExchange.ValidationResult = new List<ValidationResult>();
@@ -61,7 +63,7 @@ namespace Inter.Core.Domain.Service
             return culturalExchange;
         }
 
-        public List<CulturalExchange> GetAll(int idEnvironment)
+        public List<CulturalExchange> GetAll(Guid idEnvironment)
         {
             var culturalExchangeEntity = _culturalExchangeRepository.FindByFilter(x => x.Environment.Id == idEnvironment);
 
@@ -76,7 +78,7 @@ namespace Inter.Core.Domain.Service
             return culturalExchangeEntity;
         }
 
-        public List<CulturalExchange> GetAllByFilter(int idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, int collegeId, int accomodationId)
+        public List<CulturalExchange> GetAllByFilter(Guid idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, Guid collegeId, Guid accomodationId)
         {
             List<CulturalExchange> culturalExchangeEntity = new List<CulturalExchange>();
 
@@ -94,10 +96,10 @@ namespace Inter.Core.Domain.Service
             if (finishArrivalDateTime != DateTime.MinValue)
                 culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Date <= finishArrivalDateTime).ToList();
 
-            if (collegeId != 0)
+            if (collegeId != Guid.Empty)
                 culturalExchangeEntity = culturalExchangeEntity.Where(x => x.CollegeId == collegeId).ToList();
 
-            if (accomodationId != 0)
+            if (accomodationId != Guid.Empty)
                 culturalExchangeEntity = culturalExchangeEntity.Where(x => x.AccomodationId == accomodationId).ToList();
 
             culturalExchangeEntity.ForEach(x =>
@@ -111,7 +113,7 @@ namespace Inter.Core.Domain.Service
             return culturalExchangeEntity;
         }
 
-        public CulturalExchange GetById(int id)
+        public CulturalExchange GetById(Guid id)
         {
             var culturalExchangeEntity = _culturalExchangeRepository.GetById(id);
 
@@ -124,7 +126,7 @@ namespace Inter.Core.Domain.Service
             return culturalExchangeEntity;
         }
 
-        public CulturalExchange Update(int idEnvironment, CulturalExchange culturalExchange)
+        public CulturalExchange Update(Guid idEnvironment, CulturalExchange culturalExchange)
         {
             return _culturalExchangeRepository.Update(culturalExchange);
         }

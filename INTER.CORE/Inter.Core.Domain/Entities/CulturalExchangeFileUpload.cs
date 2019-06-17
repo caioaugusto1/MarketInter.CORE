@@ -4,7 +4,7 @@ namespace Inter.Core.Domain.Entities
 {
     public class CulturalExchangeFileUpload
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string FileName { get; set; }
 
@@ -14,7 +14,7 @@ namespace Inter.Core.Domain.Entities
 
         public string Note { get; set; }
 
-        public int CulturalExchangeId { get; set; }
+        public Guid CulturalExchangeId { get; set; }
 
         public virtual CulturalExchange CulturalExchange { get; set; }
 

@@ -33,12 +33,12 @@ namespace Inter.Core.App.Application
             throw new System.NotImplementedException();
         }
 
-        public List<ReceivePaymentCulturalExchangeViewModel> GetAll(int environmentId)
+        public List<ReceivePaymentCulturalExchangeViewModel> GetAll(Guid environmentId)
         {
             return _mapper.Map<List<ReceivePaymentCulturalExchangeViewModel>>(_receivePaymentCulturalExchangeService.GetAll(environmentId));
         }
 
-        public List<ReceivePaymentCulturalExchangeViewModel> GetAllIncludedDependency(int environmentId)
+        public List<ReceivePaymentCulturalExchangeViewModel> GetAllIncludedDependency(Guid environmentId)
         {
             return _mapper.Map<List<ReceivePaymentCulturalExchangeViewModel>>(_receivePaymentCulturalExchangeService.GetAllIncludedDependency(environmentId));
         }
@@ -48,7 +48,7 @@ namespace Inter.Core.App.Application
             return _mapper.Map<ReceivePaymentCulturalExchangeViewModel>(_receivePaymentCulturalExchangeService.GetById(id));
         }
 
-        public ReceivePaymentCulturalExchangeViewModel Update(int environmentId, ReceivePaymentCulturalExchangeViewModel paymentVM)
+        public ReceivePaymentCulturalExchangeViewModel Update(Guid environmentId, ReceivePaymentCulturalExchangeViewModel paymentVM)
         {
             var paymentEntity = _mapper.Map<ReceivePaymentCulturalExchange>(paymentVM);
 

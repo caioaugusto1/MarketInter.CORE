@@ -22,7 +22,7 @@ namespace Inter.Core.App.Application
             _environmentService = environmentService;
         }
 
-        public CulturalExchangeViewModel Add(int idEnvironment, CulturalExchangeViewModel culturalExchangeView)
+        public CulturalExchangeViewModel Add(Guid idEnvironment, CulturalExchangeViewModel culturalExchangeView)
         {
             var culturalExchange = _mapper.Map<CulturalExchange>(culturalExchangeView);
             culturalExchange.Environment = _mapper.Map<SystemEnvironment>(_environmentService.GetById(idEnvironment));
@@ -30,12 +30,12 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.Add(culturalExchange));
         }
 
-        public List<CulturalExchangeViewModel> GetAll(int idEnvironment)
+        public List<CulturalExchangeViewModel> GetAll(Guid idEnvironment)
         {
             return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAll(idEnvironment));
         }
 
-        public List<CulturalExchangeViewModel> GetAllByFilter(int idEnvironment, string startArrivalDate, string finishArrivalDate, int collegeId, int accomodationId)
+        public List<CulturalExchangeViewModel> GetAllByFilter(Guid idEnvironment, string startArrivalDate, string finishArrivalDate, Guid collegeId, Guid accomodationId)
         {
             DateTime finishDate = DateTime.MinValue;
             DateTime startDate = DateTime.MinValue;
@@ -49,7 +49,7 @@ namespace Inter.Core.App.Application
             return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllByFilter(idEnvironment, startDate, finishDate, collegeId, accomodationId));
         }
 
-        public CulturalExchangeViewModel GetById(int id)
+        public CulturalExchangeViewModel GetById(Guid id)
         {
             return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.GetById(id));
         }

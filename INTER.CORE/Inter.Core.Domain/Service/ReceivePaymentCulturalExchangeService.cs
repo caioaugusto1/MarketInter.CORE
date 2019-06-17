@@ -22,12 +22,12 @@ namespace Inter.Core.Domain.Service
             return _receivePaymentCulturalExchangeRepository.Insert(payment);
         }
 
-        public List<ReceivePaymentCulturalExchange> GetAll(int idEnvironment)
+        public List<ReceivePaymentCulturalExchange> GetAll(Guid idEnvironment)
         {
             return _receivePaymentCulturalExchangeRepository.FindByFilter(x => x.EnvironmentId == idEnvironment);
         }
 
-        public List<ReceivePaymentCulturalExchange> GetAllIncludedDependency(int idEnviroment)
+        public List<ReceivePaymentCulturalExchange> GetAllIncludedDependency(Guid idEnviroment)
         {
             return _receivePaymentCulturalExchangeRepository.GetAllIncludedDependencys(idEnviroment);
         }
@@ -38,7 +38,7 @@ namespace Inter.Core.Domain.Service
             //return _receivePaymentCulturalExchangeRepository.GetById(id);
         }
 
-        public ReceivePaymentCulturalExchange Update(int idEnvironment, ReceivePaymentCulturalExchange payment)
+        public ReceivePaymentCulturalExchange Update(Guid idEnvironment, ReceivePaymentCulturalExchange payment)
         {
             return _receivePaymentCulturalExchangeRepository.Update(payment);
         }

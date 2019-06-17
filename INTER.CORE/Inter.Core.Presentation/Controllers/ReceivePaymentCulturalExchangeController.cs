@@ -102,7 +102,7 @@ namespace Inter.Core.Presentation.Controllers
         // POST: ReceivePaymentCulturalExchange/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ReceivePaymentCulturalExchangeViewModel paymentReceiveVM)
+        public async Task<IActionResult> Edit(Guid id, ReceivePaymentCulturalExchangeViewModel paymentReceiveVM)
         {
             var user = await GetUser(_userManager);
 
@@ -120,7 +120,7 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: ReceivePaymentCulturalExchange/Delete/5
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             return View();
         }

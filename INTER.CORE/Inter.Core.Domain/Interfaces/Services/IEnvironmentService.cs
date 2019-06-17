@@ -1,6 +1,6 @@
 ﻿using Inter.Core.Domain.Entities;
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.Interfaces.Services
 {
@@ -10,11 +10,11 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         List<SystemEnvironment> GetAll();
 
-        SystemEnvironment GetById(int id);
+        SystemEnvironment GetById(Guid id);
 
         SystemEnvironment GetByCode(string code);
 
-        SystemEnvironment GetStudentsNotEnroled(int idEnvironment);
+        SystemEnvironment GetStudentsNotEnroled(Guid idEnvironment);
 
         void Update(SystemEnvironment environment);
     }

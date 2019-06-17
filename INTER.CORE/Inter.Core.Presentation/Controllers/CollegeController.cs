@@ -4,6 +4,7 @@ using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -42,9 +43,9 @@ namespace Inter.Core.Presentation.Controllers
 
 
         // GET: College/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var collegeViewModel = _collegeAppService.GetById(id);
@@ -87,9 +88,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: College/Edit/5
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var collegeViewModel = _collegeAppService.GetById(id);
@@ -105,9 +106,9 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address,City,Country,EnviromentId")] CollegeViewModel collegeViewModel)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Address,City,Country,EnviromentId")] CollegeViewModel collegeViewModel)
         {
-            if (id != collegeViewModel.Id || id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             if (ModelState.IsValid)
@@ -120,9 +121,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: College/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var collegeViewModel = _collegeAppService.GetById(id);
@@ -136,7 +137,7 @@ namespace Inter.Core.Presentation.Controllers
         // POST: College/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var collegeViewModel = _collegeAppService.GetById(id);
 
@@ -170,16 +171,16 @@ namespace Inter.Core.Presentation.Controllers
             return Conflict();
         }
 
-        public async Task<IActionResult> GetPartialCreateCollegeTime(int collegeId)
+        public async Task<IActionResult> GetPartialCreateCollegeTime(Guid collegeId)
         {
             ViewBag.CollegeId = collegeId;
 
             return PartialView("~/Views/College/_partial/_modal_create_timeCollege.cshtml");
         }
 
-        public async Task<IActionResult> LoadingPartialEditCollegeTime(int idCollegeTime)
+        public async Task<IActionResult> LoadingPartialEditCollegeTime(Guid idCollegeTime)
         {
-            if (idCollegeTime == 0)
+            if (idCollegeTime == Guid.Empty)
                 return NotFound();
 
             var collegeTime = _collegeTimeAppService.GetById(idCollegeTime);
@@ -187,9 +188,9 @@ namespace Inter.Core.Presentation.Controllers
             return PartialView("~/Views/College/_partial/_edit_collegeTime.cshtml", collegeTime);
         }
 
-        public async Task<JsonResult> GetCollegeTimeByCollegeId(int collegeId)
+        public async Task<JsonResult> GetCollegeTimeByCollegeId(Guid collegeId)
         {
-            if (collegeId == 0)
+            if (collegeId == Guid.Empty)
                 return Json(NotFound());
 
             var collegeTime = _collegeTimeAppService.GetAllByCollegeId(collegeId);
@@ -209,9 +210,9 @@ namespace Inter.Core.Presentation.Controllers
             return Json(Conflict(ModelState.Values.SelectMany(x => x.Errors)));
         }
 
-        public async Task<JsonResult> DeleteConfirmedTimeCollege(int id)
+        public async Task<JsonResult> DeleteConfirmedTimeCollege(Guid id)
         {
-            if (id != 0)
+            if (id != Guid.Empty)
             {
                 _collegeTimeAppService.Delete(id);
 

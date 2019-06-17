@@ -1,16 +1,16 @@
 ﻿using Inter.Core.Domain.Entities;
+using System;
 using System.Collections.Generic;
-using static Inter.Core.Domain.Entities.College;
 
 namespace Inter.Core.Domain.Interfaces.Services
 {
     public interface ICollegeService
     {
-        List<College> GetAll(int idEnvironment);
+        List<College> GetAll(Guid idEnvironment);
 
         College Add(SystemEnvironment environment, College college);
 
-        College GetById(int id);
+        College GetById(Guid id);
         
         College Update(College college);
 

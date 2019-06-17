@@ -63,7 +63,7 @@ namespace Inter.Core.App.ViewModel
 
     public class CollegeTimeViewModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Display(Name = "Start Time")]
         [DataType(DataType.Time, ErrorMessage = "Incorrect Time")]
@@ -113,7 +113,7 @@ namespace Inter.Core.App.ViewModel
         [Display(Name = "Note")]
         public string Note { get; set; }
 
-        public int CollegeId { get; set; }
+        public Guid CollegeId { get; set; }
 
         public virtual CollegeViewModel College { get; set; }
     }

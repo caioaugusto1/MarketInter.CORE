@@ -8,12 +8,12 @@ namespace Inter.Core.Domain.Interfaces.Services
     {
         CulturalExchange Add(CulturalExchange student);
 
-        List<CulturalExchange> GetAll(int idEnvironment);
+        List<CulturalExchange> GetAll(Guid idEnvironment);
 
-        List<CulturalExchange> GetAllByFilter(int idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, int collegeId, int accomodationId);
+        List<CulturalExchange> GetAllByFilter(Guid idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, Guid collegeId, Guid accomodationId);
 
-        CulturalExchange GetById(int id);
+        CulturalExchange GetById(Guid id);
 
-        CulturalExchange Update(int idEnvironment, CulturalExchange student);
+        CulturalExchange Update(Guid idEnvironment, CulturalExchange student);
     }
 }

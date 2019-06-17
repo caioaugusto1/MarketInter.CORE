@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.App.ViewModel.Base
@@ -6,9 +7,9 @@ namespace Inter.Core.App.ViewModel.Base
     public class BaseViewModel
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int EnviromentId { get; set; }
+        public Guid EnviromentId { get; set; }
 
         public virtual EnvironmentViewModel EnvironmentViewModel { get; set; }
 

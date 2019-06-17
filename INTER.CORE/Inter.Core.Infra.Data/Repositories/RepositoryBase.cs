@@ -47,7 +47,7 @@ namespace Inter.Core.Infra.Data.Repositories
             }
         }
 
-        public TEntity GetById(int id)
+        public TEntity GetById(Guid id)
         {
             using (var db = new MySQLContext(_OptionsBuilder))
             {

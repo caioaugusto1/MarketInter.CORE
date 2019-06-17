@@ -9,7 +9,7 @@ namespace Inter.Core.Domain.Interfaces.Repositories
     {
         List<TEntity> GetAll();
 
-        TEntity GetById(int id);
+        TEntity GetById(Guid id);
 
         TEntity Insert(TEntity obj);
 

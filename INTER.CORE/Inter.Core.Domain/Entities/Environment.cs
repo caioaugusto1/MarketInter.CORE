@@ -14,7 +14,7 @@ namespace Inter.Core.Domain.Entities
             Accomodations = new List<Accomodation>();
         }
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string CompanyName { get; set; }
 
@@ -32,7 +32,7 @@ namespace Inter.Core.Domain.Entities
 
         public virtual List<Accomodation> Accomodations { get; set; }
 
-        public virtual List<Advisor> Advisors { get; set; }
+        //public virtual List<Advisor> Advisors { get; set; }
 
         public virtual List<College> Colleges { get; set; }
 

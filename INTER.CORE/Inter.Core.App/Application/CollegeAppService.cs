@@ -3,6 +3,7 @@ using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Application
@@ -20,7 +21,7 @@ namespace Inter.Core.App.Application
             _environmentService = environmentService;
         }
 
-        public CollegeViewModel Add(int idEnvironment, CollegeViewModel collegeViewModel)
+        public CollegeViewModel Add(Guid idEnvironment, CollegeViewModel collegeViewModel)
         {
             var college = _mapper.Map<College>(collegeViewModel);
             var environment = _mapper.Map<SystemEnvironment>(_environmentService.GetById(idEnvironment));
@@ -38,12 +39,12 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CollegeViewModel>(_collegeService.Update(college));
         }
 
-        public List<CollegeViewModel> GetAll(int idEnvironment)
+        public List<CollegeViewModel> GetAll(Guid idEnvironment)
         {
             return _mapper.Map<List<CollegeViewModel>>(_collegeService.GetAll(idEnvironment));
         }
 
-        public CollegeViewModel GetById(int id)
+        public CollegeViewModel GetById(Guid id)
         {
             return _mapper.Map<CollegeViewModel>(_collegeService.GetById(id));
         }

@@ -4,6 +4,7 @@ using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -33,9 +34,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: Accomodation/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var accomodationViewModel = _accomodationAppService.GetById(id);
@@ -73,9 +74,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: Accomodation/Edit/5
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var accomodationViewModel = _accomodationAppService.GetById(id);
@@ -91,9 +92,9 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, AccomodationViewModel accomodationViewModel)
+        public async Task<IActionResult> Edit(Guid id, AccomodationViewModel accomodationViewModel)
         {
-            if (id != accomodationViewModel.Id || id == 0)
+            if (id != accomodationViewModel.Id || id == Guid.Empty)
                 return NotFound();
 
             if (ModelState.IsValid)
@@ -107,9 +108,9 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: Accomodation/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            if (id == 0)
+            if (id == Guid.Empty)
                 return NotFound();
 
             var accomodationViewModel = _accomodationAppService.GetById(id);
@@ -123,7 +124,7 @@ namespace Inter.Core.Presentation.Controllers
         // POST: Accomodation/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var accomodationViewModel = _accomodationAppService.GetById(id);
             return RedirectToAction(nameof(Index));

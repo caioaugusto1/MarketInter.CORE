@@ -8,7 +8,7 @@ namespace Inter.Core.Infra.Data.Repositories
 {
     public class AccomodationRepository : RepositoryBase<Accomodation>, IAccomodationRepository
     {
-        public List<Accomodation> VacancyAvailability(int id)
+        public List<Accomodation> VacancyAvailability(Guid id)
         {
             throw new NotImplementedException();
         }

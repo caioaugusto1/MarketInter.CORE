@@ -3,6 +3,7 @@ using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.ServiceInterface;
 using Inter.Core.Domain.Specification.Student;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace Inter.Core.Domain.Service
 
         public Student Add(SystemEnvironment environment, Student student)
         {
+            student.Id = Guid.NewGuid();
+
             student.Environment = environment;
 
             student.ValidationResult = new List<ValidationResult>();
@@ -43,24 +46,24 @@ namespace Inter.Core.Domain.Service
             return student;
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             var studentEntity = _studentRepository.GetById(id);
 
             _studentRepository.Delete(studentEntity);
         }
 
-        public List<Student> GetAll(int idEnvironment)
+        public List<Student> GetAll(Guid idEnvironment)
         {
             return _studentRepository.FindByFilter(x => x.EnvironmentId == idEnvironment);
         }
 
-        public Student GetById(int idEnvironment, int id)
+        public Student GetById(Guid idEnvironment, Guid id)
         {
             return _studentRepository.GetById(id);
         }
 
-        public List<Student> GetNotEnroled(int idEnvironment)
+        public List<Student> GetNotEnroled(Guid idEnvironment)
         {
             List<Student> students = new List<Student>();
             var environment = _environmentRepository.GetEnvironmentByIdIncludeDependencys(idEnvironment);
@@ -76,7 +79,7 @@ namespace Inter.Core.Domain.Service
             return students;
         }
 
-        public Student Update(int idEnvironment, Student student)
+        public Student Update(Guid idEnvironment, Student student)
         {
             return _studentRepository.Update(student);
         }

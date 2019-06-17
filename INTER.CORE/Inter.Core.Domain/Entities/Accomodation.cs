@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Inter.Core.Domain.Entities.Base;
+using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Entities
 {
-    public class Accomodation
+    public class Accomodation : EntityBase
     {
-        public int Id { get; set; }
-
         public string Identifier { get; set; }
 
         public string Address { get; set; }
@@ -18,11 +17,7 @@ namespace Inter.Core.Domain.Entities
 
         public bool Available { get; set; }
 
-        //public virtual List<CulturalExchange> CulturalExchanges { get; set; }
-
-        public int EnvironmentId { get; set; }
-
-        public virtual SystemEnvironment Environment { get; set; }
+        public virtual List<CulturalExchange> CulturalExchanges { get; set; }
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Service
@@ -16,15 +17,17 @@ namespace Inter.Core.Domain.Service
 
         public Accomodation Add(Accomodation accomodation)
         {
+            accomodation.Id = Guid.NewGuid();
+
             return _accomodationRepository.Insert(accomodation);
         }
 
-        public List<Accomodation> GetAll(int idEnvironment)
+        public List<Accomodation> GetAll(Guid idEnvironment)
         {
             return _accomodationRepository.FindByFilter(x => x.EnvironmentId == idEnvironment);
         }
 
-        public Accomodation GetById(int id)
+        public Accomodation GetById(Guid id)
         {
             return _accomodationRepository.GetById(id);
         }
