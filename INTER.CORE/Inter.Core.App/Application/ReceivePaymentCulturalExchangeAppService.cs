@@ -28,7 +28,7 @@ namespace Inter.Core.App.Application
             return _mapper.Map<ReceivePaymentCulturalExchangeViewModel>(_receivePaymentCulturalExchangeService.Add(paymentEntity));
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             throw new System.NotImplementedException();
         }
@@ -43,11 +43,9 @@ namespace Inter.Core.App.Application
             return _mapper.Map<List<ReceivePaymentCulturalExchangeViewModel>>(_receivePaymentCulturalExchangeService.GetAllIncludedDependency(environmentId));
         }
 
-        public ReceivePaymentCulturalExchangeViewModel GetById(string id)
+        public ReceivePaymentCulturalExchangeViewModel GetById(Guid id)
         {
-            Guid idGuid = Guid.Parse(id);
-
-            return _mapper.Map<ReceivePaymentCulturalExchangeViewModel>(_receivePaymentCulturalExchangeService.GetById(idGuid));
+            return _mapper.Map<ReceivePaymentCulturalExchangeViewModel>(_receivePaymentCulturalExchangeService.GetById(id));
         }
 
         public ReceivePaymentCulturalExchangeViewModel Update(int environmentId, ReceivePaymentCulturalExchangeViewModel paymentVM)

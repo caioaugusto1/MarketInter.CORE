@@ -13,6 +13,17 @@
                     <form id="form-create-culturalExchange" asp-action="OnCreate" class="well form-horizontal">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label class="col-md-4 control-label">Full Name*</label>
+                                <select asp-for="StudentId" required class="custom-select"
+                                        asp-items="@(new SelectList(ViewBag.Students,"Id","FullName"))">
+                                    <option>Please select one</option>
+                                </select>
+                                <span asp-validation-for="StudentViewModel" class="text-danger"></span>
+                            </div>
+                        </div>
+
                         @await Html.PartialAsync("~/Views/CulturalExchange/_partial/_form_create_edit.cshtml", Model)
 
                         <input hidden asp-for="EnviromentId" value="@ViewBag.EnvironmentId" />

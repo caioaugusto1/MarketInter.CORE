@@ -88,10 +88,10 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Company")]
         public string Company { get; set; }
 
-        [Required(ErrorMessage = "Company")]
+        [Required(ErrorMessage = "FlightNumber")]
         [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
         [MinLength(4, ErrorMessage = "Min {0} caracteres")]
-        [DisplayName("Company")]
+        [DisplayName("FlightNumber")]
         public string FlightNumber { get; set; }
 
         [DisplayName("College Payment")]

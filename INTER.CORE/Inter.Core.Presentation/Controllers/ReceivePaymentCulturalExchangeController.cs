@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,16 +14,22 @@ namespace Inter.Core.Presentation.Controllers
     [Authorize(Roles = "Admin, Manager, ReceivePaymentCulturalExchange")]
     public class ReceivePaymentCulturalExchangeController : BaseController
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IReceivePaymentCulturalExchangeAppService _receivePaymentCulturalExchangeAppService;
         private readonly ICulturalExchangeAppService _culturalExchangeAppService;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ICollegeTimeAppService _collegeTimeAppService;
+        private readonly ICollegeAppService _collegeAppService;
 
         public ReceivePaymentCulturalExchangeController(
             UserManager<ApplicationUser> userManager,
             IReceivePaymentCulturalExchangeAppService receivePaymentCulturalExchangeAppService,
-            ICulturalExchangeAppService culturalExchangeAppService)
+            ICulturalExchangeAppService culturalExchangeAppService,
+            ICollegeTimeAppService collegeTimeAppService,
+            ICollegeAppService collegeAppService)
         {
             _userManager = userManager;
+            _collegeTimeAppService = collegeTimeAppService;
+            _collegeAppService = collegeAppService;
             _receivePaymentCulturalExchangeAppService = receivePaymentCulturalExchangeAppService;
             _culturalExchangeAppService = culturalExchangeAppService;
         }
@@ -41,11 +48,8 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: ReceivePaymentCulturalExchange/Details/5
-        public IActionResult Details(string id)
+        public IActionResult Details(Guid id)
         {
-            if (string.IsNullOrWhiteSpace(id) || id.ToString() == "0")
-                return NotFound();
-
             var receivePayments = _receivePaymentCulturalExchangeAppService.GetById(id);
 
             if (receivePayments == null)
@@ -85,26 +89,34 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         // GET: ReceivePaymentCulturalExchange/Edit/5
-        public IActionResult Edit(int id)
+        public IActionResult Edit(Guid id)
         {
-            return View();
+            var culturalExchangeViewModel = _receivePaymentCulturalExchangeAppService.GetById(id);
+
+            if (culturalExchangeViewModel == null)
+                return NotFound();
+
+            return View(culturalExchangeViewModel);
         }
 
         // POST: ReceivePaymentCulturalExchange/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, ReceivePaymentCulturalExchangeViewModel paymentReceiveVM)
         {
-            try
-            {
-                // TODO: Add update logic here
+            var user = await GetUser(_userManager);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            if (user == null)
+                return NotFound();
+
+            if (ModelState.IsValid)
             {
-                return View();
+                _receivePaymentCulturalExchangeAppService.Update(user.EnvironmentId, paymentReceiveVM);
+
+                return RedirectToAction("Details", "ReceivePaymentCulturalExchange");
             }
+
+            return View(ModelState);
         }
 
         // GET: ReceivePaymentCulturalExchange/Delete/5

@@ -1,4 +1,5 @@
 ﻿using Inter.Core.App.ViewModel;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.App.Intefaces
@@ -11,10 +12,10 @@ namespace Inter.Core.App.Intefaces
 
         List<ReceivePaymentCulturalExchangeViewModel> GetAllIncludedDependency(int environmentId);
 
-        ReceivePaymentCulturalExchangeViewModel GetById(string id);
+        ReceivePaymentCulturalExchangeViewModel GetById(Guid id);
 
         ReceivePaymentCulturalExchangeViewModel Update(int environmentId, ReceivePaymentCulturalExchangeViewModel paymentVM);
 
-        void Delete(int id);
+        void Delete(Guid id);
     }
 }

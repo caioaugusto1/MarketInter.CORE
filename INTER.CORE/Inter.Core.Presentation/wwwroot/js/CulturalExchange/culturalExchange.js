@@ -26,10 +26,13 @@
 
             Util.request('/College/GetCollegeTimeByCollegeId', 'GET', { "collegeId": collegeId }, 'json', true, function (data) {
 
-                $(data).each(function (index, element) {
+                $('.collegeOption').remove();
 
-                    $('#collegeTime').append(`<option value="${element.id}">${element.period}</option>`);
-                });
+                if (data.statusCode !== 404) {
+                    $(data).each(function (index, element) {
+                        $('#collegeTime').append(`<option class="collegeOption" value="${element.id}">${element.period}</option>`);
+                    });
+                }
 
             }, function (request, status, error) {
 
@@ -49,7 +52,7 @@
                 $(data.value).each(function (index, element) {
                     $('#body-div').append($(`<p>${element.errorMessage}</p>`));
                 });
-                
+
                 $('#modal-warning').modal('show');
             }
 

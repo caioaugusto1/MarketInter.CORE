@@ -21,7 +21,7 @@
 
                             <div class="col-md-4">
                                 <label class="col-md-4 control-label">Full Name*</label>
-                                <select asp-for="CulturalExchange" required class="form-control"
+                                <select asp-for="CulturalExchangeId" required class="form-control"
                                         asp-items="@(new SelectList(ViewBag.CulturalExchange,"Id","StudentViewModel.FullName"))">
                                     <option>Please select one</option>
                                 </select>

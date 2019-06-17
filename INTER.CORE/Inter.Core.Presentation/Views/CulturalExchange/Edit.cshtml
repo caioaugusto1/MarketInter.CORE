@@ -1,76 +1,64 @@
 ﻿@model Inter.Core.App.ViewModel.CulturalExchangeViewModel
 
-@{
-    ViewData["Title"] = "Edit";
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+<div class="container">
+
+    <h1 class="h3 mb-2 text-gray-800">Cultural Exchange - NEW</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td colspan="1">
+                    <form id="form-create-culturalExchange" asp-action="OnCreate" class="well form-horizontal">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label class="col-md-6 control-label">Customer Id*</label>
+                                <input type="text" class="form-control" disabled value="@Model.StudentViewModel.CustomerId" />
+                                <span asp-validation-for="StudentViewModel" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-4 form-group">
+                                <label class="col-md-4 control-label">Full Name*</label>
+                                <input type="text" class="form-control" disabled value="@Model.StudentViewModel.FullName" />
+                                <span asp-validation-for="StudentViewModel" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        @await Html.PartialAsync("~/Views/CulturalExchange/_partial/_form_create_edit.cshtml", Model)
+
+                        <input hidden asp-for="EnviromentId" value="@ViewBag.EnvironmentId" />
+
+                    </form>
+
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input type="button" onclick="culturalExchange.create()" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_modalAlert.cshtml")
+
+
+@section Scripts {
+
+    <script src="~/js/Util/Util.js"></script>
+    <script src="~/js/CulturalExchange/culturalExchange.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
-
-<h1>Edit</h1>
-
-<h4>CulturalExchangeViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="StudentId" class="control-label"></label>
-                <input asp-for="StudentId" class="form-control" />
-                <span asp-validation-for="StudentId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CollegeId" class="control-label"></label>
-                <input asp-for="CollegeId" class="form-control" />
-                <span asp-validation-for="CollegeId" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="INSUR" /> @Html.DisplayNameFor(model => model.INSUR)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="ArrivalDateTime" class="control-label"></label>
-                <input asp-for="ArrivalDateTime" class="form-control" />
-                <span asp-validation-for="ArrivalDateTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Company" class="control-label"></label>
-                <input asp-for="Company" class="form-control" />
-                <span asp-validation-for="Company" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FlightNumber" class="control-label"></label>
-                <input asp-for="FlightNumber" class="form-control" />
-                <span asp-validation-for="FlightNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="CollegePayment" /> @Html.DisplayNameFor(model => model.CollegePayment)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalValue" class="control-label"></label>
-                <input asp-for="TotalValue" class="form-control" />
-                <span asp-validation-for="TotalValue" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EnviromentId" class="control-label"></label>
-                <input asp-for="EnviromentId" class="form-control" />
-                <span asp-validation-for="EnviromentId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

@@ -1,22 +1,22 @@
 ﻿@model CulturalExchangeViewModel
 
 <div class="row">
-    <div class="col-md-6 form-group">
-        <label class="col-md-4 control-label">Full Name*</label>
-        <select asp-for="StudentId" required class="custom-select"
-                asp-items="@(new SelectList(ViewBag.Students,"Id","FullName"))">
-            <option>Please select one</option>
-        </select>
-        <span asp-validation-for="StudentViewModel" class="text-danger"></span>
-    </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
         <label class="col-md-4 control-label">College*</label>
         <select asp-for="CollegeId" required id="college" class="form-control"
                 asp-items="@(new SelectList(ViewBag.Colleges,"Id","Name"))">
             <option>Please select one</option>
         </select>
         <span asp-validation-for="CollegeViewModel" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label class="col-md-4 control-label">Time*</label>
+        <select asp-for="CollegeTimeId" required disabled id="collegeTime" class="form-control">
+            <option value="notselected">Please select one</option>
+        </select>
+        <span asp-validation-for="CollegeTimeViewModel" class="text-danger"></span>
     </div>
 </div>
 
@@ -33,13 +33,7 @@
         <span asp-validation-for="AccomodationViewModel" class="text-danger"></span>
     </div>
 
-    <div class="col-md-4">
-        <label class="col-md-4 control-label">Time*</label>
-        <select asp-for="CollegeTimeId" required disabled id="collegeTime" class="form-control">
-            <option value="notselected">Please select one</option>
-        </select>
-        <span asp-validation-for="CollegeTimeViewModel" class="text-danger"></span>
-    </div>
+
 
 </div>
 
@@ -64,6 +58,7 @@
     </div>
 </div>
 
+<br />
 
 <div class="row">
 
@@ -106,6 +101,11 @@
             <span asp-validation-for="Transfer" class="text-danger"></span>
         </div>
     </div>
+
+</div>
+
+<div class="row">
+
     <div class="col-md-2">
         <div class="custom-control custom-checkbox small">
             <label asp-for="Support">
@@ -134,48 +134,50 @@
             <span asp-validation-for="SimCard" class="text-danger"></span>
         </div>
     </div>
+
 </div>
 
+<br />
 
-<div class="form-row">
-
+<div class="row">
     <div class="col-md-3">
         <div class="form-group">
             <label class="col-md-4 control-label">Start Accomodation*</label>
-            <input type="date" class="form-control date-accomodation" disabled />
-            <span asp-validation-for="QuantityDaysOfAccomodation" class="text-danger"></span>
+            <input type="date" asp-for="StartAccomodation" class="form-control date-accomodation" disabled />
+            <span asp-validation-for="StartAccomodation" class="text-danger"></span>
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
             <label class="col-md-4 control-label">Finish Accomodation*</label>
-            <input type="date" class="form-control date-accomodation" disabled />
-            <span asp-validation-for="QuantityDaysOfAccomodation" class="text-danger"></span>
+            <input type="date" asp-for="FinishAccomodation" class="form-control date-accomodation" disabled />
+            <span asp-validation-for="FinishAccomodation" class="text-danger"></span>
         </div>
     </div>
+</div>
 
-    <div class="col-md-2">
+<br />
+
+<div class="row">
+    <div class="col-md-4">
         <div class="form-group">
-            <label class="col-md-2 control-label">Flight Number*</label>
-            <input type="text" asp-for="FlightNumber" class="form-control" />
+            <label class="col-md-4 control-label">Flight Number*</label>
+            <input type="text" asp-for="FlightNumber" class="form-control" required />
             <span asp-validation-for="FlightNumber" class="text-danger"></span>
-            
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
-            <label class="col-md-6 control-label">Company*</label>
+            <label class="col-md-4 control-label">Company*</label>
             <input type="text" asp-for="Company" class="form-control" required />
             <span asp-validation-for="Company" class="text-danger"></span>
-            @*<div class="invalid-feedback">
-                Please provide a valid state.
-            </div>*@
         </div>
     </div>
-
 </div>
+
+<br />
 
 <div class="row">
     <div class="col-md-4">
@@ -196,3 +198,5 @@
         </div>
     </div>
 </div>
+
+<br />

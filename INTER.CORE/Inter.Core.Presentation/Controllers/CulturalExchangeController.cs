@@ -133,6 +133,15 @@ namespace Inter.Core.Presentation.Controllers
             if (culturalExchangeViewModel == null)
                 return NotFound();
 
+            var user = await GetUser(_userManager);
+
+            if (user == null)
+                return NotFound();
+
+            ViewBag.EnvironmentId = user.EnvironmentId;
+            ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
+            ViewBag.Accomodations = _accomodationAppService.GetAll(user.EnvironmentId);
+
             return View(culturalExchangeViewModel);
         }
 
