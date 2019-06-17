@@ -8,7 +8,7 @@ namespace Inter.Core.App.ViewModel
 {
     public class CulturalExchangeFileUploadViewModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public IFormFile File { get; set; }
 
@@ -24,7 +24,7 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Note")]
         public string Note { get; set; }
 
-        public int CulturalExchangeId { get; set; }
+        public Guid CulturalExchangeId { get; set; }
 
         public virtual CulturalExchangeViewModel CulturalExchangeViewModel { get; set; }
     }

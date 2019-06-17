@@ -19,6 +19,7 @@ namespace Inter.Core.Presentation.Controllers
         private readonly ICollegeTimeAppService _collegeTimeAppService;
         private readonly IEnvironmentAppService _environmentAppService;
         private readonly IAccomodationAppService _accomodationAppService;
+        private readonly IReceivePaymentCulturalExchangeAppService _receivePaymentAppService;
 
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -26,7 +27,7 @@ namespace Inter.Core.Presentation.Controllers
             ICulturalExchangeAppService culturalExchangeAppService,
             IStudentAppService studentAppService, ICollegeAppService collegeAppService,
             IEnvironmentAppService environmentAppService, IAccomodationAppService accomodationAppService,
-            ICollegeTimeAppService collegeTimeAppService
+            ICollegeTimeAppService collegeTimeAppService, IReceivePaymentCulturalExchangeAppService receivePaymentAppService
             )
         {
             _culturalExchangeAppService = culturalExchangeAppService;
@@ -36,6 +37,7 @@ namespace Inter.Core.Presentation.Controllers
             _userManager = userManager;
             _environmentAppService = environmentAppService;
             _accomodationAppService = accomodationAppService;
+            _receivePaymentAppService = receivePaymentAppService;
         }
 
         // GET: CulturalExchange
@@ -177,6 +179,16 @@ namespace Inter.Core.Presentation.Controllers
                 return NotFound();
 
             return View(culturalExchangeViewModel);
+        }
+
+        public async Task<IActionResult> PaymentDetails(Guid id)
+        {
+            if (id == Guid.Empty)
+                return NotFound();
+
+            var payments = _receivePaymentAppService.GetByCulturalExchangeId(id);
+
+            return View(payments);
         }
 
         //// POST: CulturalExchange/Delete/5

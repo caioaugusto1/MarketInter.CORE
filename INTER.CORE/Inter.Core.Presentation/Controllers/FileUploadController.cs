@@ -56,13 +56,19 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetModalCulturalExchangeUploadFile(int culturalExchangeId)
+        public async Task<IActionResult> GetModalCulturalExchangeUploadFile(Guid culturalExchangeId)
         {
             CulturalExchangeFileUploadViewModel culturalExchangeFileUploadViewModel = new CulturalExchangeFileUploadViewModel();
             culturalExchangeFileUploadViewModel.CulturalExchangeId = culturalExchangeId;
 
             return PartialView("~/Views/FileUpload/_partial/_modal_culturalExchange_upload_file.cshtml", culturalExchangeFileUploadViewModel);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> GetModalReceivePayments(Guid id)
+        //{
+        //    return;
+        //}
 
         [HttpPost]
         public async Task<JsonResult> PostModalCulturalExchangeUploadFile(CulturalExchangeFileUploadViewModel fileUploadViewModel)

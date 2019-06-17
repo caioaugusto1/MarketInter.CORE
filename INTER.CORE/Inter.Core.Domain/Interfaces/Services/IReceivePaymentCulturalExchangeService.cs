@@ -11,6 +11,8 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         List<ReceivePaymentCulturalExchange> GetAll(Guid idEnvironment);
 
+        List<ReceivePaymentCulturalExchange> GetAllByCulturalExchangeId(Guid culturalExchangeId);
+
         List<ReceivePaymentCulturalExchange> GetAllIncludedDependency(Guid idEnviroment);
 
         ReceivePaymentCulturalExchange GetById(Guid id);

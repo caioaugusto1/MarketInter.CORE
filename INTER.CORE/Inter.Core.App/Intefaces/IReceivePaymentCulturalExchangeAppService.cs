@@ -12,6 +12,8 @@ namespace Inter.Core.App.Intefaces
 
         List<ReceivePaymentCulturalExchangeViewModel> GetAllIncludedDependency(Guid environmentId);
 
+        List<ReceivePaymentCulturalExchangeViewModel> GetByCulturalExchangeId(Guid culturalExchangeId);
+
         ReceivePaymentCulturalExchangeViewModel GetById(Guid id);
 
         ReceivePaymentCulturalExchangeViewModel Update(Guid environmentId, ReceivePaymentCulturalExchangeViewModel paymentVM);

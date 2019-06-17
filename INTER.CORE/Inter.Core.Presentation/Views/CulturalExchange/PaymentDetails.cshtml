@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ReceivePaymentCulturalExchangeViewModel>
+
+@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
+<div class="col-lg-6">
+    <!-- Circle Buttons -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            @*<h6 class="m-0 font-weight-bold text-primary">@Model.FirstOrDefault().CulturalExchange.StudentViewModel.FullName</h6>*@
+        </div>
+        <div class="card-body">
+            <div class="small mb-1"></div>
+            <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="card-body">
+
+            <dl class="row">
+                <dt class="col-sm-6">
+                    Customer Id
+                </dt>
+                <dd class="col-sm-6">
+                    @Model.FirstOrDefault().CulturalExchange.StudentViewModel.CustomerId
+                </dd>
+                <dt class="col-sm-6">
+                    College
+                </dt>
+                <dd class="col-sm-6">
+                    @Model.FirstOrDefault().CulturalExchange.CollegeViewModel.Name
+                </dd>
+                <dt class="col-sm-6">
+                    College Time
+                </dt>
+                <dd class="col-sm-6">
+                    @Model.FirstOrDefault().CulturalExchange.CollegeTimeViewModel.Period
+                </dd>
+
+                <dt class="col-sm-6">
+                    Accomodation
+                </dt>
+                <dd class="col-sm-6">
+                    @Model.FirstOrDefault().CulturalExchange.AccomodationViewModel.Identifier
+                </dd>
+                <dt class="col-sm-6">
+                    Address
+                </dt>
+                <dd class="col-sm-6">
+                    @Model.FirstOrDefault().CulturalExchange.AccomodationViewModel.Address
+                </dd>
+                <dt class="col-sm-6">
+                    Cultural Exchange Price
+                </dt>
+                <dd class="col-sm-6">
+                    @Model.FirstOrDefault().CulturalExchange.TotalValue
+                </dd>
+
+            </dl>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/js/Util/Util.js"></script>
+<script src="~/js/CulturalExchange/culturalExchange.js"></script>

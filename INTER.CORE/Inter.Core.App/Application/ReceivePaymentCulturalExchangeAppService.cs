@@ -43,6 +43,11 @@ namespace Inter.Core.App.Application
             return _mapper.Map<List<ReceivePaymentCulturalExchangeViewModel>>(_receivePaymentCulturalExchangeService.GetAllIncludedDependency(environmentId));
         }
 
+        public List<ReceivePaymentCulturalExchangeViewModel> GetByCulturalExchangeId(Guid culturalExchangeId)
+        {
+            return _mapper.Map<List<ReceivePaymentCulturalExchangeViewModel>>(_receivePaymentCulturalExchangeService.GetAllByCulturalExchangeId(culturalExchangeId));
+        }
+
         public ReceivePaymentCulturalExchangeViewModel GetById(Guid id)
         {
             return _mapper.Map<ReceivePaymentCulturalExchangeViewModel>(_receivePaymentCulturalExchangeService.GetById(id));

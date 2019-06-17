@@ -29,6 +29,19 @@ namespace Inter.Core.Infra.Data.Repositories
             }
         }
 
+        public List<ReceivePaymentCulturalExchange> GetAllIncludedDependencysByCulturalExchangeId(Guid culturalExchangeId)
+        {
+            using (var db = new MySQLContext(_OptionsBuilder))
+            {
+                return db.Set<ReceivePaymentCulturalExchange>()
+                    .Include(x => x.Environment)
+                    .Include(x => x.CulturalExchange)
+                    .ThenInclude(x => x.Student)
+                    .Where(x => x.CulturalExchangeId == culturalExchangeId)
+                    .ToList();
+            }
+        }
+
         public ReceivePaymentCulturalExchange GetByIdIncludedDependency(Guid id)
         {
             using (var db = new MySQLContext(_OptionsBuilder))

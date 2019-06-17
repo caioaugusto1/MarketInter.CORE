@@ -8,6 +8,8 @@ namespace Inter.Core.Domain.Interfaces.Repositories
     {
         List<ReceivePaymentCulturalExchange> GetAllIncludedDependencys(Guid environmentId);
 
+        List<ReceivePaymentCulturalExchange> GetAllIncludedDependencysByCulturalExchangeId(Guid culturalExchangeId);
+
         ReceivePaymentCulturalExchange GetByIdIncludedDependency(Guid id);
     }
 }
