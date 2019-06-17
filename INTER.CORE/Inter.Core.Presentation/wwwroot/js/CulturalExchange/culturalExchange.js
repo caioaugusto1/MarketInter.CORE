@@ -44,8 +44,14 @@
 
         Util.request('/CulturalExchange/OnCreate', 'POST', culturalExchangeViewModel, 'JSON', false, function (data) {
 
-            //if (data.statusCode === 409) {
-            //}
+            //Conflict
+            if (data.statusCode === 409) {
+                $(data.value).each(function (index, element) {
+                    $('#body-div').append($(`<p>${element.errorMessage}</p>`));
+                });
+                
+                $('#modal-warning').modal('show');
+            }
 
         }, function (request, status, error) {
 

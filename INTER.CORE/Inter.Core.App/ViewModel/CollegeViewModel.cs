@@ -110,6 +110,9 @@ namespace Inter.Core.App.ViewModel
         [Required(ErrorMessage = "Percentage Price")]
         public int PercentagePrice { get; set; }
 
+        [Display(Name = "Note")]
+        public string Note { get; set; }
+
         public int CollegeId { get; set; }
 
         public virtual CollegeViewModel College { get; set; }

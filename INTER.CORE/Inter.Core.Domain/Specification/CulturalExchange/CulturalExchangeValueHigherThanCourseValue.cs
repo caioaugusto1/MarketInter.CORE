@@ -1,9 +1,10 @@
 ﻿using DomainValidation.Interfaces.Specification;
+using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 
 namespace Inter.Core.Domain.Specification.CulturalExchange
 {
-    public class CulturalExchangeValueHigherThanCourseValue : ISpecification<Inter.Core.Domain.Entities.CulturalExchange>
+    public class CulturalExchangeValueHigherThanCourseValue : ISpecification<Entities.CulturalExchange>
     {
         private readonly ICulturalExchangeRepository _culturalExchangeRepository;
         private readonly ICollegeTimeRepository _collegeTimeRepository;
@@ -18,7 +19,16 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
 
         public bool IsSatisfiedBy(Entities.CulturalExchange entity)
         {
-            return false;
+            CollegeTime collegeTime = _collegeTimeRepository.GetById(entity.CollegeTimeId);
+
+            //var sumValueWithPercentage = collegeTime.Price * collegeTime.PercentageCourse;
+
+            var sumValueWithPercentage = collegeTime.Price;
+
+            //if (sumValueWithPercentage >= (decimal)entity.TotalValue)
+            //    return false;
+
+            return true;
         }
     }
 }

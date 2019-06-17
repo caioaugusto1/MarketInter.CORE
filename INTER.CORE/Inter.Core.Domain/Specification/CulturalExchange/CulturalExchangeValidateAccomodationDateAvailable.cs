@@ -1,5 +1,6 @@
 ﻿using DomainValidation.Interfaces.Specification;
 using Inter.Core.Domain.Interfaces.Repositories;
+using Inter.Core.Domain.Entities;
 
 namespace Inter.Core.Domain.Specification.CulturalExchange
 {
@@ -14,7 +15,7 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
 
         public bool IsSatisfiedBy(Entities.CulturalExchange entity)
         {
-            var accomodation = _accomodationRepository.GetById(entity.AccomodationId);
+            Accomodation accomodation = _accomodationRepository.GetById(entity.AccomodationId);
 
             return true;
         }

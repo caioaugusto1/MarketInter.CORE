@@ -6,7 +6,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">Start Time:</label>
-            <input asp-for="@Model.StartTime" name="FinishTime" id="finishTime" placeholder="Start Time" class="form-control" required type="time">
+            <input asp-for="@Model.StartTime" name="StartTime" id="startTime" placeholder="Start Time" class="form-control" required type="time">
         </div>
     </div>
     <div class="col-md-6">
@@ -58,17 +58,40 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Sale Price:</label>
-            <input type="number" asp-for="@Model.Price" class="form-control"  placeholder="Price">
+            <label for="recipient-name" class="col-form-label">Percentage Price:</label>
+            <input type="number" asp-for="@Model.PercentagePrice" class="form-control" placeholder="Percentage Price">
         </div>
     </div>
 </div>
 
 <div class="row">
+
     <div class="col-md-6">
         <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Percentage Price:</label>
-            <input type="number" asp-for="@Model.PercentagePrice" class="form-control" placeholder="Percentage Price">
+            <label for="recipient-name" class="col-form-label">Days of Week:</label>
+            <select name="DaysOfWeek" class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
         </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Sale Price:</label>
+            <input type="number" asp-for="@Model.Price" class="form-control" placeholder="Price">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label class="col-form-label">Note:</label>
+        <input type="text" asp-for="@Model.Note" class="form-control" placeholder="Note" />
     </div>
 </div>

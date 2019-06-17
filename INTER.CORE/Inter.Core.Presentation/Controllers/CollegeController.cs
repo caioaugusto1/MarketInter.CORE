@@ -198,15 +198,15 @@ namespace Inter.Core.Presentation.Controllers
 
         }
 
-        public async Task<IActionResult> PostEditCollegeTime(CollegeTimeViewModel collegeTime)
+        public async Task<JsonResult> PostEditCollegeTime(CollegeTimeViewModel collegeTime)
         {
             if (ModelState.IsValid)
             {
                 _collegeTimeAppService.Update(collegeTime);
-                return Ok();
+                return Json(Ok());
             }
 
-            return PartialView(ModelState);
+            return Json(Conflict(ModelState.Values.SelectMany(x => x.Errors)));
         }
 
         public async Task<JsonResult> DeleteConfirmedTimeCollege(int id)

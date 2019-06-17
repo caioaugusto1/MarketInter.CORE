@@ -119,7 +119,7 @@ namespace Inter.Core.Presentation.Controllers
                 return Json(Conflict(culturalExchangeViewModel.ValidationResult));
             }
 
-            return Json(ModelState.Values.SelectMany(x => x.Errors));
+            return Json(Conflict(ModelState.Values.SelectMany(x => x.Errors)));
         }
 
         // GET: CulturalExchange/Edit/5

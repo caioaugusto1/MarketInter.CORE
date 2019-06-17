@@ -15,13 +15,14 @@
 
                 @await Html.PartialAsync("~/Views/College/_partial/_form_modal_collegeTime.cshtml", Model)
 
-                <input type="hidden" name="CollegeId" value="@Model.Id" />
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <input type="hidden" name="CollegeId" value="@Model.CollegeId" />
 
             </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" onclick="college.saveCollegeTime();" class="btn btn-primary">Save</button>
+            <button type="button" onclick="college.postEditColegeTime();" class="btn btn-primary">Save</button>
         </div>
     </div>
 </div>

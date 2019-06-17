@@ -9,7 +9,7 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
             if (!entity.IncludeAccomodation)
                 return true;
 
-            return false;
+            return true;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Inter.Core.Domain.Service
                 .IsSatisfiedBy(culturalExchange);
 
             if (!ValueHigherThanCourseValue)
-                culturalExchange.ValidationResult.Add(new ValidationResult("Value incorrect"));
+                culturalExchange.ValidationResult.Add(new ValidationResult("Course value incorrect"));
 
             bool accomodationDateAvailable = new CulturalExchangeValidateAccomodationDateAvailable(_accomodationRepository)
                 .IsSatisfiedBy(culturalExchange);
@@ -124,9 +124,9 @@ namespace Inter.Core.Domain.Service
             return culturalExchangeEntity;
         }
 
-        public CulturalExchange Update(int idEnvironment, CulturalExchange student)
+        public CulturalExchange Update(int idEnvironment, CulturalExchange culturalExchange)
         {
-            throw new System.NotImplementedException();
+            return _culturalExchangeRepository.Update(culturalExchange);
         }
     }
 }

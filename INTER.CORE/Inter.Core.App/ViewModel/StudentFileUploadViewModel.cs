@@ -13,7 +13,7 @@ namespace Inter.Core.App.ViewModel
         public IFormFile File { get; set; }
 
         [Required]
-        public StudentTypeFileUpload Type { get; set; }
+        public CulturalExchangeTypeFileUpload Type { get; set; }
 
         public string FileName { get; set; }
 

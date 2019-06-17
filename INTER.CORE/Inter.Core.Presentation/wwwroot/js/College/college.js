@@ -22,6 +22,23 @@
         });
     };
 
+    var postEditColegeTime = function () {
+
+        var collegeTime = $('#form-edit-collegeTime').serialize();
+
+        Util.request('/College/PostEditCollegeTime', 'POST', collegeTime, 'JSON', false, function (data) {
+            if (data.statusCode === 200) {
+
+                setTimeout(function () {
+                    location.reload();
+                }, 2000);
+            }
+
+        }, function (request, status, error) {
+
+        });
+    };
+
     var createCollegeTime = function () {
 
         var collegeTime = $('#form-create-collegeTime').serialize();
@@ -94,7 +111,7 @@
 
         let collegeId = $('#collegeId');
 
-        $('#div-modal-edit-college-time #modal').remove();
+        $('#div-modal-edit-college-time .modal-dialog').remove();
 
         Util.request('/College/GetPartialCreateCollegeTime', 'GET', collegeId, 'html', true, function (data) {
 
@@ -122,5 +139,9 @@
         });
     };
 
-    return { create, edit, saveCollegeTime, editCollegeTime, openModalAddCollegeTime, createCollegeTime, deleteConfirmCollegeTime, popUpConfirmDeleteCollegeTime };
+    return {
+        create, edit, saveCollegeTime, editCollegeTime, openModalAddCollegeTime,
+        postEditColegeTime, createCollegeTime, deleteConfirmCollegeTime,
+        popUpConfirmDeleteCollegeTime
+    };
 }();

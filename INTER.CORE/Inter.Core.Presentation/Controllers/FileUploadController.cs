@@ -65,7 +65,7 @@ namespace Inter.Core.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> PostModalStudentUploadFile(CulturalExchangeFileUploadViewModel fileUploadViewModel)
+        public async Task<JsonResult> PostModalCulturalExchangeUploadFile(CulturalExchangeFileUploadViewModel fileUploadViewModel)
         {
             var fileName = await UploadFile(fileUploadViewModel.File);
 

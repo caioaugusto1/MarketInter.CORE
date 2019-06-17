@@ -1,9 +1,9 @@
 ﻿@model CulturalExchangeViewModel
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 form-group">
         <label class="col-md-4 control-label">Full Name*</label>
-        <select asp-for="StudentId" required class="form-control"
+        <select asp-for="StudentId" required class="custom-select"
                 asp-items="@(new SelectList(ViewBag.Students,"Id","FullName"))">
             <option>Please select one</option>
         </select>
@@ -137,7 +137,7 @@
 </div>
 
 
-<div class="row">
+<div class="form-row">
 
     <div class="col-md-3">
         <div class="form-group">
@@ -160,14 +160,18 @@
             <label class="col-md-2 control-label">Flight Number*</label>
             <input type="text" asp-for="FlightNumber" class="form-control" />
             <span asp-validation-for="FlightNumber" class="text-danger"></span>
+            
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group">
-            <label class="col-md-4 control-label">Company*</label>
-            <input type="text" asp-for="Company" class="form-control" />
+            <label class="col-md-6 control-label">Company*</label>
+            <input type="text" asp-for="Company" class="form-control" required />
             <span asp-validation-for="Company" class="text-danger"></span>
+            @*<div class="invalid-feedback">
+                Please provide a valid state.
+            </div>*@
         </div>
     </div>
 

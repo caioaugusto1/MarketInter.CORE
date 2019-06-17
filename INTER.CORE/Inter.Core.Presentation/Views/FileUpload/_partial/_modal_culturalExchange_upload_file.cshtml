@@ -12,14 +12,14 @@ s
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-controller="FileUpload" asp-action="PostModalStudentUploadFile" method="post"
+                <form asp-controller="FileUpload" asp-action="PostModalCulturalExchangeUploadFile" method="post"
                       enctype="multipart/form-data">
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Type:</label>
-                                <select name="Type" asp-items="Html.GetEnumSelectList<StudentTypeFileUpload>()" data-val-required="The Period field is required." class="form-control">
+                                <select name="Type" asp-items="Html.GetEnumSelectList<CulturalExchangeTypeFileUpload>()" data-val-required="The Period field is required." class="form-control">
                                     <option value="">Selected</option>
                                 </select>
                             </div>
@@ -34,11 +34,22 @@ s
 
                     <br />
 
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="custom-file">
+                                <input type="file" name="file" class="custom-file-input" id="validatedCustomFile" required>
+                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+                    
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="file" name="file" class="form-control" />
-                            </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Upload File</button>
                             </div>
