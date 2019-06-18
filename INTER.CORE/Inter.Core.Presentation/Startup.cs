@@ -145,6 +145,10 @@ namespace Inter.Core.Presentation
             services.AddTransient<IReceivePaymentCulturalExchangeService, ReceivePaymentCulturalExchangeService>();
             services.AddTransient<IReceivePaymentCulturalExchangeRepository, ReceivePaymentCulturalExchangeRepository>();
 
+            services.AddTransient<IReceivePaymentCulturalExchangeFileUploadAppService, ReceivePaymentCulturalExchangeFileUploadAppService>();
+            services.AddTransient<IReceivePaymentCulturalExchangeFileUploadService, ReceivePaymentCulturalExchangeFileUploadService>();
+            services.AddTransient<IReceivePaymentCulturalExchangeFileUploadRepository, ReceivePaymentCulturalExchangeFileUploadRepository>();
+
         }
     }
 }

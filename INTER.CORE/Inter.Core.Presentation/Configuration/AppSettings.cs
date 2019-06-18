@@ -2,6 +2,6 @@
 {
     public class AppSettings
     {
-        public string ImagesPath { get; set; }
+        public string UploadFilePath { get; set; }
     }
 }

@@ -24,22 +24,22 @@ namespace Inter.Core.Presentation.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile file)
-        {
-            if (file == null || file.Length == 0)
-                return Content("file not selected");
+        //[HttpPost]
+        //public async Task<IActionResult> UploadFile(IFormFile file)
+        //{
+        //    if (file == null || file.Length == 0)
+        //        return Content("file not selected");
 
-            var path = Path.Combine(
-                        Directory.GetCurrentDirectory(), "wwwroot",
-                        file.FileName);
+        //    var path = Path.Combine(
+        //                Directory.GetCurrentDirectory(), "wwwroot",
+        //                file.FileName);
 
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
+        //    using (var stream = new FileStream(path, FileMode.Create))
+        //    {
+        //        await file.CopyToAsync(stream);
+        //    }
 
-            return RedirectToAction("Files");
-        }
+        //    return RedirectToAction("Files");
+        //}
     }
 }

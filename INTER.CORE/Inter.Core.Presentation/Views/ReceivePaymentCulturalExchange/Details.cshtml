@@ -19,7 +19,7 @@
                         <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="@Url.Action("Edit", "ReceivePaymentCulturalExchange", new { id = Model.Id })">Edit</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:culturalExchange.popUpOpenModalFileUpload('@Model.Id')">+ File Upload</a>
+                            <a class="dropdown-item" href="javascript:receivePayments.popUpOpenModalFileUpload('@Model.Id')">+ File Upload</a>
                         </div>
                     </li>
                 </ul>
@@ -30,3 +30,11 @@
 
     </div>
 </div>
+
+<div id="modalReceivePaymentsFileUpload">
+
+</div>
+
+
+<script src="~/js/Util/Util.js"></script>
+<script src="~/js/ReceivePaymentCulturalExchange/ReceivePayments.js"></script>

@@ -10,6 +10,7 @@ namespace Inter.Core.App.ViewModel
     {
         public Guid Id { get; set; }
 
+        [Required]
         public IFormFile File { get; set; }
 
         [Required]
