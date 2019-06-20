@@ -20,7 +20,7 @@ namespace Inter.Core.Infra.Data.Repositories
         {
             using (var db = new MySQLContext(_OptionsBuilder))
             {
-                return db.SystemEnvironment.FirstOrDefault(x => x.CompanyCode == code);
+                return db.Environment.FirstOrDefault(x => x.CompanyCode == code);
             }
         }
 
@@ -28,7 +28,7 @@ namespace Inter.Core.Infra.Data.Repositories
         {
             using (var db = new MySQLContext(_OptionsBuilder))
             {
-                return db.SystemEnvironment.Include(x => x.Students)
+                return db.Environment.Include(x => x.Students)
                     .Include(x => x.CulturalExchange)
                     .Include(x => x.Accomodations).FirstOrDefault(x => x.Id == id);
             }

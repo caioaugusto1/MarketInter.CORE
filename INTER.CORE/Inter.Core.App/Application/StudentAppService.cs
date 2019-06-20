@@ -3,7 +3,6 @@ using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
-using Inter.Core.Domain.ServiceInterface;
 using System;
 using System.Collections.Generic;
 

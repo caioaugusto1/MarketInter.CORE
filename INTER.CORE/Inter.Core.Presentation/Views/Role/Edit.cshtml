@@ -1,9 +1,5 @@
 ﻿@model Inter.Core.App.ViewModel.Identity.EditRoleViewModel
 
-@using Inter.Core.Domain.Entities
-
-@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
-
 <div class="container-fluid">
 
     <form method="post" asp-controller="Role" asp-action="Edit" asp-antiforgery="true" class="form-horizontal">
@@ -36,7 +32,7 @@
                             }
                             else
                             {
-                                foreach (ApplicationUser user in Model.NonMembers)
+                                foreach (ApplicationUserViewModel user in Model.NonMembers)
                                 {
                                     <tr>
                                         <td>@user.UserName</td>
@@ -83,7 +79,7 @@
                             }
                             else
                             {
-                                foreach (ApplicationUser user in Model.Members)
+                                foreach (ApplicationUserViewModel user in Model.Members)
                                 {
                                     <tr>
                                         <td>@user.UserName</td>

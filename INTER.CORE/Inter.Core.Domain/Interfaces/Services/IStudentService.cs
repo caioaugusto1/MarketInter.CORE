@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Inter.Core.Domain.ServiceInterface
+namespace Inter.Core.Domain.Interfaces.Services
 {
     public interface IStudentService
     {

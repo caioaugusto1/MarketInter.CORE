@@ -96,7 +96,7 @@
     };
 
     var editCollegeTime = function (idCollegeTime) {
-
+        
         Util.request('/College/LoadingPartialEditCollegeTime', 'GET', { idCollegeTime }, 'html', true, function (data) {
 
             $('#div-modal-edit-college-time').append(data);

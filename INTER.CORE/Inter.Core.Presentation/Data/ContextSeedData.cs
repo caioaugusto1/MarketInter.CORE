@@ -1,9 +1,7 @@
-﻿using Inter.Core.Domain.Entities;
+﻿using Inter.Core.Presentation.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Data
@@ -12,7 +10,7 @@ namespace Inter.Core.Presentation.Data
     {
         public static async Task Seed(IServiceProvider serviceProvider)
         {
-            UserManager<ApplicationUser> userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            UserManager<ApplicationUserViewModel> userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUserViewModel>>();
             RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
             string userName = "Super Admin";
@@ -29,7 +27,7 @@ namespace Inter.Core.Presentation.Data
                 }
 
                 // Create user account if it doesn't exist
-                ApplicationUser user = new ApplicationUser
+                ApplicationUserViewModel user = new ApplicationUserViewModel
                 {
                     UserName = userName,
                     Email = email

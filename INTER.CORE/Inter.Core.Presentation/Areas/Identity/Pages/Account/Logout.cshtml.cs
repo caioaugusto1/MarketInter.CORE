@@ -1,4 +1,5 @@
-﻿using Inter.Core.Domain.Entities;
+﻿using Inter.Core.App.Intefaces.Identity;
+using Inter.Core.Presentation.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,10 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LogoutModel : PageModel
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly SignInManager<Domain.Entities.ApplicationUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
 
-        public LogoutModel(SignInManager<ApplicationUser> signInManager, ILogger<LogoutModel> logger)
+        public LogoutModel(IApplicationUserAppService applicationUserAppService, ILogger<LogoutModel> logger, SignInManager<Domain.Entities.ApplicationUser> signInManager)
         {
             _signInManager = signInManager;
             _logger = logger;

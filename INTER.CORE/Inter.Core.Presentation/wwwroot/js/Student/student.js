@@ -31,18 +31,16 @@
         });
     };
 
-    var edit = function () {
+    //var edit = function () {
 
-        var student = $('#studentData').serialize();
+    //    var student = $('#studentData').serialize();
 
-        Util.request('/Student/Edit', 'POST', { student }, true, function (data) {
+    //    Util.request('/Student/Edit', 'POST', student, true, function (data) {
 
+    //    }), function (request, status, error) {
 
-            
-        }), function (request, status, error) {
-
-        };
-    };
+    //    };
+    //};
 
     var popUpConfirmDelete = function (studentId) {
         $('#modalDelete').modal('show');

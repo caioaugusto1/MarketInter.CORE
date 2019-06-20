@@ -1,11 +1,9 @@
 ﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
 
-@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
-
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Role</h1>
-   @* <p class="mb-4"><a target="_blank" href="Role/Create">NEW</a></p>*@
+    @* <p class="mb-4"><a target="_blank" href="Role/Create">NEW</a></p>*@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -18,8 +16,6 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <td>Name</td>
-                          @*  <td>Users</td>*@
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -28,9 +24,7 @@
                         @foreach (var role in Model)
                         {
                             <tr>
-                                <td>@role.Id</td>
                                 <td>@role.Name</td>
-                                @*<td identity-role="@role.Id"></td>*@
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@role.Id" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>

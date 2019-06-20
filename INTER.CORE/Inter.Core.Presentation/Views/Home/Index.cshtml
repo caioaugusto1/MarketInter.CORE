@@ -1,18 +1,9 @@
-﻿@using Microsoft.AspNetCore.Identity
-
-@inject UserManager<Inter.Core.Domain.Entities.ApplicationUser> User
+﻿@model ApplicationUserViewModel
 
 <div id="content">
 
-    @await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml", User)
+    @*@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml", Model)*@
 
-    @await Html.PartialAsync("~/Views/Shared/_partial/_dashboard.cshtml")
-
-    <form asp-controller="Home" asp-action="UploadFile" method="post"
-          enctype="multipart/form-data">
-
-        <input type="file" name="file" />
-        <button type="submit">Upload File</button>
-    </form>
+    @await Html.PartialAsync("~/Views/Shared/_partial/_dashboard.cshtml", Model)
 
 </div>

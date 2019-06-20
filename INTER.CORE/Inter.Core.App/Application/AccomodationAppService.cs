@@ -24,7 +24,7 @@ namespace Inter.Core.App.Application
             accomodationViewModel.EnviromentId = environmentId;
             var accomodation = _mapper.Map<Accomodation>(accomodationViewModel);
 
-            return _mapper.Map<AccomodationViewModel>(_accomodationService.Add(accomodation)); ;
+            return _mapper.Map<AccomodationViewModel>(_accomodationService.Add(accomodation));
         }
 
         public List<AccomodationViewModel> GetAll(Guid idEnvironment)

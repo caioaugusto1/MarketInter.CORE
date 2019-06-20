@@ -1,33 +1,33 @@
 ﻿using Inter.Core.App.Intefaces;
+using Inter.Core.App.Intefaces.Identity;
 using Inter.Core.App.ViewModel;
-using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
     [Authorize(Roles = "Admin, Manager, ReceivePaymentCulturalExchange")]
-    public class ReceivePaymentCulturalExchangeController : BaseController
+    public class ReceivePaymentCulturalExchangeController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IApplicationUserAppService _applicationUserAppService;
         private readonly IReceivePaymentCulturalExchangeAppService _receivePaymentCulturalExchangeAppService;
         private readonly ICulturalExchangeAppService _culturalExchangeAppService;
         private readonly ICollegeTimeAppService _collegeTimeAppService;
         private readonly ICollegeAppService _collegeAppService;
 
         public ReceivePaymentCulturalExchangeController(
-            UserManager<ApplicationUser> userManager,
+            IApplicationUserAppService applicationUserAppService,
             IReceivePaymentCulturalExchangeAppService receivePaymentCulturalExchangeAppService,
             ICulturalExchangeAppService culturalExchangeAppService,
             ICollegeTimeAppService collegeTimeAppService,
             ICollegeAppService collegeAppService)
         {
-            _userManager = userManager;
+            _applicationUserAppService = applicationUserAppService;
             _collegeTimeAppService = collegeTimeAppService;
             _collegeAppService = collegeAppService;
             _receivePaymentCulturalExchangeAppService = receivePaymentCulturalExchangeAppService;
@@ -37,7 +37,8 @@ namespace Inter.Core.Presentation.Controllers
         // GET: ReceivePaymentCulturalExchange
         public async Task<IActionResult> Index()
         {
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
             if (user == null)
                 return NotFound();
@@ -61,7 +62,8 @@ namespace Inter.Core.Presentation.Controllers
         // GET: ReceivePaymentCulturalExchange/Create
         public async Task<IActionResult> Create()
         {
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
             if (user == null)
                 return NotFound();
@@ -104,7 +106,8 @@ namespace Inter.Core.Presentation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ReceivePaymentCulturalExchangeViewModel paymentReceiveVM)
         {
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
             if (user == null)
                 return NotFound();

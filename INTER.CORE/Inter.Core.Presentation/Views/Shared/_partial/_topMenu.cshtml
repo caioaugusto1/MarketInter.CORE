@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
-
-@inject UserManager<Inter.Core.Domain.Entities.ApplicationUser> UserManager
+﻿@*@model ApplicationUserViewModel*@
 
 <head>
     <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
@@ -152,7 +150,7 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.Name</span>
+                @*<span class="mr-2 d-none d-lg-inline text-gray-600 small">@Model.UserName </span>*@
                 <img class="img-profile rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/1200px-Noto_Emoji_KitKat_263a.svg.png">
             </a>
             <!-- Dropdown - User Information -->

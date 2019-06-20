@@ -1,32 +1,36 @@
-﻿@model Inter.Core.App.ViewModel.CollegeViewModel
+﻿@model CollegeViewModel
 
-@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+<div class="container">
 
-@await Html.PartialAsync("~/Views/College/_partial/_collegeDetails.cshtml")
+    <h1 class="h3 mb-2 text-gray-800">Cultural Exchange - NEW</h1>
 
-<div class="modal fade" id="modalinsertTimeCollege" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Time College</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" id="modalCollegeTime">
-                <form id="form-create-collegeTime">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td colspan="1">
+                    <form id="form-create-culturalExchange" asp-action="OnCreate" class="well form-horizontal">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    @await Html.PartialAsync("~/Views/College/_partial/_modal_create_timeCollege.cshtml")
+                        @await Html.PartialAsync("~/Views/College/_partial/_form_create_edit.cshtml", Model)
 
-                    <input type="hidden" name="CollegeId" value="@Model.Id" />
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" onclick="college.saveCollegeTime();" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
+                        <input hidden asp-for="EnviromentId" value="@Model.EnviromentId" />
+
+                    </form>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <div class="modal fade" id="div-modal-edit-college-time" tabindex="-1" role="dialog" aria-hidden="true">

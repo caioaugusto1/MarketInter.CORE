@@ -1,10 +1,12 @@
-﻿using Inter.Core.App.ViewModel.Identity;
-using Inter.Core.Domain.Entities;
+﻿using Inter.Core.App.Intefaces.Identity;
+using Inter.Core.App.ViewModel.Identity;
+using Inter.Core.Presentation.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers.Identity
@@ -12,14 +14,22 @@ namespace Inter.Core.Presentation.Controllers.Identity
     [Authorize(Roles = "Admin, Manager")]
     public class RoleController : BaseController
     {
+        private readonly IApplicationUserAppService _applicationUserAppService;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<Domain.Entities.ApplicationUser> _userManager1;
 
-        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        public RoleController(IApplicationUserAppService applicationUserAppService, RoleManager<IdentityRole> roleManager, UserManager<Domain.Entities.ApplicationUser> userManager1)
         {
+            _applicationUserAppService = applicationUserAppService;
             _roleManager = roleManager;
-            _userManager = userManager;
+            _userManager1 = userManager1;
         }
+
+        //public RoleController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUserViewModel> userManager)
+        //{
+        //    _roleManager = roleManager;
+        //    _userManager = userManager;
+        //}
 
         public IActionResult Index()
         {
@@ -31,14 +41,15 @@ namespace Inter.Core.Presentation.Controllers.Identity
         public async Task<IActionResult> Edit(string id)
         {
             IdentityRole role = await _roleManager.FindByIdAsync(id);
-            List<ApplicationUser> members = new List<ApplicationUser>();
-            List<ApplicationUser> nonMember = new List<ApplicationUser>();
+            List<ApplicationUserViewModel> members = new List<ApplicationUserViewModel>();
+            List<ApplicationUserViewModel> nonMember = new List<ApplicationUserViewModel>();
 
-            var getUser = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var getUser = _applicationUserAppService.GetById(userId);
 
-            foreach (ApplicationUser user in _userManager.Users.Where(x => x.EnvironmentId == getUser.EnvironmentId))
+            foreach (ApplicationUserViewModel user in _applicationUserAppService.GetAll(getUser.EnvironmentId))
             {
-                var list = await _userManager.IsInRoleAsync(user, role.Name)
+                var list = await _applicationUserAppService.IsInRoleAsync(user, role.Name)
                     ? members
                     : nonMember;
                 list.Add(user);
@@ -70,10 +81,13 @@ namespace Inter.Core.Presentation.Controllers.Identity
 
                 foreach (string userId in modifyRole.IdsToAdd ?? new string[] { })
                 {
-                    ApplicationUser user = await _userManager.FindByIdAsync(userId);
+                    ApplicationUserViewModel user = _applicationUserAppService.GetById(userId);
+
                     if (user != null)
                     {
-                        result = await _userManager.AddToRoleAsync(user, modifyRole.RoleName);
+                        //result = await _userManager1.AddToRoleAsync(_applicationUserAppService.Converter(user), modifyRole.RoleName);
+
+                        result = await _applicationUserAppService.AddToRoleAsync(user, modifyRole.RoleName);
                         //if (!result.Succeeded)
                         //{
                         //    AddErrors(result);
@@ -83,10 +97,12 @@ namespace Inter.Core.Presentation.Controllers.Identity
 
                 foreach (string userId in modifyRole.IdsToRemove ?? new string[] { })
                 {
-                    ApplicationUser user = await _userManager.FindByIdAsync(userId);
+                    ApplicationUserViewModel user = _applicationUserAppService.GetById(userId);
+
                     if (user != null)
                     {
-                        result = await _userManager.RemoveFromRoleAsync(user, modifyRole.RoleName);
+                        result = await _applicationUserAppService.RemoveFromRoleAsync(user, modifyRole.RoleName);
+
                         if (!result.Succeeded)
                         {
                             //AddErrors(result);

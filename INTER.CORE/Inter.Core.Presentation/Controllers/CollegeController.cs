@@ -1,31 +1,33 @@
 ﻿using Inter.Core.App.Intefaces;
+using Inter.Core.App.Intefaces.Identity;
 using Inter.Core.App.ViewModel;
-using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
     //[Route("admin-college")]
     [Authorize(Roles = "Admin, Manager, College")]
-    public class CollegeController : BaseController
+    public class CollegeController : Controller
     {
         private readonly ICollegeAppService _collegeAppService;
         private readonly ICollegeTimeAppService _collegeTimeAppService;
-        private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly UserManager<ApplicationUserViewModel> _userManager;
+        private readonly IApplicationUserAppService _applicationUserAppService;
 
-        public CollegeController(UserManager<ApplicationUser> userManager,
+        public CollegeController(IApplicationUserAppService applicationUserAppService,
             ICollegeAppService collegeAppService,
             ICollegeTimeAppService collegeTimeAppService)
         {
+            _applicationUserAppService = applicationUserAppService;
             _collegeAppService = collegeAppService;
             _collegeTimeAppService = collegeTimeAppService;
-            _userManager = userManager;
+            //_userManager = userManager;
         }
 
         #region College
@@ -33,7 +35,9 @@ namespace Inter.Core.Presentation.Controllers
         // GET: College
         public async Task<IActionResult> Index()
         {
-            var user = await GetUser(_userManager);
+            //var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
             if (user == null)
                 return NotFound();
@@ -71,7 +75,9 @@ namespace Inter.Core.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await GetUser(_userManager);
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _applicationUserAppService.GetById(userId);
+                //var user = await GetUser(_userManager);
 
                 if (user == null)
                     return NotFound();
@@ -106,16 +112,13 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Address,City,Country,EnviromentId")] CollegeViewModel collegeViewModel)
+        public async Task<IActionResult> Edit(CollegeViewModel collegeViewModel)
         {
-            if (id == Guid.Empty)
-                return NotFound();
-
             if (ModelState.IsValid)
             {
                 _collegeAppService.Update(collegeViewModel);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "College");
             }
             return View(collegeViewModel);
         }
@@ -158,7 +161,8 @@ namespace Inter.Core.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await GetUser(_userManager);
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _applicationUserAppService.GetById(userId);
 
                 if (user == null)
                     return NotFound();

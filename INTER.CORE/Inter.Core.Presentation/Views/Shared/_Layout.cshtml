@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<Inter.Core.Domain.Entities.ApplicationUser> _userManager
 @inject SignInManager<Inter.Core.Domain.Entities.ApplicationUser> SignInManager
-@inject UserManager<Inter.Core.Domain.Entities.ApplicationUser> UserManager
 
 <!DOCTYPE html>
 <html>
@@ -27,43 +28,46 @@
 
 </head>
 
+
 <body id="page-top">
 
     @*@if (SignInManager.IsSignedIn(User))
-        {
-            <header>
-                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                    <div class="container">
-                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Inter.Core.Presentation</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                            <partial name="_LoginPartial" />
-                            <ul class="navbar-nav flex-grow-1">
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                                </li>
-                            </ul>
+            {
+                <header>
+                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                        <div class="container">
+                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Inter.Core.Presentation</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                                <partial name="_LoginPartial" />
+                                <ul class="navbar-nav flex-grow-1">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </nav>
-            </header>
+                    </nav>
+                </header>
         }*@
 
     <div id="wrapper">
 
-
         @if (SignInManager.IsSignedIn(User))
         {
-            @await Html.PartialAsync("~/Views/Shared/_partial/_menu.cshtml", User)
+            @await Html.PartialAsync("~/Views/Shared/_partial/_menu.cshtml")
         }
 
         <div id="content-wrapper">
+
+            @await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+
             <partial name="_CookieConsentPartial" />
 
             <main role="main" class="pb-3">
@@ -74,10 +78,10 @@
     </div>
 
     @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2019 - Inter.Core.Presentation - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
+        <div class="container">
+            &copy; 2019 - Inter.Core.Presentation - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>*@
 
     <environment include="Development">
 
@@ -107,13 +111,8 @@
     <script src="~/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="~/js/demo/datatables-demo.js"></script>
 
-    @*<script src="~/vendor/jquery/jquery.min.js"></script>*@
-    @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
-    @*<script src="~/js/jquery-3.4.1.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
-    @*<script src="~/js/demo/chart-area-demo.js"></script>
-        <script src="~/js/demo/chart-pie-demo.js"></script>*@
     <script src="~/js/sb-admin-2.min.js"></script>
 
     @RenderSection("Scripts", required: false)

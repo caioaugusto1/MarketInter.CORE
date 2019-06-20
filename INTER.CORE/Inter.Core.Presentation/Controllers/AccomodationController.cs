@@ -1,10 +1,10 @@
 ﻿using Inter.Core.App.Intefaces;
+using Inter.Core.App.Intefaces.Identity;
 using Inter.Core.App.ViewModel;
-using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -12,20 +12,23 @@ namespace Inter.Core.Presentation.Controllers
     [Authorize(Roles = "Admin, Manager, Accomodation")]
     public class AccomodationController : BaseController
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly UserManager<ApplicationUserViewModel> _userManager;
+        private readonly IApplicationUserAppService _applicationUserAppService;
         private readonly IAccomodationAppService _accomodationAppService;
 
-        public AccomodationController(UserManager<ApplicationUser> userManager,
+        public AccomodationController(IApplicationUserAppService applicationUserAppService,
             IAccomodationAppService accomodationAppService)
         {
-            _userManager = userManager;
+            //_userManager = userManager;
+            _applicationUserAppService = applicationUserAppService;
             _accomodationAppService = accomodationAppService;
         }
 
         // GET: Accomodation
         public async Task<IActionResult> Index()
         {
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
             if (user == null)
                 return NotFound();
@@ -62,9 +65,10 @@ namespace Inter.Core.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await GetUser(_userManager);
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _applicationUserAppService.GetById(userId);
 
-                if (user != null && user.Environment != null)
+                if (user != null)
                     _accomodationAppService.Add(user.EnvironmentId, accomodationViewModel);
 
                 return RedirectToAction("Index", "Accomodation");
@@ -92,11 +96,8 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, AccomodationViewModel accomodationViewModel)
+        public async Task<IActionResult> Edit(AccomodationViewModel accomodationViewModel)
         {
-            if (id != accomodationViewModel.Id || id == Guid.Empty)
-                return NotFound();
-
             if (ModelState.IsValid)
             {
                 _accomodationAppService.Update(accomodationViewModel);

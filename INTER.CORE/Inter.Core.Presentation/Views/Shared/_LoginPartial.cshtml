@@ -1,12 +1,12 @@
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<Inter.Core.Domain.Entities.ApplicationUser> SignInManager
-@inject UserManager< Inter.Core.Domain.Entities.ApplicationUser> UserManager
+@*@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Inter.Core.Presentation.Models.Identity.ApplicationUserViewModel> SignInManager
+@inject UserManager<Inter.Core.Presentation.Models.Identity.ApplicationUserViewModel> UserManager*@
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
+@*@if (SignInManager.IsSignedIn(User))
+{*@
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        @*<a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>*@
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

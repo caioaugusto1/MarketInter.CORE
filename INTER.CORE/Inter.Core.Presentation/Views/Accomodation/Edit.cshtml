@@ -1,7 +1,5 @@
 ﻿@model Inter.Core.App.ViewModel.AccomodationViewModel
 
-@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
-
 <div class="container">
 
     <h1 class="h3 mb-2 text-gray-800">Accomodation - EDIT</h1>
@@ -10,12 +8,14 @@
         <tbody>
             <tr>
                 <td colspan="1">
-                    <form class="well form-horizontal">
+                    <form asp-action="Edit" asp-controller="Accomodation" class="well form-horizontal">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                         <fieldset>
 
                             @await Html.PartialAsync("~/Views/Accomodation/_partial/_form_create_edit.cshtml")
+
+                            <input type="hidden" name="EnviromentId" value="@Model.EnviromentId" />
 
                         </fieldset>
 

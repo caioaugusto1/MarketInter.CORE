@@ -1,7 +1,7 @@
 ﻿
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
-using Inter.Core.Domain.ServiceInterface;
+using Inter.Core.Domain.Interfaces.Services;
 using Inter.Core.Domain.Specification.Student;
 using System;
 using System.Collections.Generic;

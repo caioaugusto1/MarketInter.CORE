@@ -1,5 +1,5 @@
 ﻿using Inter.Core.App.Intefaces;
-using Inter.Core.Domain.Entities;
+using Inter.Core.Presentation.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -14,15 +14,15 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<Domain.Entities.ApplicationUser> _signInManager;
+        private readonly UserManager<Domain.Entities.ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly IEnvironmentAppService _environmentAppService;
 
         public RegisterModel(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+            UserManager<Domain.Entities.ApplicationUser> userManager,
+            SignInManager<Domain.Entities.ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             IEnvironmentAppService environmentAppService)
@@ -72,7 +72,7 @@ namespace Inter.Core.Presentation.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new Domain.Entities.ApplicationUser { UserName = Input.Email, Email = Input.Email };
 
                 var environment = _environmentAppService.GetByCode(Input.EnvironmentCode);
 

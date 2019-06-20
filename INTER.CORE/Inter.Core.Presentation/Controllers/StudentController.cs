@@ -1,12 +1,12 @@
 ﻿using Inter.Core.App.Intefaces;
+using Inter.Core.App.Intefaces.Identity;
 using Inter.Core.App.ViewModel;
-using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
@@ -14,24 +14,26 @@ namespace Inter.Core.Presentation.Controllers
     [Authorize(Roles = "Admin, Manager, Student")]
     public class StudentController : BaseController
     {
+        private readonly IApplicationUserAppService _applicationUserAppService;
         private readonly IStudentAppService _studentAppService;
         private readonly IEnvironmentAppService _environmentAppService;
-        private readonly UserManager<ApplicationUser> _userManager;
 
         public StudentController(IStudentAppService studentAppService, IEnvironmentAppService environmentAppService,
-            UserManager<ApplicationUser> userManager)
+            IApplicationUserAppService applicationUserAppService)
         {
             _studentAppService = studentAppService;
             _environmentAppService = environmentAppService;
-            _userManager = userManager;
+            _applicationUserAppService = applicationUserAppService;
+
         }
 
         // GET: Student
         public async Task<IActionResult> Index()
         {
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
-            if (user == null || user.Environment == null)
+            if (user == null)
                 return NotFound();
 
             var studentsVM = _studentAppService.GetAll(user.EnvironmentId);
@@ -44,9 +46,10 @@ namespace Inter.Core.Presentation.Controllers
             if (id == Guid.Empty)
                 return NotFound();
 
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
-            if (user == null && user.Environment == null)
+            if (user == null)
                 return NotFound();
 
             var studentViewModel = _studentAppService.GetById(user.EnvironmentId, id);
@@ -72,10 +75,11 @@ namespace Inter.Core.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await GetUser(_userManager);
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _applicationUserAppService.GetById(userId);
 
-                if (user != null && user.Environment != null)
-                    studentViewModel = _studentAppService.Add(user.Environment.Id, studentViewModel);
+                if (user != null)
+                    studentViewModel = _studentAppService.Add(user.EnvironmentId, studentViewModel);
 
                 if (!studentViewModel.ValidationResult.Any())
                     return Json(new { studentName = studentViewModel.FullName, statusCode = HttpStatusCode.OK });
@@ -92,9 +96,10 @@ namespace Inter.Core.Presentation.Controllers
             if (id == Guid.Empty)
                 return NotFound();
 
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
-            if (user == null && user.Environment == null)
+            if (user == null && user.EnvironmentViewModel == null)
                 return NotFound();
 
             StudentViewModel studentViewModel = _studentAppService.GetById(user.EnvironmentId, id);
@@ -110,21 +115,19 @@ namespace Inter.Core.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, StudentViewModel studentViewModel)
+        public async Task<IActionResult> Edit(StudentViewModel studentViewModel)
         {
-            if (id == Guid.Empty)
-                return NotFound();
-
             if (ModelState.IsValid)
             {
-                var user = await GetUser(_userManager);
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _applicationUserAppService.GetById(userId);
 
-                if (user == null && user.Environment == null)
+                if (user == null)
                     return NotFound();
 
-                _studentAppService.Update(user.Environment.Id, studentViewModel);
+                _studentAppService.Update(user.EnvironmentId, studentViewModel);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Student");
             }
 
             //ViewData["CollegeId"] = new SelectList(_context.Set<CollegeViewModel>(), "Id", "Id", studentViewModel.CollegeId);
@@ -137,9 +140,10 @@ namespace Inter.Core.Presentation.Controllers
             if (id == Guid.Empty)
                 return NotFound();
 
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
-            if (user == null && user.Environment == null)
+            if (user == null)
                 return NotFound();
 
             var studentViewModel = _studentAppService.GetById(user.EnvironmentId, id);

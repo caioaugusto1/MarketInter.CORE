@@ -1,18 +1,20 @@
 ﻿using Inter.Core.App.Intefaces;
+using Inter.Core.App.Intefaces.Identity;
 using Inter.Core.App.ViewModel;
-using Inter.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
     [Authorize(Roles = "Admin, Manager, CulturalExchange")]
-    public class CulturalExchangeController : BaseController
+    public class CulturalExchangeController : Controller
     {
+        private readonly IApplicationUserAppService _applicationUserAppService;
         private readonly ICulturalExchangeAppService _culturalExchangeAppService;
         private readonly IStudentAppService _studentAppService;
         private readonly ICollegeAppService _collegeAppService;
@@ -21,20 +23,22 @@ namespace Inter.Core.Presentation.Controllers
         private readonly IAccomodationAppService _accomodationAppService;
         private readonly IReceivePaymentCulturalExchangeAppService _receivePaymentAppService;
 
-        private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly UserManager<ApplicationUserViewModel> _userManager;
 
-        public CulturalExchangeController(UserManager<ApplicationUser> userManager,
+        public CulturalExchangeController(/*UserManager<ApplicationUserViewModel> userManager,*/
+            IApplicationUserAppService applicationUserAppService,
             ICulturalExchangeAppService culturalExchangeAppService,
             IStudentAppService studentAppService, ICollegeAppService collegeAppService,
             IEnvironmentAppService environmentAppService, IAccomodationAppService accomodationAppService,
             ICollegeTimeAppService collegeTimeAppService, IReceivePaymentCulturalExchangeAppService receivePaymentAppService
             )
         {
+            _applicationUserAppService = applicationUserAppService;
             _culturalExchangeAppService = culturalExchangeAppService;
             _studentAppService = studentAppService;
             _collegeAppService = collegeAppService;
             _collegeTimeAppService = collegeTimeAppService;
-            _userManager = userManager;
+            //_userManager = userManager;
             _environmentAppService = environmentAppService;
             _accomodationAppService = accomodationAppService;
             _receivePaymentAppService = receivePaymentAppService;
@@ -43,7 +47,8 @@ namespace Inter.Core.Presentation.Controllers
         // GET: CulturalExchange
         public async Task<IActionResult> Index()
         {
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
             if (user == null)
                 return NotFound();
@@ -52,14 +57,15 @@ namespace Inter.Core.Presentation.Controllers
             ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
             ViewBag.Accomodations = _accomodationAppService.GetAll(user.EnvironmentId);
 
-            var culturalExchangeList = _culturalExchangeAppService.GetAll(user.EnvironmentId);
+            List<CulturalExchangeViewModel> culturalExchangeList = _culturalExchangeAppService.GetAll(user.EnvironmentId);
 
-            return View(culturalExchangeList);
+            return View("~/Views/CulturalExchange/Index.cshtml", culturalExchangeList);
         }
 
         public async Task<IActionResult> FindByFilter(string startArrivalDate, string finishArrivalDate, Guid collegeId, Guid accomodationId)
         {
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
             if (user == null)
                 return NotFound();
@@ -86,7 +92,8 @@ namespace Inter.Core.Presentation.Controllers
         // GET: CulturalExchange/Create
         public async Task<IActionResult> Create()
         {
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
             if (user == null)
                 return NotFound();
@@ -136,7 +143,8 @@ namespace Inter.Core.Presentation.Controllers
             if (culturalExchangeViewModel == null)
                 return NotFound();
 
-            var user = await GetUser(_userManager);
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
 
             if (user == null)
                 return NotFound();

@@ -1,6 +1,4 @@
-﻿@model Inter.Core.App.ViewModel.StudentViewModel
-
-@await Html.PartialAsync("~/Views/Shared/_partial/_topMenu.cshtml")
+﻿@model StudentViewModel
 
 <div class="container">
 
@@ -10,12 +8,14 @@
         <tbody>
             <tr>
                 <td colspan="1">
-                    <form class="well form-horizontal" id="studentData">
+                    <form asp-action="Edit" class="well form-horizontal" id="studentData">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                         <fieldset>
 
                             @await Html.PartialAsync("~/Views/Student/_partial/_form_create_edit.cshtml")
+
+                            <input type="hidden" name="EnviromentId" value="@Model.EnviromentId"´ />
 
                         </fieldset>
 
@@ -23,7 +23,7 @@
                             <div class="col-md-8 inputGroupContainer">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                    <input type="button" onclick="student.edit()" value="Save" class="btn btn-primary" />
+                                    <input type="submit" value="Save" class="btn btn-primary" />
                                 </div>
                             </div>
                         </div>
