@@ -1,0 +1,55 @@
+﻿@model CulturalExchangeViewModel
+
+<div class="col-lg-10">
+    <!-- Roitation Utilities -->
+    <div class="card">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">@Model.StudentViewModel.CustomerId - @Model.StudentViewModel.FullName</h6>
+        </div>
+        <div class="card-body text-center">
+            @foreach (var file in Model.CulturalExchangeFileUploadVM)
+            {
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Note</th>
+                                    <th>Type</th>
+                                    <th>Upload Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        @file.Note
+                                    </td>
+                                    <td>
+                                        @file.Type
+                                    </td>
+                                    <td>
+                                        @file.UploadDate
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info btn-circle btn-sm" href="@Url.Action("Download", "FileUpload", new { filename = file.FileName })"><i class="fas fa-download"></i></a>
+
+                                        <a asp-action="Details" asp-route-id="@file.Id" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/jquery-3.4.1.min.js"></script>
+<script src="~/js/Util/Util.js"></script>
+<script src="~/js/CulturalExchange/culturalExchange.js"></script>

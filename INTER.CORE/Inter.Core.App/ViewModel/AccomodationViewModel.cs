@@ -32,10 +32,8 @@ namespace Inter.Core.App.ViewModel
         public string ContactNumber { get; set; }
 
         [Required(ErrorMessage = "ContactNumber")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
-        [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Number Of Places")]
-        public string NumberOfPlaces { get; set; }
+        public int NumberOfPlaces { get; set; }
 
         [Required(ErrorMessage = "Available")]
         [DisplayName("Available")]

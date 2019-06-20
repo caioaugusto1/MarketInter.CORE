@@ -199,6 +199,17 @@ namespace Inter.Core.Presentation.Controllers
             return View(payments);
         }
 
+        public async Task<IActionResult> DetailsFilesUpload(Guid id)
+        {
+            if (id == Guid.Empty)
+                return NotFound();
+
+            var culturalExchangeFilesUpload = _culturalExchangeAppService.GetById(id);
+
+            return View(culturalExchangeFilesUpload);
+
+        }
+
         //// POST: CulturalExchange/Delete/5
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]

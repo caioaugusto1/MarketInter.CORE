@@ -33,8 +33,6 @@
         <span asp-validation-for="AccomodationViewModel" class="text-danger"></span>
     </div>
 
-
-
 </div>
 
 <br />
@@ -125,6 +123,7 @@
             <span asp-validation-for="Kit" class="text-danger"></span>
         </div>
     </div>
+
     <div class="col-md-2">
         <div class="custom-control custom-checkbox small">
             <label asp-for="SimCard">
@@ -160,17 +159,17 @@
 <br />
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
         <div class="form-group">
-            <label class="col-md-4 control-label">Flight Number*</label>
+            <label class="col-md-2 control-label">Flight Number*</label>
             <input type="text" asp-for="FlightNumber" class="form-control" required />
             <span asp-validation-for="FlightNumber" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-2">
         <div class="form-group">
-            <label class="col-md-4 control-label">Company*</label>
+            <label class="col-md-2 control-label">Flight Company*</label>
             <input type="text" asp-for="Company" class="form-control" required />
             <span asp-validation-for="Company" class="text-danger"></span>
         </div>
@@ -198,5 +197,3 @@
         </div>
     </div>
 </div>
-
-<br />
