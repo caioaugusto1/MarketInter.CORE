@@ -1,7 +1,6 @@
 ﻿using Inter.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Inter.Core.Domain.Interfaces.Services
 {
@@ -10,6 +9,10 @@ namespace Inter.Core.Domain.Interfaces.Services
         Accomodation Add(Accomodation accomodation);
 
         List<Accomodation> GetAll(Guid idEnvironment);
+
+        List<Accomodation> GetAllAvaliable(Guid idEnvironment);
+
+        Accomodation GetAccomodationAndCulturalExchangeList(Guid id);
 
         Accomodation GetById(Guid id);
 

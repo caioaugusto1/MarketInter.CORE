@@ -27,9 +27,19 @@ namespace Inter.Core.App.Application
             return _mapper.Map<AccomodationViewModel>(_accomodationService.Add(accomodation));
         }
 
+        public AccomodationViewModel GetAccomodationAndCulturalExchangeList(Guid id)
+        {
+            return _mapper.Map<AccomodationViewModel>(_accomodationService.GetAccomodationAndCulturalExchangeList(id));
+        }
+
         public List<AccomodationViewModel> GetAll(Guid idEnvironment)
         {
             return _mapper.Map<List<AccomodationViewModel>>(_accomodationService.GetAll(idEnvironment));
+        }
+
+        public List<AccomodationViewModel> GetAllAvaliable(Guid idEnvironment)
+        {
+            return _mapper.Map<List<AccomodationViewModel>>(_accomodationService.GetAllAvaliable(idEnvironment));
         }
 
         public AccomodationViewModel GetById(Guid id)

@@ -17,6 +17,7 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
         {
             Accomodation accomodation = _accomodationRepository.GetById(entity.AccomodationId);
 
+
             return true;
         }
     }

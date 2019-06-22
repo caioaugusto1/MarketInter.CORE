@@ -10,6 +10,10 @@ namespace Inter.Core.App.Intefaces
 
         List<AccomodationViewModel> GetAll(Guid idEnvironment);
 
+        List<AccomodationViewModel> GetAllAvaliable(Guid idEnvironment);
+
+        AccomodationViewModel GetAccomodationAndCulturalExchangeList(Guid id);
+
         AccomodationViewModel GetById(Guid id);
 
         AccomodationViewModel Update(AccomodationViewModel accomodationViewModel);

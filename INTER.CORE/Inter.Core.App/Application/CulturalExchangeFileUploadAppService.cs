@@ -28,7 +28,7 @@ namespace Inter.Core.App.Application
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            _culturalExchangeFileUploadService.Delete(id);
         }
 
         public List<CulturalExchangeFileUploadViewModel> GetAllByCulturalExchangeId(Guid studentId)

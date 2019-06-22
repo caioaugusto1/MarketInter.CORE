@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     @*<h1 class="h3 mb-2 text-gray-800">Cultural Exchange</h1>
-    <p class="mb-4"><a target="_blank" href="CulturalExchange/Create">NEW</a></p>*@
+        <p class="mb-4"><a target="_blank" href="CulturalExchange/Create">NEW</a></p>*@
     <!-- DataTales Example -->
     <div class="card shadow mb-2">
         <div class="card-header py-3">
@@ -90,7 +90,9 @@
     </div>
 </div>
 
+@await Html.PartialAsync("~/Views/Shared/_partial/_modalDelete.cshtml")
 
+<script src="~/js/jquery-3.4.1.min.js"></script>
 <script src="~/js/Util/Util.js"></script>
 <script src="~/js/CulturalExchange/culturalExchange.js"></script>
 

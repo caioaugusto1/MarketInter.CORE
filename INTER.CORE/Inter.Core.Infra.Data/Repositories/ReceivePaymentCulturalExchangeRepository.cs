@@ -37,6 +37,8 @@ namespace Inter.Core.Infra.Data.Repositories
                     .Include(x => x.Environment)
                     .Include(x => x.CulturalExchange)
                     .ThenInclude(x => x.Student)
+                    .Include(x => x.CulturalExchange.College)
+                    .ThenInclude(col => col.CollegeTime)
                     .Where(x => x.CulturalExchangeId == culturalExchangeId)
                     .ToList();
             }

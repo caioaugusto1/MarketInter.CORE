@@ -83,6 +83,9 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.ContactNumber, y => y.MapFrom(f => f.ContactNumber))
                 .ForMember(x => x.NumberOfPlaces, y => y.MapFrom(f => f.NumberOfPlaces))
                 .ForMember(x => x.EnviromentId, y => y.MapFrom(f => f.EnvironmentId))
+                .ForMember(x => x.EnvironmentViewModel, y => y.MapFrom(f => f.Environment))
+                .ForMember(x => x.CulturalExchangeViewModel, y => y.MapFrom(f => f.CulturalExchanges))
+
                 .ReverseMap();
 
             CreateMap<CulturalExchange, CulturalExchangeViewModel>()

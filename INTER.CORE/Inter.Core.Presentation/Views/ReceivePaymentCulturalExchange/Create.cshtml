@@ -19,9 +19,9 @@
 
                             <div class="col-md-4">
                                 <label class="col-md-4 control-label">Full Name*</label>
-                                <select asp-for="CulturalExchangeId" required class="form-control"
-                                        asp-items="@(new SelectList(ViewBag.CulturalExchange,"Id","StudentViewModel.FullName"))">
-                                    <option>Please select one</option>
+                                <select asp-for="CulturalExchangeId" required class="form-control" id="dropDownCulturalExchange"
+                                        asp-items="@(new SelectList(ViewBag.CulturalExchange,"StudentViewModel.Id","StudentViewModel.FullName"))">
+                                    <option value="0">Please select one</option>
                                 </select>
                                 <span asp-validation-for="CulturalExchange" class="text-danger"></span>
                             </div>
@@ -31,7 +31,7 @@
 
                         @await Html.PartialAsync("~/Views/ReceivePaymentCulturalExchange/_partial/_form_create_edit.cshtml", Model)
 
-                        <div class="row"> 
+                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-md-8 control-label">Value Payment:</label>
@@ -65,6 +65,7 @@
 @section Scripts {
 
     <script src="~/js/Util/Util.js"></script>
+    <script src="~/js/ReceivePaymentCulturalExchange/ReceivePayments.js"></script>
 
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

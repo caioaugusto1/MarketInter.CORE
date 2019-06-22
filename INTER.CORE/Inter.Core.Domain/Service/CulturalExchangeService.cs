@@ -41,9 +41,6 @@ namespace Inter.Core.Domain.Service
             bool ValueHigherThanCourseValue = new CulturalExchangeValueHigherThanCourseValue(_culturalExchangeRepository, _collegeTimeRepository)
                 .IsSatisfiedBy(culturalExchange);
 
-            if (!ValueHigherThanCourseValue)
-                culturalExchange.ValidationResult.Add(new ValidationResult("Course value incorrect"));
-
             bool accomodationDateAvailable = new CulturalExchangeValidateAccomodationDateAvailable(_accomodationRepository)
                 .IsSatisfiedBy(culturalExchange);
 

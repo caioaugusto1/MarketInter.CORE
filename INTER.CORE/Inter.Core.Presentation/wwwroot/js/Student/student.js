@@ -67,6 +67,6 @@
 
 
 
-    return { create, loadingList, popUpConfirmDelete, confirmDelete, edit };
+    return { create, loadingList, popUpConfirmDelete, confirmDelete };
 
 }();

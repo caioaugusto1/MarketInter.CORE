@@ -14,5 +14,27 @@
     };
 
 
+    var loadingPage = function () {
+
+        $('#dropDownCulturalExchange').change(function () {
+
+            let id = $(this).val();
+
+            if (id == 0)
+                return;
+
+            Util.request('/Student/GetCustomerIdByStudentId', 'POST', { id }, 'json', true, function (data) {
+
+                $('#customerId').val(data);
+
+            }, function (request, status, error) {
+
+            });
+
+        });
+    };
+
+    loadingPage();
+
     return { popUpOpenModalFileUpload };
 }();

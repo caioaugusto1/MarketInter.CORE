@@ -1,6 +1,7 @@
 ﻿using DomainValidation.Interfaces.Specification;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
+using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.Domain.Specification.CulturalExchange
 {
@@ -21,14 +22,12 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
         {
             CollegeTime collegeTime = _collegeTimeRepository.GetById(entity.CollegeTimeId);
 
-            //var sumValueWithPercentage = collegeTime.Price * collegeTime.PercentageCourse;
+            var sumValueWithPercentage = collegeTime.Price * collegeTime.PercentagePrice;
 
-            var sumValueWithPercentage = collegeTime.Price;
+            if (sumValueWithPercentage >= (decimal)entity.TotalValue)
+                entity.ValidationResult.Add(new ValidationResult("Course value incorrect"));
 
-            //if (sumValueWithPercentage >= (decimal)entity.TotalValue)
-            //    return false;
-
-            return true;
+            return false;
         }
     }
 }

@@ -76,6 +76,26 @@ namespace Inter.Core.Presentation.Controllers
             return File(stream, "application/pdf");
         }
 
+        public async Task<IActionResult> CulturalExchangeDeleteFile(Guid id, string fileName)
+        {
+            try
+            {
+                if (id != Guid.Empty && !string.IsNullOrWhiteSpace(fileName))
+                {
+                    _culturalExchangeFileUploadAppService.Delete(id);
+                    DeleteFile(fileName);
+
+                    return Json(Ok());
+                }
+
+                return Json(Conflict());
+            }
+            catch (Exception ex)
+            {
+                return Json(BadRequest());
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetModalCulturalExchangeUploadFile(Guid culturalExchangeId)
         {
@@ -135,7 +155,7 @@ namespace Inter.Core.Presentation.Controllers
                     {
                         fileUploadViewModel.FileName = fileName;
 
-                        _receivePaymentCulturalExchangeAppService.Add(fileUploadViewModel);
+                        fileUploadViewModel = _receivePaymentCulturalExchangeAppService.Add(fileUploadViewModel);
 
                         return Json(Ok());
                     }

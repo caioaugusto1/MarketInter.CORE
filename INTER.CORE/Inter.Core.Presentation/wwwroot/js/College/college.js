@@ -129,7 +129,7 @@
     };
 
     var deleteConfirmCollegeTime = function (id) {
-        console.log(id);
+        
         Util.request('/College/DeleteConfirmedTimeCollege', 'GET', { id }, 'json', true, function (data) {
 
             location.reload();

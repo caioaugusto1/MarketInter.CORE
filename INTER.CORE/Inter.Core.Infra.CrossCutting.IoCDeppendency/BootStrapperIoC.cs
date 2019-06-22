@@ -20,7 +20,6 @@ namespace Inter.Core.Infra.CrossCutting.IoCDeppendency
     {
         public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
         {
-
             services.AddDbContext<MySQLContext>(options =>
                 options.UseMySql(
                     configuration.GetConnectionString("MySqlConnection")));
@@ -28,8 +27,6 @@ namespace Inter.Core.Infra.CrossCutting.IoCDeppendency
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<MySQLContext>();
-
-            //services.AddEntityFrameworkStores<MySQLContext>();
 
             services.AddSingleton(typeof(IRepository<>), typeof(RepositoryBase<>));
 

@@ -1,10 +1,9 @@
 ﻿using Inter.Core.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Inter.Core.Domain.Interfaces.Repositories
 {
     public interface IStudentRepository : IRepository<Student>
     {
+        bool ValidationCustomerId(string customerId);
     }
 }

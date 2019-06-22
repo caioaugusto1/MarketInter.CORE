@@ -7,11 +7,6 @@ namespace Inter.Core.App.ViewModel
 {
     public class ReceivePaymentCulturalExchangeFileUploadViewModel : BaseViewModel
     {
-        public ReceivePaymentCulturalExchangeFileUploadViewModel()
-        {
-            ReceivePaymentCulturalExchangeId = Guid.NewGuid();
-        }
-
         public string FileName { get; set; }
 
         [Required]

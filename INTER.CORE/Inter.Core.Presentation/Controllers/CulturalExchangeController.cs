@@ -101,7 +101,7 @@ namespace Inter.Core.Presentation.Controllers
             ViewBag.EnvironmentId = user.EnvironmentId;
             ViewBag.Students = _studentAppService.GetStudentsNotEnroled(user.EnvironmentId);
             ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
-            ViewBag.Accomodations = _accomodationAppService.GetAll(user.EnvironmentId);
+            ViewBag.Accomodations = _accomodationAppService.GetAllAvaliable(user.EnvironmentId);
 
             return View();
         }
@@ -170,7 +170,7 @@ namespace Inter.Core.Presentation.Controllers
             {
                 _culturalExchangeAppService.Update(culturalExchangeViewModel);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "CulturalExchange");
             }
             return View(culturalExchangeViewModel);
         }

@@ -25,7 +25,9 @@ namespace Inter.Core.Domain.Service
 
         public void Delete(Guid id)
         {
-            throw new System.NotImplementedException();
+            var entity = _culturalExchangeFileUploadRepository.GetById(id);
+
+            _culturalExchangeFileUploadRepository.Delete(entity);
         }
 
         public List<CulturalExchangeFileUpload> GetAllByCulturalExchangeId(Guid culturalExchangeId)

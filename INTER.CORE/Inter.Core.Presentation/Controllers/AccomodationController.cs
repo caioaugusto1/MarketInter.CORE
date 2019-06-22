@@ -108,6 +108,16 @@ namespace Inter.Core.Presentation.Controllers
             return View(accomodationViewModel);
         }
 
+        public async Task<IActionResult> DetailsReservation(Guid accomodationId)
+        {
+            if (accomodationId == Guid.Empty)
+                return Json(Conflict());
+
+            AccomodationViewModel accomodationVM = _accomodationAppService.GetAccomodationAndCulturalExchangeList(accomodationId);
+
+            return View(accomodationVM);
+        }
+
         // GET: Accomodation/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {

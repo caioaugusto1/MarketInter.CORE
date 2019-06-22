@@ -102,7 +102,25 @@
         find();
     };
 
+    var popUpConfirmDeleteFile = function (id, fileName) {
+        
+        $('#modalDelete').modal('show');
+        $('#deleteButton').attr('onclick', `culturalExchange.confirmDeleteFile('${id}', '${fileName}')`);
+    };
+
+    var confirmDeleteFile = function (id, fileName) {
+
+        Util.request('/FileUpload/CulturalExchangeDeleteFile', 'GET', { id, fileName }, 'json', true, function (data) {
+            setTimeout(function () {
+                location.reload();
+            }, 2000);
+
+        }, function (request, status, error) {
+
+        });
+    };
+
     loadingPage();
 
-    return { create, popUpOpenModalFileUpload, find, clearFilter };
+    return { create, popUpOpenModalFileUpload, find, clearFilter, popUpConfirmDeleteFile, confirmDeleteFile };
 }();

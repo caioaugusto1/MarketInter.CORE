@@ -34,14 +34,11 @@ namespace Inter.Core.Domain.Service
             bool studentOver18YearsOld = new StudentOver18YearsOld()
                 .IsSatisfiedBy(student);
 
-            if (!studentOver18YearsOld)
-                student.ValidationResult.Add(new ValidationResult("Student Under 18 years old"));
+            bool studentCustomerId = new IdentityCustomerId(_studentRepository)
+                .IsSatisfiedBy(student);
 
             if (!student.ValidationResult.Any())
-            {
-                environment.Students.Add(student);
                 _studentRepository.Insert(student);
-            }
 
             return student;
         }
