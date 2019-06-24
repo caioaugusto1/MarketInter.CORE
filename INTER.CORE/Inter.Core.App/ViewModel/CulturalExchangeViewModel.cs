@@ -1,5 +1,4 @@
 ﻿using Inter.Core.App.ViewModel.Base;
-using Inter.Core.Presentation.Models.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -96,7 +95,7 @@ namespace Inter.Core.App.ViewModel
         public string FlightNumber { get; set; }
 
         [DisplayName("College Payment")]
-        public bool CollegePayment { get; set; }
+        public bool CollegePayment { get; set; } = false;
 
         [Required(ErrorMessage = "Total Value")]
         [DisplayName("Total Value")]

@@ -11,19 +11,16 @@ using System.Threading.Tasks;
 namespace Inter.Core.Presentation.Controllers
 {
     //[Authorize(Roles = "Admin, Users")]
-    public class FileUploadController : BaseController
+    public class FileUploadController : Controller
     {
         private readonly ICulturalExchangeFileUploadAppService _culturalExchangeFileUploadAppService;
-        private readonly IReceivePaymentCulturalExchangeFileUploadAppService _receivePaymentCulturalExchangeAppService;
         private readonly IOptions<AppSettings> _appSetttings;
 
         public FileUploadController(
             ICulturalExchangeFileUploadAppService culturalExchangeAppService,
-            IReceivePaymentCulturalExchangeFileUploadAppService receivePaymentCulturalExchangeAppService,
             IOptions<AppSettings> appSetttings)
         {
             _culturalExchangeFileUploadAppService = culturalExchangeAppService;
-            _receivePaymentCulturalExchangeAppService = receivePaymentCulturalExchangeAppService;
             _appSetttings = appSetttings;
         }
 
@@ -104,16 +101,7 @@ namespace Inter.Core.Presentation.Controllers
 
             return PartialView("~/Views/FileUpload/_partial/_modal_culturalExchange_upload_file.cshtml", culturalExchangeFileUploadViewModel);
         }
-
-        [HttpGet]
-        public async Task<IActionResult> GetModalReceivePaymentsUploadFile(Guid id)
-        {
-            ReceivePaymentCulturalExchangeFileUploadViewModel receivePayment = new ReceivePaymentCulturalExchangeFileUploadViewModel();
-            receivePayment.ReceivePaymentCulturalExchangeId = id;
-
-            return PartialView("~/Views/FileUpload/_partial/_modal_receivePayments_culturalExchange_upload_file.cshtml", receivePayment);
-        }
-
+        
         [HttpPost]
         public async Task<JsonResult> PostModalCulturalExchangeUploadFile(CulturalExchangeFileUploadViewModel fileUploadViewModel)
         {
@@ -142,33 +130,5 @@ namespace Inter.Core.Presentation.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<JsonResult> PostModalReceivePaymentCulturalExchange(ReceivePaymentCulturalExchangeFileUploadViewModel fileUploadViewModel)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var fileName = await UploadFile(fileUploadViewModel.File);
-
-                    if (!string.IsNullOrWhiteSpace(fileName))
-                    {
-                        fileUploadViewModel.FileName = fileName;
-
-                        fileUploadViewModel = _receivePaymentCulturalExchangeAppService.Add(fileUploadViewModel);
-
-                        return Json(Ok());
-                    }
-                }
-
-                return Json(Conflict());
-            }
-            catch (Exception ex)
-            {
-                DeleteFile(fileUploadViewModel.FileName);
-
-                return Json(BadRequest());
-            }
-        }
     }
 }

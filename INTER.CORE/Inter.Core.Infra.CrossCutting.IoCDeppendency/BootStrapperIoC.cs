@@ -61,10 +61,6 @@ namespace Inter.Core.Infra.CrossCutting.IoCDeppendency
             services.AddTransient<IReceivePaymentCulturalExchangeAppService, ReceivePaymentCulturalExchangeAppService>();
             services.AddTransient<IReceivePaymentCulturalExchangeService, ReceivePaymentCulturalExchangeService>();
             services.AddTransient<IReceivePaymentCulturalExchangeRepository, ReceivePaymentCulturalExchangeRepository>();
-
-            services.AddTransient<IReceivePaymentCulturalExchangeFileUploadAppService, ReceivePaymentCulturalExchangeFileUploadAppService>();
-            services.AddTransient<IReceivePaymentCulturalExchangeFileUploadService, ReceivePaymentCulturalExchangeFileUploadService>();
-            services.AddTransient<IReceivePaymentCulturalExchangeFileUploadRepository, ReceivePaymentCulturalExchangeFileUploadRepository>();
             
             services.AddTransient<IApplicationUserAppService, ApplicationUserAppService>();
         }

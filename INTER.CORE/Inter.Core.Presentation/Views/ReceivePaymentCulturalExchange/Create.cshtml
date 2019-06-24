@@ -1,5 +1,7 @@
 ﻿@model ReceivePaymentCulturalExchangeViewModel
 
+@using Inter.Core.App.Enumerables;
+
 <div class="container">
 
     <h1 class="h3 mb-2 text-gray-800">Receive Payment - NEW</h1>
@@ -8,7 +10,7 @@
         <tbody>
             <tr>
                 <td colspan="1">
-                    <form id="form-create-culturalExchange" asp-action="OnCreate" class="well form-horizontal">
+                    <form id="form-create-culturalExchange" asp-action="OnCreate" class="well form-horizontal" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                         <div class="row">
@@ -20,11 +22,39 @@
                             <div class="col-md-4">
                                 <label class="col-md-4 control-label">Full Name*</label>
                                 <select asp-for="CulturalExchangeId" required class="form-control" id="dropDownCulturalExchange"
-                                        asp-items="@(new SelectList(ViewBag.CulturalExchange,"StudentViewModel.Id","StudentViewModel.FullName"))">
+                                        asp-items="@(new SelectList(ViewBag.CulturalExchange,"Id","StudentViewModel.FullName"))">
                                     <option value="0">Please select one</option>
                                 </select>
                                 <span asp-validation-for="CulturalExchange" class="text-danger"></span>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="col-form-label">Type:</label>
+                                    <select name="Type" asp-items="Html.GetEnumSelectList<ReceivePaymentCulturalExchangeTypeUpload>()" data-val-required="The Period field is required." class="form-control">
+                                        <option value="">Selected</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <label class="col-form-label">Note:</label>
+                                <input asp-for="Note" name="Note" placeholder="Note" class="form-control" required type="text">
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="custom-file form-group">
+                                    <label for="validatedCustomFile" class="custom-file-label">Choose File:</label>
+                                    <input type="file" name="file" accept="pdf, pdf" class="custom-file-input" id="validatedCustomFile" required>
+                                </div>
+                            </div>
+
                         </div>
 
                         <br />
@@ -34,7 +64,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="recipient-name" class="col-md-8 control-label">Value Payment:</label>
+                                    <label for="recipient-name" class="col-md-4 control-label">Value Payment:</label>
                                     <input asp-for="Value" name="Value" id="value" placeholder="Value Payment" class="form-control" required type="number">
                                 </div>
                             </div>

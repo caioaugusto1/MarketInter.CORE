@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<ReceivePaymentCulturalExchangeViewModel>
 
+
 <div class="col-lg-6">
     <!-- Circle Buttons -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            @*<h6 class="m-0 font-weight-bold text-primary">@Model.FirstOrDefault().CulturalExchange.StudentViewModel.FullName</h6>*@
+            <h6 class="m-0 font-weight-bold text-primary">@Model.FirstOrDefault().CulturalExchange.StudentViewModel.FullName</h6>
         </div>
         <div class="card-body">
             <div class="small mb-1"></div>
@@ -54,18 +55,34 @@
                         @Model.FirstOrDefault().CulturalExchange.AccomodationViewModel.Address
                     </dd>
                     <dt class="col-sm-6">
+                        Total Last
+                    </dt>
+                    <dd class="col-sm-6">
+                        @(Model.FirstOrDefault().CulturalExchange.TotalValue - (decimal)Model.Sum(x => x.Value) )
+                    </dd>
+                    <dt class="col-sm-6">
                         Cultural Exchange Price
                     </dt>
                     <dd class="col-sm-6">
                         @Model.FirstOrDefault().CulturalExchange.TotalValue
                     </dd>
-
+                    <dt class="col-sm-6">
+                        Sales Person
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Model.FirstOrDefault().CulturalExchange.SalesMan
+                    </dd>
                 </dl>
             </div>
         }
 
     </div>
+
 </div>
+
+@await Html.PartialAsync("~/Views/ReceivePaymentCulturalExchange/_partial/_list_file_upload_details.cshtml", Model)
+
 
 <script src="~/js/Util/Util.js"></script>
 <script src="~/js/CulturalExchange/culturalExchange.js"></script>
+
