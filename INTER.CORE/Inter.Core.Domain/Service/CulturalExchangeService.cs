@@ -60,9 +60,10 @@ namespace Inter.Core.Domain.Service
             return culturalExchange;
         }
 
-        public List<CulturalExchange> GetAll(Guid idEnvironment)
+        public List<CulturalExchange> GetAll(Guid idEnvironment, bool active)
         {
-            var culturalExchangeEntity = _culturalExchangeRepository.FindByFilter(x => x.Environment.Id == idEnvironment);
+            var culturalExchangeEntity = _culturalExchangeRepository
+                .FindByFilter(x => x.Environment.Id == idEnvironment && x.Available == active);
 
             culturalExchangeEntity.ForEach(x =>
             {
@@ -123,9 +124,26 @@ namespace Inter.Core.Domain.Service
             return culturalExchangeEntity;
         }
 
+        public CulturalExchange Inactive(Guid id)
+        {
+            var entity = _culturalExchangeRepository.GetById(id);
+            entity.Available = false;
+
+            return _culturalExchangeRepository.Update(entity);
+        }
+
         public CulturalExchange Update(Guid idEnvironment, CulturalExchange culturalExchange)
         {
             return _culturalExchangeRepository.Update(culturalExchange);
+        }
+
+        public CulturalExchange UpdateDateStartAndFinish(Guid id, DateTime start, DateTime finish)
+        {
+            var entity = _culturalExchangeRepository.GetById(id);
+            entity.StartAccomodation = start;
+            entity.FinishAccomodation = finish;
+
+            return _culturalExchangeRepository.Update(entity);
         }
     }
 }

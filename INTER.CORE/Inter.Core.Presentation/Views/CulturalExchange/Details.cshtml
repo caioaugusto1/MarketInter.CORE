@@ -18,6 +18,8 @@
                             <a class="dropdown-item" href="@Url.Action("Edit", "CulturalExchange", new { id = Model.Id })">Edit</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="javascript:culturalExchange.popUpOpenModalFileUpload('@Model.Id')">+ File Upload</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:culturalExchange.popUpConfirmInactive('@Model.Id')">Inactive</a>
                         </div>
                     </li>
                 </ul>
@@ -29,7 +31,7 @@
     </div>
 </div>
 
-@*@await Html.PartialAsync("~/Views/CulturalExchange/_partial/_upload_details.cshtml", Model.CulturalExchangeFileUploadVM)*@
+@await Html.PartialAsync("~/Views/Shared/_partial/_modalDelete.cshtml")
 
 <div id="modalCulturalExchangeFileUpload">
 

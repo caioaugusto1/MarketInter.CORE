@@ -2,6 +2,7 @@
 {
     public enum ReceivePaymentCulturalExchangeTypeUpload
     {
-        Payment = 'P'
+        Payment = 'P', 
+        Other = 'O'
     }
 }

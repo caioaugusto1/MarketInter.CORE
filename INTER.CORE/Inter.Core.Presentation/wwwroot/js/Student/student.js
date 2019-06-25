@@ -44,7 +44,7 @@
 
     var popUpConfirmDelete = function (studentId) {
         $('#modalDelete').modal('show');
-        $('#deleteButton').attr('onclick', `student.confirmDelete(${studentId})`);
+        $('#deleteButton').attr('onclick', `student.confirmDelete('${studentId}')`);
     };
 
 

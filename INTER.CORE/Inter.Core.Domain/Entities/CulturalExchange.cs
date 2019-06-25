@@ -66,6 +66,8 @@ namespace Inter.Core.Domain.Entities
 
         public string SalesMen { get; set; }
 
+        public bool Available { get; set; }
+
         public virtual List<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
 
         public virtual List<ReceivePaymentCulturalExchange> ReceivePaymentCulturalExchanges { get; set; }

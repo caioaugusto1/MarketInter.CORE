@@ -8,12 +8,16 @@ namespace Inter.Core.App.Intefaces
     {
         CulturalExchangeViewModel Add(Guid idEnvironment, CulturalExchangeViewModel culturalExchangeViewModel);
 
-        List<CulturalExchangeViewModel> GetAll(Guid idEnvironment);
+        List<CulturalExchangeViewModel> GetAll(Guid idEnvironment, bool active);
 
         List<CulturalExchangeViewModel> GetAllByFilter(Guid idEnvironment, string startArrivalDate, string finishArrivalDate, Guid collegeId, Guid accomodationId);
 
         CulturalExchangeViewModel GetById(Guid id);
 
-        CulturalExchangeViewModel Update(CulturalExchangeViewModel culturalExchangeViewModel);
+        CulturalExchangeViewModel Inactive(Guid id);
+
+        CulturalExchangeViewModel UpdateDateStartAndFinish(Guid id, DateTime start, DateTime finish);
+
+        CulturalExchangeViewModel Update(Guid idEnvironment, CulturalExchangeViewModel culturalExchangeViewModel);
     }
 }

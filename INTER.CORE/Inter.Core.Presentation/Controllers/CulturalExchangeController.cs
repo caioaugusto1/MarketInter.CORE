@@ -57,7 +57,7 @@ namespace Inter.Core.Presentation.Controllers
             ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
             ViewBag.Accomodations = _accomodationAppService.GetAll(user.EnvironmentId);
 
-            List<CulturalExchangeViewModel> culturalExchangeList = _culturalExchangeAppService.GetAll(user.EnvironmentId);
+            List<CulturalExchangeViewModel> culturalExchangeList = _culturalExchangeAppService.GetAll(user.EnvironmentId, true);
 
             return View("~/Views/CulturalExchange/Index.cshtml", culturalExchangeList);
         }
@@ -168,7 +168,13 @@ namespace Inter.Core.Presentation.Controllers
 
             if (ModelState.IsValid)
             {
-                _culturalExchangeAppService.Update(culturalExchangeViewModel);
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var user = _applicationUserAppService.GetById(userId);
+
+                if (user == null)
+                    return NotFound();
+
+                _culturalExchangeAppService.Update(user.EnvironmentId, culturalExchangeViewModel);
 
                 return RedirectToAction("Index", "CulturalExchange");
             }
@@ -208,6 +214,16 @@ namespace Inter.Core.Presentation.Controllers
 
             return View(culturalExchangeFilesUpload);
 
+        }
+
+        public async Task<IActionResult> Inactive(Guid id)
+        {
+            if (id == Guid.Empty)
+                return NotFound();
+
+            var culturalExchangeFilesUpload = _culturalExchangeAppService.Inactive(id);
+
+            return Json(Ok());
         }
 
         //// POST: CulturalExchange/Delete/5

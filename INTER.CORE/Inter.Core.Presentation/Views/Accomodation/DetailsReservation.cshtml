@@ -48,9 +48,7 @@
                                         @culturalExchange.FinishAccomodation
                                     </td>
                                     <td>
-                                        @*<a class="btn btn-info btn-circle btn-sm" href="@Url.Action("Download", "FileUpload", new { filename = file.FileName })"><i class="fas fa-download"></i></a>
-
-                                            <button onclick="culturalExchange.popUpConfirmDeleteFile('@file.Id', '@file.FileName')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></button>*@
+                                        <button onclick="accomodation.getModalUpdateDate('@culturalExchange.Id')" class="btn btn-info btn-circle btn-sm"><i class="fas fa-plus"></i></button>
                                     </td>
                                 </tr>
                             }
@@ -64,6 +62,10 @@
     </div>
 </div>
 
+<div id="divModalUpdateDateAccomodation">
+
+</div>
 
 <script src="~/js/jquery-3.4.1.min.js"></script>
 <script src="~/js/Util/Util.js"></script>
+<script src="~/js/Accomodation/Accomodation.js"></script>

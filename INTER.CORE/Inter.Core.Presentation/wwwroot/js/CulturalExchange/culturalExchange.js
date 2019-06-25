@@ -120,7 +120,25 @@
         });
     };
 
+    var confirmInactive = function (id) {
+
+        Util.request('/CulturalExchange/Inactive', 'GET', { id }, 'json', true, function (data) {
+            setTimeout(function () {
+                let url = '/CulturalExchange/Index';
+                window.location.href = url;
+            }, 2000);
+
+        }, function (request, status, error) {
+
+        });
+    };
+
+    var popUpConfirmInactive = function (id) {
+        $('#modalDelete').modal('show');
+        $('#deleteButton').attr('onclick', `culturalExchange.confirmInactive('${id}')`);
+    };
+
     loadingPage();
 
-    return { create, popUpOpenModalFileUpload, find, clearFilter, popUpConfirmDeleteFile, confirmDeleteFile };
+    return { create, popUpOpenModalFileUpload, find, clearFilter, popUpConfirmDeleteFile, confirmDeleteFile, popUpConfirmInactive, confirmInactive };
 }();

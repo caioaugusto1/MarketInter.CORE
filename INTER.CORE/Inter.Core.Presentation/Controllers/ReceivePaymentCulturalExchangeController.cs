@@ -75,7 +75,7 @@ namespace Inter.Core.Presentation.Controllers
                 return NotFound();
 
             ViewBag.EnvironmentId = user.EnvironmentId;
-            ViewBag.CulturalExchange = _culturalExchangeAppService.GetAll(user.EnvironmentId);
+            ViewBag.CulturalExchange = _culturalExchangeAppService.GetAll(user.EnvironmentId, true);
 
             return View();
         }

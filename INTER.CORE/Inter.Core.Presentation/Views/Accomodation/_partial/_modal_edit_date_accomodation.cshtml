@@ -1,0 +1,51 @@
+﻿@model CulturalExchangeViewModel
+
+<div class="modal fade modal-date" id="modalDate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Date</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Start Accomodation*</label>
+                                <input type="date" id="startdate" asp-for="StartAccomodation" class="form-control date-accomodation" />
+                                <span asp-validation-for="StartAccomodation" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Start Accomodation*</label>
+                                <input type="date" id="finishDate" asp-for="FinishAccomodation" class="form-control date-accomodation" />
+                                <span asp-validation-for="FinishAccomodation" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="button" onclick="accomodation.updateDate()" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input asp-for="Id" type="hidden" value="@Model.Id" id="culturalExchangeId" />
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

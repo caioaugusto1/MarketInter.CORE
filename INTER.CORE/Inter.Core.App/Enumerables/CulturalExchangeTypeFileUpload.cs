@@ -5,6 +5,8 @@
         Passaport = 'P',
         Contract = 'C',
         Form = 'F',
+        Invoice = 'I', 
+        Latter = 'L',
         Others = 'O'
     }
 }

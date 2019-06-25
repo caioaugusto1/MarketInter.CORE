@@ -105,6 +105,8 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Sales Value")]
         public string SalesMan { get; set; }
 
+        public bool Available { get; set; }
+
         public virtual List<CulturalExchangeFileUploadViewModel> CulturalExchangeFileUploadVM { get; set; }
 
     }

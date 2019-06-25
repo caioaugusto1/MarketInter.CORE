@@ -30,9 +30,9 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.Add(culturalExchange));
         }
 
-        public List<CulturalExchangeViewModel> GetAll(Guid idEnvironment)
+        public List<CulturalExchangeViewModel> GetAll(Guid idEnvironment, bool active)
         {
-            return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAll(idEnvironment));
+            return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAll(idEnvironment, active));
         }
 
         public List<CulturalExchangeViewModel> GetAllByFilter(Guid idEnvironment, string startArrivalDate, string finishArrivalDate, Guid collegeId, Guid accomodationId)
@@ -54,9 +54,21 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.GetById(id));
         }
 
-        public CulturalExchangeViewModel Update(CulturalExchangeViewModel collegeViewModel)
+        public CulturalExchangeViewModel Inactive(Guid id)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.Inactive(id));
+        }
+
+        public CulturalExchangeViewModel Update(Guid idEnvironment, CulturalExchangeViewModel culturalExchangeViewModel)
+        {
+            var entity = _mapper.Map<CulturalExchange>(culturalExchangeViewModel);
+
+            return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.Update(idEnvironment, entity));
+        }
+
+        public CulturalExchangeViewModel UpdateDateStartAndFinish(Guid id, DateTime start, DateTime finish)
+        {
+            return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.UpdateDateStartAndFinish(id, start, finish));
         }
     }
 }

@@ -4,24 +4,28 @@ using Inter.Core.App.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
     [Authorize(Roles = "Admin, Manager, Accomodation")]
-    public class AccomodationController : BaseController
+    public class AccomodationController : Controller
     {
         //private readonly UserManager<ApplicationUserViewModel> _userManager;
         private readonly IApplicationUserAppService _applicationUserAppService;
         private readonly IAccomodationAppService _accomodationAppService;
+        private readonly ICulturalExchangeAppService _culturalExchangeAppService;
 
         public AccomodationController(IApplicationUserAppService applicationUserAppService,
-            IAccomodationAppService accomodationAppService)
+            IAccomodationAppService accomodationAppService,
+            ICulturalExchangeAppService culturalExchangeAppService)
         {
             //_userManager = userManager;
             _applicationUserAppService = applicationUserAppService;
             _accomodationAppService = accomodationAppService;
+            _culturalExchangeAppService = culturalExchangeAppService;
         }
 
         // GET: Accomodation
@@ -116,6 +120,29 @@ namespace Inter.Core.Presentation.Controllers
             AccomodationViewModel accomodationVM = _accomodationAppService.GetAccomodationAndCulturalExchangeList(accomodationId);
 
             return View(accomodationVM);
+        }
+
+        public async Task<IActionResult> GetModalUpdateDate(Guid culturalExchangeId)
+        {
+            if (culturalExchangeId == Guid.Empty)
+                return null;
+
+            var culturalExchange = _culturalExchangeAppService.GetById(culturalExchangeId);
+
+            return PartialView("~/Views/Accomodation/_partial/_modal_edit_date_accomodation.cshtml", culturalExchange);
+        }
+
+        public async Task<IActionResult> UpdateDateStartAndFinish(Guid culturalExchangeId, DateTime start, DateTime finish)
+        {
+            if (culturalExchangeId == Guid.Empty)
+                return null;
+
+            var culturalExchange = _culturalExchangeAppService.UpdateDateStartAndFinish(culturalExchangeId, start, finish);
+
+            if (!culturalExchange.ValidationResult.Any())
+                return Json(Ok());
+
+            return Json(Conflict());
         }
 
         // GET: Accomodation/Delete/5
