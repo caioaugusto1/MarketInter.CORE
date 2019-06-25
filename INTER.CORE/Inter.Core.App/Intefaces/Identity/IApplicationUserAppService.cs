@@ -19,7 +19,5 @@ namespace Inter.Core.App.Intefaces.Identity
 
         Task<IdentityResult> AddToRoleAsync(ApplicationUserViewModel user, string roleName);
 
-        ApplicationUser Converter(ApplicationUserViewModel t);
-
     }
 }

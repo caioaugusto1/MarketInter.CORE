@@ -16,13 +16,13 @@ namespace Inter.Core.Presentation.Controllers.Identity
     {
         private readonly IApplicationUserAppService _applicationUserAppService;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<Domain.Entities.ApplicationUser> _userManager1;
+        private readonly UserManager<Domain.Entities.ApplicationUser> _userManager;
 
-        public RoleController(IApplicationUserAppService applicationUserAppService, RoleManager<IdentityRole> roleManager, UserManager<Domain.Entities.ApplicationUser> userManager1)
+        public RoleController(IApplicationUserAppService applicationUserAppService, RoleManager<IdentityRole> roleManager, UserManager<Domain.Entities.ApplicationUser> userManager)
         {
             _applicationUserAppService = applicationUserAppService;
             _roleManager = roleManager;
-            _userManager1 = userManager1;
+            _userManager = userManager;
         }
 
         //public RoleController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUserViewModel> userManager)
@@ -81,13 +81,13 @@ namespace Inter.Core.Presentation.Controllers.Identity
 
                 foreach (string userId in modifyRole.IdsToAdd ?? new string[] { })
                 {
-                    ApplicationUserViewModel user = _applicationUserAppService.GetById(userId);
+                    //ApplicationUserViewModel user = _applicationUserAppService.GetById(userId);
+                    var user = _userManager.FindByIdAsync(userId);
 
                     if (user != null)
                     {
-                        //result = await _userManager1.AddToRoleAsync(_applicationUserAppService.Converter(user), modifyRole.RoleName);
+                        result = await _userManager.AddToRoleAsync(user.Result, modifyRole.RoleName);
 
-                        result = await _applicationUserAppService.AddToRoleAsync(user, modifyRole.RoleName);
                         //if (!result.Succeeded)
                         //{
                         //    AddErrors(result);
@@ -97,11 +97,15 @@ namespace Inter.Core.Presentation.Controllers.Identity
 
                 foreach (string userId in modifyRole.IdsToRemove ?? new string[] { })
                 {
-                    ApplicationUserViewModel user = _applicationUserAppService.GetById(userId);
+                    //ApplicationUserViewModel user = _applicationUserAppService.GetById(userId);
+
+                    var user = _userManager.FindByIdAsync(userId);
 
                     if (user != null)
                     {
-                        result = await _applicationUserAppService.RemoveFromRoleAsync(user, modifyRole.RoleName);
+                        //result = await _applicationUserAppService.RemoveFromRoleAsync(user, modifyRole.RoleName);
+
+                        result = await _userManager.RemoveFromRoleAsync(user.Result, modifyRole.RoleName);
 
                         if (!result.Succeeded)
                         {
