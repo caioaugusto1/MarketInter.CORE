@@ -2,7 +2,7 @@
 using Inter.Core.App.AutoMapper;
 using Inter.Core.Infra.CrossCutting.IoCDeppendency;
 using Inter.Core.Presentation.Configuration;
-using Inter.Core.Presentation.Data;
+//using Inter.Core.Presentation.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

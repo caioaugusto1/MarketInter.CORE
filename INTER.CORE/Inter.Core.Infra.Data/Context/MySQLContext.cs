@@ -11,7 +11,7 @@ namespace Inter.Core.Infra.Data.Context
         public MySQLContext(DbContextOptions<MySQLContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public DbSet<SystemEnvironment> Environment { get; set; }
@@ -21,6 +21,7 @@ namespace Inter.Core.Infra.Data.Context
         public DbSet<Student> Student { get; set; }
         public DbSet<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
         public DbSet<ReceivePaymentCulturalExchange> ReceivePaymentCulturalExchange { get; set; }
+        public DbSet<PaymentCulturalExchange> PaymentCulturalExchange { get; set; }
         //public DbSet<Advisor> Advisor { get; set; }
         public DbSet<Accomodation> Accomodation { get; set; }
 
