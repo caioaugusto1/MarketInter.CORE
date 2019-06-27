@@ -1,0 +1,43 @@
+﻿@model PaymentCulturalExchangeViewModel
+
+@using Inter.Core.App.Enumerables
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="custom-file form-group">
+            <label for="validatedCustomFile" class="custom-file-label">Choose File:</label>
+            <input type="file" name="file" accept="pdf, pdf" class="custom-file-input" id="validatedCustomFile" required>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Type:</label>
+            <select name="Type" asp-items="Html.GetEnumSelectList<PaymentStatus>()" data-val-required="The Period field is required." class="form-control">
+                <option value="">Selected</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <label class="col-form-label">Date of Payment:</label>
+        <input asp-for="DateOfPayment" name="DateOfPayment" placeholder="Date of Payment" class="form-control" required type="date">
+    </div>
+
+    <div class="col-md-4">
+        <label class="col-form-label">Note:</label>
+        <input asp-for="Note" name="Note" placeholder="Note" class="form-control" required type="text">
+    </div>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="recipient-name" class="col-md-4 control-label">Value Payment:</label>
+            <input asp-for="Value" name="Value" id="value" placeholder="Value Payment" class="form-control" required type="number">
+        </div>
+    </div>
+</div>

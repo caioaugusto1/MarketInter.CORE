@@ -1,6 +1,6 @@
 ﻿using DomainValidation.Interfaces.Specification;
-using System.ComponentModel.DataAnnotations;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.Domain.Specification.CulturalExchange
 {
@@ -11,13 +11,13 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
             if (entity.ArrivalDateTime <= DateTime.Now)
                 entity.ValidationResult.Add(new ValidationResult("Date arrival incorrect"));
 
-            if (entity.ArrivalDateTime <= entity.StartDate)
+            if (entity.ArrivalDateTime >= entity.StartDate)
                 entity.ValidationResult.Add(new ValidationResult("Date arrival and start incorrect"));
 
-            if(entity.IncludeAccomodation)
-                entity.DaysOfAccomodation = Convert.ToInt32(Math.Abs(entity.StartAccomodation.Subtract(entity.FinishAccomodation).TotalDays));
+            if (entity.StartAccomodation <= entity.FinishAccomodation)
+                entity.ValidationResult.Add(new ValidationResult("Date Start Accomodation invalid"));
 
-            return true;
+            return false;
         }
     }
 }

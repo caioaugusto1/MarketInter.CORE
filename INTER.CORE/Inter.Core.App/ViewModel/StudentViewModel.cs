@@ -63,18 +63,18 @@ namespace Inter.Core.App.ViewModel
         [Required(ErrorMessage = "Preencha o campo Logradouro")]
         [MaxLength(100, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Mínimo {0} caracteres")]
-        [DisplayName("Passaport Number")]
-        public string PassaportNumber { get; set; }
+        [DisplayName("Passport Number")]
+        public string PassportNumber { get; set; }
 
-        [Display(Name = "Passaport Date Of Inssue")]
+        [Display(Name = "Passport Date Of Inssue")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
-        public DateTime PassaportDateOfIssue { get; set; }
+        public DateTime PassportDateOfIssue { get; set; }
 
-        [Display(Name = "Passaport Date Of Expiry")]
+        [Display(Name = "Passport Date Of Expiry")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
-        public DateTime PassaportDateOfExpiry { get; set; }
+        public DateTime PassportDateOfExpiry { get; set; }
 
     }
 }

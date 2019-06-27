@@ -6,9 +6,9 @@ namespace Inter.Core.Domain.Entities
     {
         public Guid Id { get; set; }
 
-        public string StartTime { get; set; }
+        public TimeSpan StartTime { get; set; }
 
-        public string FinishTime { get; set; }
+        public TimeSpan FinishTime { get; set; }
 
         public int DaysOfWeek { get; set; }
 
@@ -25,6 +25,10 @@ namespace Inter.Core.Domain.Entities
         public decimal InsurancePrice { get; set; }
 
         public decimal AccomodationPrice { get; set; }
+
+        public decimal NetPrice { get; set; }
+
+        public decimal GrossPrice { get; set; }
 
         public int PercentagePrice { get; set; }
 

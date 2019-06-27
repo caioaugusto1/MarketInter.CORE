@@ -30,7 +30,7 @@ namespace Inter.Core.App.Application
 
         public void Delete(Guid id)
         {
-            throw new System.NotImplementedException();
+            _mapper.Map<ReceivePaymentCulturalExchangeViewModel>(_receivePaymentCulturalExchangeService.GetById(id));
         }
 
         public List<ReceivePaymentCulturalExchangeViewModel> GetAll(Guid environmentId)

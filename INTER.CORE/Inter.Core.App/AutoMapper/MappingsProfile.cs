@@ -38,7 +38,7 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.City, y => y.MapFrom(f => f.City))
                 .ForMember(x => x.Country, y => y.MapFrom(f => f.Country))
                 .ForMember(x => x.Nationality, y => y.MapFrom(f => f.Nationality))
-                .ForMember(x => x.PassaportNumber, y => y.MapFrom(f => f.PassaportNumber))
+                .ForMember(x => x.PassportNumber, y => y.MapFrom(f => f.PassaportNumber))
                 .ReverseMap();
 
             CreateMap<CulturalExchangeFileUpload, CulturalExchangeFileUploadViewModel>()

@@ -44,6 +44,9 @@ namespace Inter.Core.App.ViewModel
 
         public int QuantityDaysOfAccomodation { get; set; }
 
+        [Required(ErrorMessage = "Weeks Numbers")]
+        public int WeekNumber { get; set; }
+
         [Display(Name = "Start Accomodation*")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
@@ -96,6 +99,9 @@ namespace Inter.Core.App.ViewModel
 
         [DisplayName("College Payment")]
         public bool CollegePayment { get; set; } = false;
+
+        [DisplayName("Our Accomodation")]
+        public bool OurAccomodation { get; set; }
 
         [Required(ErrorMessage = "Total Value")]
         [DisplayName("Total Value")]

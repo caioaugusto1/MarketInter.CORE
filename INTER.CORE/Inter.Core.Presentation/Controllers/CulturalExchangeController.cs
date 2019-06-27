@@ -226,6 +226,22 @@ namespace Inter.Core.Presentation.Controllers
             return Json(Ok());
         }
 
+        public IActionResult GetCustomerIdByCulturalExchangeId(Guid id)
+        {
+            if (id == Guid.Empty)
+                return Conflict();
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
+
+            if (user == null)
+                return NotFound();
+
+            var culturalExchange = _culturalExchangeAppService.GetById(id);
+
+            return Json(culturalExchange.StudentViewModel.CustomerId);
+        }
+
         //// POST: CulturalExchange/Delete/5
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]

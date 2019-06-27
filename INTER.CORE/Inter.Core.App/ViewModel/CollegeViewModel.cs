@@ -68,12 +68,12 @@ namespace Inter.Core.App.ViewModel
         [Display(Name = "Start Time")]
         [DataType(DataType.Time, ErrorMessage = "Incorrect Time")]
         [Required(ErrorMessage = "Start Time")]
-        public DateTime StartTime { get; set; }
+        public TimeSpan StartTime { get; set; }
 
         [Display(Name = "Finish Time")]
         [DataType(DataType.Time, ErrorMessage = "Incorrect Time")]
         [Required(ErrorMessage = "Finish Time")]
-        public DateTime FinishTime { get; set; }
+        public TimeSpan FinishTime { get; set; }
 
         [Display(Name = "Days of Week")]
         [Required(ErrorMessage = "Days of Week")]
@@ -105,6 +105,14 @@ namespace Inter.Core.App.ViewModel
         [Display(Name = "Accomodation Price")]
         [Required(ErrorMessage = "Accomodation Price")]
         public decimal AccomodationPrice { get; set; }
+
+        [Display(Name = "Net Price")]
+        [Required(ErrorMessage = "Net Price")]
+        public decimal NetPrice { get; set; }
+
+        [Display(Name = "Gross Price")]
+        [Required(ErrorMessage = "Gross Price")]
+        public decimal GrossPrice { get; set; }
 
         [Display(Name = "Percentage Price")]
         [Required(ErrorMessage = "Percentage Price")]

@@ -83,11 +83,31 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Sale Price:</label>
-            <input type="number" asp-for="@Model.Price" class="form-control" placeholder="Price">
+            <label for="recipient-name" class="col-form-label">Net Price:</label>
+            <input asp-for="@Model.NetPrice" name="NetPrice" id="netPrice" placeholder="Net Price" class="form-control" required type="number">
         </div>
     </div>
 </div>
+
+
+<div class="row">
+    
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Gross Price:</label>
+            <input type="number" asp-for="@Model.GrossPrice" name="GrossPrice" class="form-control" placeholder="Gross Price">
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Sale Price:</label>
+            <input type="number" asp-for="@Model.Price" class="form-control" placeholder="Sale Price">
+        </div>
+    </div>
+
+</div>
+
 
 <div class="row">
     <div class="col-md-12">

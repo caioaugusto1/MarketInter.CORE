@@ -1,7 +1,6 @@
 ﻿using Inter.Core.App.Intefaces;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Presentation.Configuration;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
@@ -13,53 +12,23 @@ namespace Inter.Core.Presentation.Controllers
     //[Authorize(Roles = "Admin, Users")]
     public class FileUploadController : Controller
     {
-        private readonly ICulturalExchangeFileUploadAppService _culturalExchangeFileUploadAppService;
         private readonly IOptions<AppSettings> _appSetttings;
+        private readonly IFileUploadAppService _fileUploadAppService;
+        private readonly ICulturalExchangeFileUploadAppService _culturalExchangeFileUploadAppService;
 
         public FileUploadController(
+            IOptions<AppSettings> appSetttings,
             ICulturalExchangeFileUploadAppService culturalExchangeAppService,
-            IOptions<AppSettings> appSetttings)
+            IFileUploadAppService fileUploadAppService)
         {
-            _culturalExchangeFileUploadAppService = culturalExchangeAppService;
             _appSetttings = appSetttings;
+            _fileUploadAppService = fileUploadAppService;
+            _culturalExchangeFileUploadAppService = culturalExchangeAppService;
         }
 
         public IActionResult Index()
         {
             return View();
-        }
-
-        private async Task<string> UploadFile(IFormFile file)
-        {
-            if (file == null || file.Length == 0)
-                return null;
-
-            string fileName = Guid.NewGuid().ToString() + ".pdf";
-
-            var pathFolder = _appSetttings.Value.UploadFilePath;
-
-            var pathCombine = Path.Combine(
-                pathFolder,
-                        fileName);
-
-            if (!Directory.Exists(pathFolder))
-                Directory.CreateDirectory(pathFolder);
-
-            using (var stream = new FileStream(pathCombine, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            return fileName;
-        }
-
-        private void DeleteFile(string fileName)
-        {
-            var path = Path.Combine(_appSetttings.Value.UploadFilePath,
-                       fileName);
-
-            if (System.IO.File.Exists(path))
-                System.IO.File.Delete(path);
         }
 
         public async Task<IActionResult> Download(string fileName)
@@ -80,7 +49,7 @@ namespace Inter.Core.Presentation.Controllers
                 if (id != Guid.Empty && !string.IsNullOrWhiteSpace(fileName))
                 {
                     _culturalExchangeFileUploadAppService.Delete(id);
-                    DeleteFile(fileName);
+                    _fileUploadAppService.Delete(_appSetttings.Value.UploadFilePath, fileName);
 
                     return Json(Ok());
                 }
@@ -101,7 +70,7 @@ namespace Inter.Core.Presentation.Controllers
 
             return PartialView("~/Views/FileUpload/_partial/_modal_culturalExchange_upload_file.cshtml", culturalExchangeFileUploadViewModel);
         }
-        
+
         [HttpPost]
         public async Task<JsonResult> PostModalCulturalExchangeUploadFile(CulturalExchangeFileUploadViewModel fileUploadViewModel)
         {
@@ -109,12 +78,10 @@ namespace Inter.Core.Presentation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var fileName = await UploadFile(fileUploadViewModel.File);
+                    fileUploadViewModel.FileName = await _fileUploadAppService.Upload(_appSetttings.Value.UploadFilePath, null, fileUploadViewModel.File);
 
-                    if (!string.IsNullOrWhiteSpace(fileName))
+                    if (!string.IsNullOrWhiteSpace(fileUploadViewModel.FileName))
                     {
-                        fileUploadViewModel.FileName = fileName;
-
                         _culturalExchangeFileUploadAppService.Add(fileUploadViewModel);
                         return Json(Ok());
                     }
@@ -124,7 +91,7 @@ namespace Inter.Core.Presentation.Controllers
             }
             catch (Exception ex)
             {
-                DeleteFile(fileUploadViewModel.FileName);
+                _fileUploadAppService.Delete(_appSetttings.Value.UploadFilePath, fileUploadViewModel.FileName);
 
                 return Json(BadRequest());
             }

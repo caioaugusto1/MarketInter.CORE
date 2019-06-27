@@ -30,6 +30,8 @@ namespace Inter.Core.Infra.CrossCutting.IoCDeppendency
 
             services.AddSingleton(typeof(IRepository<>), typeof(RepositoryBase<>));
 
+            services.AddTransient<IApplicationUserAppService, ApplicationUserAppService>();
+
             services.AddTransient<IStudentAppService, StudentAppService>();
             services.AddTransient<IStudentService, StudentService>();
             services.AddTransient<IStudentRepository, StudentRepository>();
@@ -61,8 +63,17 @@ namespace Inter.Core.Infra.CrossCutting.IoCDeppendency
             services.AddTransient<IReceivePaymentCulturalExchangeAppService, ReceivePaymentCulturalExchangeAppService>();
             services.AddTransient<IReceivePaymentCulturalExchangeService, ReceivePaymentCulturalExchangeService>();
             services.AddTransient<IReceivePaymentCulturalExchangeRepository, ReceivePaymentCulturalExchangeRepository>();
-            
-            services.AddTransient<IApplicationUserAppService, ApplicationUserAppService>();
+
+            services.AddTransient<IReceivePaymentCulturalExchangeAppService, ReceivePaymentCulturalExchangeAppService>();
+            services.AddTransient<IReceivePaymentCulturalExchangeService, ReceivePaymentCulturalExchangeService>();
+            services.AddTransient<IReceivePaymentCulturalExchangeRepository, ReceivePaymentCulturalExchangeRepository>();
+
+            services.AddTransient<IPaymentCulturalExchangeAppService, PaymentCulturalExchangeAppService>();
+            services.AddTransient<IPaymentCulturalExchangeService, PaymentCulturalExchangeService>();
+            services.AddTransient<IPaymentCulturalExchangeRepository, PaymentCulturalExchangeRepository>();
+
+            services.AddTransient<IFileUploadAppService, FileUploadAppService>();
+            services.AddTransient<IFileUploadService, FileUploadService>();
         }
     }
 }

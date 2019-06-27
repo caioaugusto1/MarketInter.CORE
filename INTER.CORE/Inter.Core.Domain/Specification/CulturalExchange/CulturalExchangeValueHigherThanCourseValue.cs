@@ -20,12 +20,15 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
 
         public bool IsSatisfiedBy(Entities.CulturalExchange entity)
         {
-            CollegeTime collegeTime = _collegeTimeRepository.GetById(entity.CollegeTimeId);
+            if (entity.WeekNumber == 25)
+            {
+                CollegeTime collegeTime = _collegeTimeRepository.GetById(entity.CollegeTimeId);
 
-            var sumValueWithPercentage = collegeTime.Price * collegeTime.PercentagePrice;
+                var sumValueWithPercentage = collegeTime.Price * collegeTime.PercentagePrice;
 
-            if (sumValueWithPercentage >= (decimal)entity.TotalValue)
-                entity.ValidationResult.Add(new ValidationResult("Course value incorrect"));
+                if (sumValueWithPercentage >= (decimal)entity.TotalValue)
+                    entity.ValidationResult.Add(new ValidationResult("Course value incorrect"));
+            }
 
             return false;
         }

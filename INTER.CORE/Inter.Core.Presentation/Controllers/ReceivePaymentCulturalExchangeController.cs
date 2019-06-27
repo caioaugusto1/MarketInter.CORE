@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
-using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -17,15 +16,17 @@ namespace Inter.Core.Presentation.Controllers
     [Authorize(Roles = "Admin, Manager, ReceivePaymentCulturalExchange")]
     public class ReceivePaymentCulturalExchangeController : Controller
     {
+        private readonly IOptions<AppSettings> _appSetttings;
+        private readonly IFileUploadAppService _fileUploadAppService;
         private readonly IApplicationUserAppService _applicationUserAppService;
         private readonly IReceivePaymentCulturalExchangeAppService _receivePaymentCulturalExchangeAppService;
         private readonly ICulturalExchangeAppService _culturalExchangeAppService;
         private readonly ICollegeTimeAppService _collegeTimeAppService;
         private readonly ICollegeAppService _collegeAppService;
-        private readonly IOptions<AppSettings> _appSetttings;
 
         public ReceivePaymentCulturalExchangeController(
             IOptions<AppSettings> appSetings,
+            IFileUploadAppService fileUploadAppService,
             IApplicationUserAppService applicationUserAppService,
             IReceivePaymentCulturalExchangeAppService receivePaymentCulturalExchangeAppService,
             ICulturalExchangeAppService culturalExchangeAppService,
@@ -33,6 +34,7 @@ namespace Inter.Core.Presentation.Controllers
             ICollegeAppService collegeAppService)
         {
             _appSetttings = appSetings;
+            _fileUploadAppService = fileUploadAppService;
             _applicationUserAppService = applicationUserAppService;
             _collegeTimeAppService = collegeTimeAppService;
             _collegeAppService = collegeAppService;
@@ -89,19 +91,26 @@ namespace Inter.Core.Presentation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    receivePaymentVM.FileName = await UploadFile(receivePaymentVM.File);
+                    receivePaymentVM.FileName = Guid.NewGuid().ToString() + ".pdf";
+
+                    IFormFile formFile = receivePaymentVM.File;
 
                     receivePaymentVM = _receivePaymentCulturalExchangeAppService.Add(receivePaymentVM);
 
                     if (!receivePaymentVM.ValidationResult.Any())
+                    {
+                        receivePaymentVM.FileName = await _fileUploadAppService.Upload(_appSetttings.Value.UploadFilePath, receivePaymentVM.FileName, formFile);
                         return RedirectToAction("Index", "ReceivePaymentCulturalExchange");
+                    }
+
+                    return View(ModelState);
                 }
 
                 return Json(Conflict());
             }
             catch (Exception ex)
             {
-                DeleteFile(receivePaymentVM.FileName);
+                _fileUploadAppService.Delete(_appSetttings.Value.UploadFilePath, receivePaymentVM.FileName);
                 return Json(BadRequest());
             }
         }
@@ -161,38 +170,5 @@ namespace Inter.Core.Presentation.Controllers
             }
         }
 
-
-        private async Task<string> UploadFile(IFormFile file)
-        {
-            if (file == null || file.Length == 0)
-                return null;
-
-            string fileName = Guid.NewGuid().ToString() + ".pdf";
-
-            var pathFolder = _appSetttings.Value.UploadFilePath;
-
-            var pathCombine = Path.Combine(
-                pathFolder,
-                        fileName);
-
-            if (!Directory.Exists(pathFolder))
-                Directory.CreateDirectory(pathFolder);
-
-            using (var stream = new FileStream(pathCombine, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            return fileName;
-        }
-
-        private void DeleteFile(string fileName)
-        {
-            var path = Path.Combine(_appSetttings.Value.UploadFilePath,
-                       fileName);
-
-            if (System.IO.File.Exists(path))
-                System.IO.File.Delete(path);
-        }
     }
 }

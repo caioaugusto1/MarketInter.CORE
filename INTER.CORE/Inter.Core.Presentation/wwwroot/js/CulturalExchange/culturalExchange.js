@@ -54,6 +54,11 @@
                 });
 
                 $('#modal-warning').modal('show');
+            } else {
+                setTimeout(function () {
+                    let url = '/CulturalExchange/Index';
+                    window.location.href = url;
+                }, 2000);
             }
 
         }, function (request, status, error) {

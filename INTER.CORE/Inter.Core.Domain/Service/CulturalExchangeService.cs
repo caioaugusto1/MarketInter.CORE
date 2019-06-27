@@ -33,6 +33,7 @@ namespace Inter.Core.Domain.Service
         public CulturalExchange Add(CulturalExchange culturalExchange)
         {
             culturalExchange.Id = Guid.NewGuid();
+            culturalExchange.Available = true;
 
             College college = _collegeRepository.GetById(culturalExchange.CollegeId);
 
@@ -41,21 +42,21 @@ namespace Inter.Core.Domain.Service
             bool ValueHigherThanCourseValue = new CulturalExchangeValueHigherThanCourseValue(_culturalExchangeRepository, _collegeTimeRepository)
                 .IsSatisfiedBy(culturalExchange);
 
+            bool validateDateArriveAndStart = new CulturalExchangeValidateDateArriveAndStart().IsSatisfiedBy(culturalExchange);
+
+            if (!culturalExchange.ValidationResult.Any())
+                _culturalExchangeRepository.Insert(culturalExchange);
+            else
+                return culturalExchange;
+
             bool accomodationDateAvailable = new CulturalExchangeValidateAccomodationDateAvailable(_accomodationRepository)
                 .IsSatisfiedBy(culturalExchange);
 
             if (!accomodationDateAvailable)
-                culturalExchange.ValidationResult.Add(new ValidationResult("Accomodation FULL"));
-
-            bool validateDateArriveAndStart = new CulturalExchangeValidateDateArriveAndStart().IsSatisfiedBy(culturalExchange);
-
-            if (!validateDateArriveAndStart)
-                culturalExchange.ValidationResult.Add(new ValidationResult("Dates invaliable"));
-
-            bool countDatesAccomodation = new CulturalExchangeCountDaysAccomodation().IsSatisfiedBy(culturalExchange);
-
-            if (!culturalExchange.ValidationResult.Any())
-                _culturalExchangeRepository.Insert(culturalExchange);
+            {
+                if (culturalExchange.ValidationResult.Count == 1)
+                    culturalExchange.ValidationResult.Add(new ValidationResult("Cultural exchange included but: Accomodation FULL for dates"));
+            }
 
             return culturalExchange;
         }

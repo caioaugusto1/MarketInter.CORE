@@ -105,13 +105,13 @@
                         Start Time
                     </dt>
                     <dd class="col-sm-6">
-                        @time.StartTime.ToString("H:mm")
+                        @time.StartTime
                     </dd>
                     <dt class="col-sm-6">
                         Finish Time
                     </dt>
                     <dd class="col-sm-6">
-                        @time.FinishTime.ToString("H:mm")
+                        @time.FinishTime
                     </dd>
                     <dt class="col-sm-6">
                         Days of Week
@@ -156,7 +156,19 @@
                         @time.PercentagePrice %
                     </dd>
                     <dt class="col-sm-6">
-                        Total Price
+                        Net Price
+                    </dt>
+                    <dd class="col-sm-6">
+                        @time.NetPrice
+                    </dd>
+                    <dt class="col-sm-6">
+                        Gross Price
+                    </dt>
+                    <dd class="col-sm-6">
+                        @time.GrossPrice
+                    </dd>
+                    <dt class="col-sm-6">
+                        Sale Price
                     </dt>
                     <dd class="col-sm-6">
                         @time.Price

@@ -134,22 +134,6 @@ namespace Inter.Core.Presentation.Controllers
             return View(studentViewModel);
         }
 
-        public IActionResult GetCustomerIdByStudentId(Guid id)
-        {
-            if (id == Guid.Empty)
-                return Conflict();
-
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = _applicationUserAppService.GetById(userId);
-
-            if (user == null)
-                return NotFound();
-
-            var studentViewModel = _studentAppService.GetById(user.EnvironmentId, id);
-
-            return Json(studentViewModel.CustomerId);
-        }
-
         // GET: Student/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {

@@ -1,8 +1,6 @@
 ﻿using Inter.Core.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inter.Core.Domain.Entities
 {
@@ -33,6 +31,8 @@ namespace Inter.Core.Domain.Entities
 
         public virtual Accomodation Accomodation { get; set; }
 
+        public int WeekNumber { get; set; }
+
         public int DaysOfAccomodation { get; set; }
 
         public DateTime StartAccomodation { get; set; }
@@ -50,7 +50,7 @@ namespace Inter.Core.Domain.Entities
 
         public bool SimCard { get; set; }
 
-        public bool IncludeAccomodation { get; set; }
+        public bool OurAccomodation { get; set; }
 
         public DateTime ArrivalDateTime { get; set; }
 
@@ -66,7 +66,7 @@ namespace Inter.Core.Domain.Entities
 
         public string SalesMen { get; set; }
 
-        public bool Available { get; set; }
+        public bool Available { get; set; } 
 
         public virtual List<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
 

@@ -23,7 +23,7 @@
             if (id == 0)
                 return;
 
-            Util.request('/Student/GetCustomerIdByStudentId', 'POST', { id }, 'json', true, function (data) {
+            Util.request('/CulturalExchange/GetCustomerIdByCulturalExchangeId', 'POST', { id }, 'json', true, function (data) {
 
                 $('#customerId').val(data);
 

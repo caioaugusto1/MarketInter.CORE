@@ -6,7 +6,7 @@
         <label class="col-md-4 control-label">College*</label>
         <select asp-for="CollegeId" required id="college" class="form-control"
                 asp-items="@(new SelectList(ViewBag.Colleges,"Id","Name"))">
-            <option>Please select one</option>
+            <option value="notselected">Please select one</option>
         </select>
         <span asp-validation-for="CollegeViewModel" class="text-danger"></span>
     </div>
@@ -33,9 +33,19 @@
         <span asp-validation-for="AccomodationViewModel" class="text-danger"></span>
     </div>
 
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Weeks *</label>
+            <select asp-for="WeekNumber" required class="form-control">
+                <option value="notselected">Please select one</option>
+                <option value="4">4</option>
+                <option value="8">8</option>
+                <option value="12">12</option>
+                <option value="25">25</option>
+            </select>
+        </div>
+    </div>
 </div>
-
-<br />
 
 <div class="row">
 
@@ -59,14 +69,12 @@
 <br />
 
 <div class="row">
-
     <div class="col-md-2">
         <div class="custom-control custom-checkbox small">
             <label>
-                <input id="accomodationIncludedCheck" type="checkbox" class="custom-control-input" />
-                <label for="accomodationIncludedCheck" class="custom-control-label">Our Accomodation</label>
+                <input asp-for="OurAccomodation" id="accomodationIncludedCheck" type="checkbox" class="custom-control-input" />
+                <label asp-for="OurAccomodation" for="accomodationIncludedCheck" class="custom-control-label">Our Accomodation</label>
             </label>
-            <span asp-validation-for="INSUR" class="text-danger"></span>
         </div>
     </div>
 
@@ -89,7 +97,6 @@
             <span asp-validation-for="Transfer" class="text-danger"></span>
         </div>
     </div>
-
 </div>
 
 <div class="row">
@@ -123,7 +130,6 @@
             <span asp-validation-for="SimCard" class="text-danger"></span>
         </div>
     </div>
-
 </div>
 
 <br />

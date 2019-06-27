@@ -1,4 +1,4 @@
-﻿@model Inter.Core.App.ViewModel.StudentViewModel
+﻿@model StudentViewModel
 
 <div class="col-lg-6">
     <!-- Circle Buttons -->
@@ -34,10 +34,22 @@
                     @Html.DisplayFor(model => model.DateOfBirthday)
                 </dd>
                 <dt class="col-sm-6">
-                    @Html.DisplayNameFor(model => model.PassaportNumber)
+                    @Html.DisplayNameFor(model => model.PassportDateOfIssue)
                 </dt>
                 <dd class="col-sm-6">
-                    @Html.DisplayFor(model => model.PassaportNumber)
+                    @Html.DisplayFor(model => model.PassportDateOfIssue)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.PassportDateOfExpiry)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.PassportDateOfExpiry)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.PassportNumber)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.PassportNumber)
                 </dd>
                 <dt class="col-sm-6">
                     @Html.DisplayNameFor(model => model.Address)
