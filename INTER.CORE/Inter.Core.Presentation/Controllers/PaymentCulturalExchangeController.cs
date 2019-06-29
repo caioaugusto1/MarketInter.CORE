@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    [Authorize(Roles = "Admin, Manager, PaymentCulturalExchang")]
+    [Authorize(Roles = "Admin, Manager, PaymentCulturalExchange")]
     public class PaymentCulturalExchangeController : Controller
     {
         private readonly IOptions<AppSettings> _appSetttings;

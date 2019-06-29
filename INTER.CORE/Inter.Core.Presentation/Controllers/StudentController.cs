@@ -63,6 +63,14 @@ namespace Inter.Core.Presentation.Controllers
         // GET: Student/Create
         public IActionResult Create()
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
+
+            if (user == null)
+                return NotFound();
+
+            ViewBag.EnvironmentId = user.EnvironmentId;
+
             return View();
         }
 

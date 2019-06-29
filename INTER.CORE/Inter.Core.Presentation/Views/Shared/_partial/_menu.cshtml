@@ -1,4 +1,14 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<Inter.Core.Domain.Entities.ApplicationUser> _userManager
+@inject SignInManager<Inter.Core.Domain.Entities.ApplicationUser> SignInManager
+
+@using Inter.Core.App.Enumerables;
+
+@{
+    var user = await _userManager.GetUserAsync(User);
+    var roles = await _userManager.GetRolesAsync(user);
+}
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
@@ -57,70 +67,136 @@
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
 
-    @if (true)
-    {
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
-            </a>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Pages</span>
+        </a>
 
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Cultural Exchange</h6>
-                    <a class="collapse-item" href="@Url.Action("Create", "CulturalExchange", new { area = "" })">Register</a>
-                    <a class="collapse-item" href="@Url.Action("Index", "CulturalExchange", new { area = "" })">List</a>
-                </div>
+            @foreach (var role in roles)
+            {
+                if (role != RolesTypes.Admin.ToString() && role != RolesTypes.Manager.ToString())
+                {
+                    if (role == RolesTypes.CulturalExchange.ToString())
+                    {
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Cultural Exchange</h6>
+                            <a class="collapse-item" href="@Url.Action("Create", "CulturalExchange", new { area = "" })">Register</a>
+                            <a class="collapse-item" href="@Url.Action("Index", "CulturalExchange", new { area = "" })">List</a>
+                        </div>
+                    }
+                    else if (role == RolesTypes.College.ToString())
+                    {
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">College</h6>
+                            <a class="collapse-item" href="@Url.Action("Create", "College", new { area = "" })">Register</a>
+                            <a class="collapse-item" href="@Url.Action("Index", "College", new { area = "" })">List</a>
+                        </div>
+                    }
+                    else if (role == RolesTypes.Student.ToString())
+                    {
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Student</h6>
+                            <a class="collapse-item" href="@Url.Action("Create", "Student", new { area = "" })">Register</a>
+                            <a class="collapse-item" href="@Url.Action("Index", "Student", new { area = "" })">List</a>
+                        </div>
+                    }
+                    else if (role == RolesTypes.Accomodation.ToString())
+                    {
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Accomodation</h6>
+                            <a class="collapse-item" href="@Url.Action("Create", "Accomodation", new { area = "" })">Register</a>
+                            <a class="collapse-item" href="@Url.Action("Index", "Accomodation", new { area = "" })">List</a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Cultural Exchange</h6>
+                        <a class="collapse-item" href="@Url.Action("Create", "CulturalExchange", new { area = "" })">Register</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "CulturalExchange", new { area = "" })">List</a>
+                    </div>
 
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">College</h6>
-                    <a class="collapse-item" href="@Url.Action("Create", "College", new { area = "" })">Register</a>
-                    <a class="collapse-item" href="@Url.Action("Index", "College", new { area = "" })">List</a>
-                </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">College</h6>
+                        <a class="collapse-item" href="@Url.Action("Create", "College", new { area = "" })">Register</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "College", new { area = "" })">List</a>
+                    </div>
 
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Student</h6>
-                    <a class="collapse-item" href="@Url.Action("Create", "Student", new { area = "" })">Register</a>
-                    <a class="collapse-item" href="@Url.Action("Index", "Student", new { area = "" })">List</a>
-                </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Student</h6>
+                        <a class="collapse-item" href="@Url.Action("Create", "Student", new { area = "" })">Register</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "Student", new { area = "" })">List</a>
+                    </div>
 
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Accomodation</h6>
-                    <a class="collapse-item" href="@Url.Action("Create", "Accomodation", new { area = "" })">Register</a>
-                    <a class="collapse-item" href="@Url.Action("Index", "Accomodation", new { area = "" })">List</a>
-                </div>
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Accomodation</h6>
+                        <a class="collapse-item" href="@Url.Action("Create", "Accomodation", new { area = "" })">Register</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "Accomodation", new { area = "" })">List</a>
+                    </div>
+                }
+            }
 
-            </div>
-        </li>
-    }
+        </div>
+    </li>
 
-
-
-    <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayments" aria-expanded="true" aria-controls="collapsePayments">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Payments</span>
         </a>
 
-        <div id="collapsePayments" class="collapse" aria-labelledby="headingPayments" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Receive Cultural Exchange</h6>
-                <a class="collapse-item" href="@Url.Action("Create", "ReceivePaymentCulturalExchange", new { area = "" })">Register</a>
-                <a class="collapse-item" href="@Url.Action("Index", "ReceivePaymentCulturalExchange", new { area = "" })">List</a>
-            </div>
-        </div>
+        @foreach (var role in roles)
+        {
+            if (role != RolesTypes.Admin.ToString() && role != RolesTypes.Manager.ToString())
+            {
+                if (role == RolesTypes.ReceivePaymentCulturalExchange.ToString())
+                {
+                    <div id="collapsePayments" class="collapse" aria-labelledby="headingPayments" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Receive Cultural Exchange</h6>
+                            <a class="collapse-item" href="@Url.Action("Create", "ReceivePaymentCulturalExchange", new { area = "" })">Register</a>
+                            <a class="collapse-item" href="@Url.Action("Index", "ReceivePaymentCulturalExchange", new { area = "" })">List</a>
+                        </div>
+                    </div>
+                }
+                else if (role == RolesTypes.PaymentCulturalExchange.ToString())
+                {
+                    <div id="collapsePayments" class="collapse" aria-labelledby="headingPayments" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Payment Cultural Exchange</h6>
+                            <a class="collapse-item" href="@Url.Action("Create", "PaymentCulturalExchange", new { area = "" })">Register</a>
+                            <a class="collapse-item" href="@Url.Action("Index", "PaymentCulturalExchange", new { area = "" })">List</a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div id="collapsePayments" class="collapse" aria-labelledby="headingPayments" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Receive Cultural Exchange</h6>
+                        <a class="collapse-item" href="@Url.Action("Create", "ReceivePaymentCulturalExchange", new { area = "" })">Register</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "ReceivePaymentCulturalExchange", new { area = "" })">List</a>
+                    </div>
+                </div>
 
-        <div id="collapsePayments" class="collapse" aria-labelledby="headingPayments" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Payment Cultural Exchange</h6>
-                <a class="collapse-item" href="@Url.Action("Create", "PaymentCulturalExchange", new { area = "" })">Register</a>
-                <a class="collapse-item" href="@Url.Action("Index", "PaymentCulturalExchange", new { area = "" })">List</a>
-            </div>
-        </div>
+                <div id="collapsePayments" class="collapse" aria-labelledby="headingPayments" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Payment Cultural Exchange</h6>
+                        <a class="collapse-item" href="@Url.Action("Create", "PaymentCulturalExchange", new { area = "" })">Register</a>
+                        <a class="collapse-item" href="@Url.Action("Index", "PaymentCulturalExchange", new { area = "" })">List</a>
+                    </div>
+                </div>
+
+            }
+        }
     </li>
 
+    <!-- Nav Item - Charts -->
     <!-- Nav Item - Tables -->
     @*<li class="nav-item">
             <a class="nav-link" href="tables.html">

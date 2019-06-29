@@ -1,4 +1,4 @@
-﻿@model Inter.Core.App.ViewModel.StudentViewModel
+﻿@model StudentViewModel
 
 <div class="container">
 
@@ -10,6 +10,8 @@
                 <td colspan="1">
                     <form method="post" id="studentData" data-ajax="true" class="well form-horizontal">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <input type="hidden" name="EnvironmentId" value="@ViewBag.EnvironmentId" />
 
                         @await Html.PartialAsync("~/Views/Student/_partial/_form_create_edit.cshtml")
 

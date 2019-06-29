@@ -7,6 +7,8 @@
         Accomodation, 
         Student, 
         CulturalExchange, 
-        College
+        College,
+        PaymentCulturalExchange,
+        ReceivePaymentCulturalExchange
     }
 }

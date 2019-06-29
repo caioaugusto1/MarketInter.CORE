@@ -23,10 +23,10 @@ namespace Inter.Core.Domain.Entities
 
         public string Nationality { get; set; }
 
-        public string PassaportNumber { get; set; }
+        public string PassportNumber { get; set; }
 
-        public DateTime PassaportDateOfIssue { get; set; }
+        public DateTime PassportDateOfIssue { get; set; }
 
-        public DateTime PassaportDateOfExpiry { get; set; }
+        public DateTime PassportDateOfExpiry { get; set; }
     }
 }

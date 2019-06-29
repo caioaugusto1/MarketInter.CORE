@@ -17,7 +17,7 @@
                         <div class="dropdown-menu dropdown-menu-right animated--grow-in" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="@Url.Action("Edit", "Student", new { id = Model.Id })">Edit</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:student.popUpConfirmDelete(@Model.Id)">Delete</a>
+                            <a class="dropdown-item" href="javascript:student.popUpConfirmDelete('@Model.Id')">Delete</a>
                         </div>
                     </li>
                 </ul>
