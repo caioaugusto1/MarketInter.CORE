@@ -16,8 +16,10 @@
                     <thead>
                         <tr>
                             <th>Full Name</th>
+                            <th>Gender</th>
                             <th>Email</th>
                             <th>Mobile Number</th>
+                            <th>Date Insert</th>
                             <th>City</th>
                             <th>Country</th>
                             <th>Actions</th>
@@ -32,10 +34,16 @@
                                     @item.FullName
                                 </td>
                                 <td>
+                                    @item.Gender
+                                </td>
+                                <td>
                                     @item.Email
                                 </td>
                                 <td>
                                     @item.MobileNumber
+                                </td>
+                                <td>
+                                    @item.DateOfInsert
                                 </td>
                                 <td>
                                     @item.City

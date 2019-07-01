@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inter.Core.Infra.Data.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20190627152654_InitialDatabase")]
-    partial class InitialDatabase
+    [Migration("20190701171007_IncluedGender")]
+    partial class IncluedGender
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,17 +24,25 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<bool>("Available");
 
-                    b.Property<string>("ContactName");
+                    b.Property<string>("ContactName")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("ContactNumber");
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasMaxLength(13);
 
                     b.Property<Guid>("EnvironmentId");
 
-                    b.Property<string>("Identifier");
+                    b.Property<string>("Identifier")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.Property<int>("NumberOfPlaces");
 
@@ -134,7 +142,8 @@ namespace Inter.Core.Infra.Data.Migrations
 
                     b.Property<decimal>("AccomodationPrice");
 
-                    b.Property<decimal>("BookPrice");
+                    b.Property<decimal>("BookPrice")
+                        .HasColumnType("decimal(6,4)");
 
                     b.Property<Guid>("CollegeId");
 
@@ -186,7 +195,9 @@ namespace Inter.Core.Infra.Data.Migrations
 
                     b.Property<Guid>("CollegeTimeId");
 
-                    b.Property<string>("Company");
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<int>("DaysOfAccomodation");
 
@@ -194,7 +205,9 @@ namespace Inter.Core.Infra.Data.Migrations
 
                     b.Property<DateTime>("FinishAccomodation");
 
-                    b.Property<string>("FlightNumber");
+                    b.Property<string>("FlightNumber")
+                        .IsRequired()
+                        .HasMaxLength(10);
 
                     b.Property<bool>("INSUR");
 
@@ -202,7 +215,9 @@ namespace Inter.Core.Infra.Data.Migrations
 
                     b.Property<bool>("OurAccomodation");
 
-                    b.Property<string>("SalesMen");
+                    b.Property<string>("SalesMen")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.Property<bool>("SimCard");
 
@@ -257,6 +272,36 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.ToTable("CulturalExchangeFileUpload");
                 });
 
+            modelBuilder.Entity("Inter.Core.Domain.Entities.PaymentCulturalExchange", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CulturalExchangeId");
+
+                    b.Property<DateTime>("DateOfPayment");
+
+                    b.Property<Guid>("EnvironmentId");
+
+                    b.Property<string>("FileName");
+
+                    b.Property<string>("Note");
+
+                    b.Property<string>("Status");
+
+                    b.Property<DateTime>("UploadDate");
+
+                    b.Property<float>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CulturalExchangeId");
+
+                    b.HasIndex("EnvironmentId");
+
+                    b.ToTable("PaymentCulturalExchange");
+                });
+
             modelBuilder.Entity("Inter.Core.Domain.Entities.ReceivePaymentCulturalExchange", b =>
                 {
                     b.Property<Guid>("Id")
@@ -296,31 +341,51 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("City");
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("Country");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("CustomerId");
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasMaxLength(10);
 
                     b.Property<DateTime>("DateOfBirthday");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(40);
 
                     b.Property<Guid>("EnvironmentId");
 
-                    b.Property<string>("FullName");
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("MobileNumber");
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(6);
+
+                    b.Property<string>("MobileNumber")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<string>("Nationality");
 
-                    b.Property<DateTime>("PassaportDateOfExpiry");
+                    b.Property<DateTime>("PassportDateOfExpiry");
 
-                    b.Property<DateTime>("PassaportDateOfIssue");
+                    b.Property<DateTime>("PassportDateOfIssue");
 
-                    b.Property<string>("PassaportNumber");
+                    b.Property<string>("PassportNumber")
+                        .IsRequired()
+                        .HasMaxLength(10);
 
                     b.HasKey("Id");
 
@@ -525,6 +590,19 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.CulturalExchange", "CulturalExchange")
                         .WithMany("CulturalExchangeFileUpload")
                         .HasForeignKey("CulturalExchangeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Inter.Core.Domain.Entities.PaymentCulturalExchange", b =>
+                {
+                    b.HasOne("Inter.Core.Domain.Entities.CulturalExchange", "CulturalExchange")
+                        .WithMany()
+                        .HasForeignKey("CulturalExchangeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
+                        .WithMany()
+                        .HasForeignKey("EnvironmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

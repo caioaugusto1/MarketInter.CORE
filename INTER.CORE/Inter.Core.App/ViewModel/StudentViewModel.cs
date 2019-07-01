@@ -1,4 +1,5 @@
-﻿using Inter.Core.App.ViewModel.Base;
+﻿using Inter.Core.App.Enumerables;
+using Inter.Core.App.ViewModel.Base;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -24,8 +25,13 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Email")]
         public string Email { get; set; }
 
+        [Required]
+        public Gender Gender { get; set; }
+
+        public DateTime DateOfInsert { get; set; }
+
         [Required(ErrorMessage = "MobileNumber")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(20, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Mobile Number")]
         public string MobileNumber { get; set; }

@@ -65,10 +65,10 @@ namespace Inter.Core.Infra.Data.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     EnvironmentId = table.Column<Guid>(nullable: false),
-                    Identifier = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    ContactName = table.Column<string>(nullable: true),
-                    ContactNumber = table.Column<string>(nullable: true),
+                    Identifier = table.Column<string>(maxLength: 30, nullable: false),
+                    Address = table.Column<string>(maxLength: 50, nullable: false),
+                    ContactName = table.Column<string>(maxLength: 30, nullable: false),
+                    ContactNumber = table.Column<string>(maxLength: 13, nullable: false),
                     NumberOfPlaces = table.Column<int>(nullable: false),
                     Available = table.Column<bool>(nullable: false)
                 },
@@ -146,18 +146,18 @@ namespace Inter.Core.Infra.Data.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     EnvironmentId = table.Column<Guid>(nullable: false),
-                    CustomerId = table.Column<string>(nullable: true),
-                    FullName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    MobileNumber = table.Column<string>(nullable: true),
+                    CustomerId = table.Column<string>(maxLength: 10, nullable: false),
+                    FullName = table.Column<string>(maxLength: 50, nullable: false),
+                    Email = table.Column<string>(maxLength: 40, nullable: false),
+                    MobileNumber = table.Column<string>(maxLength: 13, nullable: false),
                     DateOfBirthday = table.Column<DateTime>(nullable: false),
-                    Address = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(maxLength: 50, nullable: false),
+                    City = table.Column<string>(maxLength: 50, nullable: false),
+                    Country = table.Column<string>(maxLength: 50, nullable: false),
                     Nationality = table.Column<string>(nullable: true),
-                    PassaportNumber = table.Column<string>(nullable: true),
-                    PassaportDateOfIssue = table.Column<DateTime>(nullable: false),
-                    PassaportDateOfExpiry = table.Column<DateTime>(nullable: false)
+                    PassportNumber = table.Column<string>(maxLength: 10, nullable: false),
+                    PassportDateOfIssue = table.Column<DateTime>(nullable: false),
+                    PassportDateOfExpiry = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -266,7 +266,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     TimeForWeek = table.Column<int>(nullable: false),
                     Period = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
-                    BookPrice = table.Column<decimal>(nullable: false),
+                    BookPrice = table.Column<decimal>(type: "decimal(6,4)", nullable: false),
                     ExamPrice = table.Column<decimal>(nullable: false),
                     InsurancePrice = table.Column<decimal>(nullable: false),
                     AccomodationPrice = table.Column<decimal>(nullable: false),
@@ -309,11 +309,11 @@ namespace Inter.Core.Infra.Data.Migrations
                     OurAccomodation = table.Column<bool>(nullable: false),
                     ArrivalDateTime = table.Column<DateTime>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    Company = table.Column<string>(nullable: true),
-                    FlightNumber = table.Column<string>(nullable: true),
+                    Company = table.Column<string>(maxLength: 20, nullable: false),
+                    FlightNumber = table.Column<string>(maxLength: 10, nullable: false),
                     CollegePayment = table.Column<bool>(nullable: false),
                     TotalValue = table.Column<float>(nullable: false),
-                    SalesMen = table.Column<string>(nullable: true),
+                    SalesMen = table.Column<string>(maxLength: 30, nullable: false),
                     Available = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -369,6 +369,37 @@ namespace Inter.Core.Infra.Data.Migrations
                         name: "FK_CulturalExchangeFileUpload_CulturalExchange_CulturalExchange~",
                         column: x => x.CulturalExchangeId,
                         principalTable: "CulturalExchange",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PaymentCulturalExchange",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    EnvironmentId = table.Column<Guid>(nullable: false),
+                    Value = table.Column<float>(nullable: false),
+                    DateOfPayment = table.Column<DateTime>(nullable: false),
+                    FileName = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: true),
+                    UploadDate = table.Column<DateTime>(nullable: false),
+                    Note = table.Column<string>(nullable: true),
+                    CulturalExchangeId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentCulturalExchange", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PaymentCulturalExchange_CulturalExchange_CulturalExchangeId",
+                        column: x => x.CulturalExchangeId,
+                        principalTable: "CulturalExchange",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PaymentCulturalExchange_Environment_EnvironmentId",
+                        column: x => x.EnvironmentId,
+                        principalTable: "Environment",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -494,6 +525,16 @@ namespace Inter.Core.Infra.Data.Migrations
                 column: "CulturalExchangeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PaymentCulturalExchange_CulturalExchangeId",
+                table: "PaymentCulturalExchange",
+                column: "CulturalExchangeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentCulturalExchange_EnvironmentId",
+                table: "PaymentCulturalExchange",
+                column: "EnvironmentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ReceivePaymentCulturalExchange_CulturalExchangeId",
                 table: "ReceivePaymentCulturalExchange",
                 column: "CulturalExchangeId");
@@ -528,6 +569,9 @@ namespace Inter.Core.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "CulturalExchangeFileUpload");
+
+            migrationBuilder.DropTable(
+                name: "PaymentCulturalExchange");
 
             migrationBuilder.DropTable(
                 name: "ReceivePaymentCulturalExchange");

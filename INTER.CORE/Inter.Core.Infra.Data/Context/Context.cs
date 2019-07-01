@@ -5,15 +5,9 @@ namespace Inter.Core.Infra.Data.Context
 {
     public class ContextDB : DbContext
     {
-        public ContextDB()
-        {
-
-        }
-
         public ContextDB(DbContextOptions<ContextDB> options)
             : base(options)
         {
-            //Database.EnsureCreated();
         }
         
         public DbSet<SystemEnvironment> Environment { get; set; }

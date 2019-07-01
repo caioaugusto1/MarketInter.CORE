@@ -1,8 +1,9 @@
 ﻿@model StudentViewModel
 
+@using Inter.Core.App.Enumerables
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             <label class="control-label">Full Name*</label>
             <div class="inputGroupContainer">
@@ -14,6 +15,16 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="recipient-name" class="col-md-4 col-form-label">Gender:</label>
+            <select name="Gender" asp-items="Html.GetEnumSelectList<Gender>()" data-val-required="The Period field is required." class="form-control">
+                <option value="">Selected</option>
+            </select>
+        </div>
+    </div>
+
 </div>
 
 <div class="row">

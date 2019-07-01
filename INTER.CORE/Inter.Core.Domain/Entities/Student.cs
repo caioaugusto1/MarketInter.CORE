@@ -25,8 +25,12 @@ namespace Inter.Core.Domain.Entities
 
         public string PassportNumber { get; set; }
 
+        public string Gender { get; set; }
+
         public DateTime PassportDateOfIssue { get; set; }
 
         public DateTime PassportDateOfExpiry { get; set; }
+
+        public DateTime DateOfInsert { get; set; }
     }
 }

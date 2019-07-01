@@ -28,6 +28,7 @@ namespace Inter.Core.Domain.Service
             student.Id = Guid.NewGuid();
 
             student.Environment = environment;
+            student.DateOfInsert = DateTime.Now;
 
             student.ValidationResult = new List<ValidationResult>();
 
