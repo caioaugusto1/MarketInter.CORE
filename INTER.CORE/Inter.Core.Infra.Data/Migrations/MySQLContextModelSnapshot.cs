@@ -530,7 +530,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Accomodations")
                         .HasForeignKey("EnvironmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.ApplicationUser", b =>
@@ -538,7 +538,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Users")
                         .HasForeignKey("EnvironmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.College", b =>
@@ -546,7 +546,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Colleges")
                         .HasForeignKey("EnvironmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.CollegeTime", b =>
@@ -554,7 +554,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.College", "College")
                         .WithMany("CollegeTime")
                         .HasForeignKey("CollegeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.CulturalExchange", b =>
@@ -577,7 +577,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("CulturalExchange")
                         .HasForeignKey("EnvironmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Inter.Core.Domain.Entities.Student", "Student")
                         .WithMany()
@@ -616,7 +616,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("ReceivePaymentsCulturalExchanges")
                         .HasForeignKey("EnvironmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.Student", b =>
@@ -624,7 +624,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Students")
                         .HasForeignKey("EnvironmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -8,6 +8,12 @@ namespace Inter.Core.Infra.Data.EntityConfig
     {
         public void Configure(EntityTypeBuilder<Student> builder)
         {
+            builder.HasKey(x => x.Id);
+
+            builder.HasOne(x => x.Environment)
+                .WithMany(x => x.Students)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Property(x => x.CustomerId)
                .IsRequired()
                .HasMaxLength(10);

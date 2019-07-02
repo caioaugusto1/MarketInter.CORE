@@ -1,6 +1,5 @@
 ﻿using Inter.Core.Domain.Entities;
 using Inter.Core.Infra.Data.EntityConfig;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +10,7 @@ namespace Inter.Core.Infra.Data.Context
         public MySQLContext(DbContextOptions<MySQLContext> options)
             : base(options)
         {
-            //Database.EnsureCreated();
+            
         }
 
         public DbSet<SystemEnvironment> Environment { get; set; }
@@ -27,9 +26,14 @@ namespace Inter.Core.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
 
             builder.ApplyConfiguration(new EnvironmentConfig());
+            builder.ApplyConfiguration(new CulturalExchangeConfig());
+            builder.ApplyConfiguration(new StudentConfig());
+            builder.ApplyConfiguration(new CollegeTimeConfig());
+            builder.ApplyConfiguration(new AccomodationConfig());
+
+            base.OnModelCreating(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -42,7 +46,8 @@ namespace Inter.Core.Infra.Data.Context
 
         private string GetStringConectionConfig()
         {
-            return "server=localhost;database=INTERCORE;user=root;password=admin";
+            return "server=intercore.mysql.database.azure.com;database=INTERCORE;user=intercore@intercore;password=Swa123$%";
+            //return "server=localhost;database=INTERCORE;user=root;password=admin";
         }
     }
 }

@@ -202,6 +202,9 @@ namespace Inter.Core.Presentation.Controllers
 
             var payments = _receivePaymentAppService.GetByCulturalExchangeId(id);
 
+            if (!payments.Any())
+                return RedirectToAction("DetailsFilesUpload", "CulturalExchange", new { id = id });
+
             return View(payments);
         }
 

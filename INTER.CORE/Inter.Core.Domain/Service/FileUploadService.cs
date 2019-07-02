@@ -39,7 +39,7 @@ namespace Inter.Core.Domain.Service
                 await file.CopyToAsync(stream);
             }
 
-            return file.FileName;
+            return name;
         }
     }
 }
