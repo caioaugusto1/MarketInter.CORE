@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.Domain.Entities
 {
@@ -30,6 +32,8 @@ namespace Inter.Core.Domain.Entities
 
         public decimal GrossPrice { get; set; }
 
+        public decimal RenewPrice { get; set; }
+
         public int PercentagePrice { get; set; }
 
         public Guid CollegeId { get; set; }
@@ -37,5 +41,7 @@ namespace Inter.Core.Domain.Entities
         public virtual College College { get; set; }
 
         public string Note { get; set; }
+
+        //public List<ValidationResult> ValidationResults { get; set; }
     }
 }

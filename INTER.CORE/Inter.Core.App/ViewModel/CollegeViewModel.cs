@@ -114,6 +114,10 @@ namespace Inter.Core.App.ViewModel
         [Required(ErrorMessage = "Gross Price")]
         public decimal GrossPrice { get; set; }
 
+        [Display(Name = "Renew Price")]
+        [Required(ErrorMessage = "Renew Price")]
+        public decimal RenewPrice { get; set; }
+
         [Display(Name = "Percentage Price")]
         [Required(ErrorMessage = "Percentage Price")]
         public int PercentagePrice { get; set; }

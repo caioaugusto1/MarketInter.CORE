@@ -3,14 +3,16 @@ using System;
 using Inter.Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Inter.Core.Infra.Data.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    partial class MySQLContextModelSnapshot : ModelSnapshot
+    [Migration("20190703140836_InsertRenewPriceInCollegeTimeAndInsertRenewInCulturalExchange]")]
+    partial class InsertRenewPriceInCollegeTimeAndInsertRenewInCulturalExchange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,9 +185,9 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("AccomodationId");
+                    b.Property<Guid>("AccomodationId");
 
-                    b.Property<DateTime?>("ArrivalDateTime");
+                    b.Property<DateTime>("ArrivalDateTime");
 
                     b.Property<bool>("Available");
 
@@ -196,6 +198,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.Property<Guid>("CollegeTimeId");
 
                     b.Property<string>("Company")
+                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<int>("DaysOfAccomodation");
@@ -205,6 +208,7 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.Property<DateTime>("FinishAccomodation");
 
                     b.Property<string>("FlightNumber")
+                        .IsRequired()
                         .HasMaxLength(10);
 
                     b.Property<bool>("INSUR");
@@ -563,7 +567,8 @@ namespace Inter.Core.Infra.Data.Migrations
                 {
                     b.HasOne("Inter.Core.Domain.Entities.Accomodation", "Accomodation")
                         .WithMany("CulturalExchanges")
-                        .HasForeignKey("AccomodationId");
+                        .HasForeignKey("AccomodationId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Inter.Core.Domain.Entities.College", "College")
                         .WithMany()

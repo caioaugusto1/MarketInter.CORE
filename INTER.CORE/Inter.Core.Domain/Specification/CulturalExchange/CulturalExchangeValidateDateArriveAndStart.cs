@@ -14,7 +14,7 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
             if (entity.ArrivalDateTime >= entity.StartDate)
                 entity.ValidationResult.Add(new ValidationResult("Date arrival and start incorrect"));
 
-            if (entity.StartAccomodation >= entity.FinishAccomodation)
+            if (entity.StartAccomodation > entity.FinishAccomodation)
                 entity.ValidationResult.Add(new ValidationResult("Date Start Accomodation invalid"));
 
             return false;

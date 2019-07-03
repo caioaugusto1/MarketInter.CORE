@@ -73,11 +73,12 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Sim Card?")]
         public bool SimCard { get; set; }
 
+        [DisplayName("Renew Card?")]
+        public bool Renew { get; set; }
+
         [Display(Name = "Date of Arrival")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
-        [Required(ErrorMessage = "Arrival Date")]
-        public DateTime ArrivalDateTime { get; set; }
+        public DateTime? ArrivalDateTime { get; set; }
 
         [Display(Name = "Date of Start class")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
@@ -85,15 +86,9 @@ namespace Inter.Core.App.ViewModel
         [Required(ErrorMessage = "Date of Start class")]
         public DateTime StartDate { get; set; }
 
-        [Required(ErrorMessage = "Company")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
-        [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Company")]
         public string Company { get; set; }
 
-        [Required(ErrorMessage = "FlightNumber")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
-        [MinLength(4, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("FlightNumber")]
         public string FlightNumber { get; set; }
 

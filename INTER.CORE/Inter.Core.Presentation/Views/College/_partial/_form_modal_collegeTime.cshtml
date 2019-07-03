@@ -91,7 +91,7 @@
 
 
 <div class="row">
-    
+
     <div class="col-md-6">
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">Gross Price:</label>
@@ -103,6 +103,17 @@
         <div class="form-group">
             <label for="recipient-name" class="col-form-label">Sale Price:</label>
             <input type="number" asp-for="@Model.Price" class="form-control" placeholder="Sale Price">
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Renew Price:</label>
+            <input type="number" asp-for="@Model.RenewPrice" name="RenewPrice" class="form-control" placeholder="Renew Price">
         </div>
     </div>
 

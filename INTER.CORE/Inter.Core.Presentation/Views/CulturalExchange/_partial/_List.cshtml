@@ -12,7 +12,7 @@
                 @item.StudentViewModel.FullName
             </td>
             <td>
-                @item.StudentViewModel.DateOfBirthday
+                @item.StudentViewModel.DateOfBirthday.ToString("dd/MM/yyyy")
             </td>
             <td>
                 @item.CollegeViewModel.Name
@@ -21,10 +21,13 @@
                 @item.CollegeTimeViewModel.Period
             </td>
             <td>
-                @item.AccomodationViewModel.Identifier
+               <input type="checkbox" value="@item.Renew" />
             </td>
             <td>
-                @item.ArrivalDateTime
+                @(item.AccomodationViewModel.Identifier != null ? item.AccomodationViewModel.Identifier : "Don't have")
+            </td>
+            <td>
+                @(item.ArrivalDateTime.HasValue && item.ArrivalDateTime.Value == DateTime.MinValue ? "Don't have" : item.ArrivalDateTime.Value.ToString())
             </td>
             <td>
                 @item.TotalValue

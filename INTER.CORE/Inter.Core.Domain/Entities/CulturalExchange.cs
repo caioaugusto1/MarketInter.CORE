@@ -27,7 +27,7 @@ namespace Inter.Core.Domain.Entities
 
         public virtual CollegeTime CollegeTime { get; set; }
 
-        public Guid AccomodationId { get; set; }
+        public Guid? AccomodationId { get; set; }
 
         public virtual Accomodation Accomodation { get; set; }
 
@@ -52,7 +52,9 @@ namespace Inter.Core.Domain.Entities
 
         public bool OurAccomodation { get; set; }
 
-        public DateTime ArrivalDateTime { get; set; }
+        public bool Renew { get; set; }
+
+        public DateTime? ArrivalDateTime { get; set; }
 
         public DateTime StartDate { get; set; }
 

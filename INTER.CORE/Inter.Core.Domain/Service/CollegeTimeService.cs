@@ -1,6 +1,7 @@
 ﻿using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Domain.Interfaces.Services;
+using Inter.Core.Domain.Specification.CollegeTime;
 using System;
 using System.Collections.Generic;
 
@@ -20,7 +21,12 @@ namespace Inter.Core.Domain.Service
         public CollegeTime Add(CollegeTime collegeTime)
         {
             collegeTime.Id = Guid.NewGuid();
+
+            bool hoursValidation = new CollegeTimeValidateSumHoursPerWeek()
+              .IsSatisfiedBy(collegeTime);
+
             return _collegeTimeRepository.Insert(collegeTime);
+
         }
 
         public void Delete(CollegeTime collegeTime)
@@ -40,7 +46,8 @@ namespace Inter.Core.Domain.Service
 
         public CollegeTime Update(CollegeTime collegeTime)
         {
-            //collegeTime.College = _collegeRepository.GetById(collegeTime.CollegeId);
+            bool hoursValidation = new CollegeTimeValidateSumHoursPerWeek()
+             .IsSatisfiedBy(collegeTime);
 
             return _collegeTimeRepository.Update(collegeTime);
         }

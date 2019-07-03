@@ -9,11 +9,9 @@ namespace Inter.Core.Infra.Data.EntityConfig
         public void Configure(EntityTypeBuilder<CulturalExchange> builder)
         {
             builder.Property(x => x.Company)
-                .IsRequired()
                 .HasMaxLength(20);
 
             builder.Property(x => x.FlightNumber)
-                .IsRequired()
                 .HasMaxLength(10);
 
             builder.Property(x => x.SalesMen)

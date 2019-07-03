@@ -21,11 +21,11 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
             if (!entity.OurAccomodation)
                 return false;
 
-            Accomodation accomodation = _accomodationRepository.GetById(entity.AccomodationId);
+            Accomodation accomodation = _accomodationRepository.GetById(entity.AccomodationId.Value);
 
             entity.DaysOfAccomodation = ((TimeSpan)(entity.StartAccomodation - entity.FinishAccomodation)).Days * 100;
 
-            var culturalExchangeInAccomodation = _accomodationRepository.GetAccomodationAndCulturalExchangeList(entity.AccomodationId);
+            var culturalExchangeInAccomodation = _accomodationRepository.GetAccomodationAndCulturalExchangeList(entity.AccomodationId.Value);
 
             var reservations = culturalExchangeInAccomodation.CulturalExchanges.Where(x => x.StartAccomodation <= entity.StartAccomodation
             && x.FinishAccomodation >= entity.FinishAccomodation

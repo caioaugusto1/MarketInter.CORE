@@ -39,6 +39,19 @@
             });
         });
 
+        $('#renew').click(function () {
+            debugger;
+            if ($(this).is(':checked')) {
+                $('#company').prop('disabled', true);
+                $('#flightNumber').prop('disabled', true);
+                $('#arrivalDateTime').prop('disabled', true);
+            } else {
+                $('#company').prop('disabled', false);
+                $('#flightNumber').prop('disabled', false);
+                $('#arrivalDateTime').prop('disabled', false);
+            }
+        });
+
     };
 
     var create = function () {

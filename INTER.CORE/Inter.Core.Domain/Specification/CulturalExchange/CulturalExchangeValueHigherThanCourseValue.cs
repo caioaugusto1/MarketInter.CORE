@@ -1,6 +1,6 @@
 ﻿using DomainValidation.Interfaces.Specification;
-using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Repositories;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Inter.Core.Domain.Specification.CulturalExchange
@@ -20,14 +20,23 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
 
         public bool IsSatisfiedBy(Entities.CulturalExchange entity)
         {
-            if (entity.WeekNumber == 25)
-            {
-                CollegeTime collegeTime = _collegeTimeRepository.GetById(entity.CollegeTimeId);
+            Entities.CollegeTime collegeTime = _collegeTimeRepository.GetById(entity.CollegeTimeId);
 
+            if (entity.WeekNumber == 25 && !entity.Renew)
+            {
                 var sumValueWithPercentage = collegeTime.Price * collegeTime.PercentagePrice;
 
                 if (sumValueWithPercentage >= (decimal)entity.TotalValue)
                     entity.ValidationResult.Add(new ValidationResult("Course value incorrect"));
+            }
+            else if (entity.Renew)
+            {
+                if (collegeTime.RenewPrice < (decimal)entity.TotalValue)
+                    entity.ValidationResult.Add(new ValidationResult("Course value incorrect"));
+
+                entity.ArrivalDateTime = null;
+                entity.FlightNumber = null;
+                entity.Company = null;
             }
 
             return false;

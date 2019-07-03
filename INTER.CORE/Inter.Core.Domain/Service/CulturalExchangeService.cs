@@ -35,7 +35,8 @@ namespace Inter.Core.Domain.Service
             culturalExchange.Id = Guid.NewGuid();
             culturalExchange.Available = true;
 
-            College college = _collegeRepository.GetById(culturalExchange.CollegeId);
+            if (culturalExchange.AccomodationId == Guid.Empty)
+                culturalExchange.AccomodationId = null;
 
             culturalExchange.ValidationResult = new List<ValidationResult>();
 
@@ -69,7 +70,10 @@ namespace Inter.Core.Domain.Service
             culturalExchangeEntity.ForEach(x =>
             {
                 x.College = _collegeRepository.GetById(x.CollegeId);
-                x.Accomodation = _accomodationRepository.GetById(x.AccomodationId);
+
+                if (x.AccomodationId.HasValue)
+                    x.Accomodation = _accomodationRepository.GetById(x.AccomodationId.Value);
+
                 x.Student = _studentRepository.GetById(x.StudentId);
                 x.CollegeTime = _collegeTimeRepository.GetById(x.CollegeTimeId);
             });
@@ -90,10 +94,10 @@ namespace Inter.Core.Domain.Service
             culturalExchangeEntity = _culturalExchangeRepository.FindByFilter(x => x.EnvironmentId == idEnvironment);
 
             if (startArrivalDateTime != DateTime.MinValue)
-                culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Date >= startArrivalDateTime).ToList();
+                culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Value.Date >= startArrivalDateTime).ToList();
 
             if (finishArrivalDateTime != DateTime.MinValue)
-                culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Date <= finishArrivalDateTime).ToList();
+                culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Value.Date <= finishArrivalDateTime).ToList();
 
             if (collegeId != Guid.Empty)
                 culturalExchangeEntity = culturalExchangeEntity.Where(x => x.CollegeId == collegeId).ToList();
@@ -104,7 +108,7 @@ namespace Inter.Core.Domain.Service
             culturalExchangeEntity.ForEach(x =>
             {
                 x.College = _collegeRepository.GetById(x.CollegeId);
-                x.Accomodation = _accomodationRepository.GetById(x.AccomodationId);
+                x.Accomodation = _accomodationRepository.GetById(x.AccomodationId.Value);
                 x.Student = _studentRepository.GetById(x.StudentId);
                 x.CollegeTime = _collegeTimeRepository.GetById(x.CollegeTimeId);
             });
@@ -118,7 +122,7 @@ namespace Inter.Core.Domain.Service
 
             culturalExchangeEntity.CollegeTime = _collegeTimeRepository.GetById(culturalExchangeEntity.CollegeTimeId);
             culturalExchangeEntity.College = _collegeRepository.GetById(culturalExchangeEntity.CollegeId);
-            culturalExchangeEntity.Accomodation = _accomodationRepository.GetById(culturalExchangeEntity.AccomodationId);
+            culturalExchangeEntity.Accomodation = _accomodationRepository.GetById(culturalExchangeEntity.AccomodationId.Value);
             culturalExchangeEntity.Student = _studentRepository.GetById(culturalExchangeEntity.StudentId);
             culturalExchangeEntity.CulturalExchangeFileUpload = _culturalExchangeFileUploadRepository.GetAllByCulturalExchangeId(id);
 
@@ -135,7 +139,31 @@ namespace Inter.Core.Domain.Service
 
         public CulturalExchange Update(Guid idEnvironment, CulturalExchange culturalExchange)
         {
-            return _culturalExchangeRepository.Update(culturalExchange);
+            if (culturalExchange.AccomodationId == Guid.Empty)
+                culturalExchange.AccomodationId = null;
+
+            culturalExchange.ValidationResult = new List<ValidationResult>();
+
+            bool ValueHigherThanCourseValue = new CulturalExchangeValueHigherThanCourseValue(_culturalExchangeRepository, _collegeTimeRepository)
+                .IsSatisfiedBy(culturalExchange);
+
+            bool validateDateArriveAndStart = new CulturalExchangeValidateDateArriveAndStart().IsSatisfiedBy(culturalExchange);
+
+            if (!culturalExchange.ValidationResult.Any())
+                _culturalExchangeRepository.Update(culturalExchange);
+            else
+                return culturalExchange;
+
+            bool accomodationDateAvailable = new CulturalExchangeValidateAccomodationDateAvailable(_accomodationRepository)
+                .IsSatisfiedBy(culturalExchange);
+
+            if (!accomodationDateAvailable)
+            {
+                if (culturalExchange.ValidationResult.Count == 1)
+                    culturalExchange.ValidationResult.Add(new ValidationResult("Cultural exchange included but: Accomodation FULL for dates"));
+            }
+
+            return culturalExchange;
         }
 
         public CulturalExchange UpdateDateStartAndFinish(Guid id, DateTime start, DateTime finish)
