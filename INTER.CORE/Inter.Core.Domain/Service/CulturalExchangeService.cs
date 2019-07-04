@@ -81,7 +81,7 @@ namespace Inter.Core.Domain.Service
             return culturalExchangeEntity;
         }
 
-        public List<CulturalExchange> GetAllByFilter(Guid idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, Guid collegeId, Guid accomodationId)
+        public List<CulturalExchange> GetAllByFilter(Guid idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, DateTime courseStartDate, DateTime courseStartDateFinish, Guid collegeId, Guid accomodationId)
         {
             List<CulturalExchange> culturalExchangeEntity = new List<CulturalExchange>();
 
@@ -99,6 +99,12 @@ namespace Inter.Core.Domain.Service
             if (finishArrivalDateTime != DateTime.MinValue)
                 culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Value.Date <= finishArrivalDateTime).ToList();
 
+            if(courseStartDate != DateTime.MinValue)
+                culturalExchangeEntity = culturalExchangeEntity.Where(x => x.StartDate.Date >= courseStartDate).ToList();
+
+            if (courseStartDateFinish != DateTime.MinValue)
+                culturalExchangeEntity = culturalExchangeEntity.Where(x => x.StartDate.Date <= courseStartDateFinish).ToList();
+
             if (collegeId != Guid.Empty)
                 culturalExchangeEntity = culturalExchangeEntity.Where(x => x.CollegeId == collegeId).ToList();
 
@@ -108,7 +114,10 @@ namespace Inter.Core.Domain.Service
             culturalExchangeEntity.ForEach(x =>
             {
                 x.College = _collegeRepository.GetById(x.CollegeId);
-                x.Accomodation = _accomodationRepository.GetById(x.AccomodationId.Value);
+
+                if (x.AccomodationId.HasValue)
+                    x.Accomodation = _accomodationRepository.GetById(x.AccomodationId.Value);
+
                 x.Student = _studentRepository.GetById(x.StudentId);
                 x.CollegeTime = _collegeTimeRepository.GetById(x.CollegeTimeId);
             });

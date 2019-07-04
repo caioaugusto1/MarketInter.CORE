@@ -62,7 +62,7 @@ namespace Inter.Core.Presentation.Controllers
             return View("~/Views/CulturalExchange/Index.cshtml", culturalExchangeList);
         }
 
-        public async Task<IActionResult> FindByFilter(string startArrivalDate, string finishArrivalDate, Guid collegeId, Guid accomodationId)
+        public async Task<IActionResult> FindByFilter(string startArrivalDate, string finishArrivalDate, string startDate, string startDateFinish, Guid collegeId, Guid accomodationId)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _applicationUserAppService.GetById(userId);
@@ -70,7 +70,7 @@ namespace Inter.Core.Presentation.Controllers
             if (user == null)
                 return NotFound();
 
-            var culturalExchangeList = _culturalExchangeAppService.GetAllByFilter(user.EnvironmentId, startArrivalDate, finishArrivalDate, collegeId, accomodationId);
+            var culturalExchangeList = _culturalExchangeAppService.GetAllByFilter(user.EnvironmentId, startArrivalDate, finishArrivalDate, startDate, startDateFinish, collegeId, accomodationId);
 
             return PartialView("~/Views/CulturalExchange/_partial/_List.cshtml", culturalExchangeList);
         }

@@ -10,7 +10,7 @@ namespace Inter.Core.App.Intefaces
 
         List<CulturalExchangeViewModel> GetAll(Guid idEnvironment, bool active);
 
-        List<CulturalExchangeViewModel> GetAllByFilter(Guid idEnvironment, string startArrivalDate, string finishArrivalDate, Guid collegeId, Guid accomodationId);
+        List<CulturalExchangeViewModel> GetAllByFilter(Guid idEnvironment, string startArrivalDate, string finishArrivalDate, string startDate, string startDateFinish, Guid collegeId, Guid accomodationId);
 
         CulturalExchangeViewModel GetById(Guid id);
 

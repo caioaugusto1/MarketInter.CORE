@@ -33,7 +33,7 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.FullName, y => y.MapFrom(f => f.FullName))
                 .ForMember(x => x.Email, y => y.MapFrom(f => f.Email))
                 .ForMember(x => x.MobileNumber, y => y.MapFrom(f => f.MobileNumber))
-                .ForMember(x => x.DateOfBirthday, y => y.MapFrom(f => f.DateOfBirthday.ToString("dd/MM/yyyy")))
+                .ForMember(x => x.DateOfBirthday, y => y.MapFrom(f => f.DateOfBirthday))
                 .ForMember(x => x.Address, y => y.MapFrom(f => f.Address))
                 .ForMember(x => x.City, y => y.MapFrom(f => f.City))
                 .ForMember(x => x.Country, y => y.MapFrom(f => f.Country))

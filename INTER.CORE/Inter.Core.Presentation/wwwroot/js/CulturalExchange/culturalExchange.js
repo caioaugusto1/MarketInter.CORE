@@ -100,8 +100,10 @@
         let finishArrivalDate = $('#finishDateArrival').val();
         let collegeId = $('#college').val();
         let accomodationId = $('#accomodation').val();
+        let startDate = $('#startDate').val();
+        let startDateFinish = $('#finishDate').val();
 
-        Util.request('/CulturalExchange/FindByFilter', 'GET', { startArrivalDate, finishArrivalDate, collegeId, accomodationId }, 'html', true, function (data) {
+        Util.request('/CulturalExchange/FindByFilter', 'GET', { startArrivalDate, finishArrivalDate, startDate, startDateFinish, collegeId, accomodationId}, 'html', true, function (data) {
             $('#culturalExchangeTBody').remove();
 
             $('#dataTable').append(data);
@@ -114,6 +116,8 @@
     var clearFilter = function () {
         $('#startDateArrival').val("");
         $('#finishDateArrival').val("");
+        $('#startDate').val("");
+        $('#finishDate').val("");
         $("#college").val($("#college option:first").val());
         $("#accomodation").val($("#accomodation option:first").val());
 

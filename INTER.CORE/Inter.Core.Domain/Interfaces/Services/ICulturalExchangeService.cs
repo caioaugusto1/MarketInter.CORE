@@ -10,7 +10,7 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         List<CulturalExchange> GetAll(Guid idEnvironment, bool active);
 
-        List<CulturalExchange> GetAllByFilter(Guid idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, Guid collegeId, Guid accomodationId);
+        List<CulturalExchange> GetAllByFilter(Guid idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, DateTime courseStartDate, DateTime courseStartDateFinish, Guid collegeId, Guid accomodationId);
 
         CulturalExchange UpdateDateStartAndFinish(Guid id, DateTime start, DateTime finish);
 

@@ -35,18 +35,30 @@ namespace Inter.Core.App.Application
             return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAll(idEnvironment, active));
         }
 
-        public List<CulturalExchangeViewModel> GetAllByFilter(Guid idEnvironment, string startArrivalDate, string finishArrivalDate, Guid collegeId, Guid accomodationId)
+        public List<CulturalExchangeViewModel> GetAllByFilter(Guid idEnvironment, string startArrivalDate, string finishArrivalDate, string startDate, string startDateFinish, Guid collegeId, Guid accomodationId)
         {
-            DateTime finishDate = DateTime.MinValue;
-            DateTime startDate = DateTime.MinValue;
+            DateTime arrivalStart = DateTime.MinValue;
+            DateTime arrivalFinish = DateTime.MinValue;
+            DateTime courseStartDate = DateTime.MinValue;
+            DateTime courseStartDateFinish = DateTime.MinValue;
 
             if (!string.IsNullOrWhiteSpace(startArrivalDate))
-                startDate = Convert.ToDateTime(DateTime.Parse(startArrivalDate, new CultureInfo("pt-BR")));
+                arrivalStart = Convert.ToDateTime(DateTime.Parse(startArrivalDate, new CultureInfo("pt-BR")));
 
             if (!string.IsNullOrWhiteSpace(finishArrivalDate))
-                finishDate = Convert.ToDateTime(DateTime.Parse(finishArrivalDate, new CultureInfo("pt-BR")));
+                arrivalFinish = Convert.ToDateTime(DateTime.Parse(finishArrivalDate, new CultureInfo("pt-BR")));
 
-            return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllByFilter(idEnvironment, startDate, finishDate, collegeId, accomodationId));
+            if (!string.IsNullOrWhiteSpace(startDate))
+                courseStartDate = Convert.ToDateTime(DateTime.Parse(startDate, new CultureInfo("pt-BR")));
+
+            if (!string.IsNullOrWhiteSpace(startDateFinish))
+                courseStartDateFinish = Convert.ToDateTime(DateTime.Parse(startDateFinish, new CultureInfo("pt-BR")));
+
+            return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllByFilter(
+                idEnvironment, 
+                arrivalStart, arrivalFinish, 
+                courseStartDate, courseStartDateFinish, 
+                collegeId, accomodationId));
         }
 
         public CulturalExchangeViewModel GetById(Guid id)

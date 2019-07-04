@@ -21,13 +21,16 @@
                 @item.CollegeTimeViewModel.Period
             </td>
             <td>
-               <input type="checkbox" value="@item.Renew" checked="@item.Renew" disabled />
+                <input type="checkbox" value="@item.Renew" checked="@item.Renew" disabled />
             </td>
             <td>
                 @(item.AccomodationViewModel.Identifier != null ? item.AccomodationViewModel.Identifier : "Don't have")
             </td>
             <td>
                 @(item.ArrivalDateTime.HasValue && item.ArrivalDateTime.Value == DateTime.MinValue ? "Don't have" : item.ArrivalDateTime.Value.ToString())
+            </td>
+            <td>
+                @item.StartDate.ToString("dd/MM/yyyy")
             </td>
             <td>
                 @item.TotalValue
