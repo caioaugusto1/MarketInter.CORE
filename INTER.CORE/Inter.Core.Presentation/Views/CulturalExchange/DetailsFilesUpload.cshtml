@@ -33,9 +33,9 @@
                                         @file.UploadDate
                                     </td>
                                     <td>
-                                        <a class="btn btn-info btn-circle btn-sm" href="@Url.Action("Download", "FileUpload", new { filename = file.FileName })"><i class="fas fa-download"></i></a>
+                                        <a class="btn btn-info btn-circle btn-sm" href="@Url.Action("Download", "FileUpload", new { filename = file.FileName, culturalExchangeId = file.CulturalExchangeId })"><i class="fas fa-download"></i></a>
 
-                                        <button onclick="culturalExchange.popUpConfirmDeleteFile('@file.Id', '@file.FileName')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></button>
+                                        <button onclick="culturalExchange.popUpConfirmDeleteFile('@file.Id', '@file.FileName', '@file.CulturalExchangeId')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             }

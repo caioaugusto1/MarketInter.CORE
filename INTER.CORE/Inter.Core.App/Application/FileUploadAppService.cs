@@ -1,4 +1,5 @@
 ﻿using Inter.Core.App.Intefaces;
+using Inter.Core.App.Regex;
 using Inter.Core.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;

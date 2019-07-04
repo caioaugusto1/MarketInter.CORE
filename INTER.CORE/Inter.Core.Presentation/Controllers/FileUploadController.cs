@@ -15,15 +15,19 @@ namespace Inter.Core.Presentation.Controllers
         private readonly IOptions<AppSettings> _appSetttings;
         private readonly IFileUploadAppService _fileUploadAppService;
         private readonly ICulturalExchangeFileUploadAppService _culturalExchangeFileUploadAppService;
+        private readonly ICulturalExchangeAppService _culturalExchangeAppService;
 
         public FileUploadController(
             IOptions<AppSettings> appSetttings,
-            ICulturalExchangeFileUploadAppService culturalExchangeAppService,
-            IFileUploadAppService fileUploadAppService)
+            ICulturalExchangeFileUploadAppService culturalExchangeFileUploadAppService,
+            IFileUploadAppService fileUploadAppService,
+            ICulturalExchangeAppService culturalExchangeAppService)
         {
             _appSetttings = appSetttings;
             _fileUploadAppService = fileUploadAppService;
-            _culturalExchangeFileUploadAppService = culturalExchangeAppService;
+            _culturalExchangeFileUploadAppService = culturalExchangeFileUploadAppService;
+            _culturalExchangeAppService = culturalExchangeAppService;
+
         }
 
         public IActionResult Index()
@@ -31,25 +35,32 @@ namespace Inter.Core.Presentation.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Download(string fileName)
+        public async Task<IActionResult> Download(string fileName, Guid culturalExchangeId)
         {
             if (string.IsNullOrWhiteSpace(fileName))
                 return Content("filename not present");
 
-            var path = Path.Combine(_appSetttings.Value.UploadFilePath, fileName);
+            var culturalExchange = _culturalExchangeAppService.GetById(culturalExchangeId);
+
+            if (culturalExchange == null)
+                return Content("Cultural Exchange not found");
+
+            var path = Path.Combine(_appSetttings.Value.UploadFilePath + culturalExchange.Id, fileName);
 
             var stream = new FileStream(path, FileMode.Open);
-            return File(stream, "application/pdf");
+
+            return File(stream, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
-        public async Task<IActionResult> CulturalExchangeDeleteFile(Guid id, string fileName)
+        public async Task<IActionResult> CulturalExchangeDeleteFile(Guid id, string fileName, Guid culturalExchangeId)
         {
             try
             {
                 if (id != Guid.Empty && !string.IsNullOrWhiteSpace(fileName))
                 {
                     _culturalExchangeFileUploadAppService.Delete(id);
-                    _fileUploadAppService.Delete(_appSetttings.Value.UploadFilePath, fileName);
+                    
+                    _fileUploadAppService.Delete(_appSetttings.Value.UploadFilePath + culturalExchangeId, fileName);
 
                     return Json(Ok());
                 }
@@ -78,7 +89,9 @@ namespace Inter.Core.Presentation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    fileUploadViewModel.FileName = await _fileUploadAppService.Upload(_appSetttings.Value.UploadFilePath, null, fileUploadViewModel.File);
+                    var culturalExchange = _culturalExchangeAppService.GetById(fileUploadViewModel.CulturalExchangeId);
+
+                    fileUploadViewModel.FileName = await _fileUploadAppService.Upload(_appSetttings.Value.UploadFilePath + culturalExchange.Id, null, fileUploadViewModel.File);
 
                     if (!string.IsNullOrWhiteSpace(fileUploadViewModel.FileName))
                     {

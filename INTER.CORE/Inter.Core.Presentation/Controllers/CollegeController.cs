@@ -169,10 +169,10 @@ namespace Inter.Core.Presentation.Controllers
 
                 _collegeTimeAppService.Add(collegeTime);
 
-                return Ok();
+                return Json(Ok());
             }
 
-            return Conflict();
+            return Json(Conflict());
         }
 
         public async Task<IActionResult> GetPartialCreateCollegeTime(Guid collegeId)

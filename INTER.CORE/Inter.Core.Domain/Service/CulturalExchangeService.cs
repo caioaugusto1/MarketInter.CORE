@@ -122,7 +122,7 @@ namespace Inter.Core.Domain.Service
 
             culturalExchangeEntity.CollegeTime = _collegeTimeRepository.GetById(culturalExchangeEntity.CollegeTimeId);
             culturalExchangeEntity.College = _collegeRepository.GetById(culturalExchangeEntity.CollegeId);
-            culturalExchangeEntity.Accomodation = _accomodationRepository.GetById(culturalExchangeEntity.AccomodationId.Value);
+            culturalExchangeEntity.Accomodation = culturalExchangeEntity.AccomodationId.HasValue ? _accomodationRepository.GetById(culturalExchangeEntity.AccomodationId.Value) : null;
             culturalExchangeEntity.Student = _studentRepository.GetById(culturalExchangeEntity.StudentId);
             culturalExchangeEntity.CulturalExchangeFileUpload = _culturalExchangeFileUploadRepository.GetAllByCulturalExchangeId(id);
 

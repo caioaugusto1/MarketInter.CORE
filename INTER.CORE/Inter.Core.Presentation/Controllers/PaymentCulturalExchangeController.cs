@@ -29,7 +29,7 @@ namespace Inter.Core.Presentation.Controllers
             IPaymentCulturalExchangeAppService paymentCulturalExchangeAppService)
         {
             _appSetttings = appSetttings;
-
+            _fileUploadAppService = fileUploadAppService;
             _culturalExchangeAppService = culturalExchangeAppService;
             _applicationUserAppService = applicationUserAppService;
             _paymentCulturalExchangeAppService = paymentCulturalExchangeAppService;
@@ -77,7 +77,10 @@ namespace Inter.Core.Presentation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    paymentCulturalExchangeViewModel.FileName = await _fileUploadAppService.Upload(_appSetttings.Value.UploadFilePath, null, paymentCulturalExchangeViewModel.File);
+                    var culturalExchange = _culturalExchangeAppService.GetById(paymentCulturalExchangeViewModel.CulturalExchangeId);
+
+                    paymentCulturalExchangeViewModel.FileName = await _fileUploadAppService.Upload(
+                        _appSetttings.Value.UploadFilePath + culturalExchange.Id, null, paymentCulturalExchangeViewModel.File);
 
                     paymentCulturalExchangeViewModel = _paymentCulturalExchangeAppService.Add(paymentCulturalExchangeViewModel);
 

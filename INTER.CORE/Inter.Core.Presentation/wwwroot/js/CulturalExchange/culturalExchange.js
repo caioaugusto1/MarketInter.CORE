@@ -40,7 +40,7 @@
         });
 
         $('#renew').click(function () {
-            debugger;
+            
             if ($(this).is(':checked')) {
                 $('#company').prop('disabled', true);
                 $('#flightNumber').prop('disabled', true);
@@ -120,15 +120,15 @@
         find();
     };
 
-    var popUpConfirmDeleteFile = function (id, fileName) {
+    var popUpConfirmDeleteFile = function (id, fileName, culturalExchangeId) {
         
         $('#modalDelete').modal('show');
-        $('#deleteButton').attr('onclick', `culturalExchange.confirmDeleteFile('${id}', '${fileName}')`);
+        $('#deleteButton').attr('onclick', `culturalExchange.confirmDeleteFile('${id}', '${fileName}', '${culturalExchangeId}')`);
     };
 
-    var confirmDeleteFile = function (id, fileName) {
+    var confirmDeleteFile = function (id, fileName, culturalExchangeId) {
 
-        Util.request('/FileUpload/CulturalExchangeDeleteFile', 'GET', { id, fileName }, 'json', true, function (data) {
+        Util.request('/FileUpload/CulturalExchangeDeleteFile', 'GET', { id, fileName, culturalExchangeId }, 'json', true, function (data) {
             setTimeout(function () {
                 location.reload();
             }, 2000);

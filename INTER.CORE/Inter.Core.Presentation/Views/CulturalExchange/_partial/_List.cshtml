@@ -21,7 +21,7 @@
                 @item.CollegeTimeViewModel.Period
             </td>
             <td>
-               <input type="checkbox" value="@item.Renew" />
+               <input type="checkbox" value="@item.Renew" checked="@item.Renew" disabled />
             </td>
             <td>
                 @(item.AccomodationViewModel.Identifier != null ? item.AccomodationViewModel.Identifier : "Don't have")

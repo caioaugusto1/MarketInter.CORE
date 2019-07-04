@@ -1,27 +1,5 @@
 ﻿var college = function () {
 
-    var saveCollegeTime = function () {
-
-        var collegeTime = $('#form-create-collegeTime').serialize();
-
-        Util.request('/College/CreateTimeCollege', 'POST', collegeTime, 'JSON', false, function (data) {
-
-            if (data === 200) {
-                $('#description').append(`College Time included`);
-
-                $('#sub-information').append(`Time`);
-                $('#modalSuccess').modal('show');
-
-                setTimeout(function () {
-                    location.reload();
-                }, 2000);
-            }
-
-        }, function (request, status, error) {
-
-        });
-    };
-
     var postEditColegeTime = function () {
 
         var collegeTime = $('#form-edit-collegeTime').serialize();
@@ -42,10 +20,10 @@
     var createCollegeTime = function () {
 
         var collegeTime = $('#form-create-collegeTime').serialize();
-
+        
         Util.request('/College/CreateTimeCollege', 'POST', collegeTime, 'JSON', false, function (data) {
-
-            if (data === 200) {
+            
+            if (data.statusCode === 200) {
                 $('#description').append(`College Edited`);
 
                 $('#sub-information').append(`Time`);
@@ -140,7 +118,7 @@
     };
 
     return {
-        create, edit, saveCollegeTime, editCollegeTime, openModalAddCollegeTime,
+        create, edit, editCollegeTime, openModalAddCollegeTime,
         postEditColegeTime, createCollegeTime, deleteConfirmCollegeTime,
         popUpConfirmDeleteCollegeTime
     };

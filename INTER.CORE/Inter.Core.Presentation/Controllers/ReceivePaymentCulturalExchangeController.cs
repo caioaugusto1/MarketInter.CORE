@@ -91,15 +91,14 @@ namespace Inter.Core.Presentation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    receivePaymentVM.FileName = Guid.NewGuid().ToString() + ".pdf";
-
-                    IFormFile formFile = receivePaymentVM.File;
-
-                    receivePaymentVM = _receivePaymentCulturalExchangeAppService.Add(receivePaymentVM);
-
                     if (!receivePaymentVM.ValidationResult.Any())
                     {
-                        receivePaymentVM.FileName = await _fileUploadAppService.Upload(_appSetttings.Value.UploadFilePath, receivePaymentVM.FileName, formFile);
+                        var culturalExchange = _culturalExchangeAppService.GetById(receivePaymentVM.CulturalExchangeId);
+
+                        receivePaymentVM = _receivePaymentCulturalExchangeAppService.Add(receivePaymentVM);
+
+                        receivePaymentVM.FileName = await _fileUploadAppService.Upload(_appSetttings.Value.UploadFilePath + culturalExchange.Id, null, receivePaymentVM.File);
+
                         return RedirectToAction("Index", "ReceivePaymentCulturalExchange");
                     }
 
@@ -111,6 +110,7 @@ namespace Inter.Core.Presentation.Controllers
             catch (Exception ex)
             {
                 _fileUploadAppService.Delete(_appSetttings.Value.UploadFilePath, receivePaymentVM.FileName);
+
                 return Json(BadRequest());
             }
         }

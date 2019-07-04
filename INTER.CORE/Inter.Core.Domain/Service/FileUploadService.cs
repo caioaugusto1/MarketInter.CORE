@@ -25,7 +25,7 @@ namespace Inter.Core.Domain.Service
             string name = string.Empty;
 
             if (string.IsNullOrWhiteSpace(fileName))
-                name = Guid.NewGuid().ToString() + ".pdf";
+                name = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
             else
                 name = fileName;
 
