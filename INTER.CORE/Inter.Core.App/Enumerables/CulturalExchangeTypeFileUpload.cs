@@ -2,7 +2,7 @@
 {
     public enum CulturalExchangeTypeFileUpload
     {
-        Passaport = 'P',
+        Passport = 'P',
         Contract = 'C',
         Form = 'F',
         Invoice = 'I', 

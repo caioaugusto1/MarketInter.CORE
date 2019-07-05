@@ -9,18 +9,18 @@ namespace Inter.Core.App.ViewModel
     public class StudentViewModel : BaseViewModel
     {
         [Required(ErrorMessage = "CustomerId")]
-        [MaxLength(7, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(15, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Customer Id")]
         public string CustomerId { get; set; }
 
         [Required(ErrorMessage = "FullName")]
-        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Max {0} caracteres")]
         [DisplayName("FullName")]
         public string FullName { get; set; }
 
         [Required(ErrorMessage = "Email")]
-        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(40, ErrorMessage = "Max {0} caracteres")]
         [EmailAddress(ErrorMessage = "Min um E-mail válido")]
         [DisplayName("Email")]
         public string Email { get; set; }
@@ -43,31 +43,31 @@ namespace Inter.Core.App.ViewModel
         public DateTime DateOfBirthday { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo Logradouro")]
-        [MaxLength(100, ErrorMessage = "Máximo {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Mínimo {0} caracteres")]
         [DisplayName("Address")]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo Logradouro")]
-        [MaxLength(100, ErrorMessage = "Máximo {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Mínimo {0} caracteres")]
         [DisplayName("City")]
         public string City { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo Logradouro")]
-        [MaxLength(100, ErrorMessage = "Máximo {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Mínimo {0} caracteres")]
         [DisplayName("Country")]
         public string Country { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo Logradouro")]
-        [MaxLength(100, ErrorMessage = "Máximo {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Mínimo {0} caracteres")]
         [DisplayName("Nationality")]
         public string Nationality { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo Logradouro")]
-        [MaxLength(100, ErrorMessage = "Máximo {0} caracteres")]
+        [MaxLength(10, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Mínimo {0} caracteres")]
         [DisplayName("Passport Number")]
         public string PassportNumber { get; set; }

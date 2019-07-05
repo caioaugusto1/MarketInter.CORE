@@ -17,43 +17,43 @@ namespace Inter.Core.App.ViewModel
         }
 
         [Required(ErrorMessage = "Name")]
-        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Address")]
-        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Address")]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "City")]
-        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("City")]
         public string City { get; set; }
 
         [Required(ErrorMessage = "Country")]
-        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Country")]
         public string Country { get; set; }
 
         [Required(ErrorMessage = "Phone Number")]
-        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(20, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Phone Number")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Contac tName")]
-        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(50, ErrorMessage = "Max {0} caracteres")]
         [MinLength(2, ErrorMessage = "Min {0} caracteres")]
         [DisplayName("Contact Name")]
         public string ContactName { get; set; }
 
         [Required(ErrorMessage = "Email")]
-        [MaxLength(100, ErrorMessage = "Max {0} caracteres")]
+        [MaxLength(40, ErrorMessage = "Max {0} caracteres")]
         [EmailAddress(ErrorMessage = "Min um E-mail válido")]
         [DisplayName("Email")]
         public string Email { get; set; }

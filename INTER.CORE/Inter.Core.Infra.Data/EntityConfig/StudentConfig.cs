@@ -16,7 +16,7 @@ namespace Inter.Core.Infra.Data.EntityConfig
 
             builder.Property(x => x.CustomerId)
                .IsRequired()
-               .HasMaxLength(10);
+               .HasMaxLength(15);
 
             builder.Property(x => x.FullName)
                 .IsRequired()
@@ -45,6 +45,10 @@ namespace Inter.Core.Infra.Data.EntityConfig
             builder.Property(x => x.Country)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            builder.Property(x => x.Nationality)
+            .IsRequired()
+            .HasMaxLength(30);
 
             builder.Property(x => x.PassportNumber)
                 .IsRequired()

@@ -1,4 +1,5 @@
-﻿using Inter.Core.App.ViewModel.Base;
+﻿using Inter.Core.App.Enumerables;
+using Inter.Core.App.ViewModel.Base;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -17,6 +18,7 @@ namespace Inter.Core.App.ViewModel
 
         public string FileName { get; set; }
 
+        [Required]
         public string Status { get; set; }
 
         public IFormFile File { get; set; }

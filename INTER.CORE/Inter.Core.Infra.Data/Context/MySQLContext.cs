@@ -10,7 +10,7 @@ namespace Inter.Core.Infra.Data.Context
         public MySQLContext(DbContextOptions<MySQLContext> options)
             : base(options)
         {
-            
+
         }
 
         public DbSet<SystemEnvironment> Environment { get; set; }
@@ -32,6 +32,9 @@ namespace Inter.Core.Infra.Data.Context
             builder.ApplyConfiguration(new StudentConfig());
             builder.ApplyConfiguration(new CollegeTimeConfig());
             builder.ApplyConfiguration(new AccomodationConfig());
+            builder.ApplyConfiguration(new CollegeConfig());
+            builder.ApplyConfiguration(new CulturalExchangeFIleUploadConfig());
+            builder.ApplyConfiguration(new PaymentCulturalExchangeConfig());
 
             base.OnModelCreating(builder);
         }
