@@ -244,6 +244,19 @@ namespace Inter.Core.Presentation.Controllers
 
             return Json(culturalExchange.StudentViewModel.CustomerId);
         }
+        
+        public async Task<IActionResult> GetAllLast12MonthToShowGraphics()
+        {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _applicationUserAppService.GetById(userId);
+
+            if (user == null)
+                return NotFound();
+
+            var culturalExchanges = _culturalExchangeAppService.GetAllLast12Month(user.EnvironmentId);
+
+            return Json(culturalExchanges);
+        }
 
         //// POST: CulturalExchange/Delete/5
         //[HttpPost, ActionName("Delete")]

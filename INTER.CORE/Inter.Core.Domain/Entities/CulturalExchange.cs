@@ -58,6 +58,8 @@ namespace Inter.Core.Domain.Entities
 
         public DateTime StartDate { get; set; }
 
+        public DateTime SaleDate { get; set; }
+
         public string Company { get; set; }
 
         public string FlightNumber { get; set; }

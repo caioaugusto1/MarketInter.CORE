@@ -3,18 +3,20 @@
 @using Inter.Core.App.Enumerables
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="form-group custom-file control-label">
-            <label for="validatedCustomFile" class="col-md-6 custom-file-label">Choose File:</label>
-            <input type="file" name="file" accept="pdf, pdf" class="custom-file-input" id="validatedCustomFile" required>
+            <label for="validatedCustomFile" class="col-md-8 custom-file-label">Choose File:</label>
+            <input type="file" name="file" class="custom-file-input" id="validatedCustomFile" required>
         </div>
     </div>
 </div>
 
+<br/>
+
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            <label for="recipient-name" class="col-md-4 col-form-label">Type:</label>
+            <label for="recipient-name" class="col-md-4 control-label">Type:</label>
             <select name="Type" asp-items="Html.GetEnumSelectList<PaymentStatus>()" data-val-required="The Period field is required." class="form-control">
                 <option value="">Selected</option>
             </select>
@@ -23,7 +25,7 @@
 
     <div class="col-md-4">
         <div class="form-group">
-            <label class="col-md-4 col-form-label">Date of Payment:</label>
+            <label class="col-md-8 control-label">Payment Date:</label>
             <input asp-for="DateOfPayment" name="DateOfPayment" placeholder="Date of Payment" class="form-control" required type="date">
         </div>
     </div>
@@ -31,17 +33,17 @@
 
 <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-2">
         <div class="form-group">
-            <label class="col-md-42control-label">Value*</label>
+            <label class="col-md-2 control-label">Value*</label>
             <input asp-for="Value" name="Value" placeholder="Value Payment" class="form-control" required type="number">
             <span asp-validation-for="Value" class="text-danger"></span>
         </div>
     </div>
     
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group">
-            <label class="col-md-4 col-form-label">Note:</label>
+            <label class="col-md-6 control-label">Note:</label>
             <input asp-for="Note" name="Note" placeholder="Note" class="form-control" required type="text">
         </div>
     </div>

@@ -26,7 +26,7 @@
 
     <div class="col-md-4">
         <label class="col-md-4 control-label">Accomodation*</label>
-        <select asp-for="AccomodationId" required  name="Identifier"class="form-control"
+        <select asp-for="AccomodationId" required name="Identifier" class="form-control"
                 asp-items="@(new SelectList(ViewBag.Accomodations,"Id","Identifier"))">
             <option>Please select one</option>
         </select>
@@ -166,6 +166,13 @@
 <div class="row">
     <div class="col-md-2">
         <div class="form-group">
+            <label class="col-md-2 control-label">Sale Date*</label>
+            <input type="date" asp-for="SaleDate" id="saleDate" class="form-control" required />
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
             <label class="col-md-2 control-label">Flight Number*</label>
             <input type="text" asp-for="FlightNumber" id="flightNumber" class="form-control" />
         </div>
@@ -195,7 +202,6 @@
             <label class="col-md-42control-label">Total Value*</label>
             <input class="form-control" type="number" asp-for="TotalValue" />
             <span asp-validation-for="TotalValue" class="text-danger"></span>
-
         </div>
     </div>
 </div>

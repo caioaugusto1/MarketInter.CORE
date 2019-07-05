@@ -57,6 +57,11 @@ namespace Inter.Core.App.ViewModel
         [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
         public DateTime FinishAccomodation { get; set; }
 
+        [Display(Name = "Sale Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
+        public DateTime SaleDate { get; set; }
+
         // After sprint, put class Insurance and crud create and edit insurance
         [DisplayName("INSUR?")]
         public bool INSUR { get; set; }

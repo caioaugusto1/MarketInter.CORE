@@ -17,10 +17,11 @@ namespace Inter.Core.Domain.Service
         private readonly IAccomodationRepository _accomodationRepository;
         private readonly IStudentRepository _studentRepository;
         private readonly ICulturalExchangeFileUploadRepository _culturalExchangeFileUploadRepository;
+        private readonly IReceivePaymentCulturalExchangeRepository _receivePaymentCulturalExchangeRepository;
 
         public CulturalExchangeService(ICulturalExchangeRepository culturalExchangeRepository, ICollegeRepository collegeRepository,
             ICollegeTimeRepository collegeTimeRepository, IAccomodationRepository accomodationRepository, IStudentRepository studentRepository,
-            ICulturalExchangeFileUploadRepository culturalExchangeFileUploadRepository)
+            ICulturalExchangeFileUploadRepository culturalExchangeFileUploadRepository, IReceivePaymentCulturalExchangeRepository receivePaymentCulturalExchangeRepository)
         {
             _culturalExchangeRepository = culturalExchangeRepository;
             _collegeRepository = collegeRepository;
@@ -28,6 +29,7 @@ namespace Inter.Core.Domain.Service
             _accomodationRepository = accomodationRepository;
             _studentRepository = studentRepository;
             _culturalExchangeFileUploadRepository = culturalExchangeFileUploadRepository;
+            _receivePaymentCulturalExchangeRepository = receivePaymentCulturalExchangeRepository;
         }
 
         public CulturalExchange Add(CulturalExchange culturalExchange)
@@ -99,7 +101,7 @@ namespace Inter.Core.Domain.Service
             if (finishArrivalDateTime != DateTime.MinValue)
                 culturalExchangeEntity = culturalExchangeEntity.Where(x => x.ArrivalDateTime.Value.Date <= finishArrivalDateTime).ToList();
 
-            if(courseStartDate != DateTime.MinValue)
+            if (courseStartDate != DateTime.MinValue)
                 culturalExchangeEntity = culturalExchangeEntity.Where(x => x.StartDate.Date >= courseStartDate).ToList();
 
             if (courseStartDateFinish != DateTime.MinValue)
@@ -123,6 +125,30 @@ namespace Inter.Core.Domain.Service
             });
 
             return culturalExchangeEntity;
+        }
+
+        public List<CulturalExchange> GetAllLast12Month(Guid idEnvironment)
+        {
+            return _culturalExchangeRepository.FindByFilter(x => x.EnvironmentId == idEnvironment && x.SaleDate >= DateTime.Now.AddMonths(-12));
+        }
+
+        public List<CulturalExchange> GetAllPaymentFinished(Guid idEnvironment)
+        {
+            List<CulturalExchange> culturalExchangesListReturn = new List<CulturalExchange>();
+
+            var culturalExchanges = GetAll(idEnvironment, true);
+
+            culturalExchanges.ForEach(x =>
+            {
+                var receive = _receivePaymentCulturalExchangeRepository.FindByFilter(y => y.CulturalExchangeId == x.Id).ToList();
+
+                if (receive.Sum(z => z.Value) >= x.TotalValue)
+                {
+                    culturalExchangesListReturn.Add(x);
+                }
+            });
+
+            return culturalExchangesListReturn;
         }
 
         public CulturalExchange GetById(Guid id)

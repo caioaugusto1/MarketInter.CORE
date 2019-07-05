@@ -7,6 +7,7 @@
         Form = 'F',
         Invoice = 'I', 
         Latter = 'L',
+        GNIB = 'G',
         Others = 'O'
     }
 }

@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Inter.Core.App.Intefaces;
+using Inter.Core.App.JsonModels;
 using Inter.Core.App.ViewModel;
 using Inter.Core.Domain.Entities;
 using Inter.Core.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Inter.Core.App.Application
 {
@@ -28,6 +30,11 @@ namespace Inter.Core.App.Application
             culturalExchange.Environment = _mapper.Map<SystemEnvironment>(_environmentService.GetById(idEnvironment));
 
             return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.Add(culturalExchange));
+        }
+
+        public List<CulturalExchangeViewModel> GetAllPaymentFinished(Guid idEnvironment)
+        {
+            return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllPaymentFinished(idEnvironment));
         }
 
         public List<CulturalExchangeViewModel> GetAll(Guid idEnvironment, bool active)
@@ -55,9 +62,9 @@ namespace Inter.Core.App.Application
                 courseStartDateFinish = Convert.ToDateTime(DateTime.Parse(startDateFinish, new CultureInfo("pt-BR")));
 
             return _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllByFilter(
-                idEnvironment, 
-                arrivalStart, arrivalFinish, 
-                courseStartDate, courseStartDateFinish, 
+                idEnvironment,
+                arrivalStart, arrivalFinish,
+                courseStartDate, courseStartDateFinish,
                 collegeId, accomodationId));
         }
 
@@ -81,6 +88,25 @@ namespace Inter.Core.App.Application
         public CulturalExchangeViewModel UpdateDateStartAndFinish(Guid id, DateTime start, DateTime finish)
         {
             return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.UpdateDateStartAndFinish(id, start, finish));
+        }
+
+        public List<CulturalExchangeLast12MonthToShowGraphics> GetAllLast12Month(Guid idEnvironment)
+        {
+            List<CulturalExchangeLast12MonthToShowGraphics> culturalExchangeLast12MonthToShow = new List<CulturalExchangeLast12MonthToShowGraphics>();
+
+            var culturalExchange = _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllLast12Month(idEnvironment));
+
+            for (int i = 1; i <= 12; i++)
+            {
+                culturalExchangeLast12MonthToShow.Add(new CulturalExchangeLast12MonthToShowGraphics
+                {
+                    Month = i,
+                    CulturalExchangeTotal = culturalExchange.Where(x => x.SaleDate.Month == i).Count()
+                });
+            }
+
+
+            return culturalExchangeLast12MonthToShow.OrderBy(x => x.Month).ToList();
         }
     }
 }

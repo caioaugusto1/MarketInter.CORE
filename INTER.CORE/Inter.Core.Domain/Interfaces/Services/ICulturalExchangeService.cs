@@ -12,6 +12,10 @@ namespace Inter.Core.Domain.Interfaces.Services
 
         List<CulturalExchange> GetAllByFilter(Guid idEnvironment, DateTime startArrivalDateTime, DateTime finishArrivalDateTime, DateTime courseStartDate, DateTime courseStartDateFinish, Guid collegeId, Guid accomodationId);
 
+        List<CulturalExchange> GetAllPaymentFinished(Guid idEnvironment);
+
+        List<CulturalExchange> GetAllLast12Month(Guid idEnvironment);
+
         CulturalExchange UpdateDateStartAndFinish(Guid id, DateTime start, DateTime finish);
 
         CulturalExchange Inactive(Guid id);

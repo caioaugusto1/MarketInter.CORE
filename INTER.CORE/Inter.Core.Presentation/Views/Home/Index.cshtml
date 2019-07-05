@@ -7,3 +7,13 @@
 </div>
 
 
+@section Scripts {
+
+    <script src="~/js/Util/Util.js"></script>
+    <script src="~/vendor/chart.js/Chart.js"></script>
+    <script src="~/js/demo/chart-area-demo.js"></script>
+    <script src="~/js/Home/Home.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
