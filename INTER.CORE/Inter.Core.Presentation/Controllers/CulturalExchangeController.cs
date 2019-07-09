@@ -245,7 +245,7 @@ namespace Inter.Core.Presentation.Controllers
             return Json(culturalExchange.StudentViewModel.CustomerId);
         }
         
-        public async Task<IActionResult> GetAllLast12MonthToShowGraphics()
+        public async Task<IActionResult> HomeGetInfoDashboard()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = _applicationUserAppService.GetById(userId);

@@ -2,9 +2,11 @@
 
     var loadingPage = function () {
         
-        Util.request('/CulturalExchange/GetAllLast12MonthToShowGraphics', 'POST', null, 'json', true, function (data) {
-            
-            loadingOverviewGraphicsSaleLast12Month(data);
+        Util.request('/CulturalExchange/HomeGetInfoDashboard', 'POST', null, 'json', true, function (data) {
+
+            $('#culturalExchangeDashboardTotal').text(data.totalThisMonth);
+
+            loadingOverviewGraphicsSaleLast12Month(data.totalPerMonth);
 
         }, function (request, status, error) {
 

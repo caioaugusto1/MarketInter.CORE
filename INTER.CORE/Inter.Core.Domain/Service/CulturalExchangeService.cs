@@ -129,7 +129,7 @@ namespace Inter.Core.Domain.Service
 
         public List<CulturalExchange> GetAllLast12Month(Guid idEnvironment)
         {
-            return _culturalExchangeRepository.FindByFilter(x => x.EnvironmentId == idEnvironment && x.SaleDate >= DateTime.Now.AddMonths(-12));
+            return _culturalExchangeRepository.FindByFilter(x => x.EnvironmentId == idEnvironment && x.SaleDate >= DateTime.Now.AddYears(-1));
         }
 
         public List<CulturalExchange> GetAllPaymentFinished(Guid idEnvironment)

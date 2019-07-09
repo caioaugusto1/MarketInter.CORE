@@ -3,41 +3,53 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 function number_format(number, decimals, dec_point, thousands_sep) {
-  // *     example: number_format(1234.56, 2, ',', ' ');
-  // *     return: '1 234,56'
-  number = (number + '').replace(',', '').replace(' ', '');
-  var n = !isFinite(+number) ? 0 : +number,
-    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-    s = '',
-    toFixedFix = function(n, prec) {
-      var k = Math.pow(10, prec);
-      return '' + Math.round(n * k) / k;
-    };
-  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-  if (s[0].length > 3) {
-    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-  }
-  if ((s[1] || '').length < prec) {
-    s[1] = s[1] || '';
-    s[1] += new Array(prec - s[1].length + 1).join('0');
-  }
-  return s.join(dec);
+    // *     example: number_format(1234.56, 2, ',', ' ');
+    // *     return: '1 234,56'
+    number = (number + '').replace(',', '').replace(' ', '');
+    var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function (n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+        };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
 }
 
 // Area Chart Example
 
 var loadingOverviewGraphicsSaleLast12Month = function (data) {
 
+    data[11].culturalExchangeTotal = 5;
+
+    data[9].culturalExchangeTotal = 5;
+
+    data[5].culturalExchangeTotal = 8;
+
+    data[1].culturalExchangeTotal = 2;
+
     var ctx = document.getElementById("myAreaChart");
     var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            labels: [
+                data[11].monthName, data[10].monthName, data[9].monthName, data[8].monthName,
+                data[7].monthName, data[6].monthName, data[5].monthName, data[4].monthName,
+                data[3].monthName, data[2].monthName, data[1].monthName, data[0].monthName
+            ],
             datasets: [{
-                label: "Earnings",
+                label: "Left dataset",
                 lineTension: 0.3,
                 backgroundColor: "rgba(78, 115, 223, 0.05)",
                 borderColor: "rgba(78, 115, 223, 1)",
@@ -50,52 +62,74 @@ var loadingOverviewGraphicsSaleLast12Month = function (data) {
                 pointHitRadius: 10,
                 pointBorderWidth: 5,
                 data: [
-                    data[0].culturalExchangeTotal, data[1].culturalExchangeTotal, data[2].culturalExchangeTotal,
-                    data[3].culturalExchangeTotal, data[4].culturalExchangeTotal, data[5].culturalExchangeTotal,
-                    data[6].culturalExchangeTotal, data[7].culturalExchangeTotal, data[8].culturalExchangeTotal,
-                    data[9].culturalExchangeTotal, data[10].culturalExchangeTotal, data[11].culturalExchangeTotal
+                    //1,
+                    //2,
+                    //3,
+                    //4,
+                    //5,
+                    //6,
+                    //7,
+                    //7,
+                    //9,
+                    //10,
+                    //11,
+                    //11
+                    data[11].culturalExchangeTotal, data[10].culturalExchangeTotal, data[9].culturalExchangeTotal,
+                    data[8].culturalExchangeTotal, data[7].culturalExchangeTotal, data[6].culturalExchangeTotal,
+                    data[5].culturalExchangeTotal, data[4].culturalExchangeTotal, data[3].culturalExchangeTotal,
+                    data[2].culturalExchangeTotal, data[1].culturalExchangeTotal, data[0].culturalExchangeTotal
                 ],
             }],
         },
         options: {
             maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 25,
-                    top: 25,
-                    bottom: 0
-                }
-            },
+            //layout: {
+            //    padding: {
+            //        left: 10,
+            //        right: 25,
+            //        top: 25,
+            //        bottom: 0
+            //    }
+            //},
             scales: {
                 xAxes: [{
-                    time: {
-                        unit: 'date'
-                    },
+                    type: 'category',
+                    boundaryGap: false,
+                    //time: {
+                    //    unit: 'day'
+                    //},
                     gridLines: {
                         display: false,
                         drawBorder: false
                     },
-                    ticks: {
-                        maxTicksLimit: 7
-                    }
+                    //ticks: {
+                    //    maxTicksLimit: 11
+                    //}
                 }],
                 yAxes: [{
+                    type: 'value',
+                    //time: {
+                    //    unit: 'day'
+                    //},
+
                     ticks: {
-                        min: 0, 
-                        maxTicksLimit: 5,
-                        padding: 10,
+                        min: 0,
+                        maxTicksLimit: 1000,
+
+                        //padding: 10,
                         // Include a dollar sign in the ticks
                         callback: function (value, index, values) {
+                            console.log(number_format(value));
+
                             return number_format(value);
                         }
                     },
                     gridLines: {
                         color: "rgb(234, 236, 244)",
                         zeroLineColor: "rgb(234, 236, 244)",
-                        drawBorder: true,
-                        borderDash: [2],
-                        zeroLineBorderDash: [2]
+                        //drawBorder: true,
+                        //borderDash: [0],
+                        //zeroLineBorderDash: [0]
                     }
                 }],
             },
@@ -124,7 +158,7 @@ var loadingOverviewGraphicsSaleLast12Month = function (data) {
                 }
             }
         }
-    }); 
+    });
 }
 
 

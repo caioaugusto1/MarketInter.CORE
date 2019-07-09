@@ -90,23 +90,30 @@ namespace Inter.Core.App.Application
             return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.UpdateDateStartAndFinish(id, start, finish));
         }
 
-        public List<CulturalExchangeLast12MonthToShowGraphics> GetAllLast12Month(Guid idEnvironment)
+        public HomeDashoboardInfoJson GetAllLast12Month(Guid idEnvironment)
         {
-            List<CulturalExchangeLast12MonthToShowGraphics> culturalExchangeLast12MonthToShow = new List<CulturalExchangeLast12MonthToShowGraphics>();
+            HomeDashoboardInfoJson dashboard = new HomeDashoboardInfoJson();
 
-            var culturalExchange = _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllLast12Month(idEnvironment));
+            List<HomeDashoboardInfoJson.CulturalExchangePerMonthToShowGraphics> infoPerMonth = new List<HomeDashoboardInfoJson.CulturalExchangePerMonthToShowGraphics>();
+
+            var culturalExchange = _mapper.Map<List<CulturalExchangeViewModel>>(_culturalExchangeService.GetAllLast12Month(idEnvironment))
+                .OrderBy(x => x.SaleDate);
 
             for (int i = 1; i <= 12; i++)
             {
-                culturalExchangeLast12MonthToShow.Add(new CulturalExchangeLast12MonthToShowGraphics
+                dashboard.TotalPerMonth.Add(new HomeDashoboardInfoJson.CulturalExchangePerMonthToShowGraphics
                 {
-                    Month = i,
-                    CulturalExchangeTotal = culturalExchange.Where(x => x.SaleDate.Month == i).Count()
+                    CulturalExchangeTotal = culturalExchange.Where(x => x.SaleDate == DateTime.Now.AddMonths(-i)).Count(),
+                    Year = Convert.ToString(DateTime.Now.AddMonths(-i).Year),
+                    Month = Convert.ToString(DateTime.Now.AddMonths(-i).ToString("MM")),
+                    MonthName = DateTime.Now.AddMonths(-i).ToString("MMM", CultureInfo.InvariantCulture)
                 });
             }
 
+            dashboard.TotalThisMonth.Total = _culturalExchangeService.GetAll(idEnvironment, true)
+                .Where(x => x.SaleDate >= DateTime.Now.AddMonths(-1)).Count();
 
-            return culturalExchangeLast12MonthToShow.OrderBy(x => x.Month).ToList();
+            return dashboard;
         }
     }
 }

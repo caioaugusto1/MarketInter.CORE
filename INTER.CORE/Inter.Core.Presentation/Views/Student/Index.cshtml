@@ -15,6 +15,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>Customer Id</th>
                             <th>Full Name</th>
                             <th>Gender</th>
                             <th>Email</th>
@@ -31,6 +32,9 @@
                         {
                             <tr>
                                 <td>
+                                    @item.CustomerId
+                                </td>
+                                <td>
                                     @item.FullName
                                 </td>
                                 <td>
@@ -43,7 +47,7 @@
                                     @item.MobileNumber
                                 </td>
                                 <td>
-                                    @item.DateOfInsert
+                                    @item.DateOfInsert.ToString("dd/MM/yyyy")
                                 </td>
                                 <td>
                                     @item.City
