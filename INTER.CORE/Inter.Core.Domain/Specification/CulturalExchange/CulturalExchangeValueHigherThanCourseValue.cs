@@ -24,9 +24,9 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
 
             if (entity.WeekNumber == 25 && !entity.Renew)
             {
-                var sumValueWithPercentage = collegeTime.Price * collegeTime.PercentagePrice;
+                var sumValueWithPercentage = (double)collegeTime.NetPrice + ((double)collegeTime.NetPrice * collegeTime.PercentagePrice) / 100;
 
-                if (sumValueWithPercentage >= (decimal)entity.TotalValue)
+                if (sumValueWithPercentage >= (double)entity.TotalValue)
                     entity.ValidationResult.Add(new ValidationResult("Course value incorrect"));
             }
             else if (entity.Renew)
