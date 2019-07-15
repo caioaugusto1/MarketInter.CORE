@@ -47,6 +47,13 @@ namespace Inter.Core.Domain.Service
 
             bool validateDateArriveAndStart = new CulturalExchangeValidateDateArriveAndStart().IsSatisfiedBy(culturalExchange);
 
+
+            if (culturalExchange.OurAccomodation)
+            {
+                TimeSpan date = Convert.ToDateTime(culturalExchange.FinishAccomodation) - Convert.ToDateTime(culturalExchange.StartAccomodation);
+                culturalExchange.DaysOfAccomodation = date.Days;
+            }
+
             if (!culturalExchange.ValidationResult.Any())
                 _culturalExchangeRepository.Insert(culturalExchange);
             else

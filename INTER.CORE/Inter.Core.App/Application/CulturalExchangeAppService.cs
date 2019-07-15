@@ -29,6 +29,12 @@ namespace Inter.Core.App.Application
             var culturalExchange = _mapper.Map<CulturalExchange>(culturalExchangeView);
             culturalExchange.Environment = _mapper.Map<SystemEnvironment>(_environmentService.GetById(idEnvironment));
 
+            if (!culturalExchangeView.HaveFlyTicket)
+            {
+                culturalExchangeView.FlightNumber = null;
+                culturalExchangeView.Company = null;
+            }
+
             return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.Add(culturalExchange));
         }
 

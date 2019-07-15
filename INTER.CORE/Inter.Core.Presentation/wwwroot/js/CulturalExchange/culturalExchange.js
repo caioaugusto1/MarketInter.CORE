@@ -52,6 +52,17 @@
             }
         });
 
+        $('#flyTicket').click(function () {
+
+            if ($(this).is(':checked')) {
+                $('#company').prop('disabled', false);
+                $('#flightNumber').prop('disabled', false);
+            } else {
+                $('#company').prop('disabled', true);
+                $('#flightNumber').prop('disabled', true);
+            }
+        });
+
     };
 
     var create = function () {
@@ -68,6 +79,10 @@
 
                 $('#modal-warning').modal('show');
             } else {
+
+                $('#description').append('Cultural Exchange Included in System');
+                $('#modalSuccess').modal('show');
+
                 setTimeout(function () {
                     let url = '/CulturalExchange/Index';
                     window.location.href = url;

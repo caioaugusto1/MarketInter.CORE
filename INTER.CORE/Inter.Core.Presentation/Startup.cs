@@ -6,8 +6,8 @@ using Inter.Core.Presentation.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -32,15 +32,15 @@ namespace Inter.Core.Presentation
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseMySql(
-            //        Configuration.GetConnectionString("MySqlConnection")));
-
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //    .AddDefaultUI(UIFramework.Bootstrap4)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            //services.AddEntityFrameworkStores<ApplicationDbContext>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireLowercase = true;
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            });
 
             var mapperConfiguration = new MapperConfiguration(config =>
             {
@@ -51,12 +51,6 @@ namespace Inter.Core.Presentation
             services.AddSingleton(mapper);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            //services.AddDbContext<ContextDB>(options =>
-            //       options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddDbContext<MySQLContext>(options =>
-            //    options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 

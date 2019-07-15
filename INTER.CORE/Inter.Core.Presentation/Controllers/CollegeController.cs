@@ -1,9 +1,12 @@
-﻿using Inter.Core.App.Intefaces;
+﻿using Inter.Core.App.Enumerables;
+using Inter.Core.App.Intefaces;
 using Inter.Core.App.Intefaces.Identity;
 using Inter.Core.App.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
@@ -225,7 +228,118 @@ namespace Inter.Core.Presentation.Controllers
 
             return Json(Conflict());
 
+
             #endregion
         }
+
+        //public async Task<IActionResult> SaveExcel()
+        //{
+        //    string sFileName = @"C:\Users\Caio's PC\Desktop\CollegesFees.xlsx";
+
+        //    FileInfo file = new FileInfo(Path.Combine(sFileName));
+
+        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var user = _applicationUserAppService.GetById(userId);
+
+        //    var linhaErro = 1;
+
+        //    try
+        //    {
+        //        using (ExcelPackage package = new ExcelPackage(file))
+        //        {
+        //            ExcelWorksheet worksheet = package.Workbook.Worksheets[3];
+
+        //            int rowCount = worksheet.Dimension.Rows;
+        //            int colCount = worksheet.Dimension.Columns;
+
+        //            var lastCollege = string.Empty;
+
+        //            for (int linha = 2; linha <= rowCount; linha++)
+        //            {
+        //                linhaErro = linha;
+        //                CollegeViewModel college = new CollegeViewModel();
+
+        //                if (lastCollege == worksheet.Cells[linha, 1].Value.ToString())
+        //                    continue;
+
+        //                college.Name = worksheet.Cells[linha, 1].Value.ToString();
+        //                lastCollege = college.Name;
+
+        //                college.Address = "Dublin";
+        //                college.City = worksheet.Cells[linha, 3].Value.ToString();
+        //                college.Country = "Ireland";
+        //                college.PhoneNumber = "353";
+        //                college.ContactName = "NCC";
+        //                college.Email = "NCC";
+        //                college.EnviromentId = user.EnvironmentId;
+
+        //                college = _collegeAppService.Add(user.EnvironmentId, college);
+
+        //                college.CollegeTimeViewModel = new System.Collections.Generic.List<CollegeTimeViewModel>();
+        //                if (worksheet.Cells[linha, 2].Value.ToString() == "Morning")
+        //                {
+        //                    CollegeTimeViewModel time = new CollegeTimeViewModel();
+
+        //                    time.StartTime = TimeSpan.Parse("09:00");
+        //                    time.FinishTime = TimeSpan.Parse("12:20");
+        //                    time.DaysOfWeek = 5;
+        //                    time.GrossPrice = Convert.ToDecimal(worksheet.Cells[linha, 4].Value.ToString());
+        //                    time.Period = PeriodClass.Morning;
+        //                    time.BookPrice = worksheet.Cells[linha, 6].Value != null ? Convert.ToDecimal(worksheet.Cells[linha, 6].Value.ToString()) : 0;
+        //                    time.ExamPrice = worksheet.Cells[linha, 7].Value != null ? Convert.ToDecimal(worksheet.Cells[linha, 7].Value.ToString()) : 0;
+        //                    time.InsurancePrice = worksheet.Cells[linha, 8].Value != null ? Convert.ToDecimal(worksheet.Cells[linha, 8].Value.ToString()) : 0;
+        //                    time.AccomodationPrice = worksheet.Cells[linha, 9].Value != null ? Convert.ToDecimal(worksheet.Cells[linha, 9].Value.ToString()) : 0;
+        //                    time.PercentagePrice = worksheet.Cells[linha, 11].Value != null ? Convert.ToInt32(worksheet.Cells[linha, 11].Value.ToString()) : 0;
+        //                    time.NetPrice = worksheet.Cells[linha, 12].Value != null ? Convert.ToDecimal(worksheet.Cells[linha, 12].Value.ToString()) : 0;
+        //                    time.Price = worksheet.Cells[linha, 13].Value != null ? Convert.ToDecimal(worksheet.Cells[linha, 13].Value.ToString()) : 0;
+        //                    time.RenewPrice = worksheet.Cells[linha, 13].Value != null ? Convert.ToDecimal(worksheet.Cells[linha, 13].Value.ToString()) : 0;
+        //                    time.Note = worksheet.Cells[linha, 17].Value != null ? Convert.ToString(worksheet.Cells[linha, 17].Value.ToString()) : "DONT HAVE";
+
+        //                    college.CollegeTimeViewModel.Add(time);
+
+        //                    time.College = college;
+        //                    time.CollegeId = college.Id;
+
+        //                    _collegeTimeAppService.Add(time);
+
+        //                }
+
+        //                if (lastCollege == worksheet.Cells[linha + 1, 1].Value.ToString())
+        //                {
+        //                    var linhaabaixo = linha + 1;
+
+        //                    CollegeTimeViewModel time2 = new CollegeTimeViewModel();
+
+        //                    time2.StartTime = TimeSpan.Parse("13:45");
+        //                    time2.FinishTime = TimeSpan.Parse("17:00");
+        //                    time2.DaysOfWeek = 5;
+        //                    time2.GrossPrice = Convert.ToDecimal(worksheet.Cells[linhaabaixo, 4].Value.ToString());
+        //                    time2.Period = PeriodClass.Afternoon;
+        //                    //Enrol = ""
+        //                    time2.BookPrice = worksheet.Cells[linhaabaixo, 6].Value != null ? Convert.ToDecimal(worksheet.Cells[linhaabaixo, 6].Value.ToString()) : 0;
+        //                    time2.ExamPrice = worksheet.Cells[linhaabaixo, 7].Value != null ? Convert.ToDecimal(worksheet.Cells[linhaabaixo, 7].Value.ToString()) : 0;
+        //                    time2.InsurancePrice = worksheet.Cells[linhaabaixo, 8].Value != null ? Convert.ToDecimal(worksheet.Cells[linhaabaixo, 8].Value.ToString()) : 0;
+        //                    time2.AccomodationPrice = worksheet.Cells[linhaabaixo, 9].Value != null ? Convert.ToDecimal(worksheet.Cells[linhaabaixo, 9].Value.ToString()) : 0;
+        //                    time2.PercentagePrice = worksheet.Cells[linhaabaixo, 11].Value != null ? Convert.ToInt32(worksheet.Cells[linhaabaixo, 11].Value.ToString()) : 0;
+        //                    time2.NetPrice = worksheet.Cells[linhaabaixo, 12].Value != null ? Convert.ToDecimal(worksheet.Cells[linhaabaixo, 12].Value.ToString()) : 0;
+        //                    time2.Price = worksheet.Cells[linhaabaixo, 13].Value != null ? Convert.ToDecimal(worksheet.Cells[linhaabaixo, 13].Value.ToString()) : 0;
+        //                    time2.RenewPrice = worksheet.Cells[linhaabaixo, 13].Value != null ? Convert.ToDecimal(worksheet.Cells[linhaabaixo, 13].Value.ToString()) : 0;
+        //                    time2.Note = worksheet.Cells[linhaabaixo, 17].Value != null ? Convert.ToString(worksheet.Cells[linhaabaixo, 17].Value.ToString()) : "DONT HAVE";
+
+        //                    time2.College = college;
+        //                    time2.CollegeId = college.Id;
+
+        //                    _collegeTimeAppService.Add(time2);
+        //                }
+        //            }
+        //        }
+
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
     }
 }

@@ -99,8 +99,8 @@ namespace Inter.Core.Presentation.Controllers
                 return NotFound();
 
             ViewBag.EnvironmentId = user.EnvironmentId;
-            ViewBag.Students = _studentAppService.GetStudentsNotEnroled(user.EnvironmentId);
-            ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId);
+            ViewBag.Students = _studentAppService.GetStudentsNotEnroled(user.EnvironmentId).OrderBy(x => x.FullName);
+            ViewBag.Colleges = _collegeAppService.GetAll(user.EnvironmentId).OrderBy(x => x.Name).ThenBy(x => x.City);
             ViewBag.Accomodations = _accomodationAppService.GetAllAvaliable(user.EnvironmentId);
 
             return View();

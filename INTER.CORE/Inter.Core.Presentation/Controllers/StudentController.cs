@@ -1,9 +1,11 @@
-﻿using Inter.Core.App.Intefaces;
+﻿using Inter.Core.App.Enumerables;
+using Inter.Core.App.Intefaces;
 using Inter.Core.App.Intefaces.Identity;
 using Inter.Core.App.ViewModel;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Inter.Core.Presentation.Controllers
 {
-    [Authorize(Roles = "Admin, Manager, Student")]
+    //[Authorize(Roles = "Admin, Manager, Student")]
     public class StudentController : BaseController
     {
         private readonly IApplicationUserAppService _applicationUserAppService;
@@ -171,5 +173,61 @@ namespace Inter.Core.Presentation.Controllers
 
             return Json(Ok());
         }
+
+        //public async Task<IActionResult> ReadNames()
+        //{
+        //    string sFileName = @"";
+
+        //    FileInfo file = new FileInfo(Path.Combine(sFileName));
+
+        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var user = _applicationUserAppService.GetById(userId);
+
+        //    try
+        //    {
+        //        using (ExcelPackage package = new ExcelPackage(file))
+        //        {
+        //            ExcelWorksheet worksheet = package.Workbook.Worksheets[1];
+
+        //            int rowCount = worksheet.Dimension.Rows;
+        //            int ColCount = worksheet.Dimension.Columns;
+
+        //            for (int row = 2; row <= rowCount; row++)
+        //            {
+        //                Gender gender = Gender.Female;
+        //                if (worksheet.Cells[row, 4].Value.ToString() == "Male")
+        //                {
+        //                    gender = Gender.Male;
+        //                }
+
+        //                StudentViewModel student = new StudentViewModel();
+
+        //                student.CustomerId = worksheet.Cells[row, 1].Value.ToString();
+        //                student.FullName = worksheet.Cells[row, 2].Value.ToString();
+        //                student.Email = worksheet.Cells[row, 3].Value.ToString();
+        //                student.Gender = gender;
+        //                student.MobileNumber = worksheet.Cells[row, 5].Value.ToString();
+        //                student.DateOfBirthday = Convert.ToDateTime(worksheet.Cells[row, 6].Value.ToString());
+        //                student.Address = worksheet.Cells[row, 7].Value.ToString();
+        //                student.City = worksheet.Cells[row, 8].Value.ToString();
+        //                student.Country = worksheet.Cells[row, 9].Value.ToString();
+        //                student.Nationality = worksheet.Cells[row, 10].Value.ToString();
+        //                student.PassportDateOfIssue = DateTime.MinValue;
+        //                student.PassportNumber = worksheet.Cells[row, 12].Value.ToString();
+        //                student.PassportDateOfExpiry = DateTime.MinValue;
+        //                student.EnviromentId = user.EnvironmentId;
+
+        //                _studentAppService.Add(student.EnviromentId, student);
+        //            }
+        //        };
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+
+        //    return Ok();
+        //}
+
     }
 }

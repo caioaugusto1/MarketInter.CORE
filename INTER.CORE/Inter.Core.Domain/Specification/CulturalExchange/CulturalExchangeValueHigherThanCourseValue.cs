@@ -31,7 +31,7 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
             }
             else if (entity.Renew)
             {
-                if (collegeTime.RenewPrice < (decimal)entity.TotalValue)
+                if (collegeTime.RenewPrice > (decimal)entity.TotalValue)
                     entity.ValidationResult.Add(new ValidationResult("Course value incorrect"));
 
                 entity.ArrivalDateTime = null;

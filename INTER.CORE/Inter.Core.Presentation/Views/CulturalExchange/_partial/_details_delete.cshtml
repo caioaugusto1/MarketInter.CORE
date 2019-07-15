@@ -55,13 +55,13 @@
             Start Accomodation
         </dt>
         <dd class="col-sm-6">
-            @((Model.AccomodationViewModel != null) ? Html.DisplayFor(model => model.StartAccomodation.ToString("dd/MM/yyyy")) : Html.Display("Don't have"))
+            @((Model.AccomodationViewModel != null) ? Html.DisplayFor(model => model.StartAccomodation) : Html.Display("Don't have"))
         </dd>
         <dt class="col-sm-6">
             Finish Accomodation
         </dt>
         <dd class="col-sm-6">
-            @((Model.AccomodationViewModel != null) ? Html.DisplayFor(model => model.FinishAccomodation.ToString("dd/MM/yyyy")) : Html.Display("Don't have"))
+            @((Model.AccomodationViewModel != null) ? Html.DisplayFor(model => model.FinishAccomodation) : Html.Display("Don't have"))
         </dd>
         <dt class="col-sm-6">
             INSUR

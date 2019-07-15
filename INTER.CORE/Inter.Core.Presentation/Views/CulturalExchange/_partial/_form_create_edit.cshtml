@@ -26,11 +26,10 @@
 
     <div class="col-md-4">
         <label class="col-md-4 control-label">Accomodation*</label>
-        <select asp-for="AccomodationId" required name="Identifier" class="form-control"
+        <select asp-for="AccomodationId" class="form-control" name="AccomodationId"
                 asp-items="@(new SelectList(ViewBag.Accomodations,"Id","Identifier"))">
             <option>Please select one</option>
         </select>
-        <span asp-validation-for="AccomodationViewModel" class="text-danger"></span>
     </div>
 
     <div class="col-md-4">
@@ -51,15 +50,15 @@
 
     <div class="col-md-4">
         <div class="form-group">
-            <label class="col-md-4 control-label">Arrival*</label>
-            <input asp-for="ArrivalDateTime" name="ArrivalDateTime" id="arrivalDateTime" placeholder="Start Time" class="form-control" required type="datetime-local">
+            <label class="col-md-4 control-label">Arrival</label>
+            <input asp-for="ArrivalDateTime" id="arrivalDateTime" placeholder="Start Time" class="form-control" required type="datetime-local">
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="form-group">
             <label class="col-md-6 control-label">Start Date*</label>
-            <input asp-for="StartDate" name="StartDate" placeholder="Start Date" class="form-control" required type="date">
+            <input asp-for="StartDate" placeholder="Start Date" class="form-control" required type="date">
             <span asp-validation-for="StartDate" class="text-danger"></span>
         </div>
     </div>
@@ -73,6 +72,16 @@
             <label>
                 <input asp-for="Renew" id="renew" type="checkbox" class="custom-control-input" />
                 <label asp-for="Renew" for="renew" class="custom-control-label">Renew?</label>
+            </label>
+        </div>
+    </div>
+
+
+    <div class="col-md-2">
+        <div class="custom-control custom-checkbox small">
+            <label>
+                <input asp-for="HaveFlyTicket" id="flyTicket" type="checkbox" class="custom-control-input" />
+                <label asp-for="HaveFlyTicket" for="flyTicket" class="custom-control-label">Have fly tickets?</label>
             </label>
         </div>
     </div>
@@ -174,14 +183,14 @@
     <div class="col-md-2">
         <div class="form-group">
             <label class="col-md-2 control-label">Flight Number*</label>
-            <input type="text" asp-for="FlightNumber" id="flightNumber" class="form-control" />
+            <input type="text" asp-for="FlightNumber" id="flightNumber" class="form-control" disabled />
         </div>
     </div>
 
     <div class="col-md-2">
         <div class="form-group">
             <label class="col-md-2 control-label">Flight Company*</label>
-            <input type="text" asp-for="Company" id="company" class="form-control" required />
+            <input type="text" asp-for="Company" id="company" class="form-control" disabled />
         </div>
     </div>
 </div>

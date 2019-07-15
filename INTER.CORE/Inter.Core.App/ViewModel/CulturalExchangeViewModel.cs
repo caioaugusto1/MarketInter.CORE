@@ -10,12 +10,6 @@ namespace Inter.Core.App.ViewModel
     {
         public CulturalExchangeViewModel()
         {
-            //StudentViewModel = new StudentViewModel();
-            //CollegeViewModel = new CollegeViewModel();
-            //AccomodationViewModel = new AccomodationViewModel();
-            //EnvironmentViewModel = new EnvironmentViewModel();
-            //CollegeTimeViewModel = new CollegeTimeViewModel();
-            //CulturalExchangeFileUploadVM = new List<CulturalExchangeFileUploadViewModel>();
         }
 
         [Required(ErrorMessage = "Student")]
@@ -48,17 +42,17 @@ namespace Inter.Core.App.ViewModel
         public int WeekNumber { get; set; }
 
         [Display(Name = "Start Accomodation*")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
         public DateTime StartAccomodation { get; set; }
 
         [Display(Name = "Finish Accomodation")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
         public DateTime FinishAccomodation { get; set; }
 
         [Display(Name = "Sale Date")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
         public DateTime SaleDate { get; set; }
 
@@ -81,12 +75,15 @@ namespace Inter.Core.App.ViewModel
         [DisplayName("Renew Card?")]
         public bool Renew { get; set; }
 
+        [DisplayName("Have fly ticket?")]
+        public bool HaveFlyTicket { get; set; }
+
         [Display(Name = "Date of Arrival")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         public DateTime? ArrivalDateTime { get; set; }
 
         [Display(Name = "Date of Start class")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         [DataType(DataType.Date, ErrorMessage = "Incorrect Format")]
         [Required(ErrorMessage = "Date of Start class")]
         public DateTime StartDate { get; set; }
