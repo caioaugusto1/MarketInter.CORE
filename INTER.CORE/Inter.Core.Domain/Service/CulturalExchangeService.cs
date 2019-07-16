@@ -37,6 +37,9 @@ namespace Inter.Core.Domain.Service
             culturalExchange.Id = Guid.NewGuid();
             culturalExchange.Available = true;
 
+            if (_culturalExchangeRepository.FindByFilter(x => x.StudentId == culturalExchange.StudentId) != null)
+                return culturalExchange;
+
             if (culturalExchange.AccomodationId == Guid.Empty)
                 culturalExchange.AccomodationId = null;
 

@@ -33,6 +33,8 @@ namespace Inter.Core.App.Application
             {
                 culturalExchangeView.FlightNumber = null;
                 culturalExchangeView.Company = null;
+                culturalExchange.StartAccomodation = null;
+                culturalExchange.FinishAccomodation = null;
             }
 
             return _mapper.Map<CulturalExchangeViewModel>(_culturalExchangeService.Add(culturalExchange));

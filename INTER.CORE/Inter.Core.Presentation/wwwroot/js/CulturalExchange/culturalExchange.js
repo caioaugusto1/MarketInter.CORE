@@ -2,6 +2,7 @@
 
     var loadingPage = function () {
 
+
         $('#accomodationIncludedCheck').click(function () {
 
             if (!$(this).is(':checked')) {
@@ -40,7 +41,7 @@
         });
 
         $('#renew').click(function () {
-            
+
             if ($(this).is(':checked')) {
                 $('#company').prop('disabled', true);
                 $('#flightNumber').prop('disabled', true);
@@ -57,15 +58,24 @@
             if ($(this).is(':checked')) {
                 $('#company').prop('disabled', false);
                 $('#flightNumber').prop('disabled', false);
+                $('#arrivalDateTime').prop('disabled', false);
+                $('#fakeDateAccomodation').prop('disabled', false);
             } else {
                 $('#company').prop('disabled', true);
                 $('#flightNumber').prop('disabled', true);
+                $('#arrivalDateTime').prop('disabled', true);
+                $('#fakeDateAccomodation').prop('disabled', true);
             }
         });
 
     };
 
     var create = function () {
+
+        if ($('.accomodationDate').val() !== undefined) {
+            $('#startAccomodation').val($('.accomodationDate').val().split('-')[0]);
+            $('#finishAccomodation').val($('.accomodationDate').val().split('-')[1]);
+        }
 
         var culturalExchangeViewModel = $('#form-create-culturalExchange').serialize();
 
@@ -118,7 +128,7 @@
         let startDate = $('#startDate').val();
         let startDateFinish = $('#finishDate').val();
 
-        Util.request('/CulturalExchange/FindByFilter', 'GET', { startArrivalDate, finishArrivalDate, startDate, startDateFinish, collegeId, accomodationId}, 'html', true, function (data) {
+        Util.request('/CulturalExchange/FindByFilter', 'GET', { startArrivalDate, finishArrivalDate, startDate, startDateFinish, collegeId, accomodationId }, 'html', true, function (data) {
             $('#culturalExchangeTBody').remove();
 
             $('#dataTable').append(data);
@@ -140,7 +150,7 @@
     };
 
     var popUpConfirmDeleteFile = function (id, fileName, culturalExchangeId) {
-        
+
         $('#modalDelete').modal('show');
         $('#deleteButton').attr('onclick', `culturalExchange.confirmDeleteFile('${id}', '${fileName}', '${culturalExchangeId}')`);
     };

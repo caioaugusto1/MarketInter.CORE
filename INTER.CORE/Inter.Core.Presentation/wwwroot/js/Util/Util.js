@@ -1,6 +1,18 @@
 ﻿
 var Util = function () {
 
+    var loading = function () {
+
+        $('.dateRangePicker').daterangepicker({
+            locale: {
+                format: 'DD/MM/YYYY'
+            }
+        });
+
+        $('.dateRangePicker').val('');
+    };
+
+
     function request(endpoint, type, param, dataType, async, callbackSuccess, callbackError) {
 
         $.ajax({
@@ -18,5 +30,8 @@ var Util = function () {
         });
     };
 
-    return { request }
+    loading();
+
+    return { request };
 }();
+

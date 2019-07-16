@@ -43,13 +43,11 @@ namespace Inter.Core.App.ViewModel
 
         [Display(Name = "Start Accomodation*")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
-        [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
-        public DateTime StartAccomodation { get; set; }
+        public DateTime? StartAccomodation { get; set; }
 
         [Display(Name = "Finish Accomodation")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
-        [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
-        public DateTime FinishAccomodation { get; set; }
+        public DateTime? FinishAccomodation { get; set; }
 
         [Display(Name = "Sale Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]

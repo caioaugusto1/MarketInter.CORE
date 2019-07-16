@@ -35,9 +35,9 @@ namespace Inter.Core.Domain.Entities
 
         public int DaysOfAccomodation { get; set; }
 
-        public DateTime StartAccomodation { get; set; }
+        public DateTime? StartAccomodation { get; set; }
 
-        public DateTime FinishAccomodation { get; set; }
+        public DateTime? FinishAccomodation { get; set; }
 
         // After sprint, put class Insurance and crud create and edit insurance
         public bool INSUR { get; set; }
@@ -70,7 +70,7 @@ namespace Inter.Core.Domain.Entities
 
         public string SalesMen { get; set; }
 
-        public bool Available { get; set; } 
+        public bool Available { get; set; }
 
         public virtual List<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
 
