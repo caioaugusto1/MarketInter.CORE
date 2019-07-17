@@ -1,7 +1,7 @@
 ﻿
 var Util = function () {
 
-    var loading = function () {
+    var loadingPage = function () {
 
         $('.dateRangePicker').daterangepicker({
             locale: {
@@ -30,8 +30,9 @@ var Util = function () {
         });
     };
 
-    loading();
-
     return { request };
+
+    loadingPage();
+
 }();
 

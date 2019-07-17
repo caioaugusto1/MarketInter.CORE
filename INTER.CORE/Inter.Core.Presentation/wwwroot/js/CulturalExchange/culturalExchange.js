@@ -2,7 +2,6 @@
 
     var loadingPage = function () {
 
-
         $('#accomodationIncludedCheck').click(function () {
 
             if (!$(this).is(':checked')) {
@@ -38,6 +37,7 @@
             }, function (request, status, error) {
 
             });
+ 
         });
 
         $('#renew').click(function () {

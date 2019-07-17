@@ -122,6 +122,19 @@ namespace Inter.Core.Presentation.Controllers
             return View(accomodationVM);
         }
 
+        public async Task<IActionResult> GetReservationByAccomodationId(Guid accomodationId)
+        {
+            if (accomodationId == Guid.Empty)
+                return Json(Conflict());
+
+            AccomodationViewModel accomodationVM = _accomodationAppService.GetAccomodationAndCulturalExchangeList(accomodationId);
+
+            if (accomodationVM == null)
+                return Json(NotFound());
+
+            return Json(accomodationVM.CulturalExchangeViewModel);
+        }
+
         public async Task<IActionResult> GetModalUpdateDate(Guid culturalExchangeId)
         {
             if (culturalExchangeId == Guid.Empty)

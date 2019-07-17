@@ -1,71 +1,92 @@
 ﻿@model AccomodationViewModel
 
-<div class="col-lg-10">
-    <!-- Roitation Utilities -->
+
+<input type="hidden" value="@Model.Id" id="accomodationId" />;
+
+
+<div class="col-lg-12">
     <div class="card">
-        <div class="card-header py-3">
+        <div class="card-header py-4">
             <h6 class="m-0 font-weight-bold text-primary">@Model.Identifier - @Model.Address</h6>
         </div>
         <div class="card-body text-center">
 
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Customer Id</th>
-                                <th>Name</th>
-                                <th>College</th>
-                                <th>College Time</th>
-                                <th>Start Accomodation</th>
-                                <th>Finish Accomodation</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var culturalExchange in Model.CulturalExchangeViewModel)
-                            {
-                                <tr>
-                                    <td>
-                                        @culturalExchange.StudentViewModel.CustomerId
-                                    </td>
-                                    <td>
-                                        @culturalExchange.StudentViewModel.FullName
-
-                                    </td>
-                                    <td>
-                                        @culturalExchange.CollegeViewModel.Name
-
-                                    </td>
-                                    <td>
-                                        @culturalExchange.CollegeTimeViewModel.Period - (@culturalExchange.CollegeTimeViewModel.StartTime : @culturalExchange.CollegeTimeViewModel.FinishTime)
-
-                                    </td>
-                                    <td>
-                                        @culturalExchange.StartAccomodation
-                                    </td>
-                                    <td>
-                                        @culturalExchange.FinishAccomodation
-                                    </td>
-                                    <td>
-                                        <button onclick="accomodation.getModalUpdateDate('@culturalExchange.Id')" class="btn btn-info btn-circle btn-sm"><i class="fas fa-plus"></i></button>
-                                    </td>
-                                </tr>
-                            }
-
-                        </tbody>
-                    </table>
-                </div>
+                <div id="dp-calendar"></div>
             </div>
 
         </div>
     </div>
 </div>
 
-<div id="divModalUpdateDateAccomodation">
 
-</div>
+@*<div class="col-lg-10">
+         Roitation Utilities
+        <div class="card">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">@Model.Identifier - @Model.Address</h6>
+            </div>
+            <div class="card-body text-center">
 
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Customer Id</th>
+                                    <th>Name</th>
+                                    <th>College</th>
+                                    <th>College Time</th>
+                                    <th>Start Accomodation</th>
+                                    <th>Finish Accomodation</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var culturalExchange in Model.CulturalExchangeViewModel)
+                                {
+                                    <tr>
+                                        <td>
+                                            @culturalExchange.StudentViewModel.CustomerId
+                                        </td>
+                                        <td>
+                                            @culturalExchange.StudentViewModel.FullName
+
+                                        </td>
+                                        <td>
+                                            @culturalExchange.CollegeViewModel.Name
+
+                                        </td>
+                                        <td>
+                                            @culturalExchange.CollegeTimeViewModel.Period - (@culturalExchange.CollegeTimeViewModel.StartTime : @culturalExchange.CollegeTimeViewModel.FinishTime)
+
+                                        </td>
+                                        <td>
+                                            @culturalExchange.StartAccomodation
+                                        </td>
+                                        <td>
+                                            @culturalExchange.FinishAccomodation
+                                        </td>
+                                        <td>
+                                            <button onclick="accomodation.getModalUpdateDate('@culturalExchange.Id')" class="btn btn-info btn-circle btn-sm"><i class="fas fa-plus"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="divModalUpdateDateAccomodation">
+
+    </div>*@
+
+<script src="~/js/daypilot/daypilot-all.min.js"></script>
 <script src="~/js/jquery-3.4.1.min.js"></script>
 <script src="~/js/Util/Util.js"></script>
 <script src="~/js/Accomodation/Accomodation.js"></script>

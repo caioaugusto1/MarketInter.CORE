@@ -18,7 +18,7 @@ namespace Inter.Core.Domain.Specification.CulturalExchange
 
         public bool IsSatisfiedBy(Entities.CulturalExchange entity)
         {
-            if (!entity.OurAccomodation)
+            if (!entity.OurAccomodation || !entity.AccomodationId.HasValue)
                 return false;
 
             Accomodation accomodation = _accomodationRepository.GetById(entity.AccomodationId.Value);

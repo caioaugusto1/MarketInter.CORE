@@ -37,7 +37,7 @@ namespace Inter.Core.Domain.Service
             culturalExchange.Id = Guid.NewGuid();
             culturalExchange.Available = true;
 
-            if (_culturalExchangeRepository.FindByFilter(x => x.StudentId == culturalExchange.StudentId) != null)
+            if (_culturalExchangeRepository.FindByFilter(x => x.StudentId == culturalExchange.StudentId).FirstOrDefault() != null)
                 return culturalExchange;
 
             if (culturalExchange.AccomodationId == Guid.Empty)
@@ -49,13 +49,6 @@ namespace Inter.Core.Domain.Service
                 .IsSatisfiedBy(culturalExchange);
 
             bool validateDateArriveAndStart = new CulturalExchangeValidateDateArriveAndStart().IsSatisfiedBy(culturalExchange);
-
-
-            if (culturalExchange.OurAccomodation)
-            {
-                TimeSpan date = Convert.ToDateTime(culturalExchange.FinishAccomodation) - Convert.ToDateTime(culturalExchange.StartAccomodation);
-                culturalExchange.DaysOfAccomodation = date.Days;
-            }
 
             if (!culturalExchange.ValidationResult.Any())
                 _culturalExchangeRepository.Insert(culturalExchange);

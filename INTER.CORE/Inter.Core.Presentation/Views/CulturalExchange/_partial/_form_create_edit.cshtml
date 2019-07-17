@@ -15,6 +15,14 @@
         <label class="col-md-4 control-label">Time*</label>
         <select asp-for="CollegeTimeId" required disabled id="collegeTime" class="form-control">
             <option value="notselected">Please select one</option>
+
+            @{
+                if (Model != null && Model.CollegeViewModel != null)
+                {
+                    <option value="@Model.CollegeTimeId" class="collegeOption" selected>@Model.CollegeTimeViewModel.Period</option>
+                }
+            }
+
         </select>
         <span asp-validation-for="CollegeTimeViewModel" class="text-danger"></span>
     </div>
@@ -50,15 +58,15 @@
 
     <div class="col-md-4">
         <div class="form-group">
-            <label class="col-md-4 control-label">Arrival</label>
-            <input asp-for="ArrivalDateTime" id="arrivalDateTime" placeholder="Start Time" class="form-control" type="datetime-local" disabled>
+            <label class="col-md-4 control-label">Sale Date*</label>
+            <input asp-for="SaleDate" id="saleDate" name="SaleDate" class="form-control" required type="date" />
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="form-group">
             <label class="col-md-6 control-label">Course Start Date*</label>
-            <input asp-for="StartDate" placeholder="Start Date" class="form-control" required type="date">
+            <input asp-for="StartDate" name="StartDate" class="form-control" required type="date">
             <span asp-validation-for="StartDate" class="text-danger"></span>
         </div>
     </div>
@@ -162,16 +170,23 @@
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group">
-            <label class="col-md-3 control-label">Sale Date*</label>
-            <input type="date" asp-for="SaleDate" id="saleDate" class="form-control" required />
+            <label class="col-md-2 control-label">Days Accomodation</label>
+            <input asp-for="QuantityDaysOfAccomodation" id="daysOfAccomodation" class="form-control">
         </div>
     </div>
+
 </div>
 
 <div class="row">
 
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Arrival</label>
+            <input asp-for="ArrivalDateTime" id="arrivalDateTime" placeholder="Start Time" class="form-control" type="datetime-local" disabled>
+        </div>
+    </div>
 
     <div class="col-md-2">
         <div class="form-group">
@@ -187,7 +202,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="row">
     <div class="col-md-4">
