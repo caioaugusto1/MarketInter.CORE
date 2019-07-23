@@ -122,17 +122,23 @@ namespace Inter.Core.Presentation.Controllers
             return View(accomodationVM);
         }
 
-        public async Task<IActionResult> GetReservationByAccomodationId(Guid accomodationId)
+        public JsonResult GetReservationByAccomodationId(Guid accomodationId, DateTime startDate, DateTime finishDate)
         {
             if (accomodationId == Guid.Empty)
                 return Json(Conflict());
+
+            //if (startDate == DateTime.MinValue || finishDate == DateTime.MinValue)
+            //    return Json(Conflict());
+
+            //if (startDate >= finishDate)
+            //    return Json(Conflict());
 
             AccomodationViewModel accomodationVM = _accomodationAppService.GetAccomodationAndCulturalExchangeList(accomodationId);
 
             if (accomodationVM == null)
                 return Json(NotFound());
 
-            return Json(accomodationVM.CulturalExchangeViewModel);
+            return Json(Ok(accomodationVM.CulturalExchangeViewModel));
         }
 
         public async Task<IActionResult> GetModalUpdateDate(Guid culturalExchangeId)

@@ -54,45 +54,6 @@
         });
     };
 
-    var dp = new DayPilot.Month("dp");
-
-    // view
-    dp.startDate = "2013-03-25";  // or just dp.startDate = "2013-03-25";
-
-    // generate and load events
-    for (var i = 0; i < 10; i++) {
-        var duration = Math.floor(Math.random() * 1.2);
-        var start = Math.floor(Math.random() * 6) - 3; // -3 to 3
-
-        var e = new DayPilot.Event({
-            start: new DayPilot.Date("2013-03-04T00:00:00").addDays(start),
-            end: new DayPilot.Date("2013-03-04T12:00:00").addDays(start).addDays(duration),
-            id: DayPilot.guid(),
-            text: "Event " + i
-        });
-        dp.events.add(e);
-    }
-
-    // event creating
-    dp.onTimeRangeSelected = function (args) {
-        var name = prompt("New event name:", "Event");
-        dp.clearSelection();
-        if (!name) return;
-        var e = new DayPilot.Event({
-            start: args.start,
-            end: args.end,
-            id: DayPilot.guid(),
-            text: name
-        });
-        dp.events.add(e);
-    };
-
-    dp.onEventClicked = function (args) {
-        alert("clicked: " + args.e.id());
-    };
-
-    dp.init();
-
     return { create, loadingList, popUpConfirmDelete, confirmDelete };
 
 }();

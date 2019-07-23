@@ -8,10 +8,6 @@ namespace Inter.Core.App.ViewModel
 {
     public class CulturalExchangeViewModel : BaseViewModel
     {
-        public CulturalExchangeViewModel()
-        {
-        }
-
         [Required(ErrorMessage = "Student")]
         [DisplayName("Selected Student")]
         public Guid StudentId { get; set; }
@@ -30,9 +26,8 @@ namespace Inter.Core.App.ViewModel
 
         public virtual CollegeTimeViewModel CollegeTimeViewModel { get; set; }
 
-        [Required(ErrorMessage = "Accomodation")]
         [DisplayName("Selected Accomodation")]
-        public Guid AccomodationId { get; set; }
+        public Guid? AccomodationId { get; set; }
 
         public virtual AccomodationViewModel AccomodationViewModel { get; set; }
 

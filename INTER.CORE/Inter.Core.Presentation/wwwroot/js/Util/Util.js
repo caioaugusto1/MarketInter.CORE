@@ -1,6 +1,12 @@
 ﻿
 var Util = function () {
 
+    $('#document').ready(function () {
+
+        loadingPage();
+
+    });
+
     var loadingPage = function () {
 
         $('.dateRangePicker').daterangepicker({
@@ -30,9 +36,23 @@ var Util = function () {
         });
     };
 
-    return { request };
+    var rgbSort = function () {
 
-    loadingPage();
+        var rgb = {
+            x: 0,
+            y: 0,
+            z: 0
+        };
+
+        rgb.x = Math.floor(Math.random() * 256);
+        rgb.y = Math.floor(Math.random() * 256);
+        rgb.z = Math.floor(Math.random() * 256);
+
+        return rgb;
+    };
+
+    return { request, rgbSort };
 
 }();
+
 

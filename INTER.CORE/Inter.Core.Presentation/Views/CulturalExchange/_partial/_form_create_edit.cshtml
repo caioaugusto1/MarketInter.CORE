@@ -33,16 +33,8 @@
 <div class="row">
 
     <div class="col-md-4">
-        <label class="col-md-4 control-label">Accomodation*</label>
-        <select asp-for="AccomodationId" class="form-control" name="AccomodationId"
-                asp-items="@(new SelectList(ViewBag.Accomodations,"Id","Identifier"))">
-            <option>Please select one</option>
-        </select>
-    </div>
-
-    <div class="col-md-4">
         <div class="form-group">
-            <label class="col-md-4 control-label">Weeks*</label>
+            <label class="col-md-5 control-label">Weeks Course*</label>
             <select asp-for="WeekNumber" name="WeekNumber" required class="form-control">
                 <option value="notselected">Please select one</option>
                 <option value="4">4</option>
@@ -52,24 +44,35 @@
             </select>
         </div>
     </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-6 control-label">Course Start Date*</label>
+            <input asp-for="StartDate" type="date" asp-format="{0:yyyy-MM-dd}" class="form-control" />
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+        </div>
+    </div>
+
+
 </div>
 
 <div class="row">
 
     <div class="col-md-4">
-        <div class="form-group">
-            <label class="col-md-4 control-label">Sale Date*</label>
-            <input asp-for="SaleDate" id="saleDate" name="SaleDate" class="form-control" required type="date" />
-        </div>
+        <label class="col-md-4 control-label">Accomodation</label>
+        <select asp-for="AccomodationId" class="form-control" name="AccomodationId"
+                asp-items="@(new SelectList(ViewBag.Accomodations,"Id","Identifier"))">
+            <option value="notselected">Please select one</option>
+        </select>
     </div>
 
     <div class="col-md-4">
         <div class="form-group">
-            <label class="col-md-6 control-label">Course Start Date*</label>
-            <input asp-for="StartDate" name="StartDate" class="form-control" required type="date">
-            <span asp-validation-for="StartDate" class="text-danger"></span>
+            <label class="col-md-4 control-label">Sale Date*</label>
+            @Html.TextBoxFor(x => x.SaleDate, "{0:dd/MM/yyyy}", new { @id = "saleDate", @class = "form-control", @required = "required", @type = "datetime" })
         </div>
     </div>
+
 </div>
 
 
@@ -84,35 +87,12 @@
         </div>
     </div>
 
-
-    <div class="col-md-2">
-        <div class="custom-control custom-checkbox small">
-            <label>
-                <input asp-for="HaveFlyTicket" id="flyTicket" type="checkbox" class="custom-control-input" />
-                <label asp-for="HaveFlyTicket" for="flyTicket" class="custom-control-label">Have fly tickets?</label>
-            </label>
-        </div>
-    </div>
-
-</div>
-
-<div class="row">
     <div class="col-md-2">
         <div class="custom-control custom-checkbox small">
             <label>
                 <input asp-for="OurAccomodation" id="accomodationIncludedCheck" type="checkbox" class="custom-control-input" />
                 <label asp-for="OurAccomodation" for="accomodationIncludedCheck" class="custom-control-label">Our Accomodation?</label>
             </label>
-        </div>
-    </div>
-
-    <div class="col-md-2">
-        <div class="custom-control custom-checkbox small">
-            <label asp-for="INSUR">
-                <input asp-for="INSUR" id="insurCheck" type="checkbox" class="custom-control-input" />
-                <label asp-for="INSUR" for="insurCheck" class="custom-control-label"></label>
-            </label>
-            <span asp-validation-for="INSUR" class="text-danger"></span>
         </div>
     </div>
 
@@ -125,9 +105,20 @@
             <span asp-validation-for="Transfer" class="text-danger"></span>
         </div>
     </div>
+
 </div>
 
 <div class="row">
+
+    <div class="col-md-2">
+        <div class="custom-control custom-checkbox small">
+            <label asp-for="INSUR">
+                <input asp-for="INSUR" id="insurCheck" type="checkbox" class="custom-control-input" />
+                <label asp-for="INSUR" for="insurCheck" class="custom-control-label"></label>
+            </label>
+            <span asp-validation-for="INSUR" class="text-danger"></span>
+        </div>
+    </div>
 
     <div class="col-md-2">
         <div class="custom-control custom-checkbox small">
@@ -148,6 +139,9 @@
             <span asp-validation-for="Kit" class="text-danger"></span>
         </div>
     </div>
+</div>
+
+<div class="row">
 
     <div class="col-md-2">
         <div class="custom-control custom-checkbox small">
@@ -156,6 +150,15 @@
                 <label asp-for="SimCard" for="checkSimCard" class="custom-control-label"></label>
             </label>
             <span asp-validation-for="SimCard" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="custom-control custom-checkbox small">
+            <label>
+                <input asp-for="HaveFlyTicket" id="flyTicket" name="HaveFlyTicket" type="checkbox" class="custom-control-input" />
+                <label asp-for="HaveFlyTicket" for="flyTicket" class="custom-control-label">Have fly tickets?</label>
+            </label>
         </div>
     </div>
 </div>
@@ -183,8 +186,8 @@
 
     <div class="col-md-4">
         <div class="form-group">
-            <label class="col-md-4 control-label">Arrival</label>
-            <input asp-for="ArrivalDateTime" id="arrivalDateTime" placeholder="Start Time" class="form-control" type="datetime-local" disabled>
+            <label class="col-md-5 control-label">Arrival Date Time</label>
+            @Html.TextBoxFor(x => x.ArrivalDateTime, new { @id = "arrivalDateTime", @class = "form-control", @disabled = "disabled" })
         </div>
     </div>
 

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Inter.Core.Presentation
 {
@@ -50,6 +52,12 @@ namespace Inter.Core.Presentation
             var mapper = mapperConfiguration.CreateMapper();
             services.AddSingleton(mapper);
 
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
@@ -84,6 +92,11 @@ namespace Inter.Core.Presentation
             app.UseStaticFiles();
 
             app.UseCookiePolicy();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = context =>
+                context.Context.Response.Headers.Add("Cache-Control", "no-cache")
+            });
 
             app.UseAuthentication();
 

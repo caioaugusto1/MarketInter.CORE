@@ -5,10 +5,51 @@
 
 
 <div class="col-lg-12">
+
+    <div class="card shadow mb-2">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Filter</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>(Start) - Date</label>
+                        <input id="startAccomodationDate" class="form-control" type="date">
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>(Finish) - Date</label>
+                        <input id="finishAccomodationDate" class="form-control" type="date">
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input type="button" onclick="accomodation.findDetailsAccomodationByFilter()" value="Find" class="btn btn-primary" />
+
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input type="button" value="Clear" onclick="accomodation.clearFilterDetailsAccomodation()" class="btn btn-outline-secondary" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-header py-4">
             <h6 class="m-0 font-weight-bold text-primary">@Model.Identifier - @Model.Address</h6>
         </div>
+
         <div class="card-body text-center">
 
             <div class="card-body">
@@ -86,7 +127,7 @@
 
     </div>*@
 
-<script src="~/js/daypilot/daypilot-all.min.js"></script>
 <script src="~/js/jquery-3.4.1.min.js"></script>
+<script src="~/js/daypilot/daypilot-all.min.js"></script>
 <script src="~/js/Util/Util.js"></script>
 <script src="~/js/Accomodation/Accomodation.js"></script>

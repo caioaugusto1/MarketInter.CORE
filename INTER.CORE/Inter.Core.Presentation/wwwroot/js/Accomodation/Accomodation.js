@@ -2,30 +2,41 @@
 
     var loadingPage = function () {
 
-        var dayPilotLoading = function () {
-
-            let accomodationId = $('#accomodationId').val();
-
-            Util.request('/Accomodation/GetReservationByAccomodationId', 'POST', { accomodationId }, 'json', true, function (data) {
 
 
-            }, function (request, status, error) {
+    };
 
-            });
+    var dayPilotLoading = function (startDate, finishDate) {
+
+        let accomodationId = $('#accomodationId').val();
+
+        Util.request('/Accomodation/GetReservationByAccomodationId', 'GET', { accomodationId, startDate, finishDate }, 'json', true, function (data) {
+
+            if (data.statusCode === 200) {
+
+                buildCalendar(data);
+            }
+        }, function (request, status, error) {
+
+        });
+
+
+        var buildCalendar = function (data) {
 
             var dp = new DayPilot.Month("dp-calendar");
 
-            for (var i = 0; i < 10; i++) {
+            $(data.value).each(function (index, element) {
 
-                var duration = Math.floor(Math.random() * 1.2);
-                var start = Math.floor(Math.random() * 6) - 3; // -3 to 3
-
+                var rgbColor = Util.rgbSort();
+                
                 var e = new DayPilot.Event({
-                    start: new DayPilot.Date("2013-03-04T00:00:00").addDays(start),
-                    end: new DayPilot.Date("2013-03-04T12:00:00").addDays(start).addDays(duration),
+                    start: new DayPilot.Date(element.startAccomodation),
+                    end: new DayPilot.Date(element.finishAccomodation),
                     id: DayPilot.guid(),
-                    text: "Event " + i
+                    text: element.studentViewModel.customerId + ' - ' + element.studentViewModel.fullName,
+                    backColor: "rgb(" + rgbColor.x + "," + rgbColor.y + "," + rgbColor.z + " )"
                 });
+
                 dp.events.add(e);
 
                 dp.onEventClicked = function (args) {
@@ -33,32 +44,51 @@
                 };
 
                 dp.init();
-            }
-
-            // view
-            //dp.startDate = "2013-03-25";  // or just dp.startDate = "2013-03-25";
-
-            // generate and load events
-
-
-            // event creating on calendar
-            //dp.onTimeRangeSelected = function (args) {
-            //    var name = prompt("New event name:", "Event");
-            //    dp.clearSelection();
-            //    if (!name) return;
-            //    var e = new DayPilot.Event({
-            //        start: args.start,
-            //        end: args.end,
-            //        id: DayPilot.guid(),
-            //        text: name
-            //    });
-            //    dp.events.add(e);
-            //};
-
-
+            });
         };
 
-        dayPilotLoading();
+
+        // view
+        //dp.startDate = "2013-03-25";  // or just dp.startDate = "2013-03-25";
+
+        // generate and load events
+
+
+        // event creating on calendar
+        //dp.onTimeRangeSelected = function (args) {
+        //    var name = prompt("New event name:", "Event");
+        //    dp.clearSelection();
+        //    if (!name) return;
+        //    var e = new DayPilot.Event({
+        //        start: args.start,
+        //        end: args.end,
+        //        id: DayPilot.guid(),
+        //        text: name
+        //    });
+        //    dp.events.add(e);
+        //};
+
+
+    };
+
+    var clearFilterDetailsAccomodation = function () {
+        $('#startAccomodationDate').val('');
+        $('#finishAccomodationDate').val('');
+        $('#dp-calendar div').remove();
+    };
+
+    var findDetailsAccomodationByFilter = function () {
+
+        let startDate = $('#startAccomodationDate').val();
+        let finishDate = $('#finishAccomodationDate').val();
+
+        startDate = new Date(startDate);
+        finishDate = new Date(finishDate);
+
+        if (startDate >= finishDate)
+            return;
+
+        dayPilotLoading(startDate, finishDate);
 
     };
 
@@ -108,6 +138,6 @@
 
     loadingPage();
 
-    return { getModalUpdateDate, updateDate };
+    return { getModalUpdateDate, updateDate, clearFilterDetailsAccomodation, findDetailsAccomodationByFilter };
 
 }();

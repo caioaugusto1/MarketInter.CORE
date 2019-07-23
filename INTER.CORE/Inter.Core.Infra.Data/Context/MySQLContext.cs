@@ -49,7 +49,7 @@ namespace Inter.Core.Infra.Data.Context
 
         private string GetStringConectionConfig()
         {
-            return "server=intercore.mysql.database.azure.com;database=INTERCORE;user=intercore@intercore;password=&he4Wd=jPY";
+            return "server=intercore.mysql.database.azure.com;database=INTERCORE;user=intercore@intercore;password=U8Hw2n<nZr#RrN@<";
             //return "server=localhost;database=INTERCORE;user=root;password=admin";
         }
     }

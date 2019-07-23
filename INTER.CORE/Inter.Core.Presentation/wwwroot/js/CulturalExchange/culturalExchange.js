@@ -1,5 +1,10 @@
 ﻿var culturalExchange = function () {
 
+    $(function () {
+        loadingPage();
+    });
+
+
     var loadingPage = function () {
 
         $('#accomodationIncludedCheck').click(function () {
@@ -37,7 +42,7 @@
             }, function (request, status, error) {
 
             });
- 
+
         });
 
         $('#renew').click(function () {
@@ -59,12 +64,16 @@
                 $('#company').prop('disabled', false);
                 $('#flightNumber').prop('disabled', false);
                 $('#arrivalDateTime').prop('disabled', false);
-                $('#fakeDateAccomodation').prop('disabled', false);
+
+                if ($('#accomodationIncludedCheck').is(':checked')) {
+                    $('#fakeDateAccomodation').prop('disabled', false);
+                }
             } else {
                 $('#company').prop('disabled', true);
                 $('#flightNumber').prop('disabled', true);
                 $('#arrivalDateTime').prop('disabled', true);
                 $('#fakeDateAccomodation').prop('disabled', true);
+
             }
         });
 
@@ -185,7 +194,7 @@
         $('#deleteButton').attr('onclick', `culturalExchange.confirmInactive('${id}')`);
     };
 
-    loadingPage();
+
 
     return { create, popUpOpenModalFileUpload, find, clearFilter, popUpConfirmDeleteFile, confirmDeleteFile, popUpConfirmInactive, confirmInactive };
 }();
