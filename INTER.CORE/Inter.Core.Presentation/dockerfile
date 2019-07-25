@@ -1,0 +1,9 @@
+FROM microsoft/aspnetcore-build:2.2
+
+WORKDIR /app
+
+COPY .. 
+
+RUN dotnet build -c Release 
+
+ENTRYPOINT ["dontnet", "run", "--no-lauch-profile"]
