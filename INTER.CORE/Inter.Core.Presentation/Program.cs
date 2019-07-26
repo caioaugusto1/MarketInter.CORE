@@ -19,6 +19,8 @@ namespace Inter.Core.Presentation
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+            .UseConfiguration(new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json").Build());
     }
 }
