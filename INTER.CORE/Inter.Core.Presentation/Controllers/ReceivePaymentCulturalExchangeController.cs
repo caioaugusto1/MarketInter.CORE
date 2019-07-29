@@ -91,18 +91,21 @@ namespace Inter.Core.Presentation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (!receivePaymentVM.ValidationResult.Any())
+                    var culturalExchange = _culturalExchangeAppService.GetById(receivePaymentVM.CulturalExchangeId);
+
+                    receivePaymentVM.FileName = await _fileUploadAppService.Upload(_appSetttings.Value.UploadFilePath + culturalExchange.Id, null, receivePaymentVM.File);
+
+                    if (!string.IsNullOrWhiteSpace(receivePaymentVM.FileName) || !receivePaymentVM.ValidationResult.Any())
                     {
-                        var culturalExchange = _culturalExchangeAppService.GetById(receivePaymentVM.CulturalExchangeId);
-
-                        receivePaymentVM = _receivePaymentCulturalExchangeAppService.Add(receivePaymentVM);
-
-                        receivePaymentVM.FileName = await _fileUploadAppService.Upload(_appSetttings.Value.UploadFilePath + culturalExchange.Id, null, receivePaymentVM.File);
-
+                        _receivePaymentCulturalExchangeAppService.Add(receivePaymentVM);
                         return RedirectToAction("Index", "ReceivePaymentCulturalExchange");
                     }
+                    else
+                    {
+                        _fileUploadAppService.Delete(_appSetttings.Value.UploadFilePath, receivePaymentVM.FileName);
+                    }
 
-                    return View(ModelState);
+                    return View(receivePaymentVM);
                 }
 
                 return Json(Conflict());
@@ -111,7 +114,7 @@ namespace Inter.Core.Presentation.Controllers
             {
                 _fileUploadAppService.Delete(_appSetttings.Value.UploadFilePath, receivePaymentVM.FileName);
 
-                return Json(BadRequest());
+                return View(receivePaymentVM);
             }
         }
 

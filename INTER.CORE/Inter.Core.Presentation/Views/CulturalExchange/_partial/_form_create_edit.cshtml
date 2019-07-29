@@ -62,14 +62,15 @@
         <label class="col-md-4 control-label">Accomodation</label>
         <select asp-for="AccomodationId" class="form-control" name="AccomodationId"
                 asp-items="@(new SelectList(ViewBag.Accomodations,"Id","Identifier"))">
-            <option value="notselected">Please select one</option>
+            <option>Please select one</option>
+            
         </select>
     </div>
 
     <div class="col-md-4">
         <div class="form-group">
             <label class="col-md-4 control-label">Sale Date*</label>
-            @Html.TextBoxFor(x => x.SaleDate, "{0:dd/MM/yyyy}", new { @id = "saleDate", @class = "form-control", @required = "required", @type = "datetime" })
+            <input asp-for="SaleDate" id="saleDate" type="date" asp-format="{0:yyyy-MM-dd}" class="form-control" />
         </div>
     </div>
 

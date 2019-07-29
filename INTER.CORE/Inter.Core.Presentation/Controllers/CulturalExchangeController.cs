@@ -116,6 +116,7 @@ namespace Inter.Core.Presentation.Controllers
             return View();
         }
 
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> OnCreate(CulturalExchangeViewModel culturalExchangeViewModel)
         {

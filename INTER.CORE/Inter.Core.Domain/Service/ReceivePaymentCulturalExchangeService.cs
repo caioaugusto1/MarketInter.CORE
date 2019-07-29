@@ -29,17 +29,7 @@ namespace Inter.Core.Domain.Service
             bool validationValue = new ReceivePaymentCulturalExchangeSumTotalValue(_receivePaymentCulturalExchangeRepository, _culturalExchangeRepository).IsSatisfiedBy(payment);
 
             if (!payment.ValidationResult.Any())
-            {
                 _receivePaymentCulturalExchangeRepository.Insert(payment);
-
-                //bool setFlagPaid = new ReceivePaymentCulturalExchangeSetFlagPaid(_receivePaymentCulturalExchangeRepository, _culturalExchangeRepository).IsSatisfiedBy(payment);
-                //if (setFlagPaid)
-                //{
-                //    //var culturalExchange = _culturalExchangeRepository.GetById(payment.CulturalExchangeId);
-                //    //culturalExchange.CollegePayment = true;
-                //    //_culturalExchangeRepository.Update(culturalExchange);
-                //}
-            }
 
             return payment;
         }

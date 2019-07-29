@@ -47,7 +47,7 @@ namespace Inter.Core.App.AutoMapper
                 .ForMember(x => x.Id, y => y.MapFrom(f => f.Id))
                 .ForMember(x => x.FileName, y => y.MapFrom(f => f.FileName))
                 .ForMember(x => x.Type, y => y.MapFrom(f => f.Type))
-                .ForMember(x => x.UploadDate, y => y.MapFrom(f => DateTime.Parse(f.UploadDate.ToString(), new CultureInfo("pt-BR"))))
+                .ForMember(x => x.UploadDate, y => y.MapFrom(f => f.UploadDate))
                 .ForMember(x => x.CulturalExchangeId, y => y.MapFrom(f => f.CulturalExchangeId))
                 .ForMember(x => x.CulturalExchangeViewModel, y => y.MapFrom(f => f.CulturalExchange))
                 .ReverseMap();

@@ -26,8 +26,7 @@ namespace Inter.Core.App.ViewModel
 
         public virtual CollegeTimeViewModel CollegeTimeViewModel { get; set; }
 
-        [DisplayName("Selected Accomodation")]
-        public Guid? AccomodationId { get; set; }
+        public Guid AccomodationId { get; set; }
 
         public virtual AccomodationViewModel AccomodationViewModel { get; set; }
 
@@ -46,7 +45,7 @@ namespace Inter.Core.App.ViewModel
 
         [Display(Name = "Sale Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
-        [DataType(DataType.DateTime, ErrorMessage = "Incorrect Format")]
+        [DataType(DataType.Date, ErrorMessage = "Incorrect Format")]
         public DateTime SaleDate { get; set; }
 
         // After sprint, put class Insurance and crud create and edit insurance

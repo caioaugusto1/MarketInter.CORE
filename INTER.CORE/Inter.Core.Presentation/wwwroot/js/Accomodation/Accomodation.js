@@ -1,9 +1,7 @@
 ﻿var accomodation = function () {
 
     var loadingPage = function () {
-
-
-
+        
     };
 
     var dayPilotLoading = function (startDate, finishDate) {
@@ -14,34 +12,41 @@
 
             if (data.statusCode === 200) {
 
-                buildCalendar(data);
+                buildCalendar(data, startDate, finishDate);
             }
         }, function (request, status, error) {
 
         });
 
 
-        var buildCalendar = function (data) {
+        var buildCalendar = function (data, startDate, finishDate) {
 
             var dp = new DayPilot.Month("dp-calendar");
+
+            dp.startDate = startDate;
 
             $(data.value).each(function (index, element) {
 
                 var rgbColor = Util.rgbSort();
-                
+
                 var e = new DayPilot.Event({
                     start: new DayPilot.Date(element.startAccomodation),
                     end: new DayPilot.Date(element.finishAccomodation),
                     id: DayPilot.guid(),
                     text: element.studentViewModel.customerId + ' - ' + element.studentViewModel.fullName,
-                    backColor: "rgb(" + rgbColor.x + "," + rgbColor.y + "," + rgbColor.z + " )"
+                    backColor: "rgb(" + rgbColor.x + "," + rgbColor.y + "," + rgbColor.z + " )",
+                    fontColor: 'white'
                 });
 
                 dp.events.add(e);
 
-                dp.onEventClicked = function (args) {
-                    alert("clicked: " + args.e.id());
-                };
+                //dp.onEventMoved = function (args) {
+                //    args.e.text();
+                //};
+
+                //dp.onEventClicked = function (args) {
+                //    alert("clicked: " + args.e.id());
+                //};
 
                 dp.init();
             });
@@ -68,7 +73,6 @@
         //    dp.events.add(e);
         //};
 
-
     };
 
     var clearFilterDetailsAccomodation = function () {
@@ -82,10 +86,10 @@
         let startDate = $('#startAccomodationDate').val();
         let finishDate = $('#finishAccomodationDate').val();
 
-        startDate = new Date(startDate);
-        finishDate = new Date(finishDate);
+        var vstartDate = new Date(startDate);
+        var vfinishDate = new Date(finishDate);
 
-        if (startDate >= finishDate)
+        if (vstartDate >= vfinishDate)
             return;
 
         dayPilotLoading(startDate, finishDate);

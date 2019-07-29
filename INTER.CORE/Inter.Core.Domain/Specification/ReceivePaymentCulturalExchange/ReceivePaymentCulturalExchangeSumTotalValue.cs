@@ -27,7 +27,7 @@ namespace Inter.Core.Domain.Specification.ReceivePaymentCulturalExchange
 
             var sumTotalIncludedNewPayment = sumTotalPayments + entity.Value;
 
-            if (sumTotalIncludedNewPayment >= culturalExchange.TotalValue)
+            if (sumTotalIncludedNewPayment > culturalExchange.TotalValue)
                 entity.ValidationResult.Add(new ValidationResult("Values incorrects"));
 
             return true;
