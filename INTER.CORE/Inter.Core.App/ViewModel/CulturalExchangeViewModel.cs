@@ -26,7 +26,7 @@ namespace Inter.Core.App.ViewModel
 
         public virtual CollegeTimeViewModel CollegeTimeViewModel { get; set; }
 
-        public Guid AccomodationId { get; set; }
+        public string AccomodationId { get; set; }
 
         public virtual AccomodationViewModel AccomodationViewModel { get; set; }
 

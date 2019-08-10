@@ -61,7 +61,7 @@ namespace Inter.Core.Presentation
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-
+            
             services.ConfigureApplicationCookie(options =>
             {
                 //options.LoginPath = "/Login";

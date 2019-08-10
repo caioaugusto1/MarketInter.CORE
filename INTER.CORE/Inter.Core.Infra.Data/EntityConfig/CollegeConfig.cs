@@ -42,7 +42,7 @@ namespace Inter.Core.Infra.Data.EntityConfig
                     .IsRequired()
                     .HasMaxLength(40);
 
-            builder.ToTable("College");
+            builder.ToTable("college");
         }
     }
 }

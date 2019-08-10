@@ -1,8 +1,12 @@
 ﻿using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Infra.Data.Context;
+using Inter.Core.Infra.Data.Repositories.Base;
+using Inter.Core.Infra.Data.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -11,10 +15,13 @@ namespace Inter.Core.Infra.Data.Repositories
     public class RepositoryBase<TEntity> : IDisposable, IRepository<TEntity> where TEntity : class
     {
         private readonly DbContextOptions<MySQLContext> _OptionsBuilder;
-        
+
+        //private readonly IDbConnection _db;
+
         public RepositoryBase()
         {
             _OptionsBuilder = new DbContextOptions<MySQLContext>();
+            //_db = new MySqlConnection("");
         }
 
         public void Delete(TEntity obj)
