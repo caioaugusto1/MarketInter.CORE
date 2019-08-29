@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Inter.Core.App.AutoMapper;
+using Inter.Core.Domain.Entities;
 using Inter.Core.Infra.CrossCutting.IoCDeppendency;
 using Inter.Core.Presentation.Configuration;
 //using Inter.Core.Presentation.Data;
@@ -7,7 +8,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -61,12 +64,19 @@ namespace Inter.Core.Presentation
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            
+
             services.ConfigureApplicationCookie(options =>
             {
                 //options.LoginPath = "/Login";
                 //options.ExpireTimeSpan = TimeSpan.FromSeconds(15);
             });
+
+            //services.AddDbContext<Infra.Data.Context.MySQLContext>(options =>
+            //    options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));
+
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //  .AddDefaultUI(UIFramework.Bootstrap4)
+            //  .AddEntityFrameworkStores<Infra.Data.Context.MySQLContext>();
 
             BootStrapperIoC.RegisterServices(services, Configuration);
         }

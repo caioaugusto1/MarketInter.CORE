@@ -1,4 +1,5 @@
 ﻿using Inter.Core.Domain.Entities.Base;
+using System;
 using System.Collections.Generic;
 
 namespace Inter.Core.Domain.Entities
@@ -18,6 +19,10 @@ namespace Inter.Core.Domain.Entities
         public bool Available { get; set; }
 
         public virtual List<CulturalExchange> CulturalExchanges { get; set; }
+
+        public Guid DestinationId { get; set; }
+
+        public Destination Destination { get; set; }
 
     }
 }

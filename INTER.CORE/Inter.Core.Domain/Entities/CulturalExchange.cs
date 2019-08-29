@@ -72,6 +72,10 @@ namespace Inter.Core.Domain.Entities
 
         public bool Available { get; set; }
 
+        public Guid DestinationId { get; set; }
+        
+        public Destination Destination { get; set; }
+
         public virtual List<CulturalExchangeFileUpload> CulturalExchangeFileUpload { get; set; }
 
         public virtual List<ReceivePaymentCulturalExchange> ReceivePaymentCulturalExchanges { get; set; }

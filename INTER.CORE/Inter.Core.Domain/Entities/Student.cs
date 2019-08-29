@@ -32,5 +32,10 @@ namespace Inter.Core.Domain.Entities
         public DateTime PassportDateOfExpiry { get; set; }
 
         public DateTime DateOfInsert { get; set; }
+
+        public Guid DestinationId { get; set; }
+
+        public Destination Destination { get; set; }
+
     }
 }

@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\**" />
+    <Content Remove="Data\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\0047fa12-4f16-461a-8103-96159259f2ac.pdf" />
     <Content Remove="wwwroot\cv_dev%284%29.pdf" />
 	 <Content Update="appsettings.json">
@@ -41,7 +48,6 @@
     <Folder Include="Areas\dockerfile\Data\" />
     <Folder Include="Areas\dockerfile\Models\" />
     <Folder Include="Areas\dockerfile\Views\" />
-    <Folder Include="Data\" />
     <Folder Include="wwwroot\js\_partial\" />
   </ItemGroup>
 

@@ -8,8 +8,6 @@ using Inter.Core.Domain.Interfaces.Services;
 using Inter.Core.Domain.Service;
 using Inter.Core.Infra.Data.Context;
 using Inter.Core.Infra.Data.Repositories;
-using Inter.Core.Infra.Data.Repositories.Base;
-using Inter.Core.Infra.Data.Repositories.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;

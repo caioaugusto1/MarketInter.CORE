@@ -3,14 +3,16 @@ using System;
 using Inter.Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Inter.Core.Infra.Data.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    partial class MySQLContextModelSnapshot : ModelSnapshot
+    [Migration("20190829005650_DropDestinationTable")]
+    partial class DropDestinationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,8 +38,6 @@ namespace Inter.Core.Infra.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(13);
 
-                    b.Property<Guid>("DestinationId");
-
                     b.Property<Guid>("EnvironmentId");
 
                     b.Property<string>("Identifier")
@@ -47,8 +47,6 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.Property<int>("NumberOfPlaces");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DestinationId");
 
                     b.HasIndex("EnvironmentId");
 
@@ -130,8 +128,6 @@ namespace Inter.Core.Infra.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<Guid>("DestinationId");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(40);
@@ -147,8 +143,6 @@ namespace Inter.Core.Infra.Data.Migrations
                         .HasMaxLength(20);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DestinationId");
 
                     b.HasIndex("EnvironmentId");
 
@@ -222,8 +216,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
                     b.Property<int>("DaysOfAccomodation");
 
-                    b.Property<Guid>("DestinationId");
-
                     b.Property<Guid>("EnvironmentId");
 
                     b.Property<DateTime?>("FinishAccomodation");
@@ -269,8 +261,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
                     b.HasIndex("CollegeTimeId");
 
-                    b.HasIndex("DestinationId");
-
                     b.HasIndex("EnvironmentId");
 
                     b.HasIndex("StudentId");
@@ -304,24 +294,6 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasIndex("CulturalExchangeId");
 
                     b.ToTable("CulturalExchangeFileUpload");
-                });
-
-            modelBuilder.Entity("Inter.Core.Domain.Entities.Destination", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("Active");
-
-                    b.Property<Guid>("EnvironmentId");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EnvironmentId");
-
-                    b.ToTable("Destination");
                 });
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.PaymentCulturalExchange", b =>
@@ -419,8 +391,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
                     b.Property<DateTime>("DateOfInsert");
 
-                    b.Property<Guid>("DestinationId");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(40);
@@ -452,8 +422,6 @@ namespace Inter.Core.Infra.Data.Migrations
                         .HasMaxLength(10);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DestinationId");
 
                     b.HasIndex("EnvironmentId");
 
@@ -593,11 +561,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.Accomodation", b =>
                 {
-                    b.HasOne("Inter.Core.Domain.Entities.Destination", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Accomodations")
                         .HasForeignKey("EnvironmentId")
@@ -614,11 +577,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.College", b =>
                 {
-                    b.HasOne("Inter.Core.Domain.Entities.Destination", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Colleges")
                         .HasForeignKey("EnvironmentId")
@@ -649,11 +607,6 @@ namespace Inter.Core.Infra.Data.Migrations
                         .HasForeignKey("CollegeTimeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Inter.Core.Domain.Entities.Destination", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("CulturalExchange")
                         .HasForeignKey("EnvironmentId")
@@ -670,14 +623,6 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.CulturalExchange", "CulturalExchange")
                         .WithMany("CulturalExchangeFileUpload")
                         .HasForeignKey("CulturalExchangeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Inter.Core.Domain.Entities.Destination", b =>
-                {
-                    b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
-                        .WithMany()
-                        .HasForeignKey("EnvironmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -709,11 +654,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.Student", b =>
                 {
-                    b.HasOne("Inter.Core.Domain.Entities.Destination", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Students")
                         .HasForeignKey("EnvironmentId")

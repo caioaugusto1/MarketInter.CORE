@@ -23,6 +23,7 @@ namespace Inter.Core.Infra.Data.Context
         public DbSet<PaymentCulturalExchange> PaymentCulturalExchange { get; set; }
         //public DbSet<Advisor> Advisor { get; set; }
         public DbSet<Accomodation> Accomodation { get; set; }
+        public DbSet<Destination> Destination { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -49,8 +50,8 @@ namespace Inter.Core.Infra.Data.Context
 
         private string GetStringConectionConfig()
         {
-            return "server=intercore.mysql.database.azure.com;database=INTERCORE;user=intercore@intercore;password=U8Hw2n<nZr#RrN@<";
-            //return "server=localhost;database=INTERCORE;user=root;password=admin";
+            //return "server=intercore.mysql.database.azure.com;database=INTERCORE;user=intercore@intercore;password=U8Hw2n<nZr#RrN@<";
+            return "server=localhost;database=INTERCORE;user=root;password=admin";
         }
     }
 }

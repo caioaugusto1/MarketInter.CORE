@@ -3,14 +3,16 @@ using System;
 using Inter.Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Inter.Core.Infra.Data.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    partial class MySQLContextModelSnapshot : ModelSnapshot
+    [Migration("20190829005758_CreateDestinationTable")]
+    partial class CreateDestinationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,8 +38,6 @@ namespace Inter.Core.Infra.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(13);
 
-                    b.Property<Guid>("DestinationId");
-
                     b.Property<Guid>("EnvironmentId");
 
                     b.Property<string>("Identifier")
@@ -47,8 +47,6 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.Property<int>("NumberOfPlaces");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DestinationId");
 
                     b.HasIndex("EnvironmentId");
 
@@ -130,8 +128,6 @@ namespace Inter.Core.Infra.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<Guid>("DestinationId");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(40);
@@ -147,8 +143,6 @@ namespace Inter.Core.Infra.Data.Migrations
                         .HasMaxLength(20);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DestinationId");
 
                     b.HasIndex("EnvironmentId");
 
@@ -222,8 +216,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
                     b.Property<int>("DaysOfAccomodation");
 
-                    b.Property<Guid>("DestinationId");
-
                     b.Property<Guid>("EnvironmentId");
 
                     b.Property<DateTime?>("FinishAccomodation");
@@ -268,8 +260,6 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasIndex("CollegeId");
 
                     b.HasIndex("CollegeTimeId");
-
-                    b.HasIndex("DestinationId");
 
                     b.HasIndex("EnvironmentId");
 
@@ -419,8 +409,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
                     b.Property<DateTime>("DateOfInsert");
 
-                    b.Property<Guid>("DestinationId");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(40);
@@ -452,8 +440,6 @@ namespace Inter.Core.Infra.Data.Migrations
                         .HasMaxLength(10);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DestinationId");
 
                     b.HasIndex("EnvironmentId");
 
@@ -593,11 +579,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.Accomodation", b =>
                 {
-                    b.HasOne("Inter.Core.Domain.Entities.Destination", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Accomodations")
                         .HasForeignKey("EnvironmentId")
@@ -614,11 +595,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.College", b =>
                 {
-                    b.HasOne("Inter.Core.Domain.Entities.Destination", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Colleges")
                         .HasForeignKey("EnvironmentId")
@@ -647,11 +623,6 @@ namespace Inter.Core.Infra.Data.Migrations
                     b.HasOne("Inter.Core.Domain.Entities.CollegeTime", "CollegeTime")
                         .WithMany()
                         .HasForeignKey("CollegeTimeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Inter.Core.Domain.Entities.Destination", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
@@ -709,11 +680,6 @@ namespace Inter.Core.Infra.Data.Migrations
 
             modelBuilder.Entity("Inter.Core.Domain.Entities.Student", b =>
                 {
-                    b.HasOne("Inter.Core.Domain.Entities.Destination", "Destination")
-                        .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Inter.Core.Domain.Entities.SystemEnvironment", "Environment")
                         .WithMany("Students")
                         .HasForeignKey("EnvironmentId")
