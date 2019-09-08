@@ -29,7 +29,7 @@ $ update-database
 
 ### Rules Project
 
- - Write 
+ - You can make a Pull Request in my application and after that, please, send to email: caiio_augustto@hotmail.com
  
  License
 ----
