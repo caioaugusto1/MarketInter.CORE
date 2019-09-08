@@ -4,6 +4,8 @@
 
 ### Development
 
+* Domain Driven Design 
+
 * [BE] - .NET Core 2.2 
 * [BE] - ENTITY FRAMEWORK Core and Dapper 
 * [FE] - HTML5, CSS3, BOOTSTRAP, AJAX AND JQUERY
