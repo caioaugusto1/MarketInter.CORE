@@ -1,21 +1,21 @@
 # Student Cultural Exchange
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/caioaugusto1/School.git)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/caioaugusto1/MarketInter.Core.git)
 
 ### Development
 
-* [BE] - .NET MVC5
-* [BE] - ENTITY FRAMEWORK
+* [BE] - .NET Core 2.2 
+* [BE] - ENTITY FRAMEWORK Core and Dapper 
 * [FE] - HTML5, CSS3, BOOTSTRAP, AJAX AND JQUERY
-* [DATABASE] - SQL SERVER
+* [DATABASE] - MySQL
 
 
 ### Installation
 
 Requires Visual Studio - 2017 - to run
-Requires Microsoft SQL Server Management Studio 
+Requires MySQL Workbench 
 
-Change <connectionstring in file `${web.config}` after clone git repository
+Change <connectionstring in file `${AppSettings}` after clone git repository
 
 Run Migrations command to execute database.
 
@@ -27,9 +27,7 @@ $ update-database
 
 ### Rules Project
 
- - Write
- - 
- 
+ - Write 
  
  License
 ----
