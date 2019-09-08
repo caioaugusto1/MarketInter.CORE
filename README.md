@@ -34,7 +34,7 @@ $ add-migration
 $ update-database
 ```
 
-### Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+### [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
  - You can make a Pull Request in my application and after that, please, send to email: caiio_augustto@hotmail.com
  
 ## Want to help?
