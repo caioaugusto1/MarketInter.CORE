@@ -2,10 +2,10 @@
 
 This project gone to management cultural exchange student, have the Payments control, upload and download files, College CRUD, Customer CRUD, Accommodation CRUD, Cultural Exchange CRUD.
 
-1 - Customer can have 1 Accommodation 
-1 - Customer can have 1 College 
-1 - Cultural Exchange can have 1 Customer
-1 - Cultural Exchange can have N Payments 
+* 1 - Customer can have 1 Accommodation 
+* 1 - Customer can have 1 College 
+* 1 - Cultural Exchange can have 1 Customer
+* 1 - Cultural Exchange can have N Payments 
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/caioaugusto1/MarketInter.Core.git)
 
