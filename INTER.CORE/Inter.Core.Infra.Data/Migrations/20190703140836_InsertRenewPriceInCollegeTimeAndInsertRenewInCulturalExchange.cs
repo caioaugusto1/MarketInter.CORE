@@ -6,18 +6,18 @@ namespace Inter.Core.Infra.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
+            migrationBuilder.AddColumn<bool>(
                 name: "RenewCourse",
                 table: "CulturalExchange",
-                newName: "Renew");
+                nullable: false,
+                defaultValue: "");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Renew",
-                table: "CulturalExchange",
-                newName: "RenewCourse");
+            migrationBuilder.DropColumn(
+              name: "RenewCourse",
+              table: "CulturalExchange");
         }
     }
 }
