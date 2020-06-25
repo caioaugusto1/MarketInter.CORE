@@ -7,6 +7,8 @@ namespace Inter.Core.Domain.Interfaces.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
+        //IUnitOfWork UnitOfWork { get; }
+
         List<TEntity> GetAll();
 
         TEntity GetById(Guid id);
@@ -18,6 +20,6 @@ namespace Inter.Core.Domain.Interfaces.Repositories
         List<TEntity> FindByFilter(Expression<Func<TEntity, bool>> predicate);
 
         void Delete(TEntity id);
-        
+
     }
 }

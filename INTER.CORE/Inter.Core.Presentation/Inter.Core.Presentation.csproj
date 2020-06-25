@@ -39,7 +39,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Inter.Core.App\Inter.Core.App.csproj" />
     <ProjectReference Include="..\Inter.Core.Infra.CrossCutting.IoCDeppendency\Inter.Core.Infra.CrossCutting.IoCDeppendency.csproj" />
-    <ProjectReference Include="..\Inter.Core.Infra.Data\Inter.Core.Infra.Data.csproj" />
   </ItemGroup>
 
 

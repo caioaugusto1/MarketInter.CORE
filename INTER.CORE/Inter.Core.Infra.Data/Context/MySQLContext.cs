@@ -1,11 +1,15 @@
 ﻿using Inter.Core.Domain.Entities;
+using Inter.Core.Domain.Interfaces.Repositories;
 using Inter.Core.Infra.Data.EntityConfig;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Inter.Core.Infra.Data.Context
 {
-    public class MySQLContext : IdentityDbContext<ApplicationUser>
+    public class MySQLContext : IdentityDbContext<ApplicationUser>, IUnitOfWork
     {
         public MySQLContext(DbContextOptions<MySQLContext> options)
             : base(options)
@@ -52,6 +56,24 @@ namespace Inter.Core.Infra.Data.Context
         {
             //return "server=intercore.mysql.database.azure.com;database=INTERCORE;user=intercore@intercore;password=U8Hw2n<nZr#RrN@<";
             return "server=localhost;database=INTERCORE;user=root;password=admin";
+        }
+
+        public async Task<bool> Commit()
+        {
+            foreach (var entry in ChangeTracker.Entries().Where(en => en.Entity.GetType().GetProperty("CreatedDate") != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("CreatedDate").CurrentValue = DateTime.Now;
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property("CreatedDate").IsModified = false;
+                }
+            }
+
+            return await base.SaveChangesAsync() > 0;
         }
     }
 }
